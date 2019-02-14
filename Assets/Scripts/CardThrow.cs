@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class CardThrow : MonoBehaviour
 {
-
     public float rotSpeed;
     public float throwSpeed;
     public int playerInt;
+    public int cardNum;
 
     public GameObject player1;
-    public Transform cardTarget;
+    public GameObject player1Aim;
 
     public bool toRes;
     public bool toPlayer;
@@ -22,9 +22,8 @@ public class CardThrow : MonoBehaviour
         toPlayer = false;
         i = 0;
         player1 = GameObject.Find("Player1");
-        cardTarget = GameObject.Find("CardTarget(Clone)").GetComponent<Transform>();
-
-
+        player1Aim = GameObject.Find("Player1Aim");
+        transform.LookAt(player1Aim.transform);
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -33,14 +32,14 @@ public class CardThrow : MonoBehaviour
         {
             toRes = false;
             toPlayer = true;
-            Debug.Log("hitRes");
+            //Debug.Log("hitRes");
             i = 101;
         }
         if (collision.gameObject.tag == "Target")
         {
             toRes = false;
             toPlayer = true;
-            Debug.Log("maxRange");
+            //Debug.Log("maxRange");
             i = 101;
         }
 
@@ -52,10 +51,8 @@ public class CardThrow : MonoBehaviour
 
     void FixedUpdate()
     {
-
         if (toRes)
         {
-            transform.LookAt(cardTarget.transform.position);
             transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
             i++;
         }
@@ -73,5 +70,15 @@ public class CardThrow : MonoBehaviour
     }
 
 }
+/*        if (Input.GetMouseButtonDown(0))
+        {
+            GameObject targetSave = Instantiate(cardTarget);
+            targetSave.transform.position = this.transform.position;
+            allTargets[cardsThrown] = targetSave;
+            cardsThrown++;
 
-//transform.position = Vector3.MoveTowards(transform.position, player1Aim.position, throwSpeed * Time.deltaTime);
+        }
+
+ * 
+ */
+

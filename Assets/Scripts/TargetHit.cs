@@ -6,11 +6,13 @@ public class TargetHit : MonoBehaviour
 {
     public int i = 0;
 
+
     private void Update()
     {
         i++;
         if (i > 200)
         {
+
             Destroy(this.gameObject);
         }
     }

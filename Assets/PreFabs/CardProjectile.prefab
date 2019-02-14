@@ -125,7 +125,11 @@ MonoBehaviour:
   throwSpeed: 7
   playerInt: 0
   player1: {fileID: 4589685495232286483, guid: 0f9ffe8302123f5419638698ccf5218d, type: 3}
-  player1Aim: {fileID: 0}
+  player1Aim: {fileID: 4589685495232286483, guid: 0f9ffe8302123f5419638698ccf5218d,
+    type: 3}
+  cardTarget: {fileID: 161612929619847625, guid: 0f0c357747eaf3148aa0368ff7ed638d,
+    type: 3}
+  thisTarget: {fileID: 0}
   toRes: 0
   toPlayer: 0
   i: 0

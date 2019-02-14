@@ -1784,6 +1784,24 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1392242574}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1210883372 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3034208157552218009, guid: 1553b485d2451644e9561177ebde3e4f,
+    type: 3}
+  m_PrefabInstance: {fileID: 498426047}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1210883376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1210883372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e62f83bc9feb24746b1983a3e3d8149e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1244834127 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 311426698061290227, guid: ce69f7174b84efe40897900815999c97,
@@ -2320,10 +2338,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1958647858, guid: 0f9ffe8302123f5419638698ccf5218d, type: 3}
+      propertyPath: allTargets.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1958647858, guid: 0f9ffe8302123f5419638698ccf5218d, type: 3}
       propertyPath: cardTarget
       value: 
       objectReference: {fileID: 161612929619847625, guid: 0f0c357747eaf3148aa0368ff7ed638d,
         type: 3}
+    - target: {fileID: 1958647858, guid: 0f9ffe8302123f5419638698ccf5218d, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1920569125}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f9ffe8302123f5419638698ccf5218d, type: 3}
 --- !u!1001 &1475519110

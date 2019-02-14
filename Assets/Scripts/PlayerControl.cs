@@ -8,10 +8,10 @@ public class PlayerControl : MonoBehaviour
 
     public List<GameObject> spells;
     public int spellSelected;
+    public bool[] canCast;
     public float speed;
     public GameObject card;
     public GameObject newCard;
-
     public int cardsThrown;
 
 
@@ -19,17 +19,30 @@ public class PlayerControl : MonoBehaviour
 
     public bool grounded;
 
-    // Start is called before the first frame update
     void Start()
     {
         grounded = true;
         cardsThrown = 0;
+        canCast = new bool[4]; // ignore zero here
+        for(int i = 0; i < 4; i++)
+        {
+            canCast[i] = true;
+        }
     }
-
-    // Update is called once per frame
+   
     void Update()
     {
-        if (grounded)
+        // Spell selection
+        if (Input.GetKey(KeyCode.Alpha1))
+            spellSelected = 0;
+        if (Input.GetKey(KeyCode.Alpha2))
+            spellSelected = 1;
+        if (Input.GetKey(KeyCode.Alpha3))
+            spellSelected = 2;
+        if (Input.GetKey(KeyCode.Alpha4))
+            spellSelected = 3;
+
+        if (grounded) // movement
         {
             if (Input.GetKey(KeyCode.A))
                 transform.Translate(Vector3.left * Time.deltaTime * speed, Space.World);
@@ -40,12 +53,15 @@ public class PlayerControl : MonoBehaviour
             if (Input.GetKey(KeyCode.S))
                 transform.Translate(Vector3.back * Time.deltaTime * speed, Space.World);
 
-
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && cardsThrown < 4 && canCast[spellSelected]) // fire Card
             {  
                 newCard = Instantiate(card, this.transform.position, card.transform.rotation);
                 newCard.transform.position = new Vector3(newCard.transform.position.x, newCard.transform.position.y - .25f, newCard.transform.position.z);
+                newCard.GetComponent<CardThrow>().cardNum = spellSelected;
+                Debug.Log("Card" + (spellSelected + 1) + " Thrown");
                 cardsThrown++;
+                speed = speed - 1.5f; // slow aplied for each card in play
+                canCast[spellSelected] = false;
             }
                 
         }   
@@ -65,6 +81,8 @@ public class PlayerControl : MonoBehaviour
         if (collision.gameObject.tag == "Card" && collision.GetComponent<CardThrow>().i > 100)
         {
             cardsThrown--;
+            speed = speed + 1.5f; // slow aplied for each card in play
+            canCast[collision.GetComponent<CardThrow>().cardNum] = true;
         }
 
     }
