@@ -11,6 +11,9 @@ public class CardThrow : MonoBehaviour
 
     public GameObject player1;
     public GameObject player1Aim;
+    public PlayerControl playerControl;
+
+    public string resType;
 
     public bool toRes;
     public bool toPlayer;
@@ -24,27 +27,29 @@ public class CardThrow : MonoBehaviour
         player1 = GameObject.Find("Player1");
         player1Aim = GameObject.Find("Player1Aim");
         transform.LookAt(player1Aim.transform);
+        playerControl = player1.GetComponent<PlayerControl>();
+        cardNum = playerControl.spellSelected;
     }
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.tag == "resNode")
+        if (collision.gameObject.tag == "fireRes")
         {
             toRes = false;
             toPlayer = true;
-            //Debug.Log("hitRes");
+            resType = "Fire";
             i = 101;
         }
         if (collision.gameObject.tag == "Target")
         {
             toRes = false;
             toPlayer = true;
-            //Debug.Log("maxRange");
             i = 101;
         }
 
         if (collision.gameObject.tag == "Player1" && i > 100)
         {
+            playerControl.spellPrimary[cardNum] = resType;
             Destroy(this.gameObject);
         }
     }

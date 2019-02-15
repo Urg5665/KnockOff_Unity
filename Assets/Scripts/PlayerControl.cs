@@ -6,13 +6,19 @@ public class PlayerControl : MonoBehaviour
 {
     public int playerNum;
 
-    public List<GameObject> spells;
-    public int spellSelected;
+    public GameObject[] spellProjectile; // The actual Fireball, air block, earth wall
+    public int spellSelected = 1;
     public bool[] canCast;
+
+    public string[] spellPrimary; // Keywords "Fire", "Air", "Earth" "Water"
+    public string[] spellSecondary; // Keywords "Aoe", "Range", "Lob"? not as sure about the last two
+
+
     public float speed;
     public GameObject card;
     public GameObject newCard;
     public int cardsThrown;
+
     public Transform movement;
 
     public Rigidbody rb;
@@ -44,9 +50,9 @@ public class PlayerControl : MonoBehaviour
 
         if (grounded) // movement
         {
-            float moveHL = Input.GetAxis("Horizontal") * speed;
-            float moveVL = Input.GetAxis("Vertical") * speed;
-            /*
+            //float moveHL = Input.GetAxis("Horizontal") * speed;
+            //float moveVL = Input.GetAxis("Vertical") * speed;
+            
             if (Input.GetKey(KeyCode.A))
                 transform.Translate(Vector3.left * Time.deltaTime * speed, Space.World);
             if (Input.GetKey(KeyCode.D))
@@ -55,15 +61,15 @@ public class PlayerControl : MonoBehaviour
                 transform.Translate(Vector3.forward * Time.deltaTime * speed, Space.World);
             if (Input.GetKey(KeyCode.S))
                 transform.Translate(Vector3.back * Time.deltaTime * speed, Space.World);
-                */
-            moveHL *= Time.deltaTime;
-            moveVL *= Time.deltaTime;
+              
+            //moveHL *= Time.deltaTime;
+            //moveVL *= Time.deltaTime;
 
-            movement.Translate(moveVL,0, moveHL);
+            //movement.Translate(moveVL,0, moveHL, Space.World);
 
           
 
-            if (Input.GetMouseButtonDown(0) && cardsThrown < 4 && canCast[spellSelected]) // fire Card
+            if (Input.GetMouseButtonDown(0) && cardsThrown < 4 && canCast[spellSelected]) // Shoot Card
             {  
                 newCard = Instantiate(card, this.transform.position, card.transform.rotation);
                 newCard.transform.position = new Vector3(newCard.transform.position.x, newCard.transform.position.y - .25f, newCard.transform.position.z);
@@ -93,6 +99,7 @@ public class PlayerControl : MonoBehaviour
             cardsThrown--;
             speed = speed + 1.5f; // slow aplied for each card in play
             canCast[collision.GetComponent<CardThrow>().cardNum] = true;
+            Debug.Log(spellPrimary[collision.GetComponent<CardThrow>().cardNum]);
         }
 
     }
