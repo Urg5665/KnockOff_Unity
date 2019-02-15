@@ -40,6 +40,13 @@ public class CardThrow : MonoBehaviour
             resType = "Fire";
             i = 101;
         }
+        if (collision.gameObject.tag == "windRes")
+        {
+            toRes = false;
+            toPlayer = true;
+            resType = "Wind";
+            i = 101;
+        }
         if (collision.gameObject.tag == "Target")
         {
             toRes = false;

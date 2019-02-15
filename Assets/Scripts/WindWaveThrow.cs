@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireBallThrow : MonoBehaviour
+public class WindWaveThrow : MonoBehaviour
 {
     public float throwSpeed;
     public int playerInt;
@@ -29,10 +29,10 @@ public class FireBallThrow : MonoBehaviour
 
         if (collision.gameObject.tag == "Player2")
         {
-            collision.gameObject.transform.position = 
+            collision.gameObject.transform.position =
                 new Vector3(50, collision.gameObject.transform.position.y, collision.gameObject.transform.position.z);
             Destroy(this.gameObject);
-           playerControl.canCast[spellNum] = true;
+            playerControl.canCast[spellNum] = true;
 
         }
     }
@@ -42,7 +42,7 @@ public class FireBallThrow : MonoBehaviour
         transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
         i++;
 
-        if (i > 30)
+        if (i > 50)
         {
             Destroy(this.gameObject);
             playerControl.canCast[spellNum] = true;

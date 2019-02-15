@@ -5,25 +5,25 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour
 {
     public int playerNum;
+    public float speed;
+
+    public Transform movement;
+    public Rigidbody rb;
+
+    public bool grounded;
 
     public GameObject[] spellProjectile; // The actual Fireball, air block, earth wall
     public int spellSelected = 1;
     public bool[] canCast;
 
-    public string[] spellPrimary; // Keywords "Fire", "Air", "Earth" "Water"
-    public string[] spellSecondary; // Keywords "Aoe", "Range", "Lob"? not as sure about the last two
+    public string[] spellPrimary; // Keywords "Fire", "Wind", "Earth" "Water" use "" for empty
+    public string[] spellSecondary; // Keywords "Aoe", "Range", "Lob"? not as sure about the last two use "" for empty
 
-
-    public float speed;
     public GameObject card;
     public GameObject newCard;
     public int cardsThrown;
 
-    public Transform movement;
-
-    public Rigidbody rb;
-
-    public bool grounded;
+    public GameObject newSpell;
 
     void Start()
     {
@@ -50,9 +50,9 @@ public class PlayerControl : MonoBehaviour
 
         if (grounded) // movement
         {
-            //float moveHL = Input.GetAxis("Horizontal") * speed;
-            //float moveVL = Input.GetAxis("Vertical") * speed;
-            
+            //float moveHL = Input.GetAxis("Horizontal") * speed; // Sorry I fucked with this, 
+            //float moveVL = Input.GetAxis("Vertical") * speed; // I will definity come back to controller combabtabilty, but pls just use keyboard for now - Mark
+
             if (Input.GetKey(KeyCode.A))
                 transform.Translate(Vector3.left * Time.deltaTime * speed, Space.World);
             if (Input.GetKey(KeyCode.D))
@@ -69,7 +69,7 @@ public class PlayerControl : MonoBehaviour
 
           
 
-            if (Input.GetMouseButtonDown(0) && cardsThrown < 4 && canCast[spellSelected]) // Shoot Card
+            if (Input.GetMouseButtonDown(0) && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "") // Shoot Card
             {  
                 newCard = Instantiate(card, this.transform.position, card.transform.rotation);
                 newCard.transform.position = new Vector3(newCard.transform.position.x, newCard.transform.position.y - .25f, newCard.transform.position.z);
@@ -79,7 +79,23 @@ public class PlayerControl : MonoBehaviour
                 speed = speed - 1.5f; // slow aplied for each card in play
                 canCast[spellSelected] = false;
             }
-                
+            if (Input.GetMouseButtonDown(0) && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "Fire") // Shoot Fireball
+            {
+                newSpell = Instantiate(spellProjectile[0], this.transform.position, card.transform.rotation);
+                newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
+                newSpell.GetComponent<FireBallThrow>().spellNum = spellSelected;
+                Debug.Log("Fireball" + (spellSelected + 1) + " Thrown");
+                canCast[spellSelected] = false;
+            }
+            if (Input.GetMouseButtonDown(0) && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "Wind") // Shoot Wind Knock
+            {
+                newSpell = Instantiate(spellProjectile[1], this.transform.position, card.transform.rotation);
+                newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
+                newSpell.GetComponent<FireBallThrow>().spellNum = spellSelected;
+                Debug.Log("Fireball" + (spellSelected + 1) + " Thrown");
+                canCast[spellSelected] = false;
+            }
+
         }   
         if ( this.transform.position.y < 2.5f)
         {
