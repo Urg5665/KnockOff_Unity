@@ -13,7 +13,7 @@ public class PlayerControl : MonoBehaviour
     public GameObject card;
     public GameObject newCard;
     public int cardsThrown;
-
+    public Transform movement;
 
     public Rigidbody rb;
 
@@ -44,6 +44,9 @@ public class PlayerControl : MonoBehaviour
 
         if (grounded) // movement
         {
+            float moveHL = Input.GetAxis("Horizontal") * speed;
+            float moveVL = Input.GetAxis("Vertical") * speed;
+            /*
             if (Input.GetKey(KeyCode.A))
                 transform.Translate(Vector3.left * Time.deltaTime * speed, Space.World);
             if (Input.GetKey(KeyCode.D))
@@ -52,6 +55,13 @@ public class PlayerControl : MonoBehaviour
                 transform.Translate(Vector3.forward * Time.deltaTime * speed, Space.World);
             if (Input.GetKey(KeyCode.S))
                 transform.Translate(Vector3.back * Time.deltaTime * speed, Space.World);
+                */
+            moveHL *= Time.deltaTime;
+            moveVL *= Time.deltaTime;
+
+            movement.Translate(moveVL,0, moveHL);
+
+          
 
             if (Input.GetMouseButtonDown(0) && cardsThrown < 4 && canCast[spellSelected]) // fire Card
             {  
