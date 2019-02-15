@@ -12,6 +12,10 @@ public class WindWaveThrow : MonoBehaviour
     public GameObject player1Aim;
     public PlayerControl playerControl;
 
+    public float windForce;
+    public Vector3  spellDir;
+
+
     public int i;
 
     private void Start()
@@ -22,6 +26,10 @@ public class WindWaveThrow : MonoBehaviour
         transform.LookAt(player1Aim.transform);
         playerControl = player1.GetComponent<PlayerControl>();
         spellNum = playerControl.spellSelected;
+        spellDir = this.gameObject.transform.forward;
+        windForce = 750;
+        throwSpeed = 20;
+
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -29,8 +37,8 @@ public class WindWaveThrow : MonoBehaviour
 
         if (collision.gameObject.tag == "Player2")
         {
-            collision.gameObject.transform.position =
-                new Vector3(50, collision.gameObject.transform.position.y, collision.gameObject.transform.position.z);
+            collision.gameObject.GetComponent<Rigidbody>().AddForce(spellDir.normalized * windForce); // Knock Back
+            collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * 200); // Knock Up
             Destroy(this.gameObject);
             playerControl.canCast[spellNum] = true;
 

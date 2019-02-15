@@ -22,7 +22,8 @@ public class FireBallThrow : MonoBehaviour
         transform.LookAt(player1Aim.transform);
         playerControl = player1.GetComponent<PlayerControl>();
         spellNum = playerControl.spellSelected;
-    }
+        throwSpeed = 30;
+}
 
     private void OnTriggerEnter(Collider collision)
     {

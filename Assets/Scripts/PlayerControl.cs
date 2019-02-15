@@ -91,8 +91,8 @@ public class PlayerControl : MonoBehaviour
             {
                 newSpell = Instantiate(spellProjectile[1], this.transform.position, card.transform.rotation);
                 newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
-                newSpell.GetComponent<FireBallThrow>().spellNum = spellSelected;
-                Debug.Log("Fireball" + (spellSelected + 1) + " Thrown");
+                newSpell.GetComponent<WindWaveThrow>().spellNum = spellSelected;
+                Debug.Log("WindWave" + (spellSelected + 1) + " Thrown");
                 canCast[spellSelected] = false;
             }
 
