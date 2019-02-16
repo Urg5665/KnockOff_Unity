@@ -141,11 +141,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5503366003343464748}
     m_Modifications:
-    - target: {fileID: 554728151088234543, guid: dfd5919c669d7074ea79f4791c379e15,
-        type: 3}
-      propertyPath: m_Name
-      value: Card_FX
-      objectReference: {fileID: 0}
     - target: {fileID: 3606809554092009728, guid: dfd5919c669d7074ea79f4791c379e15,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -199,6 +194,16 @@ PrefabInstance:
     - target: {fileID: 3606809554092009728, guid: dfd5919c669d7074ea79f4791c379e15,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 554728151088234543, guid: dfd5919c669d7074ea79f4791c379e15,
+        type: 3}
+      propertyPath: m_Name
+      value: Card_FX
+      objectReference: {fileID: 0}
+    - target: {fileID: 1536294403744591459, guid: dfd5919c669d7074ea79f4791c379e15,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

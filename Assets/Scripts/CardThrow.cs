@@ -33,14 +33,14 @@ public class CardThrow : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.tag == "fireRes")
+        if (collision.gameObject.tag == "fireRes" && toRes == true)
         {
             toRes = false;
             toPlayer = true;
             resType = "Fire";
             i = 101;
         }
-        if (collision.gameObject.tag == "windRes")
+        if (collision.gameObject.tag == "windRes" && toRes == true)
         {
             toRes = false;
             toPlayer = true;

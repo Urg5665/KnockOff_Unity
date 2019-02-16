@@ -74,7 +74,7 @@ public class PlayerControl : MonoBehaviour
                 newCard = Instantiate(card, this.transform.position, card.transform.rotation);
                 newCard.transform.position = new Vector3(newCard.transform.position.x, newCard.transform.position.y - .25f, newCard.transform.position.z);
                 newCard.GetComponent<CardThrow>().cardNum = spellSelected;
-                Debug.Log("Card" + (spellSelected + 1) + " Thrown");
+                //Debug.Log("Card" + (spellSelected + 1) + " Thrown");
                 cardsThrown++;
                 speed = speed - 1.5f; // slow aplied for each card in play
                 canCast[spellSelected] = false;
@@ -84,7 +84,7 @@ public class PlayerControl : MonoBehaviour
                 newSpell = Instantiate(spellProjectile[0], this.transform.position, card.transform.rotation);
                 newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
                 newSpell.GetComponent<FireBallThrow>().spellNum = spellSelected;
-                Debug.Log("Fireball" + (spellSelected + 1) + " Thrown");
+                //Debug.Log("Fireball" + (spellSelected + 1) + " Thrown");
                 canCast[spellSelected] = false;
             }
             if (Input.GetMouseButtonDown(0) && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "Wind") // Shoot Wind Knock
@@ -92,7 +92,7 @@ public class PlayerControl : MonoBehaviour
                 newSpell = Instantiate(spellProjectile[1], this.transform.position, card.transform.rotation);
                 newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
                 newSpell.GetComponent<WindWaveThrow>().spellNum = spellSelected;
-                Debug.Log("WindWave" + (spellSelected + 1) + " Thrown");
+                //Debug.Log("WindWave" + (spellSelected + 1) + " Thrown");
                 canCast[spellSelected] = false;
             }
 
