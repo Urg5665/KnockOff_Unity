@@ -25,6 +25,7 @@ public class PlayerControl : MonoBehaviour
     public GameObject newCardTrail;
 
     public int cardsThrown;
+    public float slowDownPerCard = 2.5f;
 
     public GameObject newSpell;
 
@@ -64,43 +65,23 @@ public class PlayerControl : MonoBehaviour
                 transform.Translate(Vector3.forward * Time.deltaTime * speed, Space.World);
             if (Input.GetKey(KeyCode.S))
                 transform.Translate(Vector3.back * Time.deltaTime * speed, Space.World);
-              
+
             //moveHL *= Time.deltaTime;
             //moveVL *= Time.deltaTime;
 
             //movement.Translate(moveVL,0, moveHL, Space.World);
 
-          
-
             if (Input.GetMouseButtonDown(0) && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "") // Shoot Card
-            {  
-                newCard = Instantiate(card, this.transform.position, card.transform.rotation);
-                newCard.transform.position = new Vector3(newCard.transform.position.x, newCard.transform.position.y - .25f, newCard.transform.position.z);
-                newCard.GetComponent<CardThrow>().cardNum = spellSelected;
-                //Debug.Log("Card" + (spellSelected + 1) + " Thrown");
-                cardsThrown++;
-                speed = speed - 1.5f; // slow aplied for each card in play
-
-                newCardTrail = Instantiate(cardTrail, this.transform.position, card.transform.rotation);
-                newCardTrail.transform.position = new Vector3(newCard.transform.position.x, newCard.transform.position.y - .25f, newCard.transform.position.z);
-                newCardTrail.GetComponent<CardTrailThrow>().cardTrailTarget = newCard;
-                canCast[spellSelected] = false;
+            {
+                CardGather();
             }
             if (Input.GetMouseButtonDown(0) && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "Fire") // Shoot Fireball
             {
-                newSpell = Instantiate(spellProjectile[0], this.transform.position, card.transform.rotation);
-                newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
-                newSpell.GetComponent<FireBallThrow>().spellNum = spellSelected;
-                //Debug.Log("Fireball" + (spellSelected + 1) + " Thrown");
-                canCast[spellSelected] = false;
+                Fireball();
             }
             if (Input.GetMouseButtonDown(0) && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "Wind") // Shoot Wind Knock
             {
-                newSpell = Instantiate(spellProjectile[1], this.transform.position, card.transform.rotation);
-                newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
-                newSpell.GetComponent<WindWaveThrow>().spellNum = spellSelected;
-                //Debug.Log("WindWave" + (spellSelected + 1) + " Thrown");
-                canCast[spellSelected] = false;
+                WindKnockback();
             }
 
         }   
@@ -120,11 +101,41 @@ public class PlayerControl : MonoBehaviour
         if (collision.gameObject.tag == "Card" && collision.GetComponent<CardThrow>().i > 100)
         {
             cardsThrown--;
-            speed = speed + 1.5f; // slow aplied for each card in play
+            speed = speed + slowDownPerCard; // slow aplied for each card in play
             canCast[collision.GetComponent<CardThrow>().cardNum] = true;
-            Debug.Log(spellPrimary[collision.GetComponent<CardThrow>().cardNum]);
+            //Debug.Log(spellPrimary[collision.GetComponent<CardThrow>().cardNum]);
         }
 
+    }
+    private void CardGather()
+    {
+        newCard = Instantiate(card, this.transform.position, card.transform.rotation);
+        newCard.transform.position = new Vector3(newCard.transform.position.x, newCard.transform.position.y - .25f, newCard.transform.position.z);
+        newCard.GetComponent<CardThrow>().cardNum = spellSelected;
+        cardsThrown++;
+        speed = speed - slowDownPerCard; // slow aplied for each card in play
+
+        newCardTrail = Instantiate(cardTrail, this.transform.position, card.transform.rotation);
+        newCardTrail.transform.position = new Vector3(newCard.transform.position.x, newCard.transform.position.y - .25f, newCard.transform.position.z);
+        newCardTrail.GetComponent<CardTrailThrow>().cardTrailTarget = newCard;
+        canCast[spellSelected] = false;
+    }
+    private void Fireball()
+    {
+        if (spellSecondary[s == "")
+        newSpell = Instantiate(spellProjectile[0], this.transform.position, card.transform.rotation);
+        newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
+        newSpell.GetComponent<FireBallThrow>().spellNum = spellSelected;
+        //Debug.Log("Fireball" + (spellSelected + 1) + " Thrown");
+        canCast[spellSelected] = false;
+    }
+    private void WindKnockback()
+    {
+        newSpell = Instantiate(spellProjectile[1], this.transform.position, card.transform.rotation);
+        newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
+        newSpell.GetComponent<WindWaveThrow>().spellNum = spellSelected;
+        //Debug.Log("WindWave" + (spellSelected + 1) + " Thrown");
+        canCast[spellSelected] = false;
     }
 
 

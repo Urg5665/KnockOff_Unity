@@ -14,6 +14,7 @@ public class CardThrow : MonoBehaviour
     public PlayerControl playerControl;
 
     public string resType;
+    public string resType2;
 
     public bool toRes;
     public bool toPlayer;
@@ -38,6 +39,7 @@ public class CardThrow : MonoBehaviour
             toRes = false;
             toPlayer = true;
             resType = "Fire";
+            resType2 = "AOE";
             i = 101;
         }
         if (collision.gameObject.tag == "windRes" && toRes == true)
@@ -45,6 +47,7 @@ public class CardThrow : MonoBehaviour
             toRes = false;
             toPlayer = true;
             resType = "Wind";
+            resType2 = "Range";
             i = 101;
         }
         if (collision.gameObject.tag == "Target")
@@ -56,7 +59,14 @@ public class CardThrow : MonoBehaviour
 
         if (collision.gameObject.tag == "Player1" && i > 100)
         {
-            playerControl.spellPrimary[cardNum] = resType;
+            if (playerControl.spellPrimary[cardNum] == "")
+            {
+                playerControl.spellPrimary[cardNum] = resType;
+            }
+            else if (playerControl.spellPrimary[cardNum] != resType)
+            {
+                playerControl.spellSecondary[cardNum] = resType2;
+            }
             Destroy(this.gameObject);
         }
     }

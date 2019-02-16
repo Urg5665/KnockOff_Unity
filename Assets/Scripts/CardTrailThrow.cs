@@ -9,8 +9,6 @@ public class CardTrailThrow : MonoBehaviour
 
     void Update()
     {
-
-
         transform.position = Vector3.MoveTowards(transform.position, cardTrailTarget.transform.position, trailSpeed);
     }
 }

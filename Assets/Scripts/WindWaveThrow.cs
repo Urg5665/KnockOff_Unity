@@ -16,11 +16,12 @@ public class WindWaveThrow : MonoBehaviour
     public Vector3  spellDir;
 
 
-    public int i;
+    public int rangeCounter;
+    public int maxRange = 10;
 
     private void Start()
     {
-        i = 0;
+
         player1 = GameObject.Find("Player1");
         player1Aim = GameObject.Find("Player1Aim");
         transform.LookAt(player1Aim.transform);
@@ -29,7 +30,7 @@ public class WindWaveThrow : MonoBehaviour
         spellDir = this.gameObject.transform.forward;
         windForce = 750;
         throwSpeed = 20;
-
+        rangeCounter = 0;
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -48,9 +49,9 @@ public class WindWaveThrow : MonoBehaviour
     void FixedUpdate()
     {
         transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
-        i++;
+        rangeCounter++;
 
-        if (i > 50)
+        if (rangeCounter > maxRange)
         {
             Destroy(this.gameObject);
             playerControl.canCast[spellNum] = true;
