@@ -21,6 +21,9 @@ public class PlayerControl : MonoBehaviour
 
     public GameObject card;
     public GameObject newCard;
+    public GameObject cardTrail;
+    public GameObject newCardTrail;
+
     public int cardsThrown;
 
     public GameObject newSpell;
@@ -77,6 +80,10 @@ public class PlayerControl : MonoBehaviour
                 //Debug.Log("Card" + (spellSelected + 1) + " Thrown");
                 cardsThrown++;
                 speed = speed - 1.5f; // slow aplied for each card in play
+
+                newCardTrail = Instantiate(cardTrail, this.transform.position, card.transform.rotation);
+                newCardTrail.transform.position = new Vector3(newCard.transform.position.x, newCard.transform.position.y - .25f, newCard.transform.position.z);
+                newCardTrail.GetComponent<CardTrailThrow>().cardTrailTarget = newCard;
                 canCast[spellSelected] = false;
             }
             if (Input.GetMouseButtonDown(0) && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "Fire") // Shoot Fireball

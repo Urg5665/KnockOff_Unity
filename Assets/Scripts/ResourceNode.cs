@@ -15,7 +15,7 @@ public class ResourceNode : MonoBehaviour
         
         if (i == 100)
         {
-            currentSpawn = Instantiate(resObjects[Mathf.RoundToInt(Random.Range(0, 1))], this.transform);
+            //currentSpawn = Instantiate(resObjects[Mathf.RoundToInt(Random.Range(0, 1))], this.transform);
         }
         i++;
 
