@@ -2653,46 +2653,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 46870567241696049, guid: 0f9ffe8302123f5419638698ccf5218d,
-        type: 3}
-      propertyPath: spellPrimary.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 46870567241696049, guid: 0f9ffe8302123f5419638698ccf5218d,
-        type: 3}
-      propertyPath: spellProjectile.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 46870567241696049, guid: 0f9ffe8302123f5419638698ccf5218d,
-        type: 3}
-      propertyPath: movement
-      value: 
-      objectReference: {fileID: 1920569131}
-    - target: {fileID: 46870567241696049, guid: 0f9ffe8302123f5419638698ccf5218d,
-        type: 3}
-      propertyPath: spellProjectile.Array.data[0]
-      value: 
-      objectReference: {fileID: 6028110825913185461, guid: 646fbf5c65e39244db59d4cb70051a28,
-        type: 3}
-    - target: {fileID: 46870567241696049, guid: 0f9ffe8302123f5419638698ccf5218d,
-        type: 3}
-      propertyPath: spellProjectile.Array.data[1]
-      value: 
-      objectReference: {fileID: 4462548294878240553, guid: 5977e9fd7c8d93f44b3dbfce26e4260d,
-        type: 3}
-    - target: {fileID: 1958647858, guid: 0f9ffe8302123f5419638698ccf5218d, type: 3}
-      propertyPath: allTargets.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1958647858, guid: 0f9ffe8302123f5419638698ccf5218d, type: 3}
-      propertyPath: cardTarget
-      value: 
-      objectReference: {fileID: 161612929619847625, guid: 0f0c357747eaf3148aa0368ff7ed638d,
-        type: 3}
-    - target: {fileID: 1958647858, guid: 0f9ffe8302123f5419638698ccf5218d, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 1920569125}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f9ffe8302123f5419638698ccf5218d, type: 3}
 --- !u!1001 &1475519110
@@ -3640,12 +3600,6 @@ Transform:
 --- !u!1 &1920569125 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4589685495232286483, guid: 0f9ffe8302123f5419638698ccf5218d,
-    type: 3}
-  m_PrefabInstance: {fileID: 1438511504}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1920569131 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4589685495232286487, guid: 0f9ffe8302123f5419638698ccf5218d,
     type: 3}
   m_PrefabInstance: {fileID: 1438511504}
   m_PrefabAsset: {fileID: 0}

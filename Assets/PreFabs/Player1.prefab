@@ -44,9 +44,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 4589685495232286487}
+  player: {fileID: 4589685495232286483}
   spaceOff: 15
   heightOff: 0.25
-  cardThrown: 0
+  i: 0
 --- !u!1 &4589685495232286483
 GameObject:
   m_ObjectHideFlags: 0
@@ -154,13 +155,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNum: 1
-  spells: []
-  spellSelected: 0
   speed: 10
-  card: {fileID: 5503366003343464759, guid: 189f974136601e24a9bd0cbde212644c, type: 3}
-  newCard: {fileID: 0}
+  movement: {fileID: 4589685495232286487}
   rb: {fileID: 1851593813860474082}
   grounded: 0
+  spellProjectile:
+  - {fileID: 6028110825913185461, guid: 646fbf5c65e39244db59d4cb70051a28, type: 3}
+  - {fileID: 4462548294878240553, guid: 5977e9fd7c8d93f44b3dbfce26e4260d, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  spellSelected: 0
+  canCast: 
+  spellPrimary:
+  - 
+  - 
+  - 
+  - 
+  spellSecondary: []
+  card: {fileID: 5503366003343464759, guid: 189f974136601e24a9bd0cbde212644c, type: 3}
+  newCard: {fileID: 0}
+  cardTrail: {fileID: 2088855544179431916, guid: 89bd1f99d1f336945b52b060fd741f0a,
+    type: 3}
+  newCardTrail: {fileID: 0}
+  cardsThrown: 0
+  newSpell: {fileID: 0}
 --- !u!54 &1851593813860474082
 Rigidbody:
   m_ObjectHideFlags: 0
