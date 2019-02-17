@@ -18,10 +18,11 @@ public class FireBallThrow : MonoBehaviour
     {
         maxRange = 10;
         player1 = GameObject.Find("Player1");
+
         player1Aim = GameObject.Find("Player1Aim");
-        transform.LookAt(player1Aim.transform);
         playerControl = player1.GetComponent<PlayerControl>();
         spellNum = playerControl.spellSelected;
+        transform.LookAt(player1Aim.transform);
         throwSpeed = 30;
         rangeCounter = 0;
     }

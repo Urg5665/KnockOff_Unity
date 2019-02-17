@@ -18,6 +18,8 @@ public class WindWaveThrow : MonoBehaviour
     public int rangeCounter;
     public int maxRange;
 
+    public static bool hitPlayer; // so physics doesnt freek out, this means the first time the player is hit by this is does not fucking anhiliate them - Mark
+
     private void Awake()
     {
         maxRange = 10;
@@ -28,6 +30,7 @@ public class WindWaveThrow : MonoBehaviour
         spellNum = playerControl.spellSelected;
         spellDir = this.gameObject.transform.forward;
         windForce = 750;
+        hitPlayer = false;
         throwSpeed = 20;
         rangeCounter = 0;
     }
@@ -35,12 +38,13 @@ public class WindWaveThrow : MonoBehaviour
     private void OnTriggerEnter(Collider collision)
     {
 
-        if (collision.gameObject.tag == "Player2")
+        if (collision.gameObject.tag == "Player2" && !hitPlayer)
         {
             collision.gameObject.GetComponent<Rigidbody>().AddForce(spellDir.normalized * windForce); // Knock Back
             collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * 200); // Knock Up
             Destroy(this.gameObject);
             playerControl.canCast[spellNum] = true;
+            hitPlayer = true;
 
         }
     }
