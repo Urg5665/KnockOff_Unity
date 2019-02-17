@@ -18,19 +18,23 @@ public class CardThrow : MonoBehaviour
 
     public bool toRes;
     public bool toPlayer;
-    public int i;
 
-    private void Start()
+    public int rangeCounter;
+    public int maxRange;
+
+    private void Awake()
     {
         toRes = true;
         toPlayer = false;
-        i = 0;
+        rangeCounter = 0;
         player1 = GameObject.Find("Player1");
         player1Aim = GameObject.Find("Player1Aim");
         transform.LookAt(player1Aim.transform);
         playerControl = player1.GetComponent<PlayerControl>();
         cardNum = playerControl.spellSelected;
+        maxRange = 60;
     }
+
 
     private void OnTriggerEnter(Collider collision)
     {
@@ -40,7 +44,7 @@ public class CardThrow : MonoBehaviour
             toPlayer = true;
             resType = "Fire";
             resType2 = "AOE";
-            i = 101;
+            rangeCounter = maxRange + 1; ;
         }
         if (collision.gameObject.tag == "windRes" && toRes == true)
         {
@@ -48,16 +52,16 @@ public class CardThrow : MonoBehaviour
             toPlayer = true;
             resType = "Wind";
             resType2 = "Range";
-            i = 101;
+            rangeCounter = maxRange +1 ;
         }
         if (collision.gameObject.tag == "Target")
         {
             toRes = false;
             toPlayer = true;
-            i = 101;
+            rangeCounter = maxRange+1;
         }
 
-        if (collision.gameObject.tag == "Player1" && i > 100)
+        if (collision.gameObject.tag == "Player1" && rangeCounter > maxRange)
         {
             if (playerControl.spellPrimary[cardNum] == "")
             {
@@ -78,7 +82,7 @@ public class CardThrow : MonoBehaviour
         if (toRes)
         {
             transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
-            i++;
+            rangeCounter++;
         }
 
         if (toPlayer)
@@ -86,7 +90,7 @@ public class CardThrow : MonoBehaviour
             transform.Rotate(Vector3.up * Time.deltaTime * rotSpeed, Space.World);
             transform.position = Vector3.MoveTowards(transform.position, player1.transform.position, throwSpeed * Time.deltaTime);
         }
-        if (i > 100)
+        if (rangeCounter > maxRange)
         {
             toRes = false;
             toPlayer = true;

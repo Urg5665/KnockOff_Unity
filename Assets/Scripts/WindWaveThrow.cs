@@ -15,16 +15,12 @@ public class WindWaveThrow : MonoBehaviour
     public float windForce;
     public Vector3  spellDir;
 
-
     public int rangeCounter;
     public int maxRange;
+
     private void Awake()
     {
         maxRange = 10;
-    }
-
-    private void Start()
-    {
         player1 = GameObject.Find("Player1");
         player1Aim = GameObject.Find("Player1Aim");
         transform.LookAt(player1Aim.transform);

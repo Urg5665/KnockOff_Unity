@@ -17,10 +17,6 @@ public class FireBallThrow : MonoBehaviour
     private void Awake()
     {
         maxRange = 10;
-    }
-
-    private void Start()
-    {
         player1 = GameObject.Find("Player1");
         player1Aim = GameObject.Find("Player1Aim");
         transform.LookAt(player1Aim.transform);
@@ -32,7 +28,6 @@ public class FireBallThrow : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-
         if (collision.gameObject.tag == "Player2")
         {
             collision.gameObject.transform.position = 

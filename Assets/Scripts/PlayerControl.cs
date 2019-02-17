@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
+
+    public GameObject player1Aim;
     public int playerNum;
     public float speed;
 
@@ -112,7 +114,7 @@ public class PlayerControl : MonoBehaviour
     }
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.tag == "Card" && collision.GetComponent<CardThrow>().i > 100)
+        if (collision.gameObject.tag == "Card" && collision.GetComponent<CardThrow>().rangeCounter > collision.GetComponent<CardThrow>().maxRange)
         {
             cardsThrown--;
             speed = speed + slowDownPerCard; // slow aplied for each card in play
@@ -141,15 +143,17 @@ public class PlayerControl : MonoBehaviour
             newSpell = Instantiate(spellProjectile[0], this.transform.position, card.transform.rotation);
             newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
             newSpell.GetComponent<FireBallThrow>().spellNum = spellSelected;
-            canCast[spellSelected] = false;
         }
         else if (spellSecondary[spellSelected] == "AOE")
         {
-            newSpell = Instantiate(spellProjectile[0], this.transform.position, card.transform.rotation);
-            newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
-            newSpell.GetComponent<FireBallThrow>().spellNum = spellSelected;
+            for(int i = 0; i < 8; i++)
+            {
+                newSpell = Instantiate(spellProjectile[0], this.transform.position, card.transform.rotation);
+                newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
+                newSpell.GetComponent<FireBallThrow>().spellNum = spellSelected;
+                newSpell.GetComponent<FireBallThrow>().transform.LookAt(player1Aim.transform);
+            }
             Debug.Log("Did AOE");
-            canCast[spellSelected] = false;
         }
         else if (spellSecondary[spellSelected] == "Range")
         {
@@ -157,8 +161,8 @@ public class PlayerControl : MonoBehaviour
             newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
             newSpell.GetComponent<FireBallThrow>().spellNum = spellSelected;
             newSpell.GetComponent<FireBallThrow>().maxRange = 50;
-            canCast[spellSelected] = false;
         }
+        canCast[spellSelected] = false;
 
 
 
