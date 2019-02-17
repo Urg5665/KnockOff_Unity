@@ -74,6 +74,7 @@ public class CardThrow : MonoBehaviour
                 Debug.Log("Primary:" + playerControl.spellPrimary[cardNum] + "  Secondary:" + playerControl.spellSecondary[cardNum]);
             }
             Destroy(this.gameObject);
+            Debug.Log("Card Hit Player");
         }
     }
 
@@ -95,6 +96,8 @@ public class CardThrow : MonoBehaviour
             toRes = false;
             toPlayer = true;
         }
+
+
     }
 
 }
@@ -107,6 +110,24 @@ public class CardThrow : MonoBehaviour
 
         }
 
- * 
+ *         // Cheeck Card Based on player didstnace
+         if (rangeCounter > maxRange && Mathf.Abs(this.transform.position.x - player1.transform.position.x) <= 1  && Mathf.Abs(this.transform.position.z - player1.transform.position.z) <= 1)
+        {
+            if (playerControl.spellPrimary[cardNum] == "")
+            {
+                playerControl.spellPrimary[cardNum] = resType;
+                Debug.Log("Primary:" + playerControl.spellPrimary[cardNum] + "  Secondary:" + playerControl.spellSecondary[cardNum]);
+            }
+            else if (playerControl.spellPrimary[cardNum] != "")
+            {
+                playerControl.spellSecondary[cardNum] = resType2;
+                Debug.Log("Primary:" + playerControl.spellPrimary[cardNum] + "  Secondary:" + playerControl.spellSecondary[cardNum]);
+            }
+            Destroy(this.gameObject);
+            Debug.Log("Card Came Within Range");
+            playerControl.cardsThrown--;
+            playerControl.speed = playerControl.speed + playerControl.slowDownPerCard; // slow aplied for each card in play
+            playerControl.canCast[cardNum] = true;
+        }
  */
 

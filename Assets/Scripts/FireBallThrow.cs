@@ -35,6 +35,8 @@ public class FireBallThrow : MonoBehaviour
                 new Vector3(50, collision.gameObject.transform.position.y, collision.gameObject.transform.position.z);
             Destroy(this.gameObject);
            playerControl.canCast[spellNum] = true;
+           playerControl.spellPrimary[spellNum] = "";
+           playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
         }
     }
 

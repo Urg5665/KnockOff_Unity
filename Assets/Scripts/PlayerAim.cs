@@ -24,13 +24,13 @@ public class PlayerAim : MonoBehaviour
             // Left Down
             if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W))
             {
-                transform.position = new Vector3(parent.position.x - spaceOff / 2, parent.position.y - heightOff, parent.position.z - spaceOff / 2);
+                transform.position = new Vector3(parent.position.x - spaceOff / 2, parent.position.y, parent.position.z - spaceOff / 2);
                 i = 0;
             }
             // Left Up
             if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.W))
             {
-                transform.position = new Vector3(parent.position.x - spaceOff / 2, parent.position.y - heightOff, parent.position.z + spaceOff / 2);
+                transform.position = new Vector3(parent.position.x - spaceOff / 2, parent.position.y, parent.position.z + spaceOff / 2);
                 i = 0;
             }
             // Right
@@ -42,13 +42,13 @@ public class PlayerAim : MonoBehaviour
             // Right Down
             if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W))
             {
-                transform.position = new Vector3(parent.position.x + spaceOff / 2, parent.position.y - heightOff, parent.position.z - spaceOff / 2);
+                transform.position = new Vector3(parent.position.x + spaceOff / 2, parent.position.y, parent.position.z - spaceOff / 2);
                 i = 0;
             }
             // Rigth Up
             if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.W))
             {
-                transform.position = new Vector3(parent.position.x + spaceOff / 2, parent.position.y - heightOff, parent.position.z + spaceOff / 2);
+                transform.position = new Vector3(parent.position.x + spaceOff / 2, parent.position.y, parent.position.z + spaceOff / 2);
                 i = 0;
             }
 
