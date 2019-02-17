@@ -37,6 +37,8 @@ public class PlayerControl : MonoBehaviour
         for(int i = 0; i < 4; i++)
         {
             canCast[i] = true;
+            spellPrimary[i] = "";
+            spellSecondary[i] = "";
         }
     }
    
@@ -71,15 +73,27 @@ public class PlayerControl : MonoBehaviour
 
             //movement.Translate(moveVL,0, moveHL, Space.World);
 
-            if (Input.GetMouseButtonDown(0) && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "") // Shoot Card
+            // Card Casting Commands
+            if (Input.GetMouseButtonDown(0) && cardsThrown < 4 && canCast[spellSelected] && spellSecondary[spellSelected] == "" ) // Shoot Card
             {
                 CardGather();
             }
-            if (Input.GetMouseButtonDown(0) && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "Fire") // Shoot Fireball
+            if (Input.GetMouseButtonDown(0) && cardsThrown < 4 && canCast[spellSelected] && spellSecondary[spellSelected] != "")  // Disabel Shooitng Card because spell is maxed
+            {
+                Debug.Log("Spell Maxed - Cast it!");
+            }
+
+
+            // Spell Casting Commands
+            if (Input.GetMouseButtonDown(1) && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "") // You Have no Spell
+            {
+                Debug.Log("No Spell Avaliable");
+            }
+            if (Input.GetMouseButtonDown(1) && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "Fire") // Shoot Fireball
             {
                 Fireball();
             }
-            if (Input.GetMouseButtonDown(0) && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "Wind") // Shoot Wind Knock
+            if (Input.GetMouseButtonDown(1) && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "Wind") // Shoot Wind Knock
             {
                 WindKnockback();
             }
@@ -122,20 +136,61 @@ public class PlayerControl : MonoBehaviour
     }
     private void Fireball()
     {
-        if (spellSecondary[s == "")
-        newSpell = Instantiate(spellProjectile[0], this.transform.position, card.transform.rotation);
-        newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
-        newSpell.GetComponent<FireBallThrow>().spellNum = spellSelected;
-        //Debug.Log("Fireball" + (spellSelected + 1) + " Thrown");
-        canCast[spellSelected] = false;
+       if (spellSecondary[spellSelected] == "")
+        {
+            newSpell = Instantiate(spellProjectile[0], this.transform.position, card.transform.rotation);
+            newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
+            newSpell.GetComponent<FireBallThrow>().spellNum = spellSelected;
+            canCast[spellSelected] = false;
+        }
+        else if (spellSecondary[spellSelected] == "AOE")
+        {
+            newSpell = Instantiate(spellProjectile[0], this.transform.position, card.transform.rotation);
+            newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
+            newSpell.GetComponent<FireBallThrow>().spellNum = spellSelected;
+            Debug.Log("Did AOE");
+            canCast[spellSelected] = false;
+        }
+        else if (spellSecondary[spellSelected] == "Range")
+        {
+            newSpell = Instantiate(spellProjectile[0], this.transform.position, card.transform.rotation);
+            newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
+            newSpell.GetComponent<FireBallThrow>().spellNum = spellSelected;
+            newSpell.GetComponent<FireBallThrow>().maxRange = 50;
+            canCast[spellSelected] = false;
+        }
+
+
+
     }
     private void WindKnockback()
     {
-        newSpell = Instantiate(spellProjectile[1], this.transform.position, card.transform.rotation);
-        newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
-        newSpell.GetComponent<WindWaveThrow>().spellNum = spellSelected;
-        //Debug.Log("WindWave" + (spellSelected + 1) + " Thrown");
-        canCast[spellSelected] = false;
+
+        if (spellSecondary[spellSelected] == "")
+        {
+            newSpell = Instantiate(spellProjectile[1], this.transform.position, card.transform.rotation);
+            newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
+            newSpell.GetComponent<WindWaveThrow>().spellNum = spellSelected;
+            //Debug.Log("WindWave" + (spellSelected + 1) + " Thrown");
+            canCast[spellSelected] = false;
+        }
+        else if (spellSecondary[spellSelected] == "AOE")
+        {
+            newSpell = Instantiate(spellProjectile[1], this.transform.position, card.transform.rotation);
+            newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
+            newSpell.GetComponent<WindWaveThrow>().spellNum = spellSelected;
+            Debug.Log("Did AOE");
+            canCast[spellSelected] = false;
+        }
+        else if (spellSecondary[spellSelected] == "Range")
+        {
+            newSpell = Instantiate(spellProjectile[1], this.transform.position, card.transform.rotation);
+            newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
+            newSpell.GetComponent<WindWaveThrow>().spellNum = spellSelected;
+            newSpell.GetComponent<WindWaveThrow>().maxRange = 50;
+            canCast[spellSelected] = false;
+        }
+
     }
 
 

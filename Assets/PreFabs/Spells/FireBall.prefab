@@ -110,4 +110,5 @@ MonoBehaviour:
   player1: {fileID: 0}
   player1Aim: {fileID: 0}
   playerControl: {fileID: 0}
-  i: 0
+  rangeCounter: 0
+  maxRange: 20

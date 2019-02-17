@@ -13,7 +13,11 @@ public class FireBallThrow : MonoBehaviour
     public PlayerControl playerControl;
 
     public int rangeCounter;
-    public int maxRange = 10;
+    public int maxRange;
+    private void Awake()
+    {
+        maxRange = 10;
+    }
 
     private void Start()
     {

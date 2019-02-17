@@ -62,10 +62,12 @@ public class CardThrow : MonoBehaviour
             if (playerControl.spellPrimary[cardNum] == "")
             {
                 playerControl.spellPrimary[cardNum] = resType;
+                Debug.Log("Primary:" + playerControl.spellPrimary[cardNum] + "  Secondary:" + playerControl.spellSecondary[cardNum]);
             }
-            else if (playerControl.spellPrimary[cardNum] != resType)
+            else if (playerControl.spellPrimary[cardNum] != "")
             {
                 playerControl.spellSecondary[cardNum] = resType2;
+                Debug.Log("Primary:" + playerControl.spellPrimary[cardNum] + "  Secondary:" + playerControl.spellSecondary[cardNum]);
             }
             Destroy(this.gameObject);
         }

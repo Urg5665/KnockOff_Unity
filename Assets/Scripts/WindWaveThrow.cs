@@ -17,11 +17,14 @@ public class WindWaveThrow : MonoBehaviour
 
 
     public int rangeCounter;
-    public int maxRange = 10;
+    public int maxRange;
+    private void Awake()
+    {
+        maxRange = 10;
+    }
 
     private void Start()
     {
-
         player1 = GameObject.Find("Player1");
         player1Aim = GameObject.Find("Player1Aim");
         transform.LookAt(player1Aim.transform);
