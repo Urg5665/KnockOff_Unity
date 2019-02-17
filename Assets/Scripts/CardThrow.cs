@@ -13,6 +13,8 @@ public class CardThrow : MonoBehaviour
     public GameObject player1Aim;
     public PlayerControl playerControl;
 
+    public BoxCollider cardCollider;
+
     public string resType;
     public string resType2;
 
@@ -32,7 +34,9 @@ public class CardThrow : MonoBehaviour
         transform.LookAt(player1Aim.transform);
         playerControl = player1.GetComponent<PlayerControl>();
         cardNum = playerControl.spellSelected;
-        maxRange = 60;
+        maxRange = 100;
+        cardCollider = this.GetComponent<BoxCollider>();
+        cardCollider.isTrigger = true;
     }
 
 
@@ -40,19 +44,17 @@ public class CardThrow : MonoBehaviour
     {
         if (collision.gameObject.tag == "fireRes" && toRes == true)
         {
-            toRes = false;
-            toPlayer = true;
             resType = "Fire";
             resType2 = "AOE";
-            rangeCounter = maxRange + 1; ;
+            rangeCounter = maxRange - 1; ;
+            cardCollider.isTrigger = false;
         }
         if (collision.gameObject.tag == "windRes" && toRes == true)
         {
-            toRes = false;
-            toPlayer = true;
             resType = "Wind";
             resType2 = "Range";
-            rangeCounter = maxRange +1 ;
+            rangeCounter = maxRange -1 ;
+            cardCollider.isTrigger = false;
         }
         if (collision.gameObject.tag == "Target")
         {
@@ -74,12 +76,22 @@ public class CardThrow : MonoBehaviour
                 Debug.Log("Primary:" + playerControl.spellPrimary[cardNum] + "  Secondary:" + playerControl.spellSecondary[cardNum]);
             }
             Destroy(this.gameObject);
-            Debug.Log("Card Hit Player");
+            //Debug.Log("Card Hit Player");
         }
     }
 
     void FixedUpdate()
     {
+        if (rangeCounter == maxRange + 1)
+        {
+            toRes = false;
+            toPlayer = true;
+            transform.rotation = Quaternion.Euler(0, this.transform.localRotation.y, 0);
+            cardCollider.isTrigger = true;
+            //Debug.Log("Quat Changed");
+            rangeCounter++;
+        }
+
         if (toRes)
         {
             transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
@@ -91,11 +103,7 @@ public class CardThrow : MonoBehaviour
             transform.Rotate(Vector3.up * Time.deltaTime * rotSpeed, Space.World);
             transform.position = Vector3.MoveTowards(transform.position, player1.transform.position, throwSpeed * Time.deltaTime);
         }
-        if (rangeCounter > maxRange)
-        {
-            toRes = false;
-            toPlayer = true;
-        }
+
 
 
     }

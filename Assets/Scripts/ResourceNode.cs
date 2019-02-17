@@ -7,22 +7,20 @@ public class ResourceNode : MonoBehaviour
     public GameObject player1;
     public GameObject player2;
 
-    
-
     public GameObject[] resObjects;
-    public GameObject currentSpawn;
+    public GameObject currentSpawn; // child res
 
-    public int resIndex;
+    public int resType;
 
-    public int i = 100;
+    public int i ;
 
     private void Awake()
     {
         player1 = GameObject.Find("Player1");
         player2 = GameObject.Find("Player2");
-        resIndex = Mathf.RoundToInt(Random.Range(0, 2));
-        currentSpawn = Instantiate(resObjects[resIndex], this.transform);
-
+        resType = Mathf.RoundToInt(Random.Range(0, 2));
+        currentSpawn = Instantiate(resObjects[resType], this.transform);
+        i = 101;
     }
 
     // Update is called once per frame
@@ -30,13 +28,14 @@ public class ResourceNode : MonoBehaviour
     {
         if (currentSpawn == null)
         {
-            resIndex = Mathf.RoundToInt(Random.Range(0, 2));
+            resType = Mathf.RoundToInt(Random.Range(0, 2));
+            currentSpawn = Instantiate(resObjects[resType], this.transform);
+            currentSpawn.SetActive(false);
             i = 0;
         }
-
         if (i == 100)
         {
-            currentSpawn = Instantiate(resObjects[resIndex], this.transform);
+            currentSpawn.SetActive(true);
         }
         i++;
     }

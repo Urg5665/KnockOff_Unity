@@ -154,6 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea181bc9732d742469d60c8fb17ec158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player1Aim: {fileID: 1958647856}
   playerNum: 1
   speed: 10
   movement: {fileID: 4589685495232286487}
@@ -167,18 +168,33 @@ MonoBehaviour:
   spellSelected: 0
   canCast: 
   spellPrimary:
+  - Fire
   - 
   - 
   - 
+  spellSecondary:
+  - AOE
   - 
-  spellSecondary: []
+  - 
+  - 
   card: {fileID: 5503366003343464759, guid: 189f974136601e24a9bd0cbde212644c, type: 3}
   newCard: {fileID: 0}
   cardTrail: {fileID: 2088855544179431916, guid: 89bd1f99d1f336945b52b060fd741f0a,
     type: 3}
   newCardTrail: {fileID: 0}
+  AOEpoint: {fileID: 0}
   cardsThrown: 0
+  slowDownPerCard: 2.5
   newSpell: {fileID: 0}
+  newSpellAOE:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!54 &1851593813860474082
 Rigidbody:
   m_ObjectHideFlags: 0

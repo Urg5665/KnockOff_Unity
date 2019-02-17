@@ -11,7 +11,7 @@ public class CardTrailThrow : MonoBehaviour
     void Update()
     {
 
-        if (life > 1)
+        if (life > 500)
         {
             Destroy(this.gameObject);
         }

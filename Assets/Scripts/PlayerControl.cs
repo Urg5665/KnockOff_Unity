@@ -105,11 +105,11 @@ public class PlayerControl : MonoBehaviour
             }
 
         }   
-        if ( this.transform.position.y < 2.5f)
+        if ( this.transform.position.y < 2.5f || this.transform.position.y > 3f)
         {
             grounded = false;
         }
-        if (this.transform.position.y >= 2.5f)
+        if (this.transform.position.y >= 2.5f && this.transform.position.y <= 3f)
         {
             grounded = true;
         }
@@ -125,7 +125,10 @@ public class PlayerControl : MonoBehaviour
             canCast[collision.GetComponent<CardThrow>().cardNum] = true;
             //Debug.Log(spellPrimary[collision.GetComponent<CardThrow>().cardNum]);
         }
-
+        if (collision.gameObject.tag == "fireRes" || collision.gameObject.tag == "windRes")
+        {
+            speed = -1 * speed; // Keep Player From Bouncing off Resources
+        }
     }
     private void CardGather()
     {

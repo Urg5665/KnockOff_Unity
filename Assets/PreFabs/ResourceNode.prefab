@@ -43,7 +43,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ce588aae6d24004dbd641e775909690, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  res:
-  - {fileID: 0}
-  - {fileID: 0}
-  harvestable: 1
+  player1: {fileID: 0}
+  player2: {fileID: 0}
+  resObjects:
+  - {fileID: 6419215745289010588, guid: e742c87b1d88a1744a3c8d48df469bdf, type: 3}
+  - {fileID: 8152930488540302800, guid: 16372f033a3b9f84e8d5e88c64212dda, type: 3}
+  currentSpawn: {fileID: 0}
+  resType: 0
+  i: 10
