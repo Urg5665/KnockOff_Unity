@@ -58,6 +58,8 @@ public class WindWaveThrow : MonoBehaviour
         {
             Destroy(this.gameObject);
             playerControl.canCast[spellNum] = true;
+            playerControl.spellPrimary[spellNum] = "";
+            playerControl.spellSecondary[spellNum] = ""; // Reset Spell to Empty
         }
     }
 }

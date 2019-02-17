@@ -47,6 +47,8 @@ public class FireBallThrow : MonoBehaviour
         {
             Destroy(this.gameObject);
             playerControl.canCast[spellNum] = true;
+            playerControl.spellPrimary[spellNum] = "";
+            playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
         }
     }
 }
