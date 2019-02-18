@@ -8,6 +8,7 @@ public class PlayerControl : MonoBehaviour
     public GameObject player1Aim;
     public int playerNum;
     public float speed;
+    public float maxSpeed = 10;
 
     public Transform movement;
     public Rigidbody rb;
@@ -48,11 +49,13 @@ public class PlayerControl : MonoBehaviour
             spellSecondary[i] = "";
         }
         //Time.timeScale = 0.4f;
+        slowDownPerCard = 2.5f;
     }
    
     void Update()
     {
-        
+        speed = maxSpeed - (slowDownPerCard * cardsThrown); // apply slow for each card in play
+        Debug.Log("speed" + speed);
         // Spell selection
         /*if (Input.GetKey(KeyCode.Alpha1))
             spellSelected = 0;
@@ -126,7 +129,7 @@ public class PlayerControl : MonoBehaviour
         {
             grounded = true;
         }
-        this.rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+        //this.rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
 
 
     }
@@ -135,7 +138,7 @@ public class PlayerControl : MonoBehaviour
         if (collision.gameObject.tag == "Card" && collision.GetComponent<CardThrow>().rangeCounter > collision.GetComponent<CardThrow>().maxRange)
         {
             cardsThrown--;
-            speed = speed + slowDownPerCard; // slow aplied for each card in play
+            //speed = speed + slowDownPerCard; // slow aplied for each card in play          
             canCast[collision.GetComponent<CardThrow>().cardNum] = true;
             //Debug.Log(spellPrimary[collision.GetComponent<CardThrow>().cardNum]);
         }
@@ -147,7 +150,7 @@ public class PlayerControl : MonoBehaviour
         newCard.transform.position = new Vector3(newCard.transform.position.x, newCard.transform.position.y - .25f, newCard.transform.position.z);
         newCard.GetComponent<CardThrow>().cardNum = spellSelected;
         cardsThrown++;
-        speed = speed - slowDownPerCard; // slow aplied for each card in play
+        //speed = speed - slowDownPerCard; // slow aplied for each card in play
 
         newCardTrail = Instantiate(cardTrail, this.transform.position, card.transform.rotation);
         newCardTrail.transform.position = new Vector3(newCard.transform.position.x, newCard.transform.position.y - .25f, newCard.transform.position.z);

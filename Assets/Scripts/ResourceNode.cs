@@ -12,7 +12,8 @@ public class ResourceNode : MonoBehaviour
 
     public int resType;
 
-    public int i ;
+    public int respawnCounter;
+    public int respawnTime;
 
     private void Awake()
     {
@@ -20,7 +21,8 @@ public class ResourceNode : MonoBehaviour
         player2 = GameObject.Find("Player2");
         resType = Mathf.RoundToInt(Random.Range(0, 2));
         currentSpawn = Instantiate(resObjects[resType], this.transform);
-        i = 101;
+        respawnCounter = 501;
+        respawnTime = 500;
     }
 
     // Update is called once per frame
@@ -31,12 +33,12 @@ public class ResourceNode : MonoBehaviour
             resType = Mathf.RoundToInt(Random.Range(0, 2));
             currentSpawn = Instantiate(resObjects[resType], this.transform);
             currentSpawn.SetActive(false);
-            i = 0;
+            respawnCounter = 0;
         }
-        if (i == 100)
+        if (respawnCounter == respawnTime)
         {
             currentSpawn.SetActive(true);
         }
-        i++;
+        respawnCounter++;
     }
 }

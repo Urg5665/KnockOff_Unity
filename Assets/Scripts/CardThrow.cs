@@ -34,7 +34,7 @@ public class CardThrow : MonoBehaviour
         transform.LookAt(player1Aim.transform);
         playerControl = player1.GetComponent<PlayerControl>();
         cardNum = playerControl.spellSelected;
-        maxRange = 100;
+        maxRange = 120;
         cardCollider = this.GetComponent<BoxCollider>();
         cardCollider.isTrigger = true;
     }
@@ -89,7 +89,7 @@ public class CardThrow : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, this.transform.localRotation.y, 0);
             cardCollider.isTrigger = true;
             //Debug.Log("Quat Changed");
-            rangeCounter++;
+            rangeCounter++;           
         }
 
         if (toRes)

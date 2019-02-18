@@ -6,90 +6,76 @@ public class PlayerAim : MonoBehaviour
 {
     public Transform parent;
     public GameObject player;
+    public PlayerControl playerControl;
 
     public int spaceOff;
     public float heightOff;
 
-    public int i = 0;
+
 
     void Update()
     {
-        if (i > 15)
+        if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W))
         {
-            if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W))
-            {
-                transform.position = new Vector3(parent.position.x - spaceOff, parent.position.y, parent.position.z);
-                i = 0;
-            }
-            // Left Down
-            if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W))
-            {
-                transform.position = new Vector3(parent.position.x - spaceOff / 2, parent.position.y, parent.position.z - spaceOff / 2);
-                i = 0;
-            }
-            // Left Up
-            if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.W))
-            {
-                transform.position = new Vector3(parent.position.x - spaceOff / 2, parent.position.y, parent.position.z + spaceOff / 2);
-                i = 0;
-            }
-            // Right
-            if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W))
-            {
-                transform.position = new Vector3(parent.position.x + spaceOff, parent.position.y, parent.position.z);
-                i = 0;
-            }
-            // Right Down
-            if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W))
-            {
-                transform.position = new Vector3(parent.position.x + spaceOff / 2, parent.position.y, parent.position.z - spaceOff / 2);
-                i = 0;
-            }
-            // Rigth Up
-            if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.W))
-            {
-                transform.position = new Vector3(parent.position.x + spaceOff / 2, parent.position.y, parent.position.z + spaceOff / 2);
-                i = 0;
-            }
-
-            if (Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
-            {
-                transform.position = new Vector3(parent.position.x, parent.position.y, parent.position.z + (spaceOff * 2));
-                i = 0;
-            }
-
-            if (Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
-            {
-                transform.position = new Vector3(parent.position.x, parent.position.y, parent.position.z - (spaceOff * 2));
-                i = 0;
-            }
+            transform.position = new Vector3(parent.position.x - spaceOff, parent.position.y, parent.position.z);
         }
-        i++;
-            // Left
-           
+        // Left Down
+        else if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W))
+        {
+            transform.position = new Vector3(parent.position.x - spaceOff / 2, parent.position.y, parent.position.z - spaceOff / 2);
+        }
+        // Left Up
+        else if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.W))
+        {
+            transform.position = new Vector3(parent.position.x - spaceOff / 2, parent.position.y, parent.position.z + spaceOff / 2);
+        }
+        // Right
+        else if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W))
+        {
+            transform.position = new Vector3(parent.position.x + spaceOff, parent.position.y, parent.position.z);
+        }
+        // Right Down
+        else if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W))
+        {
+            transform.position = new Vector3(parent.position.x + spaceOff / 2, parent.position.y, parent.position.z - spaceOff / 2);
+        }
+        // Rigth Up
+        else if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.W))
+        {
+            transform.position = new Vector3(parent.position.x + spaceOff / 2, parent.position.y, parent.position.z + spaceOff / 2);
+        }
+        else if (Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
+        {
+            transform.position = new Vector3(parent.position.x, parent.position.y, parent.position.z + (spaceOff * 2));
+        }
+
+        else if (Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
+        {
+            transform.position = new Vector3(parent.position.x, parent.position.y, parent.position.z - (spaceOff * 2));
+        }
 
 
     }
 }
-/*        if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.W))
+/* 
+ * 
+ *         if (playerControl.spellSelected == 0)
         {
-            transform.position = new Vector3(parent.position.x - spaceOff/2, parent.position.y - heightOff, parent.position.z + spaceOff );
+            transform.position = new Vector3(parent.position.x, parent.position.y, parent.position.z + (spaceOff * 2));
+        }
+        if (playerControl.spellSelected == 1)
+        {
+            transform.position = new Vector3(parent.position.x + spaceOff, parent.position.y, parent.position.z);
+        }
+        if (playerControl.spellSelected == 2)
+        {
+            transform.position = new Vector3(parent.position.x, parent.position.y, parent.position.z - (spaceOff * 2));
+        }
+        if (playerControl.spellSelected == 3)
+        {
+            transform.position = new Vector3(parent.position.x - spaceOff, parent.position.y, parent.position.z);
         }
 
-         if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.W))
-        {
-            transform.position = new Vector3(parent.position.x + spaceOff / 2, parent.position.y - heightOff, parent.position.z + spaceOff);
-        }
-
-
-         if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.S))
-        {
-            transform.position = new Vector3(parent.position.x + spaceOff / 2, parent.position.y - heightOff, parent.position.z - spaceOff);
-        }
-
-
-         if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.S))
-        {
-            transform.position = new Vector3(parent.position.x - spaceOff / 2, parent.position.y - heightOff, parent.position.z - spaceOff);
-        }
+ * 
+ * 
  */
