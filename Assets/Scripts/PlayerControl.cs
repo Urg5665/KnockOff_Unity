@@ -13,10 +13,12 @@ public class PlayerControl : MonoBehaviour
     public Rigidbody rb;
 
     public bool grounded;
+    public bool touchingWall;
 
     public GameObject[] spellProjectile; // The actual Fireball, air block, earth wall
     public int spellSelected = 1;
     public bool[] canCast;
+    
 
     public string[] spellPrimary; // Keywords "Fire", "Wind", "Earth" "Water" use "" for empty
     public string[] spellSecondary; // Keywords "Aoe", "Range", "Lob"? not as sure about the last two use "" for empty
@@ -36,6 +38,7 @@ public class PlayerControl : MonoBehaviour
     void Start()
     {
         grounded = true;
+        touchingWall = false;
         cardsThrown = 0;
         canCast = new bool[4]; // ignore zero here
         for(int i = 0; i < 4; i++)
@@ -51,13 +54,23 @@ public class PlayerControl : MonoBehaviour
     {
         
         // Spell selection
-        if (Input.GetKey(KeyCode.Alpha1))
+        /*if (Input.GetKey(KeyCode.Alpha1))
             spellSelected = 0;
         if (Input.GetKey(KeyCode.Alpha2))
             spellSelected = 1;
         if (Input.GetKey(KeyCode.Alpha3))
             spellSelected = 2;
         if (Input.GetKey(KeyCode.Alpha4))
+            spellSelected = 3;
+        */    
+        // If this Confuses a player, ask me - I think this is a very strong direction the game NEED to go in - Make a player weak when attacked from ceritian direction
+        if (Input.GetKey(KeyCode.W))
+            spellSelected = 0;
+        if (Input.GetKey(KeyCode.D))
+            spellSelected = 1;
+        if (Input.GetKey(KeyCode.S))
+            spellSelected = 2;
+        if (Input.GetKey(KeyCode.A))
             spellSelected = 3;
 
         if (grounded) // movement
@@ -113,6 +126,7 @@ public class PlayerControl : MonoBehaviour
         {
             grounded = true;
         }
+        this.rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
 
 
     }
@@ -125,10 +139,7 @@ public class PlayerControl : MonoBehaviour
             canCast[collision.GetComponent<CardThrow>().cardNum] = true;
             //Debug.Log(spellPrimary[collision.GetComponent<CardThrow>().cardNum]);
         }
-        if (collision.gameObject.tag == "fireRes" || collision.gameObject.tag == "windRes")
-        {
-            speed = -1 * speed; // Keep Player From Bouncing off Resources
-        }
+        
     }
     private void CardGather()
     {
