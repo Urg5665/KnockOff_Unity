@@ -171,6 +171,7 @@ public class PlayerControl : MonoBehaviour
             newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
             newSpell.GetComponent<FireBallThrow>().spellNum = spellSelected;
             //Debug.Log("Basic");
+            newSpell.GetComponent<FireBallThrow>().maxRange = 15;
             canCast[spellSelected] = false;
         }
         if (spellSecondary[spellSelected] == "AOE")
@@ -240,6 +241,7 @@ public class PlayerControl : MonoBehaviour
             newSpell.GetComponent<WindWaveThrow>().spellNum = spellSelected;
             //Debug.Log("WindWave" + (spellSelected + 1) + " Thrown");
             canCast[spellSelected] = false;
+            newSpell.GetComponent<WindWaveThrow>().maxRange = 25;
         }
         else if (spellSecondary[spellSelected] == "AOE")
         {

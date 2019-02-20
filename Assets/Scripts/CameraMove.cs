@@ -17,7 +17,7 @@ public class CameraMove : MonoBehaviour
 
     public float smoothTime = .5f;
 
-    public float minZoom = 15f;
+    public float minZoom = 10f;
     public float maxZoom = 40f;
 
     // Start is called before the first frame update
