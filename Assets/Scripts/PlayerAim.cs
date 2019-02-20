@@ -8,11 +8,10 @@ public class PlayerAim : MonoBehaviour
     public GameObject player;
     public PlayerControl playerControl;
 
-    public Camera cam;
+    public float angle;
 
-    public LayerMask groundLayer;
-
-    public Rigidbody rb;
+    public float zDif;
+    public float xDif;
 
     public void Update()
     {
@@ -28,8 +27,15 @@ public class PlayerAim : MonoBehaviour
 
         this.transform.position = new Vector3(this.transform.position.x, parent.transform.position.y, this.transform.position.z);
 
+        Vector3 targetDir = parent.transform.position - transform.position;
+        angle = Vector3.Angle(targetDir, transform.forward);
 
-        Debug.Log(Vector2.Angle(parent.transform.position, this.transform.position));
+        Debug.Log(angle);
+
+        xDif = transform.position.x - parent.transform.position.x;
+        zDif = transform.position.z - parent.transform.position.z;
+
+        Debug.Log("z:" + zDif + "x:" + xDif);
 
     }
 

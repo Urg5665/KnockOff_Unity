@@ -2295,7 +2295,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1324832620}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2652,7 +2652,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1958647857, guid: 0f9ffe8302123f5419638698ccf5218d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.25
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4589685495232286487, guid: 0f9ffe8302123f5419638698ccf5218d,
         type: 3}
@@ -2714,6 +2714,11 @@ PrefabInstance:
       propertyPath: AOEpoint
       value: 
       objectReference: {fileID: 2042537158}
+    - target: {fileID: 46870567241696049, guid: 0f9ffe8302123f5419638698ccf5218d,
+        type: 3}
+      propertyPath: playerAim
+      value: 
+      objectReference: {fileID: 1706313954}
     - target: {fileID: 1958647858, guid: 0f9ffe8302123f5419638698ccf5218d, type: 3}
       propertyPath: spaceOff
       value: 5
@@ -3026,6 +3031,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1438511504}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1706313954 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1958647858, guid: 0f9ffe8302123f5419638698ccf5218d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1438511504}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1706313953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d566a3ec51742c44f882217b5e397da2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!54 &1706313955
 Rigidbody:
   m_ObjectHideFlags: 0

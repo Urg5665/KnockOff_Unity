@@ -6,6 +6,8 @@ public class PlayerControl : MonoBehaviour
 {
 
     public GameObject player1Aim;
+    public PlayerAim playerAim;
+
     public int playerNum;
     public float speed;
     public float maxSpeed = 10;
@@ -35,6 +37,8 @@ public class PlayerControl : MonoBehaviour
 
     public GameObject newSpell;
     public GameObject[] newSpellAOE;
+
+
 
     void Start()
     {
@@ -67,16 +71,18 @@ public class PlayerControl : MonoBehaviour
         }
 
         speed = maxSpeed - (slowDownPerCard * cardsThrown); // apply slow for each card in play
-        //Debug.Log("speed" + speed);
-   
+                                                            //Debug.Log("speed" + speed);
+
         // If this Confuses a player, ask me - I think this is a very strong direction the game NEED to go in - Make a player weak when attacked from ceritian direction
-        if (Input.GetKey(KeyCode.W))
+        
+
+        if ((playerAim.angle < 180 && playerAim.angle > 90 && playerAim.xDif > -10 && playerAim.xDif < 10 && playerAim.zDif > 0))
             spellSelected = 0;
-        if (Input.GetKey(KeyCode.D))
+        if ((playerAim.angle < 180 && playerAim.angle > 90 && playerAim.zDif > -10 && playerAim.zDif < 10 && playerAim.xDif > 0))
             spellSelected = 1;
-        if (Input.GetKey(KeyCode.S))
+        if ((playerAim.angle < 90 && playerAim.angle > 0 && playerAim.xDif > -10 && playerAim.xDif < 10 && playerAim.zDif < 0))
             spellSelected = 2;
-        if (Input.GetKey(KeyCode.A))
+        if ((playerAim.angle < 90 && playerAim.angle > 0 && playerAim.zDif > -10 && playerAim.zDif < 10 && playerAim.xDif < 0))
             spellSelected = 3;
 
         if (grounded) // movement
