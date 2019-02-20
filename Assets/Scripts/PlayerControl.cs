@@ -48,24 +48,27 @@ public class PlayerControl : MonoBehaviour
             spellPrimary[i] = "";
             spellSecondary[i] = "";
         }
-        //Time.timeScale = 0.4f;
         slowDownPerCard = 2.5f;
     }
    
     void Update()
     {
-        speed = maxSpeed - (slowDownPerCard * cardsThrown); // apply slow for each card in play
-        Debug.Log("speed" + speed);
-        // Spell selection
-        /*if (Input.GetKey(KeyCode.Alpha1))
-            spellSelected = 0;
+
+
+        if (Input.GetKey(KeyCode.Alpha1)) // Press 1 and 2 to speed or slow game, Degbugging
+        {
+            Time.timeScale += 0.1f;
+            Debug.Log("Speeding Up");
+        }
         if (Input.GetKey(KeyCode.Alpha2))
-            spellSelected = 1;
-        if (Input.GetKey(KeyCode.Alpha3))
-            spellSelected = 2;
-        if (Input.GetKey(KeyCode.Alpha4))
-            spellSelected = 3;
-        */    
+        {
+            Time.timeScale -= 0.1f;
+            Debug.Log("Slowing Down");
+        }
+
+        speed = maxSpeed - (slowDownPerCard * cardsThrown); // apply slow for each card in play
+        //Debug.Log("speed" + speed);
+   
         // If this Confuses a player, ask me - I think this is a very strong direction the game NEED to go in - Make a player weak when attacked from ceritian direction
         if (Input.GetKey(KeyCode.W))
             spellSelected = 0;
@@ -78,9 +81,6 @@ public class PlayerControl : MonoBehaviour
 
         if (grounded) // movement
         {
-            //float moveHL = Input.GetAxis("Horizontal") * speed; // Sorry I fucked with this, 
-            //float moveVL = Input.GetAxis("Vertical") * speed; // I will definity come back to controller combabtabilty, but pls just use keyboard for now - Mark
-
             if (Input.GetKey(KeyCode.A))
                 transform.Translate(Vector3.left * Time.deltaTime * speed, Space.World);
             if (Input.GetKey(KeyCode.D))
@@ -89,11 +89,6 @@ public class PlayerControl : MonoBehaviour
                 transform.Translate(Vector3.forward * Time.deltaTime * speed, Space.World);
             if (Input.GetKey(KeyCode.S))
                 transform.Translate(Vector3.back * Time.deltaTime * speed, Space.World);
-
-            //moveHL *= Time.deltaTime;
-            //moveVL *= Time.deltaTime;
-
-            //movement.Translate(moveVL,0, moveHL, Space.World);
 
             // Card Casting Commands
             if (Input.GetMouseButtonDown(0) && cardsThrown < 4 && canCast[spellSelected] && spellSecondary[spellSelected] == "" ) // Shoot Card
@@ -119,7 +114,6 @@ public class PlayerControl : MonoBehaviour
             {
                 WindKnockback();
             }
-
         }   
         if ( this.transform.position.y < 2.5f || this.transform.position.y > 3f)
         {
@@ -129,18 +123,13 @@ public class PlayerControl : MonoBehaviour
         {
             grounded = true;
         }
-        //this.rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
-
-
     }
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag == "Card" && collision.GetComponent<CardThrow>().rangeCounter > collision.GetComponent<CardThrow>().maxRange)
         {
-            cardsThrown--;
-            //speed = speed + slowDownPerCard; // slow aplied for each card in play          
+            cardsThrown--;        
             canCast[collision.GetComponent<CardThrow>().cardNum] = true;
-            //Debug.Log(spellPrimary[collision.GetComponent<CardThrow>().cardNum]);
         }
         
     }
@@ -150,8 +139,6 @@ public class PlayerControl : MonoBehaviour
         newCard.transform.position = new Vector3(newCard.transform.position.x, newCard.transform.position.y - .25f, newCard.transform.position.z);
         newCard.GetComponent<CardThrow>().cardNum = spellSelected;
         cardsThrown++;
-        //speed = speed - slowDownPerCard; // slow aplied for each card in play
-
         newCardTrail = Instantiate(cardTrail, this.transform.position, card.transform.rotation);
         newCardTrail.transform.position = new Vector3(newCard.transform.position.x, newCard.transform.position.y - .25f, newCard.transform.position.z);
         newCardTrail.GetComponent<CardTrailThrow>().cardTrailTarget = newCard;

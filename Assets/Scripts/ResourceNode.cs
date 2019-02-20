@@ -21,11 +21,9 @@ public class ResourceNode : MonoBehaviour
         player2 = GameObject.Find("Player2");
         resType = Mathf.RoundToInt(Random.Range(0, 2));
         currentSpawn = Instantiate(resObjects[resType], this.transform);
-        respawnCounter = 501;
-        respawnTime = 500;
+        respawnCounter = 251;
+        respawnTime = 250;
     }
-
-    // Update is called once per frame
     void Update()
     {
         if (currentSpawn == null)

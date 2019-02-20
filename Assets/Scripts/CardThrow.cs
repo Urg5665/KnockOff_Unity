@@ -34,7 +34,7 @@ public class CardThrow : MonoBehaviour
         transform.LookAt(player1Aim.transform);
         playerControl = player1.GetComponent<PlayerControl>();
         cardNum = playerControl.spellSelected;
-        maxRange = 120;
+        maxRange = 60;
         cardCollider = this.GetComponent<BoxCollider>();
         cardCollider.isTrigger = true;
     }

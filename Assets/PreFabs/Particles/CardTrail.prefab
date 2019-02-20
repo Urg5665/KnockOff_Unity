@@ -4776,3 +4776,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardTrailTarget: {fileID: 0}
   trailSpeed: 1
+  life: 0
