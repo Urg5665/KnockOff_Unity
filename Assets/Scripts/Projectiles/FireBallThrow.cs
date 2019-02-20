@@ -32,7 +32,7 @@ public class FireBallThrow : MonoBehaviour
         if (collision.gameObject.tag == "Player2")
         {
             collision.gameObject.transform.position = 
-                new Vector3(50, collision.gameObject.transform.position.y, collision.gameObject.transform.position.z);
+                new Vector3(250, collision.gameObject.transform.position.y, collision.gameObject.transform.position.z);
             Destroy(this.gameObject);
            playerControl.canCast[spellNum] = true;
            playerControl.spellPrimary[spellNum] = "";

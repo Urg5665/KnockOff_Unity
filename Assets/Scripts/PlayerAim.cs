@@ -35,7 +35,7 @@ public class PlayerAim : MonoBehaviour
         xDif = transform.position.x - parent.transform.position.x;
         zDif = transform.position.z - parent.transform.position.z;
 
-        Debug.Log("z:" + zDif + "x:" + xDif);
+        //Debug.Log("z:" + zDif + "x:" + xDif);
 
     }
 
