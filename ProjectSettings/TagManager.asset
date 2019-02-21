@@ -49,3 +49,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: SortLayer1
+    uniqueID: 1600938271
+    locked: 0

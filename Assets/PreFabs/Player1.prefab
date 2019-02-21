@@ -46,9 +46,9 @@ MonoBehaviour:
   parent: {fileID: 4589685495232286487}
   player: {fileID: 4589685495232286483}
   playerControl: {fileID: 0}
-  cam: {fileID: 0}
-  spaceOff: 15
-  heightOff: 0.25
+  angle: 0
+  zDif: 0
+  xDif: 0
 --- !u!1 &4589685495232286483
 GameObject:
   m_ObjectHideFlags: 0
@@ -156,6 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player1Aim: {fileID: 1958647856}
+  playerAim: {fileID: 0}
   playerNum: 1
   speed: 10
   maxSpeed: 10

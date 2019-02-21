@@ -79,22 +79,22 @@ public class PlayerControl : MonoBehaviour
         if ((playerAim.angle < 180 && playerAim.angle > 90 && playerAim.xDif > -10 && playerAim.xDif < 10 && playerAim.zDif > 0))
         {
             spellSelected = 0;
-            //Debug.Log("North");
+            Debug.Log("North");
         }
         if ((playerAim.angle < 180 && playerAim.angle > 90 && playerAim.zDif > -10 && playerAim.zDif < 10 && playerAim.xDif > 0))
         {
             spellSelected = 1;
-            //Debug.Log("East");
+            Debug.Log("East");
         }
         if ((playerAim.angle < 90 && playerAim.angle > 0 && playerAim.xDif > -10 && playerAim.xDif < 10 && playerAim.zDif < 0))
         {
             spellSelected = 2;
-            //Debug.Log("South");
+            Debug.Log("South");
         }
         if ((playerAim.angle < 90 && playerAim.angle > 0 && playerAim.zDif > -10 && playerAim.zDif < 10 && playerAim.xDif < 0))
         {
             spellSelected = 3;
-            //Debug.Log("West");
+            Debug.Log("West");
         }
 
 

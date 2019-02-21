@@ -30,7 +30,7 @@ public class PlayerAim : MonoBehaviour
         Vector3 targetDir = parent.transform.position - transform.position;
         angle = Vector3.Angle(targetDir, transform.forward);
 
-        Debug.Log(angle);
+        //Debug.Log(angle);
 
         xDif = transform.position.x - parent.transform.position.x;
         zDif = transform.position.z - parent.transform.position.z;
