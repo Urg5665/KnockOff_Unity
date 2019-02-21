@@ -14,7 +14,11 @@ public class CardTrailThrow : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-        transform.position = Vector3.MoveTowards(transform.position, cardTrailTarget.transform.position, trailSpeed);
-        life++;
+        if (cardTrailTarget.gameObject != null)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, cardTrailTarget.transform.position, trailSpeed);
+            life++;
+        }
+
     }
 }
