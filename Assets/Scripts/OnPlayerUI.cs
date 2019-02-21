@@ -2,28 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class OnPlayerUI : MonoBehaviour
 {
+    public bool selected = true;
 
-
-    public Image northImage;
-    public Image eastImage;
-    public Image southImage;
-    public Image westImage;
-
-    // Use this for initialization
-    void Start()
+    private void Update()
     {
-        northImage.alphaHitTestMinimumThreshold = 0.99f;
-        eastImage.alphaHitTestMinimumThreshold = 0.99f;
-        southImage.alphaHitTestMinimumThreshold = 0.99f;
-        westImage.alphaHitTestMinimumThreshold = 0.99f;
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            selected = true;
+        }
+        else
+        {
+            selected = false;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
