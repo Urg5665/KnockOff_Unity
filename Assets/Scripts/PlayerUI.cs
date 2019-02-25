@@ -13,6 +13,7 @@ public class PlayerUI : MonoBehaviour
     public Sprite aoeSprite;
     public Sprite rangeSprite;
     public Sprite dashSprite;
+    public Sprite dashSpriteReverse;
 
     // Start is called before the first frame update
     void Start()
@@ -52,7 +53,15 @@ public class PlayerUI : MonoBehaviour
             }
             if (playerControl.spellSecondary[i] == "Dash")
             {
-                spellUI[i].GetComponent<Image>().sprite = dashSprite;
+                if (i == 3)
+                {
+                    spellUI[i].GetComponent<Image>().sprite = dashSpriteReverse;
+                }
+                else
+                {
+                    spellUI[i].GetComponent<Image>().sprite = dashSprite;
+                }
+
             }
             if (playerControl.spellSecondary[i] == "")
             {
