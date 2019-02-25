@@ -36,8 +36,9 @@ public class PlayerControl : MonoBehaviour
     public GameObject newCardTrail;
     public Transform AOEpoint;
 
-    public int dashDirection; // This is so the player is invulnerable while dashing, it check the direction dash was cast
+    public int dashDirection; // This is to keep player locked when dashing
     public int dashDirectionTime;
+    public Vector3  dashAim;
     public float waterDashForce;
 
     public int cardsThrown;
@@ -115,6 +116,47 @@ public class PlayerControl : MonoBehaviour
         speed = maxSpeed - (slowDownPerCard * cardsThrown); // apply slow for each card in play
                                                             //Debug.Log("speed" + speed);
 
+        if (dashDirectionTime < 75 && dashDirectionTime > 1) // being dash
+        {
+            grounded = false;
+            transform.position = Vector3.Lerp(transform.position, dashAim, Time.deltaTime);
+        }
+
+        if (canCast[dashDirection] && dashDirectionTime < 1) // result invulnerbaility after dash is complete
+        {
+            this.GetComponent<BoxCollider>().enabled = true;
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
+            //Debug.Log("Invulnrble Dash Reset");
+            this.transform.rotation = Quaternion.Euler(0, 45, 0);
+        }
+        // Card Casting Commands
+        if (Input.GetMouseButtonDown(0) && cardsThrown < 4 && canCast[spellSelected] && spellSecondary[spellSelected] == "") // Shoot Card
+        {
+            CardGather();
+        }
+        if (Input.GetMouseButtonDown(0) && cardsThrown < 4 && canCast[spellSelected] && spellSecondary[spellSelected] != "")  // Disabel Shooitng Card because spell is maxed
+        {
+            Debug.Log("Spell Maxed - Cast it!");
+        }
+
+
+        // Spell Casting Commands
+        if (Input.GetMouseButtonDown(1) && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "") // You Have no Spell
+        {
+            Debug.Log("No Spell Avaliable");
+        }
+        if (Input.GetMouseButtonDown(1) && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "Fire") // Shoot Fireball
+        {
+            Fireball();
+        }
+        if (Input.GetMouseButtonDown(1) && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "Wind") // Shoot Wind Knock
+        {
+            WindKnockback();
+        }
+        if (Input.GetMouseButtonDown(1) && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "Water") // Shoot Wind Knock
+        {
+            WaterPull();
+        }
         if (grounded) // movement
         {
             if (Input.GetKey(KeyCode.A))
@@ -126,41 +168,7 @@ public class PlayerControl : MonoBehaviour
             if (Input.GetKey(KeyCode.S))
                 transform.Translate(Vector3.back * Time.deltaTime * speed, Space.World);
 
-            // Card Casting Commands
-            if (Input.GetMouseButtonDown(0) && cardsThrown < 4 && canCast[spellSelected] && spellSecondary[spellSelected] == "") // Shoot Card
-            {
-                CardGather();
-            }
-            if (Input.GetMouseButtonDown(0) && cardsThrown < 4 && canCast[spellSelected] && spellSecondary[spellSelected] != "")  // Disabel Shooitng Card because spell is maxed
-            {
-                Debug.Log("Spell Maxed - Cast it!");
-            }
 
-
-            // Spell Casting Commands
-            if (Input.GetMouseButtonDown(1) && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "") // You Have no Spell
-            {
-                Debug.Log("No Spell Avaliable");
-            }
-            if (Input.GetMouseButtonDown(1) && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "Fire") // Shoot Fireball
-            {
-                Fireball();
-            }
-            if (Input.GetMouseButtonDown(1) && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "Wind") // Shoot Wind Knock
-            {
-                WindKnockback();
-            }
-            if (Input.GetMouseButtonDown(1) && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "Water") // Shoot Wind Knock
-            {
-                WaterPull();
-            }
-            if (canCast[dashDirection] && dashDirectionTime < 1) // result invulnerbaility after dash is complete
-            {
-                this.GetComponent<BoxCollider>().enabled = true;
-                rb.constraints = RigidbodyConstraints.FreezeRotation;
-                Debug.Log("Invulnrble Dash Reset");
-
-            }
         }
         if (this.transform.position.y < 2.5f || this.transform.position.y > 3f)
         {
@@ -170,6 +178,7 @@ public class PlayerControl : MonoBehaviour
         {
             grounded = true;
         }
+
     }
     private void OnTriggerEnter(Collider collision)
     {
@@ -275,23 +284,8 @@ public class PlayerControl : MonoBehaviour
             newSpell.GetComponent<FireBallThrow>().maxRange = 30;
             canCast[spellSelected] = false;
             dashDirection = spellSelected;
-            dashDirectionTime = 100;
-            if (spellSelected == 0)
-            {
-                rb.AddForce(Vector3.forward * waterDashForce);
-            }
-            if (spellSelected == 1)
-            {
-                rb.AddForce(Vector3.right * waterDashForce);
-            }
-            if (spellSelected == 2)
-            {
-                rb.AddForce(Vector3.back * waterDashForce);
-            }
-            if (spellSelected == 3)
-            {
-                rb.AddForce(Vector3.left * waterDashForce);
-            }
+            dashAim = new Vector3(player1Aim.transform.position.x, player1Aim.transform.position.y, player1Aim.transform.position.z);
+            dashDirectionTime = 75;
             rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
             this.GetComponent<BoxCollider>().enabled = false;
             Debug.Log("Invulnrble Dash");
@@ -382,23 +376,8 @@ public class PlayerControl : MonoBehaviour
             newSpell.GetComponent<WindWaveThrow>().maxRange = 30;
             canCast[spellSelected] = false;
             dashDirection = spellSelected;
-            dashDirectionTime = 100;
-            if (spellSelected == 0)
-            {
-                rb.AddForce(Vector3.forward * waterDashForce);
-            }
-            if (spellSelected == 1)
-            {
-                rb.AddForce(Vector3.right * waterDashForce);
-            }
-            if (spellSelected == 2)
-            {
-                rb.AddForce(Vector3.back * waterDashForce);
-            }
-            if (spellSelected == 3)
-            {
-                rb.AddForce(Vector3.left * waterDashForce);
-            }
+            dashAim = new Vector3(player1Aim.transform.position.x, player1Aim.transform.position.y, player1Aim.transform.position.z);
+            dashDirectionTime = 75;
             rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
             this.GetComponent<BoxCollider>().enabled = false;
             Debug.Log("Invulnrble Dash");
@@ -490,10 +469,22 @@ public class PlayerControl : MonoBehaviour
             newSpell.GetComponent<WaterPullThrow>().maxRange = 30;
             canCast[spellSelected] = false;
             dashDirection = spellSelected;
-            dashDirectionTime = 100;
-            if (spellSelected == 0)
+            dashAim = new Vector3(player1Aim.transform.position.x, player1Aim.transform.position.y, player1Aim.transform.position.z);
+            dashDirectionTime = 75;
+            rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+            this.GetComponent<BoxCollider>().enabled = false;
+            Debug.Log("Invulnrble Dash");
+
+        }
+
+
+
+    }
+}
+/*
+ *            if (spellSelected == 0)
             {
-                rb.AddForce(Vector3.forward * waterDashForce);
+                rb.AddForce(player1Aim.transform.position * waterDashForce);
             }
             if (spellSelected == 1)
             {
@@ -506,18 +497,7 @@ public class PlayerControl : MonoBehaviour
             if (spellSelected == 3)
             {
                 rb.AddForce(Vector3.left * waterDashForce);
-            }
-            rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
-            this.GetComponent<BoxCollider>().enabled = false;
-            Debug.Log("Invulnrble Dash");
-
-        }
-
-
-
-    }
-}
-/* for (int i = 0; i < 8; i++)
+            }for (int i = 0; i < 8; i++)
             {
                 newSpellAOE[i] = Instantiate(spellProjectile[0], this.transform.position, spellProjectile[0].transform.rotation);
                 newSpellAOE[i].transform.position = new Vector3(newSpellAOE[i].transform.position.x, newSpellAOE[i].transform.position.y - .25f, newSpellAOE[i].transform.position.z);
