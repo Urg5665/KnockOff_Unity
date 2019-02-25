@@ -7,6 +7,12 @@ using UnityEngine.EventSystems;
 public class OnPlayerUISelect : MonoBehaviour
 {
     public bool selected = false;
+    public SpriteState state;
+
+    private void Update()
+    {
+        this.GetComponent<Button>().spriteState = state;
+    }       
 
     public void SpellSelect()
     {

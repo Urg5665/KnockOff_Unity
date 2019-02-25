@@ -15,6 +15,14 @@ public class OnPlayerUI : MonoBehaviour
     public Sprite rangeSprite;
     public Sprite dashSprite;
 
+
+    public Sprite white;
+    public Sprite red;
+    public Sprite cyan;
+    public Sprite blue;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,19 +37,19 @@ public class OnPlayerUI : MonoBehaviour
         {
             if (playerControl.spellPrimary[i] == "Fire")
             {
-                spellUI[i].GetComponent<Image>().color = new Color32(255, 0, 0, 20); // red
+                spellUI[i].GetComponent<OnPlayerUISelect>().state.highlightedSprite = red;
             }
             if (playerControl.spellPrimary[i] == "Wind")
             {
-                spellUI[i].GetComponent<Image>().color = new Color32(67, 215, 255, 20); // cyan
+                spellUI[i].GetComponent<OnPlayerUISelect>().state.highlightedSprite = cyan;
             }
             if (playerControl.spellPrimary[i] == "Water")
             {
-                spellUI[i].GetComponent<Image>().color = new Color32(0, 255,0, 20); // blue
+                spellUI[i].GetComponent<OnPlayerUISelect>().state.highlightedSprite = blue;
             }
             if (playerControl.spellPrimary[i] == "")
             {
-                spellUI[i].GetComponent<Image>().color = Color.white;
+                spellUI[i].GetComponent<OnPlayerUISelect>().state.highlightedSprite = white;
             }
             if (playerControl.spellSecondary[i] == "AOE")
             {
