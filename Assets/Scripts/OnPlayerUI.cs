@@ -6,18 +6,15 @@ using UnityEngine.EventSystems;
 
 public class OnPlayerUI : MonoBehaviour
 {
-    public bool selected = true;
+    public bool selected = false;
 
-    private void Update()
+    public void SpellSelect()
     {
-        if (EventSystem.current.IsPointerOverGameObject())
-        {
-            selected = true;
-        }
-        else
-        {
-            selected = false;
-        }
+        selected = true;
+    }
+    public void SpellDeselect()
+    {
+        selected = false;
     }
 
 

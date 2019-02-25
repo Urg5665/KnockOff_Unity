@@ -52,7 +52,8 @@ public class PlayerControl : MonoBehaviour
         touchingWall = false;
         cardsThrown = 0;
         canCast = new bool[4]; // ignore zero here
-        onPlayerUIButton = new GameObject[4];
+        //onPlayerUIButton = new GameObject[4];
+
         for(int i = 0; i < 4; i++)
         {
             canCast[i] = true;
@@ -62,11 +63,36 @@ public class PlayerControl : MonoBehaviour
         slowDownPerCard = 2.5f;
     }
 
-
+    public void pickDirection()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            if (onPlayerUIButton[i].GetComponent<OnPlayerUI>().selected)
+            {
+                spellSelected = i;
+            }
+        }
+        if (spellSelected == 0)
+        {
+            Debug.Log("North");
+        }
+        if (spellSelected == 1)
+        {
+            Debug.Log("East");
+        }
+        if (spellSelected == 2)
+        {
+            Debug.Log("South");
+        }
+        if (spellSelected == 3)
+        {
+            Debug.Log("West");
+        }
+    }
 
     void Update()
     {
-
+        pickDirection();
 
         if (Input.GetKey(KeyCode.Alpha1)) // Press 1 and 2 to speed or slow game, Degbugging
         {
@@ -83,26 +109,7 @@ public class PlayerControl : MonoBehaviour
                                                             //Debug.Log("speed" + speed);
 
         // If this Confuses a player, ask me - I think this is a very strong direction the game NEED to go in - Make a player weak when attacked from ceritian direction
-               if ((playerAim.angle < 180 && playerAim.angle > 90 && playerAim.xDif > -10 && playerAim.xDif < 10 && playerAim.zDif > 0))
-        {
-            spellSelected = 0;
-            Debug.Log("North");
-        }
-        if ((playerAim.angle < 180 && playerAim.angle > 90 && playerAim.zDif > -10 && playerAim.zDif < 10 && playerAim.xDif > 0))
-        {
-            spellSelected = 1;
-            Debug.Log("East");
-        }
-        if ((playerAim.angle < 90 && playerAim.angle > 0 && playerAim.xDif > -10 && playerAim.xDif < 10 && playerAim.zDif < 0))
-        {
-            spellSelected = 2;
-            Debug.Log("South");
-        }
-        if ((playerAim.angle < 90 && playerAim.angle > 0 && playerAim.zDif > -10 && playerAim.zDif < 10 && playerAim.xDif < 0))
-        {
-            spellSelected = 3;
-            Debug.Log("West");
-        }
+
         
 
 
@@ -422,4 +429,27 @@ public class PlayerControl : MonoBehaviour
                newSpell.GetComponent<FireBallThrow>().transform.LookAt(AOEpoint);
                Debug.Log(i);
            }*/
+
+
+/*               if ((playerAim.angle < 180 && playerAim.angle > 90 && playerAim.xDif > -10 && playerAim.xDif < 10 && playerAim.zDif > 0))
+    {
+        spellSelected = 0;
+        Debug.Log("North");
+    }
+    if ((playerAim.angle < 180 && playerAim.angle > 90 && playerAim.zDif > -10 && playerAim.zDif < 10 && playerAim.xDif > 0))
+    {
+        spellSelected = 1;
+        Debug.Log("East");
+    }
+    if ((playerAim.angle < 90 && playerAim.angle > 0 && playerAim.xDif > -10 && playerAim.xDif < 10 && playerAim.zDif < 0))
+    {
+        spellSelected = 2;
+        Debug.Log("South");
+    }
+    if ((playerAim.angle < 90 && playerAim.angle > 0 && playerAim.zDif > -10 && playerAim.zDif < 10 && playerAim.xDif < 0))
+    {
+        spellSelected = 3;
+        Debug.Log("West");
+    }*/
+
 

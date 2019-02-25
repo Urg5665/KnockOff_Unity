@@ -28,6 +28,7 @@ public class DeathPlane : MonoBehaviour
             player1Score++;
             player2.transform.position = new Vector3(25, 2.5f, 2);
             player2.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            player2.GetComponent<DummyMovement>().i = 0;
         }
     }
 
