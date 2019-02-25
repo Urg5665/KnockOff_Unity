@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -21,7 +23,9 @@ public class PlayerControl : MonoBehaviour
     public GameObject[] spellProjectile; // The actual Fireball, air block, earth wall
     public int spellSelected = 1;
     public bool[] canCast;
-    
+
+    public GameObject[] onPlayerUIButton;
+    public PointerEventData pointerEvent;
 
     public string[] spellPrimary; // Keywords "Fire", "Wind", "Earth" "Water" use "" for empty
     public string[] spellSecondary; // Keywords "Aoe", "Range", "Lob"? not as sure about the last two use "" for empty
@@ -40,12 +44,15 @@ public class PlayerControl : MonoBehaviour
 
 
 
+
     void Start()
     {
+        Cursor.lockState = CursorLockMode.None;
         grounded = true;
         touchingWall = false;
         cardsThrown = 0;
         canCast = new bool[4]; // ignore zero here
+        onPlayerUIButton = new GameObject[4];
         for(int i = 0; i < 4; i++)
         {
             canCast[i] = true;
@@ -54,9 +61,12 @@ public class PlayerControl : MonoBehaviour
         }
         slowDownPerCard = 2.5f;
     }
-   
+
+
+
     void Update()
     {
+
 
         if (Input.GetKey(KeyCode.Alpha1)) // Press 1 and 2 to speed or slow game, Degbugging
         {
@@ -73,9 +83,7 @@ public class PlayerControl : MonoBehaviour
                                                             //Debug.Log("speed" + speed);
 
         // If this Confuses a player, ask me - I think this is a very strong direction the game NEED to go in - Make a player weak when attacked from ceritian direction
-        
-
-        if ((playerAim.angle < 180 && playerAim.angle > 90 && playerAim.xDif > -10 && playerAim.xDif < 10 && playerAim.zDif > 0))
+               if ((playerAim.angle < 180 && playerAim.angle > 90 && playerAim.xDif > -10 && playerAim.xDif < 10 && playerAim.zDif > 0))
         {
             spellSelected = 0;
             Debug.Log("North");
@@ -95,6 +103,9 @@ public class PlayerControl : MonoBehaviour
             spellSelected = 3;
             Debug.Log("West");
         }
+        
+
+
 
 
         if (grounded) // movement
