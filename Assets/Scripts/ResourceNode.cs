@@ -19,7 +19,7 @@ public class ResourceNode : MonoBehaviour
     {
         player1 = GameObject.Find("Player1");
         player2 = GameObject.Find("Player2");
-        resType = Mathf.RoundToInt(Random.Range(0, 2));
+        resType = Mathf.RoundToInt(Random.Range(0, 3));
         currentSpawn = Instantiate(resObjects[resType], this.transform);
         respawnCounter = 251;
         respawnTime = 250;
@@ -28,7 +28,7 @@ public class ResourceNode : MonoBehaviour
     {
         if (currentSpawn == null)
         {
-            resType = Mathf.RoundToInt(Random.Range(0, 2));
+            resType = Mathf.RoundToInt(Random.Range(0, 3));
             currentSpawn = Instantiate(resObjects[resType], this.transform);
             currentSpawn.SetActive(false);
             respawnCounter = 0;

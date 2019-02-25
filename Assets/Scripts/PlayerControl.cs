@@ -21,7 +21,7 @@ public class PlayerControl : MonoBehaviour
     public bool touchingWall;
 
     public GameObject[] spellProjectile; // The actual Fireball, air block, earth wall
-    public int spellSelected = 1;
+    public int spellSelected;
     public bool[] canCast;
 
     public GameObject[] onPlayerUIButton;
@@ -35,6 +35,10 @@ public class PlayerControl : MonoBehaviour
     public GameObject cardTrail;
     public GameObject newCardTrail;
     public Transform AOEpoint;
+
+    public int dashDirection; // This is so the player is invulnerable while dashing, it check the direction dash was cast
+    public int dashDirectionTime;
+    public float waterDashForce;
 
     public int cardsThrown;
     public float slowDownPerCard = 2.5f;
@@ -53,8 +57,10 @@ public class PlayerControl : MonoBehaviour
         cardsThrown = 0;
         canCast = new bool[4]; // ignore zero here
         //onPlayerUIButton = new GameObject[4];
+        waterDashForce = 400;
+        dashDirectionTime = 0;
 
-        for(int i = 0; i < 4; i++)
+        for (int i = 0; i < 4; i++)
         {
             canCast[i] = true;
             spellPrimary[i] = "";
@@ -65,6 +71,7 @@ public class PlayerControl : MonoBehaviour
 
     public void pickDirection()
     {
+
         for (int i = 0; i < 4; i++)
         {
             if (onPlayerUIButton[i].GetComponent<OnPlayerUI>().selected)
@@ -74,26 +81,26 @@ public class PlayerControl : MonoBehaviour
         }
         if (spellSelected == 0)
         {
-            Debug.Log("North");
+            //Debug.Log("North");
         }
         if (spellSelected == 1)
         {
-            Debug.Log("East");
+            //Debug.Log("East");
         }
         if (spellSelected == 2)
         {
-            Debug.Log("South");
+            //Debug.Log("South");
         }
         if (spellSelected == 3)
         {
-            Debug.Log("West");
+           //Debug.Log("West");
         }
     }
 
     void Update()
     {
         pickDirection();
-
+        dashDirectionTime--;
         if (Input.GetKey(KeyCode.Alpha1)) // Press 1 and 2 to speed or slow game, Degbugging
         {
             Time.timeScale += 0.1f;
@@ -108,13 +115,6 @@ public class PlayerControl : MonoBehaviour
         speed = maxSpeed - (slowDownPerCard * cardsThrown); // apply slow for each card in play
                                                             //Debug.Log("speed" + speed);
 
-        // If this Confuses a player, ask me - I think this is a very strong direction the game NEED to go in - Make a player weak when attacked from ceritian direction
-
-        
-
-
-
-
         if (grounded) // movement
         {
             if (Input.GetKey(KeyCode.A))
@@ -127,7 +127,7 @@ public class PlayerControl : MonoBehaviour
                 transform.Translate(Vector3.back * Time.deltaTime * speed, Space.World);
 
             // Card Casting Commands
-            if (Input.GetMouseButtonDown(0) && cardsThrown < 4 && canCast[spellSelected] && spellSecondary[spellSelected] == "" ) // Shoot Card
+            if (Input.GetMouseButtonDown(0) && cardsThrown < 4 && canCast[spellSelected] && spellSecondary[spellSelected] == "") // Shoot Card
             {
                 CardGather();
             }
@@ -150,8 +150,19 @@ public class PlayerControl : MonoBehaviour
             {
                 WindKnockback();
             }
-        }   
-        if ( this.transform.position.y < 2.5f || this.transform.position.y > 3f)
+            if (Input.GetMouseButtonDown(1) && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "Water") // Shoot Wind Knock
+            {
+                WaterPull();
+            }
+            if (canCast[dashDirection] && dashDirectionTime < 1) // result invulnerbaility after dash is complete
+            {
+                this.GetComponent<BoxCollider>().enabled = true;
+                rb.constraints = RigidbodyConstraints.FreezeRotation;
+                Debug.Log("Invulnrble Dash Reset");
+
+            }
+        }
+        if (this.transform.position.y < 2.5f || this.transform.position.y > 3f)
         {
             grounded = false;
         }
@@ -164,10 +175,10 @@ public class PlayerControl : MonoBehaviour
     {
         if (collision.gameObject.tag == "Card" && collision.GetComponent<CardThrow>().rangeCounter > collision.GetComponent<CardThrow>().maxRange)
         {
-            cardsThrown--;        
+            cardsThrown--;
             canCast[collision.GetComponent<CardThrow>().cardNum] = true;
         }
-        
+
     }
     private void CardGather()
     {
@@ -182,7 +193,7 @@ public class PlayerControl : MonoBehaviour
     }
     private void Fireball()
     {
-       if (spellSecondary[spellSelected] == "")
+        if (spellSecondary[spellSelected] == "")
         {
             newSpell = Instantiate(spellProjectile[0], this.transform.position, spellProjectile[0].transform.rotation);
             newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
@@ -256,10 +267,35 @@ public class PlayerControl : MonoBehaviour
             newSpell.GetComponent<FireBallThrow>().maxRange = 75;
             canCast[spellSelected] = false;
         }
-
-
-
-
+        if (spellSecondary[spellSelected] == "Dash")
+        {
+            newSpell = Instantiate(spellProjectile[0], this.transform.position, spellProjectile[0].transform.rotation);
+            newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
+            newSpell.GetComponent<FireBallThrow>().spellNum = spellSelected;
+            newSpell.GetComponent<FireBallThrow>().maxRange = 30;
+            canCast[spellSelected] = false;
+            dashDirection = spellSelected;
+            dashDirectionTime = 100;
+            if (spellSelected == 0)
+            {
+                rb.AddForce(Vector3.forward * waterDashForce);
+            }
+            if (spellSelected == 1)
+            {
+                rb.AddForce(Vector3.right * waterDashForce);
+            }
+            if (spellSelected == 2)
+            {
+                rb.AddForce(Vector3.back * waterDashForce);
+            }
+            if (spellSelected == 3)
+            {
+                rb.AddForce(Vector3.left * waterDashForce);
+            }
+            rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+            this.GetComponent<BoxCollider>().enabled = false;
+            Debug.Log("Invulnrble Dash");
+        }
     }
     private void WindKnockback()
     {
@@ -338,11 +374,148 @@ public class PlayerControl : MonoBehaviour
             newSpell.GetComponent<WindWaveThrow>().maxRange = 75;
             canCast[spellSelected] = false;
         }
+        else if (spellSecondary[spellSelected] == "Dash")
+        {
+            newSpell = Instantiate(spellProjectile[1], this.transform.position, spellProjectile[1].transform.rotation);
+            newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
+            newSpell.GetComponent<WindWaveThrow>().spellNum = spellSelected;
+            newSpell.GetComponent<WindWaveThrow>().maxRange = 30;
+            canCast[spellSelected] = false;
+            dashDirection = spellSelected;
+            dashDirectionTime = 100;
+            if (spellSelected == 0)
+            {
+                rb.AddForce(Vector3.forward * waterDashForce);
+            }
+            if (spellSelected == 1)
+            {
+                rb.AddForce(Vector3.right * waterDashForce);
+            }
+            if (spellSelected == 2)
+            {
+                rb.AddForce(Vector3.back * waterDashForce);
+            }
+            if (spellSelected == 3)
+            {
+                rb.AddForce(Vector3.left * waterDashForce);
+            }
+            rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+            this.GetComponent<BoxCollider>().enabled = false;
+            Debug.Log("Invulnrble Dash");
+
+        }
 
     }
+    private void WaterPull()
+    {
+        if (spellSecondary[spellSelected] == "")
+        {
+            newSpell = Instantiate(spellProjectile[2], this.transform.position, spellProjectile[0].transform.rotation);
+            newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
+            newSpell.GetComponent<WaterPullThrow>().spellNum = spellSelected;
+            //Debug.Log("Basic");
+            newSpell.GetComponent<WaterPullThrow>().maxRange = 15;
+            canCast[spellSelected] = false;
+        }
+        if (spellSecondary[spellSelected] == "AOE")
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                newSpellAOE[i] = Instantiate(spellProjectile[2], this.transform.position, spellProjectile[0].transform.rotation);
+                newSpellAOE[i].transform.position = new Vector3(newSpellAOE[i].transform.position.x, newSpellAOE[i].transform.position.y - .25f, newSpellAOE[i].transform.position.z);
+                newSpellAOE[i].GetComponent<WaterPullThrow>().spellNum = spellSelected;
+                newSpellAOE[i].GetComponent<WaterPullThrow>().maxRange = 20;
+                // I got Really Really Fucking Lazy and Hard Coded the Draw Cricle about point function to make this work. 
+                //Im ashamed of the following code and wil fix when i figrue out abetter draw circle - Mark
+                if (i == 0)
+                {
+                    AOEpoint.position = player1Aim.transform.position;
+                }
+                if (spellSelected == 0 || spellSelected == 2)
+                {
+                    if (i == 1)
+                    {
+                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x + 3, this.transform.position.y, AOEpoint.transform.position.z);
+                    }
+                    if (i == 2)
+                    {
+                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x + 3, this.transform.position.y, AOEpoint.transform.position.z);
+                    }
+                    if (i == 3)
+                    {
+                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x - 9, this.transform.position.y, AOEpoint.transform.position.z);
+                    }
+                    if (i == 4)
+                    {
+                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x - 3, this.transform.position.y, AOEpoint.transform.position.z);
+                    }
+                }
+                if (spellSelected == 1 || spellSelected == 3)
+                {
+                    if (i == 1)
+                    {
+                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x, this.transform.position.y, AOEpoint.transform.position.z + 3);
+                    }
+                    if (i == 2)
+                    {
+                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x, this.transform.position.y, AOEpoint.transform.position.z + 3);
+                    }
+                    if (i == 3)
+                    {
+                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x, this.transform.position.y, AOEpoint.transform.position.z - 9);
+                    }
+                    if (i == 4)
+                    {
+                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x, this.transform.position.y, AOEpoint.transform.position.z - 3);
+                    }
+                }
+
+                newSpellAOE[i].GetComponent<WaterPullThrow>().transform.LookAt(AOEpoint);
+            }
+            canCast[spellSelected] = false;
+        }
+        if (spellSecondary[spellSelected] == "Range")
+        {
+            newSpell = Instantiate(spellProjectile[2], this.transform.position, spellProjectile[0].transform.rotation);
+            newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
+            newSpell.GetComponent<WaterPullThrow>().spellNum = spellSelected;
+            newSpell.GetComponent<WaterPullThrow>().maxRange = 75;
+            canCast[spellSelected] = false;
+        }
+        if (spellSecondary[spellSelected] == "Dash")
+        {
+            newSpell = Instantiate(spellProjectile[2], this.transform.position, spellProjectile[0].transform.rotation);
+            newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
+            newSpell.GetComponent<WaterPullThrow>().spellNum = spellSelected;
+            newSpell.GetComponent<WaterPullThrow>().maxRange = 30;
+            canCast[spellSelected] = false;
+            dashDirection = spellSelected;
+            dashDirectionTime = 100;
+            if (spellSelected == 0)
+            {
+                rb.AddForce(Vector3.forward * waterDashForce);
+            }
+            if (spellSelected == 1)
+            {
+                rb.AddForce(Vector3.right * waterDashForce);
+            }
+            if (spellSelected == 2)
+            {
+                rb.AddForce(Vector3.back * waterDashForce);
+            }
+            if (spellSelected == 3)
+            {
+                rb.AddForce(Vector3.left * waterDashForce);
+            }
+            rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+            this.GetComponent<BoxCollider>().enabled = false;
+            Debug.Log("Invulnrble Dash");
+
+        }
 
 
 
+    }
 }
 /* for (int i = 0; i < 8; i++)
             {
@@ -386,50 +559,6 @@ public class PlayerControl : MonoBehaviour
                 newSpellAOE[i].GetComponent<FireBallThrow>().transform.LookAt(AOEpoint); 
             }
  * 
- * 
- *  for(int i = 0; i > 8; i++)
-           {
-               newSpell = Instantiate(spellProjectile[0], this.transform.position, spellProjectile[0].transform.rotation);
-               newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
-               newSpell.GetComponent<FireBallThrow>().spellNum = spellSelected;
-               // I got Really Really Fucking Lazy and Hard Coded the Draw Cricle about point function to make this work. 
-               //Im ashamed of the following code and wil fix when i figrue out abetter draw circle - Mark
-               if (i == 0)
-               {
-                   AOEpoint.position = new Vector3(this.transform.position.x + 10, this.transform.position.y, this.transform.position.z);
-               }
-               if (i == 1)
-               {
-                   AOEpoint.position = new Vector3(this.transform.position.x + 7, this.transform.position.y, this.transform.position.z + 7);
-               }
-               if (i == 2)
-               {
-                   AOEpoint.position = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z + 10);
-               }
-               if (i == 3)
-               {
-                   AOEpoint.position = new Vector3(this.transform.position.x - 7, this.transform.position.y, this.transform.position.z + 7);
-               }
-               if (i == 4)
-               {
-                   AOEpoint.position = new Vector3(this.transform.position.x -10, this.transform.position.y, this.transform.position.z);
-               }
-               if (i == 5)
-               {
-                   AOEpoint.position = new Vector3(this.transform.position.x -7, this.transform.position.y, this.transform.position.z - 7);
-               }
-               if (i == 6)
-               {
-                   AOEpoint.position = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z - 10);
-               }
-               if (i == 7)
-               {
-                   AOEpoint.position = new Vector3(this.transform.position.x + 7, this.transform.position.y, this.transform.position.z - 7);
-               }
-               newSpell.GetComponent<FireBallThrow>().transform.LookAt(AOEpoint);
-               Debug.Log(i);
-           }*/
-
 
 /*               if ((playerAim.angle < 180 && playerAim.angle > 90 && playerAim.xDif > -10 && playerAim.xDif < 10 && playerAim.zDif > 0))
     {

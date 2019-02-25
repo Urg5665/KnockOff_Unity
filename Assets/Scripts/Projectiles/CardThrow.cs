@@ -56,6 +56,13 @@ public class CardThrow : MonoBehaviour
             rangeCounter = maxRange -1 ;
             cardCollider.isTrigger = false;
         }
+        if (collision.gameObject.tag == "waterRes" && toRes == true)
+        {
+            resType = "Water";
+            resType2 = "Dash";
+            rangeCounter = maxRange - 1;
+            cardCollider.isTrigger = false;
+        }
         if (collision.gameObject.tag == "Target")
         {
             toRes = false;

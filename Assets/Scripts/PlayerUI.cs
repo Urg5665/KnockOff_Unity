@@ -12,6 +12,7 @@ public class PlayerUI : MonoBehaviour
 
     public Sprite aoeSprite;
     public Sprite rangeSprite;
+    public Sprite dashSprite;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +32,10 @@ public class PlayerUI : MonoBehaviour
             }
             if (playerControl.spellPrimary[i] == "Wind")
             {
+                spellUI[i].GetComponent<Image>().color = new Color32(67,215,255,255);
+            }
+            if (playerControl.spellPrimary[i] == "Water")
+            {
                 spellUI[i].GetComponent<Image>().color = Color.blue;
             }
             if (playerControl.spellPrimary[i] == "")
@@ -44,6 +49,10 @@ public class PlayerUI : MonoBehaviour
             if (playerControl.spellSecondary[i] == "Range")
             {
                 spellUI[i].GetComponent<Image>().sprite = rangeSprite;
+            }
+            if (playerControl.spellSecondary[i] == "Dash")
+            {
+                spellUI[i].GetComponent<Image>().sprite = dashSprite;
             }
             if (playerControl.spellSecondary[i] == "")
             {

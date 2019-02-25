@@ -12,6 +12,7 @@ TagManager:
   - Target
   - fireRes
   - windRes
+  - waterRes
   layers:
   - Default
   - TransparentFX
