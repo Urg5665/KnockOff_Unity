@@ -35,22 +35,6 @@ public class OnPlayerUI : MonoBehaviour
     {
         for (int i = 0; i < 4; i++)
         {
-            if (playerControl.spellPrimary[i] == "Fire")
-            {
-                spellUI[i].GetComponent<OnPlayerUISelect>().state.highlightedSprite = red;
-            }
-            if (playerControl.spellPrimary[i] == "Wind")
-            {
-                spellUI[i].GetComponent<OnPlayerUISelect>().state.highlightedSprite = cyan;
-            }
-            if (playerControl.spellPrimary[i] == "Water")
-            {
-                spellUI[i].GetComponent<OnPlayerUISelect>().state.highlightedSprite = blue;
-            }
-            if (playerControl.spellPrimary[i] == "")
-            {
-                spellUI[i].GetComponent<OnPlayerUISelect>().state.highlightedSprite = white;
-            }
             if (playerControl.spellSecondary[i] == "AOE")
             {
                 spellUI[i].GetComponent<Image>().sprite = aoeSprite;

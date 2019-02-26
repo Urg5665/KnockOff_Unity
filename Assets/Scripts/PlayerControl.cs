@@ -218,7 +218,7 @@ public class PlayerControl : MonoBehaviour
                 newSpellAOE[i] = Instantiate(spellProjectile[0], this.transform.position, spellProjectile[0].transform.rotation);
                 newSpellAOE[i].transform.position = new Vector3(newSpellAOE[i].transform.position.x, newSpellAOE[i].transform.position.y - .25f, newSpellAOE[i].transform.position.z);
                 newSpellAOE[i].GetComponent<FireBallThrow>().spellNum = spellSelected;
-                newSpellAOE[i].GetComponent<FireBallThrow>().maxRange = 20;
+                newSpellAOE[i].GetComponent<FireBallThrow>().maxRange = 15;
                 // I got Really Really Fucking Lazy and Hard Coded the Draw Cricle about point function to make this work. 
                 //Im ashamed of the following code and wil fix when i figrue out abetter draw circle - Mark
                 if (i == 0)
