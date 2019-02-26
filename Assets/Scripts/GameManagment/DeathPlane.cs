@@ -19,7 +19,7 @@ public class DeathPlane : MonoBehaviour
         if (collision.gameObject.tag == "Player1")
         {
             player2Score++;
-            player1.transform.position = new Vector3(-10,2.5f,2);
+            player1.transform.position = new Vector3(-4,2.5f,1);
             player1.GetComponent<Rigidbody>().velocity = Vector3.zero;
 
         }
