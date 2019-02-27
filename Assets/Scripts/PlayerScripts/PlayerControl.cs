@@ -98,16 +98,6 @@ public class PlayerControl : MonoBehaviour
     {
         pickDirection();
         dashDirectionTime--;
-        if (Input.GetKey(KeyCode.Alpha1)) // Press 1 and 2 to speed or slow game, Degbugging
-        {
-            Time.timeScale += 0.1f;
-            Debug.Log("Speeding Up");
-        }
-        if (Input.GetKey(KeyCode.Alpha2))
-        {
-            Time.timeScale -= 0.1f;
-            Debug.Log("Slowing Down");
-        }
 
         speed = maxSpeed - (slowDownPerCard * cardsThrown); // apply slow for each card in play
                                                             //Debug.Log("speed" + speed);

@@ -49,7 +49,7 @@ public class WaterPullThrow : MonoBehaviour
     private void OnTriggerEnter(Collider collision)
     {
 
-        if (!hitPlayer && rangeCounter > 10 && collision.gameObject.tag == "Player2" )
+        if (!hitPlayer && rangeCounter > 3 && collision.gameObject.tag == "Player2" )
         {
             collision.gameObject.GetComponent<Rigidbody>().AddForce(spellDir.normalized * waterForce * -1); // Knock Back
             collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * 200); // Knock Up
@@ -59,7 +59,7 @@ public class WaterPullThrow : MonoBehaviour
             playerControl.spellPrimary[spellNum] = "";
             playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
         }
-        if (!hitPlayer && rangeCounter > 10 && collision.gameObject.tag == "Player1")
+        if (!hitPlayer && rangeCounter > 3 && collision.gameObject.tag == "Player1")
         {
             collision.gameObject.GetComponent<Rigidbody>().AddForce(spellDir.normalized * waterForce * -1); // Knock Back
             collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * 200); // Knock Up

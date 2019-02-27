@@ -40,7 +40,7 @@ public class FireBallThrow : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if ( rangeCounter > 10 && collision.gameObject.tag == "Player2")
+        if ( rangeCounter > 3 && collision.gameObject.tag == "Player2")
         {
             collision.gameObject.transform.position = 
                 new Vector3(collision.gameObject.transform.position.x, collision.gameObject.transform.position.y - 5, collision.gameObject.transform.position.z);
@@ -49,7 +49,7 @@ public class FireBallThrow : MonoBehaviour
            playerControl.spellPrimary[spellNum] = "";
            playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
         }
-        if (rangeCounter > 10 && collision.gameObject.tag == "Player1")
+        if (rangeCounter > 3 && collision.gameObject.tag == "Player1")
         {
             collision.gameObject.transform.position =
                 new Vector3(collision.gameObject.transform.position.x, collision.gameObject.transform.position.y - 5, collision.gameObject.transform.position.z);

@@ -64,7 +64,7 @@ public class PlayerControlXbox : MonoBehaviour
         slowDownPerCard = 2.5f;
     }
 
-    /*public void pickDirection()
+    public void pickDirection()
     {
 
         for (int i = 0; i < 4; i++)
@@ -74,39 +74,29 @@ public class PlayerControlXbox : MonoBehaviour
                 spellSelected = i;
             }
         }
-        if (spellSelected == 0)
-        {
-            //Debug.Log("North");
-        }
-        if (spellSelected == 1)
-        {
-            //Debug.Log("East");
-        }
-        if (spellSelected == 2)
-        {
-            //Debug.Log("South");
-        }
-        if (spellSelected == 3)
-        {
-            //Debug.Log("West");
-        }
-    }
-    */
-    void Update()
-    {
-        //Debug.Log("UpdateRunning");
-        //pickDirection();
-        dashDirectionTime--;
         if (Input.GetKey(KeyCode.Alpha1)) // Press 1 and 2 to speed or slow game, Degbugging
         {
-            Time.timeScale += 0.1f;
-            Debug.Log("Speeding Up");
+            spellSelected = 0;
         }
         if (Input.GetKey(KeyCode.Alpha2))
         {
-            Time.timeScale -= 0.1f;
-            Debug.Log("Slowing Down");
+            spellSelected = 1;
         }
+        if (Input.GetKey(KeyCode.Alpha3)) // Press 1 and 2 to speed or slow game, Degbugging
+        {
+            spellSelected = 2;
+        }
+        if (Input.GetKey(KeyCode.Alpha4))
+        {
+            spellSelected = 3;
+        }
+    }
+    
+    void Update()
+    {
+        
+        pickDirection();
+        dashDirectionTime--;
 
         speed = maxSpeed - (slowDownPerCard * cardsThrown); // apply slow for each card in play
                                                             //Debug.Log("speed" + speed);
