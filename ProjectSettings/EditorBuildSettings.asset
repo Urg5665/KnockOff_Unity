@@ -14,7 +14,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/KnockOff_LatestVersion.unity
     guid: 887245feb6fd4574bb1200ea2ccfb6f9
-  - enabled: 1
-    path: Assets/Scenes/KnockOff_Jackson.unity
-    guid: 3f172a4aa0dc71140a0e7bee5c128656
   m_configObjects: {}
