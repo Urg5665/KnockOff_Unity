@@ -25,7 +25,7 @@ public class PlayerAimXbox : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speed = 15;
+        //speed = 15;
         playerSpeed = 10;
     }
 

@@ -260,7 +260,7 @@ public class PlayerControl : MonoBehaviour
             }
 
             this.GetComponent<BoxCollider>().enabled = false;
-            Debug.Log("Invulnrble Dash");
+            //Debug.Log("Invulnrble Dash");
         }
     }
     private void WindKnockback()

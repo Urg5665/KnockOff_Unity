@@ -35,12 +35,12 @@ public class PlayerAim : MonoBehaviour
         {
             if (zPos > 0)
             {
-                Debug.Log("P1 North");
+                //Debug.Log("P1 North");
                 spellSelected = 0;
             }
             if (zPos <= 0)
             {
-                Debug.Log("P1 South");
+                //Debug.Log("P1 South");
                 spellSelected = 2;
             }
         }
@@ -48,12 +48,12 @@ public class PlayerAim : MonoBehaviour
         {
             if (xPos > 0)
             {
-                Debug.Log("P1 East");
+                //Debug.Log("P1 East");
                 spellSelected = 1;
             }
             if (xPos <= 0)
             {
-                Debug.Log("P1 West");
+                //Debug.Log("P1 West");
                 spellSelected = 3;
             }
         }
