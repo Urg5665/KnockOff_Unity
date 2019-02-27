@@ -12,7 +12,7 @@ public class OnPlayerUISelectXbox : MonoBehaviour
     public PlayerControlXbox playerControlXbox;
     public int spellNumber;
 
-    public Button but;
+    public Image image;
 
     public Sprite white;
     public Sprite red;
@@ -32,61 +32,58 @@ public class OnPlayerUISelectXbox : MonoBehaviour
 
     private void Update()
     {
-        if (playerControlXbox.spellPrimary[spellNumber] == "Fire")
+        if (playerControlXbox.spellSelected == spellNumber)
         {
-            but.image.sprite = red;
-            childIcon.GetComponent<Image>().color = new Color32(255, 0, 0, 255);
+            image.enabled = true;
+            childIcon.GetComponent<Image>().enabled = true;
+
+            if (playerControlXbox.spellPrimary[spellNumber] == "Fire")
+            {
+                image.sprite = red;
+                childIcon.GetComponent<Image>().color = new Color32(255, 0, 0, 255);
+            }
+            if (playerControlXbox.spellPrimary[spellNumber] == "Wind")
+            {
+                image.sprite = cyan;
+                //67, 215, 255, 255
+                childIcon.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+            }
+            if (playerControlXbox.spellPrimary[spellNumber] == "Water")
+            {
+                image.sprite = blue;
+                childIcon.GetComponent<Image>().color = new Color32(0, 0, 255, 255);
+            }
+            if (playerControlXbox.spellPrimary[spellNumber] == "")
+            {
+                image.sprite = white;
+            }
+
+            if (playerControlXbox.spellSecondary[spellNumber] == "AOE")
+            {
+                childIcon.GetComponent<Image>().sprite = cone;
+            }
+            if (playerControlXbox.spellSecondary[spellNumber] == "Range")
+            {
+                childIcon.GetComponent<Image>().sprite = line;
+            }
+            if (playerControlXbox.spellSecondary[spellNumber] == "Dash")
+            {
+                childIcon.GetComponent<Image>().sprite = dash;
+            }
+            if (playerControlXbox.spellSecondary[spellNumber] == "")
+            {
+                childIcon.GetComponent<Image>().sprite = null;
+                childIcon.GetComponent<Image>().color = new Color32(255, 255, 255, 0);
+            }
         }
-        if (playerControlXbox.spellPrimary[spellNumber] == "Wind")
+        else if (playerControlXbox.spellSelected != spellNumber)
         {
-            but.image.sprite = cyan;
-            //67, 215, 255, 255
-            childIcon.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
-        }
-        if (playerControlXbox.spellPrimary[spellNumber] == "Water")
-        {
-            but.image.sprite = blue;
-            childIcon.GetComponent<Image>().color = new Color32(0, 0, 255, 255);
-        }
-        if (playerControlXbox.spellPrimary[spellNumber] == "")
-        {
-            but.image.sprite = white;
+            image.enabled = false;
+            childIcon.GetComponent<Image>().enabled = false;
         }
 
-        if (playerControlXbox.spellSecondary[spellNumber] == "AOE")
-        {
-            childIcon.GetComponent<Image>().sprite = cone;
-        }
-        if (playerControlXbox.spellSecondary[spellNumber] == "Range")
-        {
-            childIcon.GetComponent<Image>().sprite = line;
-        }
-        if (playerControlXbox.spellSecondary[spellNumber] == "Dash")
-        {
-            childIcon.GetComponent<Image>().sprite = dash;
-        }
-        if (playerControlXbox.spellSecondary[spellNumber] == "")
-        {
-            childIcon.GetComponent<Image>().sprite = null;
-            childIcon.GetComponent<Image>().color = new Color32(255, 255, 255, 0);
-        }
+        
 
     }
 
-    public void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject == playerAim)
-        {
-            selected = true;
-        }
-    }
-
-    public void SpellSelect()
-    {
-        selected = true;
-    }
-    public void SpellDeselect()
-    {
-        selected = false;
-    }
 }
