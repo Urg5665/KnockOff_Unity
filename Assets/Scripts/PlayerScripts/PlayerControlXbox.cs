@@ -157,12 +157,12 @@ public class PlayerControlXbox : MonoBehaviour
         if (grounded) // movement
         {
             if (Input.GetAxis("Horizontal") > 0)
-                transform.Translate(Vector3.left * Time.deltaTime * speed, Space.World);
-            if (Input.GetAxis("Horizontal") < 0)
                 transform.Translate(Vector3.right * Time.deltaTime * speed, Space.World);
+            if (Input.GetAxis("Horizontal") < 0)
+                transform.Translate(Vector3.left * Time.deltaTime * speed, Space.World);
             if (Input.GetAxis("Vertical") < 0)
                 transform.Translate(Vector3.forward * Time.deltaTime * speed, Space.World);
-            if (Input.GetAxis("Vertical") < 0)
+            if (Input.GetAxis("Vertical") > 0)
                 transform.Translate(Vector3.back * Time.deltaTime * speed, Space.World);
 
 
