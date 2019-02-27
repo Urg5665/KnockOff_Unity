@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 6195636747438739168}
   - component: {fileID: 1294518313432186797}
   - component: {fileID: 3010765795139086166}
+  - component: {fileID: 2231650958681150889}
+  - component: {fileID: 7779092323596122046}
   m_Layer: 0
   m_Name: NorthImage
   m_TagString: Untagged
@@ -182,7 +184,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selected: 0
-  player1: {fileID: 6068517341001067959}
+  player: {fileID: 0}
+  spellNumber: 0
+  but: {fileID: 6195636747438739168}
+  white: {fileID: 21300000, guid: 2e521e611e21c28438d3e253c5942043, type: 3}
+  red: {fileID: 21300000, guid: 911d71a54a8f96f4dabfe5548cdb0a5c, type: 3}
+  cyan: {fileID: 21300000, guid: 4584b8cff2c85474d854badf2b2a27cb, type: 3}
+  blue: {fileID: 21300000, guid: 1e20b51a87bebdd4cbcf4938d0f70e38, type: 3}
+  childIcon: {fileID: 1294518314278881271}
+  cone: {fileID: 21300000, guid: 10c05ee83ce696a42a940c1dc741d441, type: 3}
+  line: {fileID: 21300000, guid: 07ce02ca0fdb021439ddf18d4ea64575, type: 3}
+  dash: {fileID: 21300000, guid: 5a29759ee84c4674fbebd58465c6883a, type: 3}
+--- !u!65 &2231650958681150889
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 582727175598617092}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 200, y: 200, z: 10}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7779092323596122046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 582727175598617092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da3bf0810d3234641b2aa7898f8db8d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selected: 0
+  player: {fileID: 6068517341001067959}
+  playerAim: {fileID: 0}
+  playerControlXbox: {fileID: 1294518313494728842}
   spellNumber: 0
   but: {fileID: 6195636747438739168}
   white: {fileID: 21300000, guid: 2e521e611e21c28438d3e253c5942043, type: 3}
@@ -286,7 +327,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1294518314683911031
 RectTransform:
   m_ObjectHideFlags: 0
@@ -577,7 +618,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selected: 0
-  player1: {fileID: 6068517341001067959}
+  player: {fileID: 0}
   spellNumber: 2
   but: {fileID: 5211571976519051201}
   white: {fileID: 21300000, guid: 2e521e611e21c28438d3e253c5942043, type: 3}
@@ -859,8 +900,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9784c57b679baae4ca943b1dd2f8b000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1Aim: {fileID: 6068517341001067959}
-  playerAim: {fileID: 0}
+  playerAim: {fileID: 1620039573228261291, guid: 4985819a627adfc48a580ddb51d4b452,
+    type: 3}
   playerNum: 0
   speed: 10
   maxSpeed: 10
@@ -1085,7 +1126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selected: 0
-  player1: {fileID: 6068517341001067959}
+  player: {fileID: 0}
   spellNumber: 1
   but: {fileID: 2279701438910810704}
   white: {fileID: 21300000, guid: 2e521e611e21c28438d3e253c5942043, type: 3}
@@ -1277,7 +1318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selected: 0
-  player1: {fileID: 6068517341001067959}
+  player: {fileID: 0}
   spellNumber: 3
   but: {fileID: 8689548151418771110}
   white: {fileID: 21300000, guid: 2e521e611e21c28438d3e253c5942043, type: 3}

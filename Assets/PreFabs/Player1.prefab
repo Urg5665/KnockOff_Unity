@@ -86,7 +86,6 @@ GameObject:
   - component: {fileID: 1016335773}
   - component: {fileID: 1016335772}
   - component: {fileID: 1016335771}
-  - component: {fileID: 50328649}
   m_Layer: 0
   m_Name: OnPlayer1UI
   m_TagString: Untagged
@@ -177,32 +176,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &50328649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1016335769}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51c6d4f6c43135a4f8b6da388cf855cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerBelong: {fileID: 4589685495232286483}
-  playerControl: {fileID: 46870567241696049}
-  spellUI:
-  - {fileID: 1864858354760381673}
-  - {fileID: 5206471678201964430}
-  - {fileID: 4170345083487686638}
-  - {fileID: 8749702505128207534}
-  aoeSprite: {fileID: 0}
-  rangeSprite: {fileID: 0}
-  dashSprite: {fileID: 0}
-  white: {fileID: 21300000, guid: 2e521e611e21c28438d3e253c5942043, type: 3}
-  red: {fileID: 21300000, guid: 911d71a54a8f96f4dabfe5548cdb0a5c, type: 3}
-  cyan: {fileID: 21300000, guid: 4584b8cff2c85474d854badf2b2a27cb, type: 3}
-  blue: {fileID: 21300000, guid: 1e20b51a87bebdd4cbcf4938d0f70e38, type: 3}
 --- !u!1 &1865700214
 GameObject:
   m_ObjectHideFlags: 0
@@ -543,7 +516,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selected: 0
-  player1: {fileID: 4589685495232286483}
+  player: {fileID: 4589685495232286483}
   spellNumber: 0
   but: {fileID: 4903398855281575949}
   white: {fileID: 21300000, guid: 2e521e611e21c28438d3e253c5942043, type: 3}
@@ -809,7 +782,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selected: 0
-  player1: {fileID: 4589685495232286483}
+  player: {fileID: 4589685495232286483}
   spellNumber: 2
   but: {fileID: 6459345584080855340}
   white: {fileID: 21300000, guid: 2e521e611e21c28438d3e253c5942043, type: 3}
@@ -1252,7 +1225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selected: 0
-  player1: {fileID: 4589685495232286483}
+  player: {fileID: 4589685495232286483}
   spellNumber: 1
   but: {fileID: 1032500710728862909}
   white: {fileID: 21300000, guid: 2e521e611e21c28438d3e253c5942043, type: 3}
@@ -1518,7 +1491,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selected: 0
-  player1: {fileID: 4589685495232286483}
+  player: {fileID: 4589685495232286483}
   spellNumber: 3
   but: {fileID: 7593200421210624075}
   white: {fileID: 21300000, guid: 2e521e611e21c28438d3e253c5942043, type: 3}
@@ -1539,6 +1512,10 @@ PrefabInstance:
     - target: {fileID: 100002, guid: f8e4a8a8fcc02bc49bf23d79ff6834fa, type: 3}
       propertyPath: m_Name
       value: chr_sword
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: f8e4a8a8fcc02bc49bf23d79ff6834fa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f8e4a8a8fcc02bc49bf23d79ff6834fa, type: 3}
       propertyPath: m_LocalPosition.x

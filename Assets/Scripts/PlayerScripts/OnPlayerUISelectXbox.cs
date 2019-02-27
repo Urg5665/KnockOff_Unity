@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
-public class OnPlayerUISelect : MonoBehaviour
+public class OnPlayerUISelectXbox : MonoBehaviour
 {
     public bool selected = false;
 
     public GameObject player;
+    public GameObject playerAim;
+    public PlayerControlXbox playerControlXbox;
     public int spellNumber;
 
     public Button but;
@@ -24,48 +25,61 @@ public class OnPlayerUISelect : MonoBehaviour
     public Sprite line;
     public Sprite dash;
 
+    private void Start()
+    {
+        playerControlXbox = player.GetComponent<PlayerControlXbox>();
+    }
+
     private void Update()
     {
-        if (player.GetComponent<PlayerControl>().spellPrimary[spellNumber] == "Fire")
+        if (playerControlXbox.spellPrimary[spellNumber] == "Fire")
         {
             but.image.sprite = red;
             childIcon.GetComponent<Image>().color = new Color32(255, 0, 0, 255);
         }
-        if (player.GetComponent<PlayerControl>().spellPrimary[spellNumber] == "Wind")
+        if (playerControlXbox.spellPrimary[spellNumber] == "Wind")
         {
             but.image.sprite = cyan;
             //67, 215, 255, 255
             childIcon.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
         }
-        if (player.GetComponent<PlayerControl>().spellPrimary[spellNumber] == "Water")
+        if (playerControlXbox.spellPrimary[spellNumber] == "Water")
         {
             but.image.sprite = blue;
             childIcon.GetComponent<Image>().color = new Color32(0, 0, 255, 255);
         }
-        if (player.GetComponent<PlayerControl>().spellPrimary[spellNumber] == "")
+        if (playerControlXbox.spellPrimary[spellNumber] == "")
         {
             but.image.sprite = white;
         }
 
-        if (player.GetComponent<PlayerControl>().spellSecondary[spellNumber] == "AOE")
+        if (playerControlXbox.spellSecondary[spellNumber] == "AOE")
         {
             childIcon.GetComponent<Image>().sprite = cone;
         }
-        if (player.GetComponent<PlayerControl>().spellSecondary[spellNumber] == "Range")
+        if (playerControlXbox.spellSecondary[spellNumber] == "Range")
         {
             childIcon.GetComponent<Image>().sprite = line;
         }
-        if (player.GetComponent<PlayerControl>().spellSecondary[spellNumber] == "Dash")
+        if (playerControlXbox.spellSecondary[spellNumber] == "Dash")
         {
             childIcon.GetComponent<Image>().sprite = dash;
         }
-        if (player.GetComponent<PlayerControl>().spellSecondary[spellNumber] == "")
+        if (playerControlXbox.spellSecondary[spellNumber] == "")
         {
             childIcon.GetComponent<Image>().sprite = null;
-            childIcon.GetComponent<Image>().color = new Color32(255,255,255,0);
+            childIcon.GetComponent<Image>().color = new Color32(255, 255, 255, 0);
         }
 
-    }       
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject == playerAim)
+        {
+            selected = true;
+        }
+    }
 
     public void SpellSelect()
     {
@@ -75,6 +89,4 @@ public class OnPlayerUISelect : MonoBehaviour
     {
         selected = false;
     }
-
-
 }

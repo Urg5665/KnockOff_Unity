@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerControlXbox : MonoBehaviour
 {
-    public GameObject player1Aim;
-    public PlayerAim playerAim;
+    public GameObject playerAim;
+    //public PlayerAim playerAim;
 
     public int playerNum;
     public float speed;
@@ -62,18 +62,19 @@ public class PlayerControlXbox : MonoBehaviour
             spellSecondary[i] = "";
         }
         slowDownPerCard = 2.5f;
+        playerAim = GameObject.Find("Player2Aim");
     }
 
     public void pickDirection()
     {
 
-        for (int i = 0; i < 4; i++)
-        {
-            if (onPlayerUIButton[i].GetComponent<OnPlayerUISelect>().selected)
-            {
-                spellSelected = i;
-            }
-        }
+        //for (int i = 0; i < 4; i++)
+        //{
+            //if (onPlayerUIButton[i].GetComponent<OnPlayerUISelect>().selected)
+            //{
+                //spellSelected = i;
+            //}
+        //}
         if (Input.GetKey(KeyCode.Alpha1)) // Press 1 and 2 to speed or slow game, Degbugging
         {
             spellSelected = 0;
@@ -94,7 +95,8 @@ public class PlayerControlXbox : MonoBehaviour
     
     void Update()
     {
-        
+        //Debug.Log("CheckUpdate");
+
         pickDirection();
         dashDirectionTime--;
 
@@ -143,7 +145,7 @@ public class PlayerControlXbox : MonoBehaviour
             WaterPull();
         }
 
-        //Debug.Log(Input.GetAxis("CardThrow") + "  " + Input.GetAxis("SpellThrow"));
+        //Debug.Log(Input.GetAxis("SpellThrow"));
 
         if (grounded) // movement
         {
@@ -211,7 +213,7 @@ public class PlayerControlXbox : MonoBehaviour
                 //Im ashamed of the following code and wil fix when i figrue out abetter draw circle - Mark
                 if (i == 0)
                 {
-                    AOEpoint.position = player1Aim.transform.position;
+                    AOEpoint.position = playerAim.transform.position;
                 }
                 if (spellSelected == 0 || spellSelected == 2)
                 {
@@ -273,7 +275,7 @@ public class PlayerControlXbox : MonoBehaviour
             newSpell.GetComponent<FireBallThrow>().throwSpeed = 35;
             canCast[spellSelected] = false;
             dashDirection = spellSelected;
-            dashAim = new Vector3(player1Aim.transform.position.x, player1Aim.transform.position.y, player1Aim.transform.position.z);
+            dashAim = new Vector3(playerAim.transform.position.x, playerAim.transform.position.y, playerAim.transform.position.z);
             dashDirectionTime = 75;
             if (this.transform.position.y < 2.5)
             {
@@ -312,7 +314,7 @@ public class PlayerControlXbox : MonoBehaviour
                 //Im ashamed of the following code and wil fix when i figrue out abetter draw circle - Mark
                 if (i == 0)
                 {
-                    AOEpoint.position = player1Aim.transform.position;
+                    AOEpoint.position = playerAim.transform.position;
                 }
                 if (spellSelected == 0 || spellSelected == 2)
                 {
@@ -375,7 +377,7 @@ public class PlayerControlXbox : MonoBehaviour
             newSpell.GetComponent<WindWaveThrow>().throwSpeed = 35;
             canCast[spellSelected] = false;
             dashDirection = spellSelected;
-            dashAim = new Vector3(player1Aim.transform.position.x, player1Aim.transform.position.y, player1Aim.transform.position.z);
+            dashAim = new Vector3(playerAim.transform.position.x, playerAim.transform.position.y, playerAim.transform.position.z);
             dashDirectionTime = 75;
             if (this.transform.position.y < 2.5)
             {
@@ -395,7 +397,7 @@ public class PlayerControlXbox : MonoBehaviour
     {
         if (spellSecondary[spellSelected] == "")
         {
-            newSpell = Instantiate(spellProjectile[2], this.transform.position, spellProjectile[0].transform.rotation);
+            newSpell = Instantiate(spellProjectile[2], this.transform.position, spellProjectile[2].transform.rotation);
             newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
             newSpell.GetComponent<WaterPullThrow>().spellNum = spellSelected;
             //Debug.Log("Basic");
@@ -406,7 +408,7 @@ public class PlayerControlXbox : MonoBehaviour
         {
             for (int i = 0; i < 5; i++)
             {
-                newSpellAOE[i] = Instantiate(spellProjectile[2], this.transform.position, spellProjectile[0].transform.rotation);
+                newSpellAOE[i] = Instantiate(spellProjectile[2], this.transform.position, spellProjectile[2].transform.rotation);
                 newSpellAOE[i].transform.position = new Vector3(newSpellAOE[i].transform.position.x, newSpellAOE[i].transform.position.y - .25f, newSpellAOE[i].transform.position.z);
                 newSpellAOE[i].GetComponent<WaterPullThrow>().spellNum = spellSelected;
                 newSpellAOE[i].GetComponent<WaterPullThrow>().maxRange = 20;
@@ -414,7 +416,7 @@ public class PlayerControlXbox : MonoBehaviour
                 //Im ashamed of the following code and wil fix when i figrue out abetter draw circle - Mark
                 if (i == 0)
                 {
-                    AOEpoint.position = player1Aim.transform.position;
+                    AOEpoint.position = playerAim.transform.position;
                 }
                 if (spellSelected == 0 || spellSelected == 2)
                 {
@@ -461,7 +463,7 @@ public class PlayerControlXbox : MonoBehaviour
         }
         if (spellSecondary[spellSelected] == "Range")
         {
-            newSpell = Instantiate(spellProjectile[2], this.transform.position, spellProjectile[0].transform.rotation);
+            newSpell = Instantiate(spellProjectile[2], this.transform.position, spellProjectile[2].transform.rotation);
             newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
             newSpell.GetComponent<WaterPullThrow>().spellNum = spellSelected;
             newSpell.GetComponent<WaterPullThrow>().maxRange = 75;
@@ -469,14 +471,14 @@ public class PlayerControlXbox : MonoBehaviour
         }
         if (spellSecondary[spellSelected] == "Dash")
         {
-            newSpell = Instantiate(spellProjectile[2], this.transform.position, spellProjectile[0].transform.rotation);
+            newSpell = Instantiate(spellProjectile[2], this.transform.position, spellProjectile[2].transform.rotation);
             newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
             newSpell.GetComponent<WaterPullThrow>().spellNum = spellSelected;
             newSpell.GetComponent<WaterPullThrow>().maxRange = 30;
             newSpell.GetComponent<WaterPullThrow>().throwSpeed = 35;
             canCast[spellSelected] = false;
             dashDirection = spellSelected;
-            dashAim = new Vector3(player1Aim.transform.position.x, player1Aim.transform.position.y, player1Aim.transform.position.z);
+            dashAim = new Vector3(playerAim.transform.position.x, playerAim.transform.position.y, playerAim.transform.position.z);
             dashDirectionTime = 75;
 
             if (this.transform.position.y < 2.5)
