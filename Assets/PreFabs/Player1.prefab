@@ -931,7 +931,7 @@ MonoBehaviour:
   player1Aim: {fileID: 1958647856}
   playerAim: {fileID: 1958647858}
   playerNum: 1
-  speed: 10
+  speed: 5.83
   maxSpeed: 10
   movement: {fileID: 4589685495232286487}
   rb: {fileID: 1851593813860474082}
