@@ -4277,6 +4277,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 856722492, guid: 4985819a627adfc48a580ddb51d4b452, type: 3}
+      propertyPath: parent
+      value: 
+      objectReference: {fileID: 4589685496987638994}
+    - target: {fileID: 856722492, guid: 4985819a627adfc48a580ddb51d4b452, type: 3}
+      propertyPath: playerControlXbox
+      value: 
+      objectReference: {fileID: 517670306}
+    - target: {fileID: 856722492, guid: 4985819a627adfc48a580ddb51d4b452, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 4589685496987638998}
     - target: {fileID: 856722490, guid: 4985819a627adfc48a580ddb51d4b452, type: 3}
       propertyPath: m_Enabled
       value: 0
