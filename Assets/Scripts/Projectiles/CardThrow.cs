@@ -9,9 +9,10 @@ public class CardThrow : MonoBehaviour
     public int playerInt;
     public int cardNum;
 
-    public GameObject player1;
-    public GameObject player1Aim;
+    public GameObject player;
+    public GameObject playerAim;
     public PlayerControl playerControl;
+    public PlayerControlXbox playerControlXbox;
 
     public BoxCollider cardCollider;
 
@@ -29,11 +30,23 @@ public class CardThrow : MonoBehaviour
         toRes = true;
         toPlayer = false;
         rangeCounter = 0;
-        player1 = GameObject.Find("Player1");
-        player1Aim = GameObject.Find("Player1Aim");
-        transform.LookAt(player1Aim.transform);
-        playerControl = player1.GetComponent<PlayerControl>();
-        cardNum = playerControl.spellSelected;
+        if (playerInt == 1)
+        {
+            player = GameObject.Find("Player1");
+            playerAim = player.transform.GetChild(0).gameObject;
+            playerControl = player.GetComponent<PlayerControl>();
+            cardNum = playerControl.spellSelected;
+
+        }
+        else if (playerInt == 2)
+        {
+            player = GameObject.Find("Player2");
+            playerAim = player.transform.GetChild(0).gameObject;
+            playerControlXbox = player.GetComponent<PlayerControlXbox>();
+            cardNum = playerControlXbox.spellSelected;
+        }
+
+        transform.LookAt(playerAim.transform);
         maxRange = 60;
         cardCollider = this.GetComponent<BoxCollider>();
         cardCollider.isTrigger = true;
@@ -70,7 +83,7 @@ public class CardThrow : MonoBehaviour
             rangeCounter = maxRange+1;
         }
 
-        if (collision.gameObject.tag == "Player1" && rangeCounter > maxRange)
+        if (collision.gameObject.tag == "Player1" && rangeCounter > maxRange && playerInt == 1)
         {
             if (playerControl.spellPrimary[cardNum] == "")
             {
@@ -84,6 +97,21 @@ public class CardThrow : MonoBehaviour
             }
             Destroy(this.gameObject);
             //Debug.Log("Card Hit Player");
+        }
+        if (collision.gameObject.tag == "Player2" && rangeCounter > maxRange && playerInt == 2)
+        {
+            if (playerControlXbox.spellPrimary[cardNum] == "")
+            {
+                playerControlXbox.spellPrimary[cardNum] = resType;
+                Debug.Log("Primary:" + playerControlXbox.spellPrimary[cardNum] + "  Secondary:" + playerControlXbox.spellSecondary[cardNum]);
+            }
+            else if (playerControlXbox.spellPrimary[cardNum] != "")
+            {
+                playerControlXbox.spellSecondary[cardNum] = resType2;
+                Debug.Log("Primary:" + playerControlXbox.spellPrimary[cardNum] + "  Secondary:" + playerControlXbox.spellSecondary[cardNum]);
+            }
+            Destroy(this.gameObject);
+            Debug.Log("Card Hit Player 2");
         }
     }
 
@@ -108,7 +136,7 @@ public class CardThrow : MonoBehaviour
         if (toPlayer)
         {
             transform.Rotate(Vector3.up * Time.deltaTime * rotSpeed, Space.World);
-            transform.position = Vector3.MoveTowards(transform.position, player1.transform.position, throwSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, throwSpeed * Time.deltaTime);
         }
 
 

@@ -124,12 +124,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotSpeed: 500
   throwSpeed: 12
-  playerInt: 0
+  playerInt: 1
   cardNum: 0
-  player1: {fileID: 4589685495232286483, guid: 0f9ffe8302123f5419638698ccf5218d, type: 3}
-  player1Aim: {fileID: 4589685495232286483, guid: 0f9ffe8302123f5419638698ccf5218d,
-    type: 3}
+  player: {fileID: 0}
+  playerAim: {fileID: 0}
   playerControl: {fileID: 0}
+  playerControlXbox: {fileID: 0}
   cardCollider: {fileID: 0}
   resType: 
   resType2: 

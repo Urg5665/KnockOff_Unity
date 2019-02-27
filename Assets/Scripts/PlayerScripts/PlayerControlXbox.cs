@@ -124,11 +124,11 @@ public class PlayerControlXbox : MonoBehaviour
             this.transform.rotation = Quaternion.Euler(0, 45, 0);
         }
         // Card Casting Commands
-        if (Input.GetMouseButtonDown(0) && cardsThrown < 4 && canCast[spellSelected] && spellSecondary[spellSelected] == "") // Shoot Card
+        if (Input.GetAxis("CardThrow") == 1 && cardsThrown < 4 && canCast[spellSelected] && spellSecondary[spellSelected] == "") // Shoot Card
         {
             CardGather();
         }
-        if (Input.GetMouseButtonDown(0) && cardsThrown < 4 && canCast[spellSelected] && spellSecondary[spellSelected] != "")  // Disabel Shooitng Card because spell is maxed
+        if (Input.GetAxis("CardThrow") == 1 && cardsThrown < 4 && canCast[spellSelected] && spellSecondary[spellSelected] != "")  // Disabel Shooitng Card because spell is maxed
         {
             Debug.Log("Spell Maxed - Cast it!");
         }
@@ -152,7 +152,7 @@ public class PlayerControlXbox : MonoBehaviour
             WaterPull();
         }
 
-        Debug.Log(Input.GetAxis("CardThrow") + "  " + Input.GetAxis("SpellThrow"));
+        //Debug.Log(Input.GetAxis("CardThrow") + "  " + Input.GetAxis("SpellThrow"));
 
         if (grounded) // movement
         {
