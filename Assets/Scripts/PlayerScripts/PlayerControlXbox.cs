@@ -1,10 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
-public class PlayerControl : MonoBehaviour
+public class PlayerControlXbox : MonoBehaviour
 {
     public GameObject player1Aim;
     public PlayerAim playerAim;
@@ -24,7 +22,7 @@ public class PlayerControl : MonoBehaviour
     public bool[] canCast;
 
     public GameObject[] onPlayerUIButton;
-    public PointerEventData pointerEvent;
+    //public PointerEventData pointerEvent;
 
     public string[] spellPrimary; // Keywords "Fire", "Wind", "Earth" "Water" use "" for empty
     public string[] spellSecondary; // Keywords "Aoe", "Range", "Lob"? not as sure about the last two use "" for empty
@@ -37,7 +35,7 @@ public class PlayerControl : MonoBehaviour
 
     public int dashDirection; // This is to keep player locked when dashing
     public int dashDirectionTime;
-    public Vector3  dashAim;
+    public Vector3 dashAim;
     public float waterDashForce;
 
     public int cardsThrown;
@@ -66,7 +64,7 @@ public class PlayerControl : MonoBehaviour
         slowDownPerCard = 2.5f;
     }
 
-    public void pickDirection()
+    /*public void pickDirection()
     {
 
         for (int i = 0; i < 4; i++)
@@ -90,13 +88,13 @@ public class PlayerControl : MonoBehaviour
         }
         if (spellSelected == 3)
         {
-           //Debug.Log("West");
+            //Debug.Log("West");
         }
     }
-
+    */
     void Update()
     {
-        pickDirection();
+        //pickDirection();
         dashDirectionTime--;
         if (Input.GetKey(KeyCode.Alpha1)) // Press 1 and 2 to speed or slow game, Degbugging
         {
@@ -153,15 +151,18 @@ public class PlayerControl : MonoBehaviour
         {
             WaterPull();
         }
+
+        Debug.Log(Input.GetAxis("Horizontal") + "  " + Input.GetAxis("Vertical"));
+
         if (grounded) // movement
         {
-            if (Input.GetKey(KeyCode.A))
+            if (Input.GetAxis("Horizontal") > 0)
                 transform.Translate(Vector3.left * Time.deltaTime * speed, Space.World);
-            if (Input.GetKey(KeyCode.D))
+            if (Input.GetAxis("Horizontal") < 0)
                 transform.Translate(Vector3.right * Time.deltaTime * speed, Space.World);
-            if (Input.GetKey(KeyCode.W))
+            if (Input.GetAxis("Vertical") < 0)
                 transform.Translate(Vector3.forward * Time.deltaTime * speed, Space.World);
-            if (Input.GetKey(KeyCode.S))
+            if (Input.GetAxis("Vertical") < 0)
                 transform.Translate(Vector3.back * Time.deltaTime * speed, Space.World);
 
 
@@ -281,7 +282,7 @@ public class PlayerControl : MonoBehaviour
             newSpell.GetComponent<FireBallThrow>().throwSpeed = 35;
             canCast[spellSelected] = false;
             dashDirection = spellSelected;
-            dashAim = new Vector3(player1Aim.transform.position.x , player1Aim.transform.position.y, player1Aim.transform.position.z);
+            dashAim = new Vector3(player1Aim.transform.position.x, player1Aim.transform.position.y, player1Aim.transform.position.z);
             dashDirectionTime = 75;
             if (this.transform.position.y < 2.5)
             {
@@ -383,7 +384,7 @@ public class PlayerControl : MonoBehaviour
             newSpell.GetComponent<WindWaveThrow>().throwSpeed = 35;
             canCast[spellSelected] = false;
             dashDirection = spellSelected;
-            dashAim = new Vector3(player1Aim.transform.position.x , player1Aim.transform.position.y, player1Aim.transform.position.z);
+            dashAim = new Vector3(player1Aim.transform.position.x, player1Aim.transform.position.y, player1Aim.transform.position.z);
             dashDirectionTime = 75;
             if (this.transform.position.y < 2.5)
             {
@@ -504,4 +505,3 @@ public class PlayerControl : MonoBehaviour
 
     }
 }
-       
