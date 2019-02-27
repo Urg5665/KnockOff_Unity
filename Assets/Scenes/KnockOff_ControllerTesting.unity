@@ -21052,6 +21052,11 @@ PrefabInstance:
       propertyPath: player2ScoreText
       value: 
       objectReference: {fileID: 276738110}
+    - target: {fileID: 3421601605809579357, guid: 07c346095a9b1d9439eace2211f91786,
+        type: 3}
+      propertyPath: player2Aim
+      value: 
+      objectReference: {fileID: 856722488}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07c346095a9b1d9439eace2211f91786, type: 3}
 --- !u!1001 &3965110431487024722

@@ -10,6 +10,7 @@ public class DeathPlane : MonoBehaviour
 
     public GameObject player1;
     public GameObject player2;
+    public GameObject player2Aim;
 
     public GameObject dummy;
 
@@ -29,6 +30,7 @@ public class DeathPlane : MonoBehaviour
         {
             player1Score++;
             player2.transform.position = new Vector3(30, 2.5f, -22);
+            player2Aim.transform.position = new Vector3(28, 2.5f, -20);
             player2.GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
         if (collision.gameObject.tag == "Dummy")

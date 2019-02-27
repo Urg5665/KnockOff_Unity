@@ -19,12 +19,14 @@ public class PlayerAimXbox : MonoBehaviour
     public float angle;
 
     public float speed;
+    public float playerSpeed;
 
     public int spellSelected;
     // Start is called before the first frame update
     void Start()
     {
-        speed = 25;
+        speed = 15;
+        playerSpeed = 10;
     }
 
     // Update is called once per frame
@@ -92,7 +94,16 @@ public class PlayerAimXbox : MonoBehaviour
                 transform.Translate(Vector3.forward * Time.deltaTime * speed, Space.World);
         if (Input.GetAxis("VerAim") > 0)
                 transform.Translate(Vector3.back * Time.deltaTime * speed, Space.World);
-        
+
+        if (Input.GetAxis("Horizontal") > 0)
+            transform.Translate(Vector3.right * Time.deltaTime * playerSpeed, Space.World);
+        if (Input.GetAxis("Horizontal") < 0)
+            transform.Translate(Vector3.left * Time.deltaTime * playerSpeed, Space.World);
+        if (Input.GetAxis("Vertical") < 0)
+            transform.Translate(Vector3.forward * Time.deltaTime * playerSpeed, Space.World);
+        if (Input.GetAxis("Vertical") > 0)
+            transform.Translate(Vector3.back * Time.deltaTime * playerSpeed, Space.World);
+
 
 
 
