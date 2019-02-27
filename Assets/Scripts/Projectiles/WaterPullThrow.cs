@@ -38,7 +38,6 @@ public class WaterPullThrow : MonoBehaviour
             playerControlXbox = player.GetComponent<PlayerControlXbox>();
             spellNum = playerControlXbox.spellSelected;
         }
-        spellNum = playerControl.spellSelected;
         transform.LookAt(playerAim.transform);
         spellDir = this.gameObject.transform.forward;
         waterForce = 750;

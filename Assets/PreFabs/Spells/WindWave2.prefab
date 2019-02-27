@@ -14203,7 +14203,8 @@ MonoBehaviour:
   playerInt: 2
   spellNum: 0
   player: {fileID: 0}
-  playerAim: {fileID: 0}
+  playerAim: {fileID: 1620039573228261291, guid: 4985819a627adfc48a580ddb51d4b452,
+    type: 3}
   playerControl: {fileID: 0}
   playerControlXbox: {fileID: 0}
   windForce: 0

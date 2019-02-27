@@ -54,7 +54,7 @@ public class PlayerControlXbox : MonoBehaviour
         //onPlayerUIButton = new GameObject[4];
         waterDashForce = 400;
         dashDirectionTime = 0;
-
+        spellSelected = 0;
         for (int i = 0; i < 4; i++)
         {
             canCast[i] = true;
@@ -94,6 +94,7 @@ public class PlayerControlXbox : MonoBehaviour
     */
     void Update()
     {
+        //Debug.Log("UpdateRunning");
         //pickDirection();
         dashDirectionTime--;
         if (Input.GetKey(KeyCode.Alpha1)) // Press 1 and 2 to speed or slow game, Degbugging

@@ -39,7 +39,6 @@ public class WindWaveThrow : MonoBehaviour
         }
         maxRange = 10;
         transform.LookAt(playerAim.transform);
-        spellNum = playerControl.spellSelected;
         spellDir = this.gameObject.transform.forward;
         windForce = 750;
         hitPlayer = false;
