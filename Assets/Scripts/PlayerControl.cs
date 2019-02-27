@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class PlayerControl : MonoBehaviour
 {
-
     public GameObject player1Aim;
     public PlayerAim playerAim;
 
@@ -46,9 +45,6 @@ public class PlayerControl : MonoBehaviour
 
     public GameObject newSpell;
     public GameObject[] newSpellAOE;
-
-
-
 
     void Start()
     {
@@ -508,84 +504,4 @@ public class PlayerControl : MonoBehaviour
 
     }
 }
-/*
- *            if (spellSelected == 0)
-            {
-                rb.AddForce(player1Aim.transform.position * waterDashForce);
-            }
-            if (spellSelected == 1)
-            {
-                rb.AddForce(Vector3.right * waterDashForce);
-            }
-            if (spellSelected == 2)
-            {
-                rb.AddForce(Vector3.back * waterDashForce);
-            }
-            if (spellSelected == 3)
-            {
-                rb.AddForce(Vector3.left * waterDashForce);
-            }for (int i = 0; i < 8; i++)
-            {
-                newSpellAOE[i] = Instantiate(spellProjectile[0], this.transform.position, spellProjectile[0].transform.rotation);
-                newSpellAOE[i].transform.position = new Vector3(newSpellAOE[i].transform.position.x, newSpellAOE[i].transform.position.y - .25f, newSpellAOE[i].transform.position.z);
-                newSpellAOE[i].GetComponent<FireBallThrow>().spellNum = spellSelected;
-                // I got Really Really Fucking Lazy and Hard Coded the Draw Cricle about point function to make this work. 
-                //Im ashamed of the following code and wil fix when i figrue out abetter draw circle - Mark
-                if (i == 0)
-                {
-                    AOEpoint.position = new Vector3(this.transform.position.x + 10, this.transform.position.y, this.transform.position.z);
-                }
-                if (i == 1)
-                {
-                    AOEpoint.position = new Vector3(this.transform.position.x + 7, this.transform.position.y, this.transform.position.z + 7);
-                }
-                if (i == 2)
-                {
-                    AOEpoint.position = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z + 10);
-                }
-                if (i == 3)
-                {
-                    AOEpoint.position = new Vector3(this.transform.position.x - 7, this.transform.position.y, this.transform.position.z + 7);
-                }
-                if (i == 4)
-                {
-                    AOEpoint.position = new Vector3(this.transform.position.x - 10, this.transform.position.y, this.transform.position.z);
-                }
-                if (i == 5)
-                {
-                    AOEpoint.position = new Vector3(this.transform.position.x - 7, this.transform.position.y, this.transform.position.z - 7);
-                }
-                if (i == 6)
-                {
-                    AOEpoint.position = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z - 10);
-                }
-                if (i == 7)
-                {
-                    AOEpoint.position = new Vector3(this.transform.position.x + 7, this.transform.position.y, this.transform.position.z - 7);
-                }
-                newSpellAOE[i].GetComponent<FireBallThrow>().transform.LookAt(AOEpoint); 
-            }
- * 
-
-/*               if ((playerAim.angle < 180 && playerAim.angle > 90 && playerAim.xDif > -10 && playerAim.xDif < 10 && playerAim.zDif > 0))
-    {
-        spellSelected = 0;
-        Debug.Log("North");
-    }
-    if ((playerAim.angle < 180 && playerAim.angle > 90 && playerAim.zDif > -10 && playerAim.zDif < 10 && playerAim.xDif > 0))
-    {
-        spellSelected = 1;
-        Debug.Log("East");
-    }
-    if ((playerAim.angle < 90 && playerAim.angle > 0 && playerAim.xDif > -10 && playerAim.xDif < 10 && playerAim.zDif < 0))
-    {
-        spellSelected = 2;
-        Debug.Log("South");
-    }
-    if ((playerAim.angle < 90 && playerAim.angle > 0 && playerAim.zDif > -10 && playerAim.zDif < 10 && playerAim.xDif < 0))
-    {
-        spellSelected = 3;
-        Debug.Log("West");
-    }*/
-
-
+       
