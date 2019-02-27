@@ -4496,6 +4496,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 4589685496987638998}
+    - target: {fileID: 856722492, guid: 4985819a627adfc48a580ddb51d4b452, type: 3}
+      propertyPath: speed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 856722490, guid: 4985819a627adfc48a580ddb51d4b452, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -5216,7 +5220,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1210883377, guid: 1553b485d2451644e9561177ebde3e4f, type: 3}
       propertyPath: maxZoom
-      value: 40
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1553b485d2451644e9561177ebde3e4f, type: 3}
