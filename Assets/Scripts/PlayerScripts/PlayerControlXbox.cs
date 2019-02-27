@@ -67,30 +67,7 @@ public class PlayerControlXbox : MonoBehaviour
 
     public void pickDirection()
     {
-
-        //for (int i = 0; i < 4; i++)
-        //{
-            //if (onPlayerUIButton[i].GetComponent<OnPlayerUISelect>().selected)
-            //{
-                //spellSelected = i;
-            //}
-        //}
-        if (Input.GetKey(KeyCode.Alpha1)) // Press 1 and 2 to speed or slow game, Degbugging
-        {
-            spellSelected = 0;
-        }
-        if (Input.GetKey(KeyCode.Alpha2))
-        {
-            spellSelected = 1;
-        }
-        if (Input.GetKey(KeyCode.Alpha3)) // Press 1 and 2 to speed or slow game, Degbugging
-        {
-            spellSelected = 2;
-        }
-        if (Input.GetKey(KeyCode.Alpha4))
-        {
-            spellSelected = 3;
-        }
+        spellSelected = playerAim.GetComponent<PlayerAimXbox>().spellSelected;
     }
     
     void Update()
