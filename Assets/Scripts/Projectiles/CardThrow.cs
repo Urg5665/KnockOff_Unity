@@ -41,7 +41,7 @@ public class CardThrow : MonoBehaviour
         else if (playerInt == 2)
         {
             player = GameObject.Find("Player2");
-            playerAim = player.transform.GetChild(0).gameObject;
+            playerAim = GameObject.Find("Player2Aim");
             playerControlXbox = player.GetComponent<PlayerControlXbox>();
             cardNum = playerControlXbox.spellSelected;
         }

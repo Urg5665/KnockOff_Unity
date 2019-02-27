@@ -8,9 +8,10 @@ public class WaterPullThrow : MonoBehaviour
     public int playerInt;
     public int spellNum;
 
-    public GameObject player1;
-    public GameObject player1Aim;
+    public GameObject player;
+    public GameObject playerAim;
     public PlayerControl playerControl;
+    public PlayerControlXbox playerControlXbox;
 
     public float waterForce;
     public Vector3 spellDir;
@@ -23,11 +24,22 @@ public class WaterPullThrow : MonoBehaviour
     private void Awake()
     {
         maxRange = 10;
-        player1 = GameObject.Find("Player1");
-        player1Aim = GameObject.Find("Player1Aim");
-        transform.LookAt(player1Aim.transform);
-        playerControl = player1.GetComponent<PlayerControl>();
+        if (playerInt == 1)
+        {
+            player = GameObject.Find("Player1");
+            playerAim = player.transform.GetChild(0).gameObject;
+            playerControl = player.GetComponent<PlayerControl>();
+            spellNum = playerControl.spellSelected;
+        }
+        if (playerInt == 2)
+        {
+            player = GameObject.Find("Player2");
+            playerAim = GameObject.Find("Player2Aim");
+            playerControlXbox = player.GetComponent<PlayerControlXbox>();
+            spellNum = playerControlXbox.spellSelected;
+        }
         spellNum = playerControl.spellSelected;
+        transform.LookAt(playerAim.transform);
         spellDir = this.gameObject.transform.forward;
         waterForce = 750;
         hitPlayer = false;
@@ -38,7 +50,7 @@ public class WaterPullThrow : MonoBehaviour
     private void OnTriggerEnter(Collider collision)
     {
 
-        if (!hitPlayer && rangeCounter > 10 && collision.gameObject.tag == "Player1" || collision.gameObject.tag == "Player2" || collision.gameObject.tag == "Dummy")
+        if (!hitPlayer && rangeCounter > 10 && collision.gameObject.tag == "Player2" )
         {
             collision.gameObject.GetComponent<Rigidbody>().AddForce(spellDir.normalized * waterForce * -1); // Knock Back
             collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * 200); // Knock Up
@@ -47,7 +59,16 @@ public class WaterPullThrow : MonoBehaviour
             hitPlayer = true;
             playerControl.spellPrimary[spellNum] = "";
             playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
-
+        }
+        if (!hitPlayer && rangeCounter > 10 && collision.gameObject.tag == "Player1")
+        {
+            collision.gameObject.GetComponent<Rigidbody>().AddForce(spellDir.normalized * waterForce * -1); // Knock Back
+            collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * 200); // Knock Up
+            Destroy(this.gameObject);
+            playerControlXbox.canCast[spellNum] = true;
+            hitPlayer = true;
+            playerControlXbox.spellPrimary[spellNum] = "";
+            playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
         }
     }
 
@@ -58,10 +79,21 @@ public class WaterPullThrow : MonoBehaviour
 
         if (rangeCounter > maxRange)
         {
-            Destroy(this.gameObject);
-            playerControl.canCast[spellNum] = true;
-            playerControl.spellPrimary[spellNum] = "";
-            playerControl.spellSecondary[spellNum] = ""; // Reset Spell to Empty
+            if (playerInt == 1)
+            {
+                Destroy(this.gameObject);
+                playerControl.canCast[spellNum] = true;
+                playerControl.spellPrimary[spellNum] = "";
+                playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
+            }
+
+            if (playerInt == 2)
+            {
+                Destroy(this.gameObject);
+                playerControlXbox.canCast[spellNum] = true;
+                playerControlXbox.spellPrimary[spellNum] = "";
+                playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
+            }
         }
     }
 }

@@ -135,19 +135,19 @@ public class PlayerControlXbox : MonoBehaviour
 
 
         // Spell Casting Commands
-        if (Input.GetMouseButtonDown(1) && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "") // You Have no Spell
+        if (Input.GetAxis("SpellThrow") == 1 && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "") // You Have no Spell
         {
             Debug.Log("No Spell Avaliable");
         }
-        if (Input.GetMouseButtonDown(1) && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "Fire") // Shoot Fireball
+        if (Input.GetAxis("SpellThrow") == 1 && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "Fire") // Shoot Fireball
         {
             Fireball();
         }
-        if (Input.GetMouseButtonDown(1) && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "Wind") // Shoot Wind Knock
+        if (Input.GetAxis("SpellThrow") == 1 && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "Wind") // Shoot Wind Knock
         {
             WindKnockback();
         }
-        if (Input.GetMouseButtonDown(1) && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "Water") // Shoot Wind Knock
+        if (Input.GetAxis("SpellThrow") == 1 && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "Water") // Shoot Wind Knock
         {
             WaterPull();
         }
