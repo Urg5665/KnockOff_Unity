@@ -10,12 +10,53 @@ public class PlayerAim : MonoBehaviour
 
     public float angle;
 
+    public float xPos;
+    public float zPos;
     public float zDif;
     public float xDif;
+    public float hypo;
+
+    public int spellSelected;
 
     public void Update()
     {
+        xPos = this.transform.position.x - parent.position.x;
+        zPos = this.transform.position.z - parent.position.z;
+        xDif = Mathf.Abs(this.transform.position.x - parent.position.x);
+        zDif = Mathf.Abs(this.transform.position.z - parent.position.z);
 
+        hypo = Mathf.Sqrt((xDif * xDif + zDif * zDif));
+
+        angle = Mathf.Rad2Deg * (Mathf.Asin(zDif / hypo));
+
+        //Debug.Log(angle);
+
+        if (angle > 45) // north south
+        {
+            if (zPos > 0)
+            {
+                Debug.Log("P1 North");
+                spellSelected = 0;
+            }
+            if (zPos <= 0)
+            {
+                Debug.Log("P1 South");
+                spellSelected = 2;
+            }
+        }
+        else if (angle <= 45) // east west
+        {
+            if (xPos > 0)
+            {
+                Debug.Log("P1 East");
+                spellSelected = 1;
+            }
+            if (xPos <= 0)
+            {
+                Debug.Log("P1 West");
+                spellSelected = 3;
+            }
+        }
         RaycastHit hit;
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -27,130 +68,7 @@ public class PlayerAim : MonoBehaviour
 
         this.transform.position = new Vector3(this.transform.position.x, parent.transform.position.y, this.transform.position.z);
 
-        //Vector3 targetDir = parent.transform.position - transform.position;
-        //angle = Vector3.Angle(targetDir, transform.forward);
-
-        //Debug.Log(angle);
-
-        //xDif = transform.position.x - parent.transform.position.x;
-        //zDif = transform.position.z - parent.transform.position.z;
-
-        //Debug.Log("z:" + zDif + "x:" + xDif);
-
     }
 
 }
 
-
-
-    
-
-
-/*     v
- *     
- *         private Vector3 GetPointUnderCursor()
-    {
-        Vector2 screenPosition = Input.mousePosition;
-        Vector3 mouseWorldPosition = cam.ScreenToWorldPoint(screenPosition);
-
-        RaycastHit hitPosition;
-
-        Physics.Raycast(mouseWorldPosition, cam.transform.forward, out hitPosition, 10, groundLayer);
-
-        transform.position = hitPosition.point;
-
-        return hitPosition.point;
-
- *     
- *     
- *     
- *     oid Update()
-    {
-        screenPosition = Input.mousePosition;
-
-
-        Vector3 relativePos = (player.transform.position  - transform.position;
-        Quaternion rotation = Quaternion.LookRotation(relativePos);
-
-        Quaternion current = transform.localRotation;
-
-        transform.localRotation = Quaternion.Slerp(current, rotation, Time.deltaTime);
-        transform.Translate(0, 0, rateOfChange * Time.deltaTime);
-
-
-
-
-    }
- * 
- *         if (playerControl.spellSelected == 0)
-        {
-            transform.position = new Vector3(parent.position.x, parent.position.y, parent.position.z + (spaceOff * 2));
-        }
-        if (playerControl.spellSelected == 1)
-        {
-            transform.position = new Vector3(parent.position.x + spaceOff, parent.position.y, parent.position.z);
-        }
-        if (playerControl.spellSelected == 2)
-        {
-            transform.position = new Vector3(parent.position.x, parent.position.y, parent.position.z - (spaceOff * 2));
-        }
-        if (playerControl.spellSelected == 3)
-        {
-            transform.position = new Vector3(parent.position.x - spaceOff, parent.position.y, parent.position.z);
-        }
-
- * 
- *  if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W))
-        {
-            transform.position = new Vector3(parent.position.x - spaceOff, parent.position.y, parent.position.z);
-        }
-        // Left Down
-        else if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W))
-        {
-            transform.position = new Vector3(parent.position.x - spaceOff / 2, parent.position.y, parent.position.z - spaceOff / 2);
-        }
-        // Left Up
-        else if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.W))
-        {
-            transform.position = new Vector3(parent.position.x - spaceOff / 2, parent.position.y, parent.position.z + spaceOff / 2);
-        }
-        // Right
-        else if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W))
-        {
-            transform.position = new Vector3(parent.position.x + spaceOff, parent.position.y, parent.position.z);
-        }
-        // Right Down
-        else if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W))
-        {
-            transform.position = new Vector3(parent.position.x + spaceOff / 2, parent.position.y, parent.position.z - spaceOff / 2);
-        }
-        // Rigth Up
-        else if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.W))
-        {
-            transform.position = new Vector3(parent.position.x + spaceOff / 2, parent.position.y, parent.position.z + spaceOff / 2);
-        }
-        else if (Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
-        {
-            transform.position = new Vector3(parent.position.x, parent.position.y, parent.position.z + (spaceOff * 2));
-        }
-        else if (Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
-        {
-            transform.position = new Vector3(parent.position.x, parent.position.y, parent.position.z - (spaceOff * 2));
-        }
-
-    
-    private Vector3 GetPointUnderCursor()
-    {
-        Vector2 screenPosition = Input.mousePosition;
-        Vector3 mouseWorldPosition = cam.ScreenToWorldPoint(screenPosition);
-
-        RaycastHit hitPosition;
-
-        Physics.Raycast(mouseWorldPosition, cam.transform.forward, out hitPosition, 10, groundLayer);
-
-        transform.position = hitPosition.point;
-
-        return hitPosition.point;
-
-    }
- */

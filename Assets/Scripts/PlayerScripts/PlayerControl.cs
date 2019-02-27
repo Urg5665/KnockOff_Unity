@@ -68,30 +68,7 @@ public class PlayerControl : MonoBehaviour
 
     public void pickDirection()
     {
-
-        for (int i = 0; i < 4; i++)
-        {
-            if (onPlayerUIButton[i].GetComponent<OnPlayerUISelect>().selected)
-            {
-                spellSelected = i;
-            }
-        }
-        if (spellSelected == 0)
-        {
-            //Debug.Log("North");
-        }
-        if (spellSelected == 1)
-        {
-            //Debug.Log("East");
-        }
-        if (spellSelected == 2)
-        {
-            //Debug.Log("South");
-        }
-        if (spellSelected == 3)
-        {
-           //Debug.Log("West");
-        }
+        spellSelected = playerAim.GetComponent<PlayerAim>().spellSelected;
     }
 
     void Update()

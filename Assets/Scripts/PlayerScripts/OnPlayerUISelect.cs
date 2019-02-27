@@ -9,9 +9,10 @@ public class OnPlayerUISelect : MonoBehaviour
     public bool selected = false;
 
     public GameObject player;
+    public PlayerControl playerControl;
     public int spellNumber;
 
-    public Button but;
+    public Image image;
 
     public Sprite white;
     public Sprite red;
@@ -24,57 +25,61 @@ public class OnPlayerUISelect : MonoBehaviour
     public Sprite line;
     public Sprite dash;
 
+    private void Start()
+    {
+        playerControl = player.GetComponent<PlayerControl>();
+    }
+
     private void Update()
     {
-        if (player.GetComponent<PlayerControl>().spellPrimary[spellNumber] == "Fire")
+        if (playerControl.spellSelected == spellNumber)
         {
-            but.image.sprite = red;
-            childIcon.GetComponent<Image>().color = new Color32(255, 0, 0, 255);
-        }
-        if (player.GetComponent<PlayerControl>().spellPrimary[spellNumber] == "Wind")
-        {
-            but.image.sprite = cyan;
-            //67, 215, 255, 255
-            childIcon.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
-        }
-        if (player.GetComponent<PlayerControl>().spellPrimary[spellNumber] == "Water")
-        {
-            but.image.sprite = blue;
-            childIcon.GetComponent<Image>().color = new Color32(0, 0, 255, 255);
-        }
-        if (player.GetComponent<PlayerControl>().spellPrimary[spellNumber] == "")
-        {
-            but.image.sprite = white;
-        }
+            image.enabled = true;
+            childIcon.GetComponent<Image>().enabled = true;
 
-        if (player.GetComponent<PlayerControl>().spellSecondary[spellNumber] == "AOE")
-        {
-            childIcon.GetComponent<Image>().sprite = cone;
-        }
-        if (player.GetComponent<PlayerControl>().spellSecondary[spellNumber] == "Range")
-        {
-            childIcon.GetComponent<Image>().sprite = line;
-        }
-        if (player.GetComponent<PlayerControl>().spellSecondary[spellNumber] == "Dash")
-        {
-            childIcon.GetComponent<Image>().sprite = dash;
-        }
-        if (player.GetComponent<PlayerControl>().spellSecondary[spellNumber] == "")
-        {
-            childIcon.GetComponent<Image>().sprite = null;
-            childIcon.GetComponent<Image>().color = new Color32(255,255,255,0);
-        }
+            if (playerControl.spellPrimary[spellNumber] == "Fire")
+            {
+                image.sprite = red;
+                childIcon.GetComponent<Image>().color = new Color32(255, 0, 0, 255);
+            }
+            if (playerControl.spellPrimary[spellNumber] == "Wind")
+            {
+                image.sprite = cyan;
+                //67, 215, 255, 255
+                childIcon.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+            }
+            if (playerControl.spellPrimary[spellNumber] == "Water")
+            {
+                image.sprite = blue;
+                childIcon.GetComponent<Image>().color = new Color32(0, 0, 255, 255);
+            }
+            if (playerControl.spellPrimary[spellNumber] == "")
+            {
+                image.sprite = white;
+            }
 
-    }       
-
-    public void SpellSelect()
-    {
-        selected = true;
+            if (playerControl.spellSecondary[spellNumber] == "AOE")
+            {
+                childIcon.GetComponent<Image>().sprite = cone;
+            }
+            if (playerControl.spellSecondary[spellNumber] == "Range")
+            {
+                childIcon.GetComponent<Image>().sprite = line;
+            }
+            if (playerControl.spellSecondary[spellNumber] == "Dash")
+            {
+                childIcon.GetComponent<Image>().sprite = dash;
+            }
+            if (playerControl.spellSecondary[spellNumber] == "")
+            {
+                childIcon.GetComponent<Image>().sprite = null;
+                childIcon.GetComponent<Image>().color = new Color32(255, 255, 255, 0);
+            }
+        }
+        else if (playerControl.spellSelected != spellNumber)
+        {
+            image.enabled = false;
+            childIcon.GetComponent<Image>().enabled = false;
+        }
     }
-    public void SpellDeselect()
-    {
-        selected = false;
-    }
-
-
 }
