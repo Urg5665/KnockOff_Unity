@@ -11,6 +11,8 @@ public class DeathPlane : MonoBehaviour
     public GameObject player1;
     public GameObject player2;
 
+    public GameObject dummy;
+
     public Text player1ScoreText;
     public Text player2ScoreText;
 
@@ -28,7 +30,12 @@ public class DeathPlane : MonoBehaviour
             player1Score++;
             player2.transform.position = new Vector3(25, 2.5f, 2);
             player2.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            player2.GetComponent<DummyMovement>().i = 0;
+        }
+        if (collision.gameObject.tag == "Dummy")
+        {
+            dummy.transform.position = new Vector3(25, 2.5f, 2);
+            dummy.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            dummy.GetComponent<DummyMovement>().i = 0;
         }
     }
 

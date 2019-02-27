@@ -29,10 +29,10 @@ public class FireBallThrow : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.tag == "Player2")
+        if ( rangeCounter > 10 && collision.gameObject.tag == "Player1" || collision.gameObject.tag == "Player2" || collision.gameObject.tag == "Dummy")
         {
             collision.gameObject.transform.position = 
-                new Vector3(250, collision.gameObject.transform.position.y, collision.gameObject.transform.position.z);
+                new Vector3(collision.gameObject.transform.position.x, collision.gameObject.transform.position.y - 5, collision.gameObject.transform.position.z);
             Destroy(this.gameObject);
            playerControl.canCast[spellNum] = true;
            playerControl.spellPrimary[spellNum] = "";
