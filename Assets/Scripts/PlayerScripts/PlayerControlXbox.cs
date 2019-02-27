@@ -152,7 +152,7 @@ public class PlayerControlXbox : MonoBehaviour
             WaterPull();
         }
 
-        Debug.Log(Input.GetAxis("Horizontal") + "  " + Input.GetAxis("Vertical"));
+        Debug.Log(Input.GetAxis("CardThrow") + "  " + Input.GetAxis("SpellThrow"));
 
         if (grounded) // movement
         {

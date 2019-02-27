@@ -7,6 +7,7 @@ public class PlayerUI : MonoBehaviour
 {
     public GameObject playerBelong;
     public PlayerControl playerControl;
+    public PlayerControlXbox playerControlXbox;
 
     public GameObject[] spellUI;
 
@@ -15,59 +16,114 @@ public class PlayerUI : MonoBehaviour
     public Sprite dashSprite;
     public Sprite dashSpriteReverse;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        playerControl = playerBelong.GetComponent<PlayerControl>();
-        
-
+        if (playerBelong.name == "Player1")
+        {
+            playerControl = playerBelong.GetComponent<PlayerControl>();
+        }
+        if (playerBelong.name == "Player2")
+        {
+            playerControlXbox = playerBelong.GetComponent<PlayerControlXbox>();
+        }
     }
-    
+
     void Update()
     {
-        for (int i = 0; i < 4; i++)
+        if (playerBelong.name == "Player1")
         {
-            if (playerControl.spellPrimary[i] == "Fire")
+            for (int i = 0; i < 4; i++)
             {
-                spellUI[i].GetComponent<Image>().color = Color.red;
-            }
-            if (playerControl.spellPrimary[i] == "Wind")
-            {
-                spellUI[i].GetComponent<Image>().color = new Color32(67,215,255,255);
-            }
-            if (playerControl.spellPrimary[i] == "Water")
-            {
-                spellUI[i].GetComponent<Image>().color = Color.blue;
-            }
-            if (playerControl.spellPrimary[i] == "")
-            {
-                spellUI[i].GetComponent<Image>().color = Color.white;
-            }
-            if (playerControl.spellSecondary[i] == "AOE")
-            {
-                spellUI[i].GetComponent<Image>().sprite = aoeSprite;
-            }
-            if (playerControl.spellSecondary[i] == "Range")
-            {
-                spellUI[i].GetComponent<Image>().sprite = rangeSprite;
-            }
-            if (playerControl.spellSecondary[i] == "Dash")
-            {
-                if (i == 3)
+                if (playerControl.spellPrimary[i] == "Fire")
                 {
-                    spellUI[i].GetComponent<Image>().sprite = dashSpriteReverse;
+                    spellUI[i].GetComponent<Image>().color = Color.red;
                 }
-                else
+                if (playerControl.spellPrimary[i] == "Wind")
                 {
-                    spellUI[i].GetComponent<Image>().sprite = dashSprite;
+                    spellUI[i].GetComponent<Image>().color = new Color32(67, 215, 255, 255);
+                }
+                if (playerControl.spellPrimary[i] == "Water")
+                {
+                    spellUI[i].GetComponent<Image>().color = Color.blue;
+                }
+                if (playerControl.spellPrimary[i] == "")
+                {
+                    spellUI[i].GetComponent<Image>().color = Color.white;
+                }
+                if (playerControl.spellSecondary[i] == "AOE")
+                {
+                    spellUI[i].GetComponent<Image>().sprite = aoeSprite;
+                }
+                if (playerControl.spellSecondary[i] == "Range")
+                {
+                    spellUI[i].GetComponent<Image>().sprite = rangeSprite;
+                }
+                if (playerControl.spellSecondary[i] == "Dash")
+                {
+                    if (i == 3)
+                    {
+                        spellUI[i].GetComponent<Image>().sprite = dashSpriteReverse;
+                    }
+                    else
+                    {
+                        spellUI[i].GetComponent<Image>().sprite = dashSprite;
+                    }
+
+                }
+                if (playerControl.spellSecondary[i] == "")
+                {
+                    spellUI[i].GetComponent<Image>().sprite = null;
                 }
 
             }
-            if (playerControl.spellSecondary[i] == "")
-            {
-                spellUI[i].GetComponent<Image>().sprite = null;
-            }
-
         }
+        if (playerBelong.name == "Player2")
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                if (playerControlXbox.spellPrimary[i] == "Fire")
+                {
+                    spellUI[i].GetComponent<Image>().color = Color.red;
+                }
+                if (playerControlXbox.spellPrimary[i] == "Wind")
+                {
+                    spellUI[i].GetComponent<Image>().color = new Color32(67, 215, 255, 255);
+                }
+                if (playerControlXbox.spellPrimary[i] == "Water")
+                {
+                    spellUI[i].GetComponent<Image>().color = Color.blue;
+                }
+                if (playerControlXbox.spellPrimary[i] == "")
+                {
+                    spellUI[i].GetComponent<Image>().color = Color.white;
+                }
+                if (playerControlXbox.spellSecondary[i] == "AOE")
+                {
+                    spellUI[i].GetComponent<Image>().sprite = aoeSprite;
+                }
+                if (playerControlXbox.spellSecondary[i] == "Range")
+                {
+                    spellUI[i].GetComponent<Image>().sprite = rangeSprite;
+                }
+                if (playerControlXbox.spellSecondary[i] == "Dash")
+                {
+                    if (i == 3)
+                    {
+                        spellUI[i].GetComponent<Image>().sprite = dashSpriteReverse;
+                    }
+                    else
+                    {
+                        spellUI[i].GetComponent<Image>().sprite = dashSprite;
+                    }
+
+                }
+                if (playerControlXbox.spellSecondary[i] == "")
+                {
+                    spellUI[i].GetComponent<Image>().sprite = null;
+                }
+
+            }
+        }
+
     }
 }
