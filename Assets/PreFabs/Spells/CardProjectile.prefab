@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotSpeed: 500
-  throwSpeed: 12
+  throwSpeed: 15
   playerInt: 1
   cardNum: 0
   player: {fileID: 0}

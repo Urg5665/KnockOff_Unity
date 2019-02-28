@@ -72,6 +72,15 @@ public class PlayerAimXbox : MonoBehaviour
             }
         }
 
+        if (xDif > 20)
+        {
+
+        }
+        if (zDif > 20)
+        {
+
+        }
+
         if (Input.GetAxis("HorAim") > 0)
             transform.Translate(Vector3.right * Time.deltaTime * speed, Space.Self);
         if (Input.GetAxis("HorAim") < 0)

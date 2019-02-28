@@ -47,7 +47,7 @@ public class CardThrow : MonoBehaviour
         }
 
         transform.LookAt(playerAim.transform);
-        maxRange = 60;
+        maxRange = 50;
         cardCollider = this.GetComponent<BoxCollider>();
         cardCollider.isTrigger = true;
     }
