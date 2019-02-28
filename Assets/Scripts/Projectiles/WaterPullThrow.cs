@@ -40,7 +40,7 @@ public class WaterPullThrow : MonoBehaviour
         }
         transform.LookAt(playerAim.transform);
         spellDir = this.gameObject.transform.forward;
-        waterForce = 750;
+        waterForce = 1500;
         hitPlayer = false;
         throwSpeed = 30;
         rangeCounter = 0;

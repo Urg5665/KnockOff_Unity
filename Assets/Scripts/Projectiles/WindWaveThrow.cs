@@ -40,7 +40,7 @@ public class WindWaveThrow : MonoBehaviour
         maxRange = 10;
         transform.LookAt(playerAim.transform);
         spellDir = this.gameObject.transform.forward;
-        windForce = 750;
+        windForce = 1500;
         hitPlayer = false;
         throwSpeed = 20;
         rangeCounter = 0;
