@@ -70,22 +70,6 @@ public class PlayerAimXbox : MonoBehaviour
             }
         }
 
-
-
-
-
-
-
-        if ( xDif > 50)
-        {
-            this.transform.position = new Vector3(parent.position.x, transform.position.y, parent.position.z);
-        }
-
-        if (zDif > 50)
-        {
-            this.transform.position = new Vector3(parent.position.x, transform.position.y, parent.position.z);
-        }
-
         if (Input.GetAxis("HorAim") > 0)
             transform.Translate(Vector3.right * Time.deltaTime * speed, Space.World);
         if (Input.GetAxis("HorAim") < 0)
@@ -94,18 +78,30 @@ public class PlayerAimXbox : MonoBehaviour
                 transform.Translate(Vector3.forward * Time.deltaTime * speed, Space.World);
         if (Input.GetAxis("VerAim") > 0)
                 transform.Translate(Vector3.back * Time.deltaTime * speed, Space.World);
+       
 
-        if (Input.GetAxis("Horizontal") > 0)
-            transform.Translate(Vector3.right * Time.deltaTime * playerSpeed, Space.World);
-        if (Input.GetAxis("Horizontal") < 0)
-            transform.Translate(Vector3.left * Time.deltaTime * playerSpeed, Space.World);
-        if (Input.GetAxis("Vertical") < 0)
-            transform.Translate(Vector3.forward * Time.deltaTime * playerSpeed, Space.World);
-        if (Input.GetAxis("Vertical") > 0)
-            transform.Translate(Vector3.back * Time.deltaTime * playerSpeed, Space.World);
+        else if (Input.GetAxis("VerAim") == 0 && Input.GetAxis("HorAim") == 0)
+        {
+            if (spellSelected == 0)
+            {
+                this.transform.position = new Vector3(parent.transform.position.x, parent.transform.position.y, parent.transform.position.z + 1);
+            }
+            if (spellSelected == 2)
+            {
+                this.transform.position = new Vector3(parent.transform.position.x, parent.transform.position.y, parent.transform.position.z - 1);
+            }
+            if (spellSelected == 1)
+            {
+                this.transform.position = new Vector3(parent.transform.position.x + 1, parent.transform.position.y, parent.transform.position.z);
+            }
+            if (spellSelected == 3)
+            {
+                this.transform.position = new Vector3(parent.transform.position.x - 1, parent.transform.position.y, parent.transform.position.z);
+            }
 
 
-
-
+        }
+        
     }
 }
+//(Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Horizontal") < 0 || Input.GetAxis("Vertical") < 0 || Input.GetAxis("Vertical") > 0)
