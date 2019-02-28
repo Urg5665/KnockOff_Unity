@@ -73,13 +73,13 @@ public class PlayerAimXbox : MonoBehaviour
         }
 
         if (Input.GetAxis("HorAim") > 0)
-            transform.Translate(Vector3.right * Time.deltaTime * speed, Space.World);
+            transform.Translate(Vector3.right * Time.deltaTime * speed, Space.Self);
         if (Input.GetAxis("HorAim") < 0)
-            transform.Translate(Vector3.left * Time.deltaTime * speed, Space.World);
+            transform.Translate(Vector3.left * Time.deltaTime * speed, Space.Self);
         if (Input.GetAxis("VerAim") < 0)
-                transform.Translate(Vector3.forward * Time.deltaTime * speed, Space.World);
+                transform.Translate(Vector3.forward * Time.deltaTime * speed, Space.Self);
         if (Input.GetAxis("VerAim") > 0)
-                transform.Translate(Vector3.back * Time.deltaTime * speed, Space.World);
+                transform.Translate(Vector3.back * Time.deltaTime * speed, Space.Self);
        
 
         else if (Input.GetAxis("VerAim") == 0 && Input.GetAxis("HorAim") == 0)
@@ -90,7 +90,7 @@ public class PlayerAimXbox : MonoBehaviour
             }
             else if (playerControlXbox.spellSecondary[spellSelected] == "Dash")
             {
-                snapOffset = 15;
+                snapOffset = 20;
             }
             else
             {
