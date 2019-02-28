@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Old/KnockOff_Test.unity
     guid: 1f1d4b5dec6f8364a9fa7903baf54e91
   - enabled: 1
+    path: Assets/Scenes/KnockOff_PvP_Map_1.unity
+    guid: 65ff2c37ea0a7414eb376189649393f6
+  - enabled: 1
     path: Assets/Scenes/KnockOff_ControllerTesting.unity
     guid: 4c6cb6d91fe99464683709b0715e82cc
   - enabled: 1
