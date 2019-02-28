@@ -175,7 +175,7 @@ public class PlayerControlXbox : MonoBehaviour
             newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
             newSpell.GetComponent<FireBallThrow>().spellNum = spellSelected;
             //Debug.Log("Basic");
-            newSpell.GetComponent<FireBallThrow>().maxRange = 15;
+            newSpell.GetComponent<FireBallThrow>().maxRange = 25;
             canCast[spellSelected] = false;
         }
         if (spellSecondary[spellSelected] == "AOE")
@@ -378,7 +378,7 @@ public class PlayerControlXbox : MonoBehaviour
             newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
             newSpell.GetComponent<WaterPullThrow>().spellNum = spellSelected;
             //Debug.Log("Basic");
-            newSpell.GetComponent<WaterPullThrow>().maxRange = 15;
+            newSpell.GetComponent<WaterPullThrow>().maxRange = 25;
             canCast[spellSelected] = false;
         }
         if (spellSecondary[spellSelected] == "AOE")

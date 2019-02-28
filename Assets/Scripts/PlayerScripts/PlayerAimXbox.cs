@@ -22,6 +22,8 @@ public class PlayerAimXbox : MonoBehaviour
     public float playerSpeed;
 
     public int spellSelected;
+
+    public int snapOffset; // Change for AOE so that it doesnt fuck up in that direction
     // Start is called before the first frame update
     void Start()
     {
@@ -82,22 +84,37 @@ public class PlayerAimXbox : MonoBehaviour
 
         else if (Input.GetAxis("VerAim") == 0 && Input.GetAxis("HorAim") == 0)
         {
+            if (playerControlXbox.spellSecondary[spellSelected] == "AOE")
+            {
+                snapOffset = 10;
+            }
+            else if (playerControlXbox.spellSecondary[spellSelected] == "Dash")
+            {
+                snapOffset = 15;
+            }
+            else
+            {
+                snapOffset = 1;
+            }
+
             if (spellSelected == 0)
             {
-                this.transform.position = new Vector3(parent.transform.position.x, parent.transform.position.y, parent.transform.position.z + 1);
+                this.transform.position = new Vector3(parent.transform.position.x, parent.transform.position.y, parent.transform.position.z + snapOffset);
             }
             if (spellSelected == 2)
             {
-                this.transform.position = new Vector3(parent.transform.position.x, parent.transform.position.y, parent.transform.position.z - 1);
+                this.transform.position = new Vector3(parent.transform.position.x, parent.transform.position.y, parent.transform.position.z - snapOffset);
             }
             if (spellSelected == 1)
             {
-                this.transform.position = new Vector3(parent.transform.position.x + 1, parent.transform.position.y, parent.transform.position.z);
+                this.transform.position = new Vector3(parent.transform.position.x + snapOffset, parent.transform.position.y, parent.transform.position.z);
             }
             if (spellSelected == 3)
             {
-                this.transform.position = new Vector3(parent.transform.position.x - 1, parent.transform.position.y, parent.transform.position.z);
+                this.transform.position = new Vector3(parent.transform.position.x - snapOffset, parent.transform.position.y, parent.transform.position.z);
             }
+
+
 
 
         }
