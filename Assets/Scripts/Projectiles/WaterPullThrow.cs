@@ -14,6 +14,7 @@ public class WaterPullThrow : MonoBehaviour
     public PlayerControlXbox playerControlXbox;
 
     public float waterForce;
+    public float waterKnockUp;
     public Vector3 spellDir;
 
     public int rangeCounter;
@@ -40,7 +41,8 @@ public class WaterPullThrow : MonoBehaviour
         }
         transform.LookAt(playerAim.transform);
         spellDir = this.gameObject.transform.forward;
-        waterForce = 1500;
+        waterForce = 600;
+        waterKnockUp = 400;
         hitPlayer = false;
         throwSpeed = 30;
         rangeCounter = 0;
@@ -52,7 +54,7 @@ public class WaterPullThrow : MonoBehaviour
         if (!hitPlayer && playerInt == 1 && collision.gameObject.tag == "Player2" )
         {
             collision.gameObject.GetComponent<Rigidbody>().AddForce(spellDir.normalized * waterForce * -1); // Knock Back
-            collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * 200); // Knock Up
+            collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * waterKnockUp); // Knock Up
             Destroy(this.gameObject);
             playerControl.canCast[spellNum] = true;
             hitPlayer = true;
@@ -62,7 +64,7 @@ public class WaterPullThrow : MonoBehaviour
         if (!hitPlayer && playerInt == 2 && collision.gameObject.tag == "Player1")
         {
             collision.gameObject.GetComponent<Rigidbody>().AddForce(spellDir.normalized * waterForce * -1); // Knock Back
-            collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * 200); // Knock Up
+            collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * waterKnockUp); // Knock Up
             Destroy(this.gameObject);
             playerControlXbox.canCast[spellNum] = true;
             hitPlayer = true;

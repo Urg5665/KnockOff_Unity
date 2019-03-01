@@ -14,6 +14,7 @@ public class WindWaveThrow : MonoBehaviour
     public PlayerControlXbox playerControlXbox;
 
     public float windForce;
+    public float windKnockUp;
     public Vector3  spellDir;
 
     public int rangeCounter;
@@ -40,7 +41,8 @@ public class WindWaveThrow : MonoBehaviour
         maxRange = 10;
         transform.LookAt(playerAim.transform);
         spellDir = this.gameObject.transform.forward;
-        windForce = 1500;
+        windForce = 600;
+        windKnockUp = 400;
         hitPlayer = false;
         throwSpeed = 20;
         rangeCounter = 0;
@@ -52,7 +54,7 @@ public class WindWaveThrow : MonoBehaviour
         if (!hitPlayer && playerInt == 1 && collision.gameObject.tag == "Player2")
         {
             collision.gameObject.GetComponent<Rigidbody>().AddForce(spellDir.normalized * windForce); // Knock Back
-            collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * 200); // Knock Up
+            collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * windKnockUp); // Knock Up
             Destroy(this.gameObject);
             playerControl.canCast[spellNum] = true;
             hitPlayer = true;
@@ -63,7 +65,7 @@ public class WindWaveThrow : MonoBehaviour
         if (!hitPlayer && playerInt == 2 && collision.gameObject.tag == "Player1")
         {
             collision.gameObject.GetComponent<Rigidbody>().AddForce(spellDir.normalized * windForce); // Knock Back
-            collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * 200); // Knock Up
+            collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * windKnockUp); // Knock Up
             Destroy(this.gameObject);
             playerControlXbox.canCast[spellNum] = true;
             hitPlayer = true;

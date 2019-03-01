@@ -47,7 +47,8 @@ public class CardThrow : MonoBehaviour
         }
 
         transform.LookAt(playerAim.transform);
-        maxRange = 50;
+        maxRange = 30;
+        throwSpeed = 20;
         cardCollider = this.GetComponent<BoxCollider>();
         cardCollider.isTrigger = true;
     }
@@ -59,72 +60,76 @@ public class CardThrow : MonoBehaviour
         {
             resType = "Fire";
             resType2 = "AOE";
-            rangeCounter = maxRange - 1; ;
             cardCollider.isTrigger = false;
+            toRes = false;
+            toPlayer = true;
+            Destroy(collision.gameObject);
         }
         if (collision.gameObject.tag == "windRes" && toRes == true)
         {
             resType = "Wind";
             resType2 = "Range";
-            rangeCounter = maxRange -1 ;
             cardCollider.isTrigger = false;
+            toRes = false;
+            toPlayer = true;
+            Destroy(collision.gameObject);
         }
         if (collision.gameObject.tag == "waterRes" && toRes == true)
         {
             resType = "Water";
             resType2 = "Dash";
-            rangeCounter = maxRange - 1;
             cardCollider.isTrigger = false;
-        }
-        if (collision.gameObject.tag == "Target")
-        {
             toRes = false;
             toPlayer = true;
-            rangeCounter = maxRange+1;
+            Destroy(collision.gameObject);
         }
 
-        if (collision.gameObject.tag == "Player1" && rangeCounter > maxRange && playerInt == 1)
+        if (collision.gameObject.tag == "Player1" && toPlayer && playerInt == 1)
         {
             if (playerControl.spellPrimary[cardNum] == "")
             {
                 playerControl.spellPrimary[cardNum] = resType;
-                //Debug.Log("Primary:" + playerControl.spellPrimary[cardNum] + "  Secondary:" + playerControl.spellSecondary[cardNum]);
             }
             else if (playerControl.spellPrimary[cardNum] != "")
             {
                 playerControl.spellSecondary[cardNum] = resType2;
-                //Debug.Log("Primary:" + playerControl.spellPrimary[cardNum] + "  Secondary:" + playerControl.spellSecondary[cardNum]);
             }
+            playerControl.canCast[cardNum] = true;
+            playerControl.cardsThrown--;
             Destroy(this.gameObject);
-            //Debug.Log("Card Hit Player");
         }
-        if (collision.gameObject.tag == "Player2" && rangeCounter > maxRange && playerInt == 2)
+        if (collision.gameObject.tag == "Player2" && toPlayer && playerInt == 2)
         {
             if (playerControlXbox.spellPrimary[cardNum] == "")
             {
                 playerControlXbox.spellPrimary[cardNum] = resType;
-                Debug.Log("Primary:" + playerControlXbox.spellPrimary[cardNum] + "  Secondary:" + playerControlXbox.spellSecondary[cardNum]);
             }
             else if (playerControlXbox.spellPrimary[cardNum] != "")
             {
                 playerControlXbox.spellSecondary[cardNum] = resType2;
-                Debug.Log("Primary:" + playerControlXbox.spellPrimary[cardNum] + "  Secondary:" + playerControlXbox.spellSecondary[cardNum]);
             }
+            playerControlXbox.canCast[cardNum] = true;
+            playerControlXbox.cardsThrown--;
             Destroy(this.gameObject);
-            Debug.Log("Card Hit Player 2");
         }
     }
 
     void FixedUpdate()
     {
-        if (rangeCounter == maxRange + 1)
+        if (rangeCounter == maxRange)
         {
-            toRes = false;
-            toPlayer = true;
-            transform.rotation = Quaternion.Euler(0, this.transform.localRotation.y, 0);
-            cardCollider.isTrigger = true;
-            //Debug.Log("Quat Changed");
-            rangeCounter++;           
+            Destroy(this.gameObject);
+            rangeCounter++;
+            if (playerInt == 1)
+            {
+                playerControl.canCast[cardNum] = true;
+                playerControl.cardsThrown--;
+            }
+            if (playerInt == 2)
+            {
+                playerControlXbox.canCast[cardNum] = true;
+                playerControlXbox.cardsThrown--;
+            }
         }
 
         if (toRes)
@@ -137,6 +142,8 @@ public class CardThrow : MonoBehaviour
         {
             transform.Rotate(Vector3.up * Time.deltaTime * rotSpeed, Space.World);
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position, throwSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.Euler(0, this.transform.localRotation.y, 0);
+            cardCollider.isTrigger = true;
         }
 
 
@@ -144,33 +151,6 @@ public class CardThrow : MonoBehaviour
     }
 
 }
-/*        if (Input.GetMouseButtonDown(0))
-        {
-            GameObject targetSave = Instantiate(cardTarget);
-            targetSave.transform.position = this.transform.position;
-            allTargets[cardsThrown] = targetSave;
-            cardsThrown++;
 
-        }
 
- *         // Cheeck Card Based on player didstnace
-         if (rangeCounter > maxRange && Mathf.Abs(this.transform.position.x - player1.transform.position.x) <= 1  && Mathf.Abs(this.transform.position.z - player1.transform.position.z) <= 1)
-        {
-            if (playerControl.spellPrimary[cardNum] == "")
-            {
-                playerControl.spellPrimary[cardNum] = resType;
-                Debug.Log("Primary:" + playerControl.spellPrimary[cardNum] + "  Secondary:" + playerControl.spellSecondary[cardNum]);
-            }
-            else if (playerControl.spellPrimary[cardNum] != "")
-            {
-                playerControl.spellSecondary[cardNum] = resType2;
-                Debug.Log("Primary:" + playerControl.spellPrimary[cardNum] + "  Secondary:" + playerControl.spellSecondary[cardNum]);
-            }
-            Destroy(this.gameObject);
-            Debug.Log("Card Came Within Range");
-            playerControl.cardsThrown--;
-            playerControl.speed = playerControl.speed + playerControl.slowDownPerCard; // slow aplied for each card in play
-            playerControl.canCast[cardNum] = true;
-        }
- */
 
