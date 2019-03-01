@@ -43,7 +43,7 @@ public class FireBallThrow : MonoBehaviour
         if (playerInt == 1 && collision.gameObject.tag == "Player2")
         {
             collision.gameObject.transform.position = 
-                new Vector3(collision.gameObject.transform.position.x, collision.gameObject.transform.position.y - 5, collision.gameObject.transform.position.z);
+                new Vector3(collision.gameObject.transform.position.x, collision.gameObject.transform.position.y - 6, collision.gameObject.transform.position.z);
             Destroy(this.gameObject);
            playerControl.canCast[spellNum] = true;
            playerControl.spellPrimary[spellNum] = "";
@@ -52,7 +52,7 @@ public class FireBallThrow : MonoBehaviour
         if (playerInt == 2 && collision.gameObject.tag == "Player1")
         {
             collision.gameObject.transform.position =
-                new Vector3(collision.gameObject.transform.position.x, collision.gameObject.transform.position.y - 5, collision.gameObject.transform.position.z);
+                new Vector3(collision.gameObject.transform.position.x, collision.gameObject.transform.position.y - 6, collision.gameObject.transform.position.z);
             Destroy(this.gameObject);
             playerControlXbox.canCast[spellNum] = true;
             playerControlXbox.spellPrimary[spellNum] = "";

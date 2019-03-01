@@ -12,6 +12,7 @@ public class DeathPlane : MonoBehaviour
     public GameObject player2;
     public GameObject player2Aim;
 
+
     public GameObject dummy;
 
     public Text player1ScoreText;
@@ -39,6 +40,7 @@ public class DeathPlane : MonoBehaviour
             dummy.GetComponent<Rigidbody>().velocity = Vector3.zero;
             dummy.GetComponent<DummyMovement>().i = 0;
         }
+
     }
 
     private void Update()

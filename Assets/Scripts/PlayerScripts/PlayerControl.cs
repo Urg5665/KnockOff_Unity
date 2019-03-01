@@ -11,7 +11,7 @@ public class PlayerControl : MonoBehaviour
 
     public int playerNum;
     public float speed;
-    public float maxSpeed = 10;
+    //public float maxSpeed = 10;
 
     public Transform movement;
     public Rigidbody rb;
@@ -76,7 +76,7 @@ public class PlayerControl : MonoBehaviour
         pickDirection();
         dashDirectionTime--;
 
-        speed = maxSpeed - (slowDownPerCard * cardsThrown); // apply slow for each card in play
+        //speed = maxSpeed - (slowDownPerCard * cardsThrown); // apply slow for each card in play
                                                             //Debug.Log("speed" + speed);
 
         if (dashDirectionTime < 75 && dashDirectionTime > 1) // being dash
