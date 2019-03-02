@@ -3916,7 +3916,7 @@ ParticleSystem:
         m_RotationOrder: 4
     maxLights: 10
   TrailModule:
-    enabled: 0
+    enabled: 1
     mode: 0
     ratio: 1
     lifetime:
@@ -4748,7 +4748,7 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 5c8d80b7f00d54644981d72ce17febdc, type: 2}
-  - {fileID: 0}
+  - {fileID: 2100000, guid: d0725d09dc29bcd4380d90957cc1be00, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4798,14 +4798,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1028926703667857878}
     m_Modifications:
-    - target: {fileID: 1594708185, guid: 71d9307e0904f4c4b819e79a796505c8, type: 3}
-      propertyPath: m_Name
-      value: sppingemmodel
-      objectReference: {fileID: 0}
-    - target: {fileID: 1594708185, guid: 71d9307e0904f4c4b819e79a796505c8, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
     - target: {fileID: 1594708188, guid: 71d9307e0904f4c4b819e79a796505c8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4861,6 +4853,14 @@ PrefabInstance:
     - target: {fileID: 1594708188, guid: 71d9307e0904f4c4b819e79a796505c8, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.82379967
+      objectReference: {fileID: 0}
+    - target: {fileID: 1594708185, guid: 71d9307e0904f4c4b819e79a796505c8, type: 3}
+      propertyPath: m_Name
+      value: sppingemmodel
+      objectReference: {fileID: 0}
+    - target: {fileID: 1594708185, guid: 71d9307e0904f4c4b819e79a796505c8, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 1594708186, guid: 71d9307e0904f4c4b819e79a796505c8, type: 3}
       propertyPath: m_Materials.Array.data[0]
