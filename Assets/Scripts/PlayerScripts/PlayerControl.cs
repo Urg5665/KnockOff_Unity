@@ -43,6 +43,7 @@ public class PlayerControl : MonoBehaviour
     public Vector3  dashAim;
     public float waterDashForceUp;
     public bool castAfterDash;
+    public int dashLength;
 
     public int cardsThrown;
     //public float slowDownPerCard = 2.5f;
@@ -63,6 +64,7 @@ public class PlayerControl : MonoBehaviour
         dashing = false;
         dashingTime = 0;
         castAfterDash = false;
+        dashLength = 25;
 
         for (int i = 0; i < 4; i++)
         {
@@ -104,7 +106,7 @@ public class PlayerControl : MonoBehaviour
             }
             rb.constraints = RigidbodyConstraints.FreezeRotation; 
         }
-        if (dashing && dashingTime > 20)
+        if (dashing && dashingTime > dashLength)
         {
             dashingTime = 0;
             dashing = false;
@@ -118,10 +120,35 @@ public class PlayerControl : MonoBehaviour
         if (castAfterDash && dashDirection == spellSelected )
         {
             castAfterDash = false;
-            newSpell = Instantiate(spellProjectile[0], this.transform.position, spellProjectile[0].transform.rotation);
-            newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
-            newSpell.GetComponent<FireBallThrow>().spellNum = spellSelected;
-            newSpell.GetComponent<FireBallThrow>().maxRange = 25;
+            if(spellPrimary[spellSelected] == "Fire")
+            {
+                newSpell = Instantiate(spellProjectile[0], this.transform.position, spellProjectile[0].transform.rotation);
+                newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
+                newSpell.GetComponent<FireBallThrow>().spellNum = spellSelected;
+                newSpell.GetComponent<FireBallThrow>().maxRange = 25;
+            }
+            if (spellPrimary[spellSelected] == "Wind")
+            {
+                newSpell = Instantiate(spellProjectile[1], this.transform.position, spellProjectile[1].transform.rotation);
+                newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
+                newSpell.GetComponent<WindWaveThrow>().spellNum = spellSelected;
+                newSpell.GetComponent<WindWaveThrow>().maxRange = 25;
+            }
+            if (spellPrimary[spellSelected] == "Water")
+            {
+                newSpell = Instantiate(spellProjectile[2], this.transform.position, spellProjectile[2].transform.rotation);
+                newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
+                newSpell.GetComponent<WaterPullThrow>().spellNum = spellSelected;
+                newSpell.GetComponent<WaterPullThrow>().maxRange = 25;
+            }
+
+        }
+        else if(castAfterDash && dashDirection != spellSelected)
+        {
+            castAfterDash = false;
+            spellPrimary[dashDirection] = "";
+            spellPrimary[dashDirection] = "";
+            canCast[dashDirection] = true;
         }
         
         // Card Casting Commands
@@ -202,7 +229,7 @@ public class PlayerControl : MonoBehaviour
             newSpell = Instantiate(spellProjectile[0], this.transform.position, spellProjectile[0].transform.rotation);
             newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
             newSpell.GetComponent<FireBallThrow>().spellNum = spellSelected;
-            //Debug.Log("Basic");
+            Debug.Log("Basic");
             newSpell.GetComponent<FireBallThrow>().maxRange = 25;
             canCast[spellSelected] = false;
         }
@@ -273,6 +300,7 @@ public class PlayerControl : MonoBehaviour
         }
         if (spellSecondary[spellSelected] == "Dash")
         {
+            Debug.Log("Dash");
             canCast[spellSelected] = false;
             dashing = true;
             dashDirection = spellSelected;
@@ -372,11 +400,6 @@ public class PlayerControl : MonoBehaviour
         }
         else if (spellSecondary[spellSelected] == "Dash")
         {
-            newSpell = Instantiate(spellProjectile[1], this.transform.position, spellProjectile[1].transform.rotation);
-            newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
-            newSpell.GetComponent<WindWaveThrow>().spellNum = spellSelected;
-            newSpell.GetComponent<WindWaveThrow>().maxRange = 30;
-            newSpell.GetComponent<WindWaveThrow>().throwSpeed = 35;
             canCast[spellSelected] = false;
             dashing = true;
             dashDirection = spellSelected;
@@ -476,11 +499,6 @@ public class PlayerControl : MonoBehaviour
         }
         if (spellSecondary[spellSelected] == "Dash")
         {
-            newSpell = Instantiate(spellProjectile[2], this.transform.position, spellProjectile[0].transform.rotation);
-            newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
-            newSpell.GetComponent<WaterPullThrow>().spellNum = spellSelected;
-            newSpell.GetComponent<WaterPullThrow>().maxRange = 30;
-            newSpell.GetComponent<WaterPullThrow>().throwSpeed = 35;
             canCast[spellSelected] = false;
             dashing = true;
             dashDirection = spellSelected;
