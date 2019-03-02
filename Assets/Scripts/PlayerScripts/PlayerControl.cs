@@ -8,6 +8,7 @@ public class PlayerControl : MonoBehaviour
 {
     public GameObject player1Aim;
     public PlayerAim playerAim;
+    public GameObject playerUI;
 
     public int playerNum;
     public float speed;
@@ -37,12 +38,14 @@ public class PlayerControl : MonoBehaviour
 
     public int dashDirection; // This is to keep player locked when dashing
     public bool dashing;
+    public int dashingTime;
     public int dashDirectionTime;
     public Vector3  dashAim;
     public float waterDashForce;
+    public bool castAfterDash;
 
     public int cardsThrown;
-    public float slowDownPerCard = 2.5f;
+    //public float slowDownPerCard = 2.5f;
 
     public GameObject newSpell;
     public GameObject[] newSpellAOE;
@@ -57,6 +60,9 @@ public class PlayerControl : MonoBehaviour
         //onPlayerUIButton = new GameObject[4];
         waterDashForce = 400;
         dashDirectionTime = 0;
+        dashing = false;
+        dashingTime = 0;
+        castAfterDash = false;
 
         for (int i = 0; i < 4; i++)
         {
@@ -64,7 +70,7 @@ public class PlayerControl : MonoBehaviour
             spellPrimary[i] = "";
             spellSecondary[i] = "";
         }
-        slowDownPerCard = 2.5f;
+        //slowDownPerCard = 2.5f;
     }
 
     public void pickDirection()
@@ -82,10 +88,24 @@ public class PlayerControl : MonoBehaviour
     
         if (dashing)
         {
-
+            playerUI.SetActive(false);
+            dashingTime++;
+            transform.Translate(Vector3.forward * Time.deltaTime * speed * 5, Space.Self);
+            this.GetComponent<BoxCollider>().enabled = true;
+            rb.constraints = RigidbodyConstraints.FreezeRotation; 
+        }
+        if (dashing && dashingTime > 20)
+        {
+            dashingTime = 0;
+            dashing = false;
+            //transform.Translate(Vector3.forward * Time.deltaTime * speed * 3, Space.Self);
+            this.GetComponent<BoxCollider>().enabled = true;
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
+            this.transform.rotation = Quaternion.Euler(0, 45, 0);
+            playerUI.SetActive(true);
         }
 
-        if (dashDirectionTime < 125 && dashDirectionTime > 1) // being dash
+        /*if (dashDirectionTime < 125 && dashDirectionTime > 1) // being dash
         {
             grounded = false;
             transform.position = Vector3.Lerp(transform.position, dashAim, Time.deltaTime);
@@ -97,7 +117,7 @@ public class PlayerControl : MonoBehaviour
             rb.constraints = RigidbodyConstraints.FreezeRotation;
             //Debug.Log("Invulnrble Dash Reset");
             this.transform.rotation = Quaternion.Euler(0, 45, 0);
-        }
+        }*/
         
         // Card Casting Commands
         if (Input.GetMouseButtonDown(0) && cardsThrown < 4 && canCast[spellSelected] && spellSecondary[spellSelected] == "") // Shoot Card
@@ -254,9 +274,11 @@ public class PlayerControl : MonoBehaviour
             newSpell.GetComponent<FireBallThrow>().maxRange = 30;
             newSpell.GetComponent<FireBallThrow>().throwSpeed = 35;
             canCast[spellSelected] = false;
+            dashing = true;
             dashDirection = spellSelected;
             dashAim = new Vector3(player1Aim.transform.position.x , player1Aim.transform.position.y, player1Aim.transform.position.z);
             dashDirectionTime = 75;
+            transform.LookAt(dashAim);
             if (this.transform.position.y < 2.5)
             {
                 rb.AddForce(Vector3.up * 750);
