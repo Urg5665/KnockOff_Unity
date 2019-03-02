@@ -36,6 +36,7 @@ public class PlayerControl : MonoBehaviour
     public Transform AOEpoint;
 
     public int dashDirection; // This is to keep player locked when dashing
+    public bool dashing;
     public int dashDirectionTime;
     public Vector3  dashAim;
     public float waterDashForce;
@@ -78,8 +79,13 @@ public class PlayerControl : MonoBehaviour
 
         //speed = maxSpeed - (slowDownPerCard * cardsThrown); // apply slow for each card in play
                                                             //Debug.Log("speed" + speed);
+    
+        if (dashing)
+        {
 
-        if (dashDirectionTime < 75 && dashDirectionTime > 1) // being dash
+        }
+
+        if (dashDirectionTime < 125 && dashDirectionTime > 1) // being dash
         {
             grounded = false;
             transform.position = Vector3.Lerp(transform.position, dashAim, Time.deltaTime);
@@ -92,6 +98,7 @@ public class PlayerControl : MonoBehaviour
             //Debug.Log("Invulnrble Dash Reset");
             this.transform.rotation = Quaternion.Euler(0, 45, 0);
         }
+        
         // Card Casting Commands
         if (Input.GetMouseButtonDown(0) && cardsThrown < 4 && canCast[spellSelected] && spellSecondary[spellSelected] == "") // Shoot Card
         {
