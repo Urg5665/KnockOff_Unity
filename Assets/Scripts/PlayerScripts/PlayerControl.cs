@@ -41,7 +41,7 @@ public class PlayerControl : MonoBehaviour
     public int dashingTime;
     public int dashDirectionTime;
     public Vector3  dashAim;
-    public float waterDashForce;
+    public float waterDashForceUp;
     public bool castAfterDash;
 
     public int cardsThrown;
@@ -58,7 +58,7 @@ public class PlayerControl : MonoBehaviour
         cardsThrown = 0;
         canCast = new bool[4]; // ignore zero here
         //onPlayerUIButton = new GameObject[4];
-        waterDashForce = 400;
+        waterDashForceUp = 0;
         dashDirectionTime = 0;
         dashing = false;
         dashingTime = 0;
@@ -91,6 +91,12 @@ public class PlayerControl : MonoBehaviour
             playerUI.SetActive(false);
             dashingTime++;
             transform.Translate(Vector3.forward * Time.deltaTime * speed * 5, Space.Self);
+            if(this.transform.position.y < 2.5)
+            {
+                Vector3 above = new Vector3(transform.position.x, transform.position.y + 20, transform.position.z); 
+                transform.position = Vector3.Lerp(transform.position, above, Time.deltaTime);
+                //transform.Translate(Vector3.up * Time.deltaTime * speed * 5, Space.Self);
+            }
             this.GetComponent<BoxCollider>().enabled = true;
             rb.constraints = RigidbodyConstraints.FreezeRotation; 
         }
@@ -104,20 +110,6 @@ public class PlayerControl : MonoBehaviour
             this.transform.rotation = Quaternion.Euler(0, 45, 0);
             playerUI.SetActive(true);
         }
-
-        /*if (dashDirectionTime < 125 && dashDirectionTime > 1) // being dash
-        {
-            grounded = false;
-            transform.position = Vector3.Lerp(transform.position, dashAim, Time.deltaTime);
-        }
-
-        if (canCast[dashDirection] && dashDirectionTime < 1) // result invulnerbaility after dash is complete
-        {
-            this.GetComponent<BoxCollider>().enabled = true;
-            rb.constraints = RigidbodyConstraints.FreezeRotation;
-            //Debug.Log("Invulnrble Dash Reset");
-            this.transform.rotation = Quaternion.Euler(0, 45, 0);
-        }*/
         
         // Card Casting Commands
         if (Input.GetMouseButtonDown(0) && cardsThrown < 4 && canCast[spellSelected] && spellSecondary[spellSelected] == "") // Shoot Card
@@ -281,7 +273,7 @@ public class PlayerControl : MonoBehaviour
             transform.LookAt(dashAim);
             if (this.transform.position.y < 2.5)
             {
-                rb.AddForce(Vector3.up * 750);
+                rb.AddForce(Vector3.up * waterDashForceUp);
             }
             else
             {
@@ -378,19 +370,22 @@ public class PlayerControl : MonoBehaviour
             newSpell.GetComponent<WindWaveThrow>().maxRange = 30;
             newSpell.GetComponent<WindWaveThrow>().throwSpeed = 35;
             canCast[spellSelected] = false;
+            dashing = true;
             dashDirection = spellSelected;
-            dashAim = new Vector3(player1Aim.transform.position.x , player1Aim.transform.position.y, player1Aim.transform.position.z);
+            dashAim = new Vector3(player1Aim.transform.position.x, player1Aim.transform.position.y, player1Aim.transform.position.z);
             dashDirectionTime = 75;
+            transform.LookAt(dashAim);
             if (this.transform.position.y < 2.5)
             {
-                rb.AddForce(Vector3.up * 750);
+                rb.AddForce(Vector3.up * waterDashForceUp);
             }
             else
             {
                 rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
             }
+
             this.GetComponent<BoxCollider>().enabled = false;
-            Debug.Log("Invulnrble Dash");
+            //Debug.Log("Invulnrble Dash");
 
         }
 
@@ -479,21 +474,22 @@ public class PlayerControl : MonoBehaviour
             newSpell.GetComponent<WaterPullThrow>().maxRange = 30;
             newSpell.GetComponent<WaterPullThrow>().throwSpeed = 35;
             canCast[spellSelected] = false;
+            dashing = true;
             dashDirection = spellSelected;
             dashAim = new Vector3(player1Aim.transform.position.x, player1Aim.transform.position.y, player1Aim.transform.position.z);
             dashDirectionTime = 75;
-
+            transform.LookAt(dashAim);
             if (this.transform.position.y < 2.5)
             {
-                rb.AddForce(Vector3.up * 750);
+                rb.AddForce(Vector3.up * waterDashForceUp);
             }
             else
             {
                 rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
             }
-            this.GetComponent<BoxCollider>().enabled = false;
-            Debug.Log("Invulnrble Dash");
 
+            this.GetComponent<BoxCollider>().enabled = false;
+            //Debug.Log("Invulnrble Dash");
         }
 
 
