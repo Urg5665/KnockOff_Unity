@@ -36,7 +36,7 @@ public class PlayerControl : MonoBehaviour
     public GameObject newCardTrail;
     public Transform AOEpoint;
 
-    public int dashDirection; // This is to keep player locked when dashing
+    public int dashDirection; // This is to check if you are fireing a particle afterwards, if still facing the same direction
     public bool dashing;
     public int dashingTime;
     public int dashDirectionTime;
@@ -93,11 +93,15 @@ public class PlayerControl : MonoBehaviour
             transform.Translate(Vector3.forward * Time.deltaTime * speed * 5, Space.Self);
             if(this.transform.position.y < 2.5)
             {
+                this.GetComponent<BoxCollider>().enabled = true; // can fail recover
                 Vector3 above = new Vector3(transform.position.x, transform.position.y + 20, transform.position.z); 
                 transform.position = Vector3.Lerp(transform.position, above, Time.deltaTime);
                 //transform.Translate(Vector3.up * Time.deltaTime * speed * 5, Space.Self);
             }
-            this.GetComponent<BoxCollider>().enabled = true;
+            else
+            {
+                this.GetComponent<BoxCollider>().enabled = false;
+            }
             rb.constraints = RigidbodyConstraints.FreezeRotation; 
         }
         if (dashing && dashingTime > 20)
@@ -109,6 +113,15 @@ public class PlayerControl : MonoBehaviour
             rb.constraints = RigidbodyConstraints.FreezeRotation;
             this.transform.rotation = Quaternion.Euler(0, 45, 0);
             playerUI.SetActive(true);
+            castAfterDash = true;
+        }
+        if (castAfterDash && dashDirection == spellSelected )
+        {
+            castAfterDash = false;
+            newSpell = Instantiate(spellProjectile[0], this.transform.position, spellProjectile[0].transform.rotation);
+            newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
+            newSpell.GetComponent<FireBallThrow>().spellNum = spellSelected;
+            newSpell.GetComponent<FireBallThrow>().maxRange = 25;
         }
         
         // Card Casting Commands
@@ -260,11 +273,6 @@ public class PlayerControl : MonoBehaviour
         }
         if (spellSecondary[spellSelected] == "Dash")
         {
-            newSpell = Instantiate(spellProjectile[0], this.transform.position, spellProjectile[0].transform.rotation);
-            newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
-            newSpell.GetComponent<FireBallThrow>().spellNum = spellSelected;
-            newSpell.GetComponent<FireBallThrow>().maxRange = 30;
-            newSpell.GetComponent<FireBallThrow>().throwSpeed = 35;
             canCast[spellSelected] = false;
             dashing = true;
             dashDirection = spellSelected;

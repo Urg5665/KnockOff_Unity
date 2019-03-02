@@ -47,8 +47,8 @@ public class CardThrow : MonoBehaviour
         }
 
         transform.LookAt(playerAim.transform);
-        maxRange = 30;
-        throwSpeed = 20;
+        maxRange = 50;
+        throwSpeed = 30;
         cardCollider = this.GetComponent<BoxCollider>();
         cardCollider.isTrigger = true;
     }
