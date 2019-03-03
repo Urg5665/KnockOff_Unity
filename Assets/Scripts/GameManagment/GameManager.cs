@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
             Time.timeScale -= 0.1f;
             //Debug.Log("Slowing Down");
         }
-        Debug.Log(Time.timeScale);
+        //Debug.Log(Time.timeScale);
 
 
         if ( Time.timeScale <= .2f)

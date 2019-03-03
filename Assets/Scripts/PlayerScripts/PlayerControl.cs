@@ -98,7 +98,7 @@ public class PlayerControl : MonoBehaviour
 
         if (dashing)
         {
-            this.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            this.GetComponent<Rigidbody>().velocity = Vector3.zero; // to not have onkg mvement overide dash
             playerUI.SetActive(false);
             dashingTime++;
             transform.Translate(Vector3.forward * Time.deltaTime * speed * 5, Space.Self);
