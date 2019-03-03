@@ -13,6 +13,8 @@ public class WaterPullThrow : MonoBehaviour
     public PlayerControl playerControl;
     public PlayerControlXbox playerControlXbox;
 
+    public bool dashSpell; // This will tell the spell to seek out the oppoentafter a dash// to hard to cast after dashing
+
     public float waterForce;
     public float waterKnockUp;
     public Vector3 spellDir;
@@ -75,7 +77,23 @@ public class WaterPullThrow : MonoBehaviour
 
     void FixedUpdate()
     {
-        transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
+        if (!dashSpell)
+        {
+            transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
+        }
+        if (dashSpell)
+        {
+            if (spellNum == 1)
+            {
+                transform.LookAt(GameObject.Find("Player2").transform);
+                transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
+            }
+            if (spellNum == 2)
+            {
+                transform.LookAt(GameObject.Find("Player1").transform);
+                transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
+            }
+        }
         rangeCounter++;
 
         if (rangeCounter > maxRange)

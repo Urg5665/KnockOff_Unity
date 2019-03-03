@@ -117,7 +117,7 @@ public class PlayerControl : MonoBehaviour
             playerUI.SetActive(true);
             castAfterDash = true;
         }
-        if (castAfterDash && dashDirection == spellSelected )
+        if (castAfterDash)
         {
             castAfterDash = false;
             if(spellPrimary[spellSelected] == "Fire")
@@ -134,6 +134,7 @@ public class PlayerControl : MonoBehaviour
                 newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
                 newSpell.GetComponent<WindWaveThrow>().spellNum = spellSelected;
                 newSpell.GetComponent<WindWaveThrow>().maxRange = 25;
+                newSpell.GetComponent<WindWaveThrow>().dashSpell = true;
             }
             if (spellPrimary[spellSelected] == "Water")
             {
@@ -141,16 +142,9 @@ public class PlayerControl : MonoBehaviour
                 newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
                 newSpell.GetComponent<WaterPullThrow>().spellNum = spellSelected;
                 newSpell.GetComponent<WaterPullThrow>().maxRange = 25;
+                newSpell.GetComponent<WaterPullThrow>().dashSpell = true;
             }
 
-        }
-        else if(castAfterDash && dashDirection != spellSelected)
-        {
-            castAfterDash = false;
-            Debug.Log("DashDir:" + dashDirection);
-            spellPrimary[dashDirection] = "";
-            spellSecondary[dashDirection] = "";
-            canCast[dashDirection] = true;
         }
         
         // Card Casting Commands
