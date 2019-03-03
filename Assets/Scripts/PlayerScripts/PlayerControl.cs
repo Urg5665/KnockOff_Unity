@@ -89,8 +89,16 @@ public class PlayerControl : MonoBehaviour
         //speed = maxSpeed - (slowDownPerCard * cardsThrown); // apply slow for each card in play
                                                             //Debug.Log("speed" + speed);
     
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            this.GetComponent<Rigidbody>().AddForce(Vector3.left * 600);
+            this.GetComponent<Rigidbody>().AddForce(Vector3.up * 400);
+        }
+
+
         if (dashing)
         {
+            this.GetComponent<Rigidbody>().velocity = Vector3.zero;
             playerUI.SetActive(false);
             dashingTime++;
             transform.Translate(Vector3.forward * Time.deltaTime * speed * 5, Space.Self);

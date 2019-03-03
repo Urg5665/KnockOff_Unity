@@ -91,6 +91,7 @@ public class PlayerControlXbox : MonoBehaviour
 
         if (dashing)
         {
+            this.GetComponent<Rigidbody>().velocity = Vector3.zero;
             playerUI.SetActive(false);
             dashingTime++;
             transform.Translate(Vector3.forward * Time.deltaTime * speed * 5, Space.Self);
