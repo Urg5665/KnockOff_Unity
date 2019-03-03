@@ -42,12 +42,13 @@ public class WindWaveThrow : MonoBehaviour
             spellNum = playerControlXbox.spellSelected;
         }
         maxRange = 10;
+
         transform.LookAt(playerAim.transform);
         spellDir = this.gameObject.transform.forward;
         windForce = 600;
         windKnockUp = 400;
         hitPlayer = false;
-        throwSpeed = 20;
+        throwSpeed = 30;
         rangeCounter = 0;
     }
 
@@ -86,21 +87,21 @@ public class WindWaveThrow : MonoBehaviour
         }
         if (dashSpell)
         {
-            if (spellNum == 1)
+            if (playerInt == 1)
             {
-                transform.LookAt(GameObject.Find("Player2").transform);
-                transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
+                //playerAim.transform.position = GameObject.Find("Player2").transform.position;
+                //transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
+                transform.position = Vector3.MoveTowards(transform.position, GameObject.Find("Player2").transform.position, throwSpeed * Time.deltaTime);
             }
-            if (spellNum == 2)
+            if (playerInt == 2)
             {
-                transform.LookAt(GameObject.Find("Player1").transform);
-                transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
+                transform.position = Vector3.MoveTowards(transform.position, GameObject.Find("Player1").transform.position, throwSpeed * Time.deltaTime);
             }
         }
         rangeCounter++;
 
         if (rangeCounter > maxRange)
-        {
+        { 
             if (playerInt == 1)
             {
                 Destroy(this.gameObject);

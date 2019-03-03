@@ -83,15 +83,13 @@ public class WaterPullThrow : MonoBehaviour
         }
         if (dashSpell)
         {
-            if (spellNum == 1)
+            if (playerInt == 1)
             {
-                transform.LookAt(GameObject.Find("Player2").transform);
-                transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
+                transform.position = Vector3.MoveTowards(transform.position, GameObject.Find("Player2").transform.position, throwSpeed * Time.deltaTime);
             }
-            if (spellNum == 2)
+            if (playerInt == 2)
             {
-                transform.LookAt(GameObject.Find("Player1").transform);
-                transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
+                transform.position = Vector3.MoveTowards(transform.position, GameObject.Find("Player1").transform.position, throwSpeed * Time.deltaTime);
             }
         }
         rangeCounter++;

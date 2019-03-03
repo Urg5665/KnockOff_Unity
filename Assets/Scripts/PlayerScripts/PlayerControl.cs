@@ -120,7 +120,7 @@ public class PlayerControl : MonoBehaviour
         if (castAfterDash)
         {
             castAfterDash = false;
-            if(spellPrimary[spellSelected] == "Fire")
+            if(spellPrimary[dashDirection] == "Fire")
             {
                 newSpell = Instantiate(spellProjectile[0], this.transform.position, spellProjectile[0].transform.rotation);
                 newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
@@ -128,7 +128,7 @@ public class PlayerControl : MonoBehaviour
                 newSpell.GetComponent<FireBallThrow>().maxRange = 25;
                 newSpell.GetComponent<FireBallThrow>().dashSpell = true;
             }
-            if (spellPrimary[spellSelected] == "Wind")
+            if (spellPrimary[dashDirection] == "Wind")
             {
                 newSpell = Instantiate(spellProjectile[1], this.transform.position, spellProjectile[1].transform.rotation);
                 newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
@@ -136,7 +136,7 @@ public class PlayerControl : MonoBehaviour
                 newSpell.GetComponent<WindWaveThrow>().maxRange = 25;
                 newSpell.GetComponent<WindWaveThrow>().dashSpell = true;
             }
-            if (spellPrimary[spellSelected] == "Water")
+            if (spellPrimary[dashDirection] == "Water")
             {
                 newSpell = Instantiate(spellProjectile[2], this.transform.position, spellProjectile[2].transform.rotation);
                 newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
@@ -144,6 +144,9 @@ public class PlayerControl : MonoBehaviour
                 newSpell.GetComponent<WaterPullThrow>().maxRange = 25;
                 newSpell.GetComponent<WaterPullThrow>().dashSpell = true;
             }
+            spellPrimary[dashDirection] = "";
+            spellSecondary[dashDirection] = "";
+            canCast[dashDirection] = true;
 
         }
         
