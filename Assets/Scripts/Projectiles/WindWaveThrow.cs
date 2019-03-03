@@ -28,6 +28,8 @@ public class WindWaveThrow : MonoBehaviour
 
     public static bool hitPlayer; // so physics doesnt freek out, this means the first time the player is hit by this is does not fucking anhiliate them - Mark
 
+    public int hitSlow; // For Effects i guess?
+
     private void Awake()
     {
         if (playerInt == 1)
@@ -56,6 +58,7 @@ public class WindWaveThrow : MonoBehaviour
         throwSpeed = 30;
         rangeCounter = 0;
         initialRotation = this.transform.rotation;
+        hitSlow = 101;
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -65,28 +68,47 @@ public class WindWaveThrow : MonoBehaviour
         {
             collision.gameObject.GetComponent<Rigidbody>().AddForce(this.gameObject.transform.forward * windForce); // Knock Back
             collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * windKnockUp); // Knock Up
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
             playerControl.canCast[spellNum] = true;
             hitPlayer = true;
             playerControl.spellPrimary[spellNum] = "";
             playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
+            hitSlow = 0;
 
         }
         if (!hitPlayer && playerInt == 2 && collision.gameObject.tag == "Player1")
         {
             collision.gameObject.GetComponent<Rigidbody>().AddForce(spellDir.normalized * windForce); // Knock Back
             collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * windKnockUp); // Knock Up
-            Destroy(this.gameObject);
             playerControlXbox.canCast[spellNum] = true;
             hitPlayer = true;
             playerControlXbox.spellPrimary[spellNum] = "";
             playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
+            hitSlow = 0;
 
         }
+
     }
 
     void FixedUpdate()
     {
+        if (hitSlow == 0)
+        {
+            Time.timeScale = 0.2f;
+            hitSlow++;
+        }
+        if (hitSlow <= 7)
+        {
+            hitSlow++;
+        }
+        if (hitSlow == 7)
+        {
+            Time.timeScale = 1.0f;
+            Destroy(this.gameObject);
+        }
+
+
+
         if (dashSpell)
         {
             transform.LookAt(dashTarget.transform);
