@@ -130,7 +130,7 @@ public class PlayerControl : MonoBehaviour
             }
             if (spellPrimary[dashDirection] == "Wind")
             {
-                newSpell = Instantiate(spellProjectile[1], this.transform.position, spellProjectile[1].transform.rotation);
+                newSpell = Instantiate(spellProjectile[1], this.transform.position, spellProjectile[0].transform.rotation);
                 newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
                 newSpell.GetComponent<WindWaveThrow>().spellNum = spellSelected;
                 newSpell.GetComponent<WindWaveThrow>().maxRange = 25;
@@ -138,7 +138,7 @@ public class PlayerControl : MonoBehaviour
             }
             if (spellPrimary[dashDirection] == "Water")
             {
-                newSpell = Instantiate(spellProjectile[2], this.transform.position, spellProjectile[2].transform.rotation);
+                newSpell = Instantiate(spellProjectile[2], this.transform.position, spellProjectile[0].transform.rotation);
                 newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
                 newSpell.GetComponent<WaterPullThrow>().spellNum = spellSelected;
                 newSpell.GetComponent<WaterPullThrow>().maxRange = 25;

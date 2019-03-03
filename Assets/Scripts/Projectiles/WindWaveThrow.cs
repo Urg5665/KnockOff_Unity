@@ -23,6 +23,8 @@ public class WindWaveThrow : MonoBehaviour
     public int rangeCounter;
     public int maxRange;
 
+    public Quaternion initialRotation;
+
     public static bool hitPlayer; // so physics doesnt freek out, this means the first time the player is hit by this is does not fucking anhiliate them - Mark
 
     private void Awake()
@@ -50,6 +52,7 @@ public class WindWaveThrow : MonoBehaviour
         hitPlayer = false;
         throwSpeed = 30;
         rangeCounter = 0;
+        initialRotation = this.transform.rotation;
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -57,6 +60,8 @@ public class WindWaveThrow : MonoBehaviour
 
         if (!hitPlayer && playerInt == 1 && collision.gameObject.tag == "Player2")
         {
+            //this.transform.rotation = initialRotation;
+            Debug.Log(this.transform.rotation.eulerAngles);
             collision.gameObject.GetComponent<Rigidbody>().AddForce(spellDir.normalized * windForce); // Knock Back
             collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * windKnockUp); // Knock Up
             Destroy(this.gameObject);
@@ -91,11 +96,13 @@ public class WindWaveThrow : MonoBehaviour
             {
                 //playerAim.transform.position = GameObject.Find("Player2").transform.position;
                 //transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
-                transform.position = Vector3.MoveTowards(transform.position, GameObject.Find("Player2").transform.position, throwSpeed * Time.deltaTime);
+                transform.localPosition = Vector3.MoveTowards(transform.position, GameObject.Find("Player2").transform.position, throwSpeed * Time.deltaTime);
+                //transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
             }
             if (playerInt == 2)
             {
-                transform.position = Vector3.MoveTowards(transform.position, GameObject.Find("Player1").transform.position, throwSpeed * Time.deltaTime);
+                //transform.position = Vector3.MoveTowards(transform.position, GameObject.Find("Player1").transform.position, throwSpeed * Time.deltaTime);
+                transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
             }
         }
         rangeCounter++;
