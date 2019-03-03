@@ -126,6 +126,7 @@ public class PlayerControl : MonoBehaviour
                 newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
                 newSpell.GetComponent<FireBallThrow>().spellNum = spellSelected;
                 newSpell.GetComponent<FireBallThrow>().maxRange = 25;
+                newSpell.GetComponent<FireBallThrow>().dashSpell = true;
             }
             if (spellPrimary[spellSelected] == "Wind")
             {
@@ -146,8 +147,9 @@ public class PlayerControl : MonoBehaviour
         else if(castAfterDash && dashDirection != spellSelected)
         {
             castAfterDash = false;
+            Debug.Log("DashDir:" + dashDirection);
             spellPrimary[dashDirection] = "";
-            spellPrimary[dashDirection] = "";
+            spellSecondary[dashDirection] = "";
             canCast[dashDirection] = true;
         }
         
@@ -240,7 +242,7 @@ public class PlayerControl : MonoBehaviour
                 newSpellAOE[i] = Instantiate(spellProjectile[0], this.transform.position, spellProjectile[0].transform.rotation);
                 newSpellAOE[i].transform.position = new Vector3(newSpellAOE[i].transform.position.x, newSpellAOE[i].transform.position.y - .25f, newSpellAOE[i].transform.position.z);
                 newSpellAOE[i].GetComponent<FireBallThrow>().spellNum = spellSelected;
-                newSpellAOE[i].GetComponent<FireBallThrow>().maxRange = 15;
+                newSpellAOE[i].GetComponent<FireBallThrow>().maxRange = 25;
                 // I got Really Really Fucking Lazy and Hard Coded the Draw Cricle about point function to make this work. 
                 //Im ashamed of the following code and wil fix when i figrue out abetter draw circle - Mark
                 if (i == 0)
@@ -296,6 +298,7 @@ public class PlayerControl : MonoBehaviour
             newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
             newSpell.GetComponent<FireBallThrow>().spellNum = spellSelected;
             newSpell.GetComponent<FireBallThrow>().maxRange = 75;
+            newSpell.GetComponent<FireBallThrow>().throwSpeed = 80;
             canCast[spellSelected] = false;
         }
         if (spellSecondary[spellSelected] == "Dash")
@@ -395,7 +398,7 @@ public class PlayerControl : MonoBehaviour
             newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
             newSpell.GetComponent<WindWaveThrow>().spellNum = spellSelected;
             newSpell.GetComponent<WindWaveThrow>().maxRange = 75;
-            newSpell.GetComponent<WindWaveThrow>().throwSpeed = 25;
+            newSpell.GetComponent<WindWaveThrow>().throwSpeed = 80;
             canCast[spellSelected] = false;
         }
         else if (spellSecondary[spellSelected] == "Dash")
@@ -495,6 +498,7 @@ public class PlayerControl : MonoBehaviour
             newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
             newSpell.GetComponent<WaterPullThrow>().spellNum = spellSelected;
             newSpell.GetComponent<WaterPullThrow>().maxRange = 75;
+            newSpell.GetComponent<WaterPullThrow>().throwSpeed = 80;
             canCast[spellSelected] = false;
         }
         if (spellSecondary[spellSelected] == "Dash")
