@@ -12,6 +12,7 @@ public class WaterPullThrow : MonoBehaviour
     public GameObject playerAim;
     public PlayerControl playerControl;
     public PlayerControlXbox playerControlXbox;
+    public GameObject dashTarget;
 
     public bool dashSpell; // This will tell the spell to seek out the oppoentafter a dash// to hard to cast after dashing
 
@@ -33,6 +34,7 @@ public class WaterPullThrow : MonoBehaviour
             playerAim = player.transform.GetChild(0).gameObject;
             playerControl = player.GetComponent<PlayerControl>();
             spellNum = playerControl.spellSelected;
+            dashTarget = GameObject.Find("Player2");
         }
         if (playerInt == 2)
         {
@@ -40,8 +42,11 @@ public class WaterPullThrow : MonoBehaviour
             playerAim = GameObject.Find("Player2Aim");
             playerControlXbox = player.GetComponent<PlayerControlXbox>();
             spellNum = playerControlXbox.spellSelected;
+            dashTarget = GameObject.Find("Player1");
         }
+
         transform.LookAt(playerAim.transform);
+
         spellDir = this.gameObject.transform.forward;
         waterForce = 600;
         waterKnockUp = 400;
@@ -55,7 +60,7 @@ public class WaterPullThrow : MonoBehaviour
 
         if (!hitPlayer && playerInt == 1 && collision.gameObject.tag == "Player2" )
         {
-            collision.gameObject.GetComponent<Rigidbody>().AddForce(spellDir.normalized * waterForce * -1); // Knock Back
+            collision.gameObject.GetComponent<Rigidbody>().AddForce(this.gameObject.transform.forward * waterForce * -1); // Knock Back
             collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * waterKnockUp); // Knock Up
             Destroy(this.gameObject);
             playerControl.canCast[spellNum] = true;
@@ -77,21 +82,12 @@ public class WaterPullThrow : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!dashSpell)
-        {
-            transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
-        }
         if (dashSpell)
         {
-            if (playerInt == 1)
-            {
-                transform.position = Vector3.MoveTowards(transform.position, GameObject.Find("Player2").transform.position, throwSpeed * Time.deltaTime);
-            }
-            if (playerInt == 2)
-            {
-                transform.position = Vector3.MoveTowards(transform.position, GameObject.Find("Player1").transform.position, throwSpeed * Time.deltaTime);
-            }
+            transform.LookAt(dashTarget.transform); // seeks out oppoent
         }
+        transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
+
         rangeCounter++;
 
         if (rangeCounter > maxRange)

@@ -48,15 +48,7 @@ public class WindWaveThrow : MonoBehaviour
         }
         maxRange = 10;
 
-        if (dashSpell)
-        {
-            transform.LookAt(dashTarget.transform);
-        }
-        else
-        {
-            transform.LookAt(playerAim.transform);
-        }
-
+        transform.LookAt(playerAim.transform);
         spellDir = this.gameObject.transform.forward;
         windForce = 600;
         windKnockUp = 400;
@@ -71,9 +63,7 @@ public class WindWaveThrow : MonoBehaviour
 
         if (!hitPlayer && playerInt == 1 && collision.gameObject.tag == "Player2")
         {
-            //this.transform.rotation = initialRotation;
-            Debug.Log(this.transform.rotation.eulerAngles);
-            collision.gameObject.GetComponent<Rigidbody>().AddForce(spellDir.normalized * windForce); // Knock Back
+            collision.gameObject.GetComponent<Rigidbody>().AddForce(this.gameObject.transform.forward * windForce); // Knock Back
             collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * windKnockUp); // Knock Up
             Destroy(this.gameObject);
             playerControl.canCast[spellNum] = true;
@@ -97,6 +87,10 @@ public class WindWaveThrow : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (dashSpell)
+        {
+            transform.LookAt(dashTarget.transform);
+        }
         transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
         
         rangeCounter++;
