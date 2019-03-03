@@ -12,6 +12,7 @@ public class WindWaveThrow : MonoBehaviour
     public GameObject playerAim;
     public PlayerControl playerControl;
     public PlayerControlXbox playerControlXbox;
+    public GameObject dashTarget;
 
     public bool dashSpell; // This will tell the spell to seek out the oppoentafter a dash// to hard to cast after dashing
 
@@ -35,6 +36,7 @@ public class WindWaveThrow : MonoBehaviour
             playerAim = player.transform.GetChild(0).gameObject;
             playerControl = player.GetComponent<PlayerControl>();
             spellNum = playerControl.spellSelected;
+            dashTarget = GameObject.Find("Player2");
         }
         if (playerInt == 2)
         {
@@ -42,10 +44,19 @@ public class WindWaveThrow : MonoBehaviour
             playerAim = GameObject.Find("Player2Aim");
             playerControlXbox = player.GetComponent<PlayerControlXbox>();
             spellNum = playerControlXbox.spellSelected;
+            dashTarget = GameObject.Find("Player1");
         }
         maxRange = 10;
 
-        transform.LookAt(playerAim.transform);
+        if (dashSpell)
+        {
+            transform.LookAt(dashTarget.transform);
+        }
+        else
+        {
+            transform.LookAt(playerAim.transform);
+        }
+
         spellDir = this.gameObject.transform.forward;
         windForce = 600;
         windKnockUp = 400;
@@ -86,27 +97,8 @@ public class WindWaveThrow : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!dashSpell)
-        {
-            transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
-        }
-        if (dashSpell)
-        {
-            if (playerInt == 1)
-            {
-                //playerAim.transform.position = GameObject.Find("Player2").transform.position;
-                //transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
-                
-                //transform.localPosition = Vector3.MoveTowards(transform.position, GameObject.Find("Player2").transform.position, throwSpeed * Time.deltaTime);
-                transform.LookAt(GameObject.Find("Player2").transform.position,Vector3.up);
-                transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
-            }
-            if (playerInt == 2)
-            {
-                //transform.position = Vector3.MoveTowards(transform.position, GameObject.Find("Player1").transform.position, throwSpeed * Time.deltaTime);
-                transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
-            }
-        }
+        transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
+        
         rangeCounter++;
 
         if (rangeCounter > maxRange)
@@ -129,3 +121,28 @@ public class WindWaveThrow : MonoBehaviour
         }
     }
 }
+/*
+ * if (!dashSpell)
+        {
+            transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
+        }
+        if (dashSpell)
+        {
+            if (playerInt == 1)
+            {
+                playerAim.transform.position = GameObject.Find("Player2").transform.position;
+                //transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
+
+                //transform.position = Vector3.MoveTowards(transform.position, GameObject.Find("Player2").transform.position, throwSpeed * Time.deltaTime);
+
+                transform.LookAt(GameObject.Find("Player2").transform.position,Vector3.up);
+                transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
+                transform.position = new Vector3(transform.position.x, 2.75f, transform.position.z);
+            }
+            if (playerInt == 2)
+            {
+                //transform.position = Vector3.MoveTowards(transform.position, GameObject.Find("Player1").transform.position, throwSpeed * Time.deltaTime);
+                transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
+            }
+        }
+*/
