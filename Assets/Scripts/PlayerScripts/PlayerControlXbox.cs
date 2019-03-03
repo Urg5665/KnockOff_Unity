@@ -1,14 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerControlXbox : MonoBehaviour
 {
-    public GameObject playerAim;
+    public GameObject player2Aim;
     //public PlayerAim playerAim;
 
     public int playerNum;
     public float speed;
+    public GameObject playerUI;
     //public float maxSpeed = 10;
 
     public Transform movement;
@@ -33,11 +35,14 @@ public class PlayerControlXbox : MonoBehaviour
     public GameObject newCardTrail;
     public Transform AOEpoint;
 
-    public int dashDirection; // This is to keep player locked when dashing
+    public int dashDirection; // This is to check if you are fireing a particle afterwards, if still facing the same direction
+    public bool dashing;
+    public int dashingTime;
     public int dashDirectionTime;
     public Vector3 dashAim;
-    public float waterDashForce;
-
+    public float waterDashForceUp;
+    public bool castAfterDash;
+    public int dashLength;
     public int cardsThrown;
     public float slowDownPerCard = 2.5f;
 
@@ -52,8 +57,12 @@ public class PlayerControlXbox : MonoBehaviour
         cardsThrown = 0;
         canCast = new bool[4]; // ignore zero here
         //onPlayerUIButton = new GameObject[4];
-        waterDashForce = 400;
+        waterDashForceUp = 0;
         dashDirectionTime = 0;
+        dashing = false;
+        dashingTime = 0;
+        castAfterDash = false;
+        dashLength = 25;
         spellSelected = 0;
         for (int i = 0; i < 4; i++)
         {
@@ -62,12 +71,12 @@ public class PlayerControlXbox : MonoBehaviour
             spellSecondary[i] = "";
         }
         slowDownPerCard = 2.5f;
-        playerAim = GameObject.Find("Player2Aim");
+        player2Aim = GameObject.Find("Player2Aim");
     }
 
     public void pickDirection()
     {
-        spellSelected = playerAim.GetComponent<PlayerAimXbox>().spellSelected;
+        spellSelected = player2Aim.GetComponent<PlayerAimXbox>().spellSelected;
     }
     
     void Update()
@@ -78,23 +87,70 @@ public class PlayerControlXbox : MonoBehaviour
         dashDirectionTime--;
 
         //speed = maxSpeed - (slowDownPerCard * cardsThrown); // apply slow for each card in play
-                                                            //Debug.Log("speed" + speed);
+        //Debug.Log("speed" + speed);
 
-        if (dashDirectionTime < 75 && dashDirectionTime > 1) // being dash
+        if (dashing)
         {
-            grounded = false;
-            transform.position = Vector3.Lerp(transform.position, dashAim, Time.deltaTime);
+            playerUI.SetActive(false);
+            dashingTime++;
+            transform.Translate(Vector3.forward * Time.deltaTime * speed * 5, Space.Self);
+            if (this.transform.position.y < 2.5)
+            {
+                this.GetComponent<BoxCollider>().enabled = true; // can fail recover
+                Vector3 above = new Vector3(transform.position.x, transform.position.y + 20, transform.position.z);
+                transform.position = Vector3.Lerp(transform.position, above, Time.deltaTime);
+                //transform.Translate(Vector3.up * Time.deltaTime * speed * 5, Space.Self);
+            }
+            else
+            {
+                this.GetComponent<BoxCollider>().enabled = false;
+            }
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
         }
-
-        if (canCast[dashDirection] && dashDirectionTime < 1) // result invulnerbaility after dash is complete
+        if (dashing && dashingTime > dashLength)
         {
+            dashingTime = 0;
+            dashing = false;
+            //transform.Translate(Vector3.forward * Time.deltaTime * speed * 3, Space.Self);
             this.GetComponent<BoxCollider>().enabled = true;
             rb.constraints = RigidbodyConstraints.FreezeRotation;
-            //Debug.Log("Invulnrble Dash Reset");
             this.transform.rotation = Quaternion.Euler(0, 45, 0);
+            playerUI.SetActive(true);
+            castAfterDash = true;
         }
-        // Card Casting Commands
-        if (Input.GetAxis("CardThrow") == 1 && cardsThrown < 4 && canCast[spellSelected] && spellSecondary[spellSelected] == "") // Shoot Card
+        if (castAfterDash)
+        {
+            castAfterDash = false;
+            if (spellPrimary[dashDirection] == "Fire")
+            {
+                newSpell = Instantiate(spellProjectile[0], this.transform.position, spellProjectile[0].transform.rotation);
+                newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
+                newSpell.GetComponent<FireBallThrow>().spellNum = dashDirection;
+                newSpell.GetComponent<FireBallThrow>().maxRange = 25;
+                newSpell.GetComponent<FireBallThrow>().dashSpell = true;
+            }
+            if (spellPrimary[dashDirection] == "Wind")
+            {
+                newSpell = Instantiate(spellProjectile[1], this.transform.position, spellProjectile[0].transform.rotation);
+                newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
+                newSpell.GetComponent<WindWaveThrow>().spellNum = dashDirection;
+                newSpell.GetComponent<WindWaveThrow>().maxRange = 25;
+                newSpell.GetComponent<WindWaveThrow>().dashSpell = true;
+            }
+            if (spellPrimary[dashDirection] == "Water")
+            {
+                newSpell = Instantiate(spellProjectile[2], this.transform.position, spellProjectile[0].transform.rotation);
+                newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
+                newSpell.GetComponent<WaterPullThrow>().spellNum = dashDirection;
+                newSpell.GetComponent<WaterPullThrow>().maxRange = 25;
+                newSpell.GetComponent<WaterPullThrow>().dashSpell = true;
+            }
+            spellPrimary[dashDirection] = "";
+            spellSecondary[dashDirection] = "";
+            canCast[dashDirection] = true;
+        }
+            // Card Casting Commands
+            if (Input.GetAxis("CardThrow") == 1 && cardsThrown < 4 && canCast[spellSelected] && spellSecondary[spellSelected] == "") // Shoot Card
         {
             CardGather();
         }
@@ -190,7 +246,7 @@ public class PlayerControlXbox : MonoBehaviour
                 //Im ashamed of the following code and wil fix when i figrue out abetter draw circle - Mark
                 if (i == 0)
                 {
-                    AOEpoint.position = playerAim.transform.position;
+                    AOEpoint.position = player2Aim.transform.position;
                 }
                 if (spellSelected == 0 || spellSelected == 2)
                 {
@@ -245,18 +301,16 @@ public class PlayerControlXbox : MonoBehaviour
         }
         if (spellSecondary[spellSelected] == "Dash")
         {
-            newSpell = Instantiate(spellProjectile[0], this.transform.position, spellProjectile[0].transform.rotation);
-            newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
-            newSpell.GetComponent<FireBallThrow>().spellNum = spellSelected;
-            newSpell.GetComponent<FireBallThrow>().maxRange = 30;
-            newSpell.GetComponent<FireBallThrow>().throwSpeed = 35;
+            Debug.Log("Dash");
             canCast[spellSelected] = false;
+            dashing = true;
             dashDirection = spellSelected;
-            dashAim = new Vector3(playerAim.transform.position.x, playerAim.transform.position.y, playerAim.transform.position.z);
+            dashAim = new Vector3(player2Aim.transform.position.x, player2Aim.transform.position.y, player2Aim.transform.position.z);
             dashDirectionTime = 75;
+            transform.LookAt(dashAim);
             if (this.transform.position.y < 2.5)
             {
-                rb.AddForce(Vector3.up * 750);
+                rb.AddForce(Vector3.up * waterDashForceUp);
             }
             else
             {
@@ -264,7 +318,7 @@ public class PlayerControlXbox : MonoBehaviour
             }
 
             this.GetComponent<BoxCollider>().enabled = false;
-            Debug.Log("Invulnrble Dash");
+            //Debug.Log("Invulnrble Dash");
         }
     }
     private void WindKnockback()
@@ -291,7 +345,7 @@ public class PlayerControlXbox : MonoBehaviour
                 //Im ashamed of the following code and wil fix when i figrue out abetter draw circle - Mark
                 if (i == 0)
                 {
-                    AOEpoint.position = playerAim.transform.position;
+                    AOEpoint.position = player2Aim.transform.position;
                 }
                 if (spellSelected == 0 || spellSelected == 2)
                 {
@@ -347,25 +401,24 @@ public class PlayerControlXbox : MonoBehaviour
         }
         else if (spellSecondary[spellSelected] == "Dash")
         {
-            newSpell = Instantiate(spellProjectile[1], this.transform.position, spellProjectile[1].transform.rotation);
-            newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
-            newSpell.GetComponent<WindWaveThrow>().spellNum = spellSelected;
-            newSpell.GetComponent<WindWaveThrow>().maxRange = 30;
-            newSpell.GetComponent<WindWaveThrow>().throwSpeed = 35;
+            Debug.Log("Dash");
             canCast[spellSelected] = false;
+            dashing = true;
             dashDirection = spellSelected;
-            dashAim = new Vector3(playerAim.transform.position.x, playerAim.transform.position.y, playerAim.transform.position.z);
+            dashAim = new Vector3(player2Aim.transform.position.x, player2Aim.transform.position.y, player2Aim.transform.position.z);
             dashDirectionTime = 75;
+            transform.LookAt(dashAim);
             if (this.transform.position.y < 2.5)
             {
-                rb.AddForce(Vector3.up * 750);
+                rb.AddForce(Vector3.up * waterDashForceUp);
             }
             else
             {
                 rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
             }
+
             this.GetComponent<BoxCollider>().enabled = false;
-            Debug.Log("Invulnrble Dash");
+            //Debug.Log("Invulnrble Dash");
 
         }
 
@@ -393,7 +446,7 @@ public class PlayerControlXbox : MonoBehaviour
                 //Im ashamed of the following code and wil fix when i figrue out abetter draw circle - Mark
                 if (i == 0)
                 {
-                    AOEpoint.position = playerAim.transform.position;
+                    AOEpoint.position = player2Aim.transform.position;
                 }
                 if (spellSelected == 0 || spellSelected == 2)
                 {
@@ -448,26 +501,24 @@ public class PlayerControlXbox : MonoBehaviour
         }
         if (spellSecondary[spellSelected] == "Dash")
         {
-            newSpell = Instantiate(spellProjectile[2], this.transform.position, spellProjectile[2].transform.rotation);
-            newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
-            newSpell.GetComponent<WaterPullThrow>().spellNum = spellSelected;
-            newSpell.GetComponent<WaterPullThrow>().maxRange = 30;
-            newSpell.GetComponent<WaterPullThrow>().throwSpeed = 35;
+            Debug.Log("Dash");
             canCast[spellSelected] = false;
+            dashing = true;
             dashDirection = spellSelected;
-            dashAim = new Vector3(playerAim.transform.position.x, playerAim.transform.position.y, playerAim.transform.position.z);
+            dashAim = new Vector3(player2Aim.transform.position.x, player2Aim.transform.position.y, player2Aim.transform.position.z);
             dashDirectionTime = 75;
-
+            transform.LookAt(dashAim);
             if (this.transform.position.y < 2.5)
             {
-                rb.AddForce(Vector3.up * 750);
+                rb.AddForce(Vector3.up * waterDashForceUp);
             }
             else
             {
                 rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
             }
+
             this.GetComponent<BoxCollider>().enabled = false;
-            Debug.Log("Invulnrble Dash");
+            //Debug.Log("Invulnrble Dash");
 
         }
 

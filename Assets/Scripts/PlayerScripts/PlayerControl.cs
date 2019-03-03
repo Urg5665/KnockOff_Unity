@@ -73,6 +73,7 @@ public class PlayerControl : MonoBehaviour
             spellSecondary[i] = "";
         }
         //slowDownPerCard = 2.5f;
+        player1Aim = GameObject.Find("Player1Aim");
     }
 
     public void pickDirection()
