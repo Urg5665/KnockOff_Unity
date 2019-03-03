@@ -724,9 +724,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player1Aim: {fileID: 1958647856}
   playerAim: {fileID: 1958647858}
+  playerUI: {fileID: 0}
   playerNum: 1
-  speed: 5.83
-  maxSpeed: 10
+  speed: 7.5
   movement: {fileID: 4589685495232286487}
   rb: {fileID: 1851593813860474082}
   grounded: 0
@@ -760,11 +760,14 @@ MonoBehaviour:
   newCardTrail: {fileID: 0}
   AOEpoint: {fileID: 0}
   dashDirection: 0
+  dashing: 0
+  dashingTime: 0
   dashDirectionTime: 0
   dashAim: {x: 0, y: 0, z: 0}
-  waterDashForce: 0
+  waterDashForceUp: 0
+  castAfterDash: 0
+  dashLength: 0
   cardsThrown: 0
-  slowDownPerCard: 2.5
   newSpell: {fileID: 0}
   newSpellAOE:
   - {fileID: 0}
@@ -1156,30 +1159,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: f8e4a8a8fcc02bc49bf23d79ff6834fa, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.077071
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: f8e4a8a8fcc02bc49bf23d79ff6834fa, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.39
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: f8e4a8a8fcc02bc49bf23d79ff6834fa, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.15414
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: f8e4a8a8fcc02bc49bf23d79ff6834fa, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.1541
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: f8e4a8a8fcc02bc49bf23d79ff6834fa, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.1541
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: f8e4a8a8fcc02bc49bf23d79ff6834fa, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.1541
-      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: f8e4a8a8fcc02bc49bf23d79ff6834fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.33836985
@@ -1235,6 +1214,30 @@ PrefabInstance:
     - target: {fileID: 400002, guid: f8e4a8a8fcc02bc49bf23d79ff6834fa, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.23937005
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f8e4a8a8fcc02bc49bf23d79ff6834fa, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.077071
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f8e4a8a8fcc02bc49bf23d79ff6834fa, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f8e4a8a8fcc02bc49bf23d79ff6834fa, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.15414
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f8e4a8a8fcc02bc49bf23d79ff6834fa, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.1541
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f8e4a8a8fcc02bc49bf23d79ff6834fa, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.1541
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f8e4a8a8fcc02bc49bf23d79ff6834fa, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.1541
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: f8e4a8a8fcc02bc49bf23d79ff6834fa, type: 3}
       propertyPath: m_Materials.Array.data[0]

@@ -96,8 +96,10 @@ public class WindWaveThrow : MonoBehaviour
             {
                 //playerAim.transform.position = GameObject.Find("Player2").transform.position;
                 //transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
-                transform.localPosition = Vector3.MoveTowards(transform.position, GameObject.Find("Player2").transform.position, throwSpeed * Time.deltaTime);
-                //transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
+                
+                //transform.localPosition = Vector3.MoveTowards(transform.position, GameObject.Find("Player2").transform.position, throwSpeed * Time.deltaTime);
+                transform.LookAt(GameObject.Find("Player2").transform.position,Vector3.up);
+                transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
             }
             if (playerInt == 2)
             {

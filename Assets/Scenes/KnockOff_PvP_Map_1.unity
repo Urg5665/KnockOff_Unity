@@ -14080,7 +14080,7 @@ PrefabInstance:
     - target: {fileID: 46870567241696049, guid: 0f9ffe8302123f5419638698ccf5218d,
         type: 3}
       propertyPath: speed
-      value: 15
+      value: 7.5
       objectReference: {fileID: 0}
     - target: {fileID: 46870567241696049, guid: 0f9ffe8302123f5419638698ccf5218d,
         type: 3}
@@ -21277,6 +21277,19 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1294518313808581928}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4589685496987638999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4589685496987638998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ada7a29c4c6254498206b4e78b004fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  i: 50
 --- !u!1001 &4957285951225483783
 PrefabInstance:
   m_ObjectHideFlags: 0

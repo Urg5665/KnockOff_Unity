@@ -11,11 +11,11 @@ public class DummyMovement : MonoBehaviour
     {
         i++;
 
-        if (i < 50 && this.transform.position.y < 3 && this.transform.position.x < 40)
+        if (i < 50 && this.transform.position.y < 3.5 && this.transform.position.x < 40)
         {
             this.transform.position = new Vector3(this.transform.position.x - .10f, this.transform.position.y, this.transform.position.z + .10f);
         }
-        else if (i < 100 && this.transform.position.y < 3 && this.transform.position.x < 40)
+        else if (i < 100 && this.transform.position.y < 3.5 && this.transform.position.x < 40)
         {
             this.transform.position = new Vector3(this.transform.position.x + .10f, this.transform.position.y, this.transform.position.z - .10f);
         }

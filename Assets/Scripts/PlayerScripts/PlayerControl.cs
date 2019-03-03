@@ -124,7 +124,7 @@ public class PlayerControl : MonoBehaviour
             {
                 newSpell = Instantiate(spellProjectile[0], this.transform.position, spellProjectile[0].transform.rotation);
                 newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
-                newSpell.GetComponent<FireBallThrow>().spellNum = spellSelected;
+                newSpell.GetComponent<FireBallThrow>().spellNum = dashDirection;
                 newSpell.GetComponent<FireBallThrow>().maxRange = 25;
                 newSpell.GetComponent<FireBallThrow>().dashSpell = true;
             }
@@ -132,7 +132,7 @@ public class PlayerControl : MonoBehaviour
             {
                 newSpell = Instantiate(spellProjectile[1], this.transform.position, spellProjectile[0].transform.rotation);
                 newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
-                newSpell.GetComponent<WindWaveThrow>().spellNum = spellSelected;
+                newSpell.GetComponent<WindWaveThrow>().spellNum = dashDirection;
                 newSpell.GetComponent<WindWaveThrow>().maxRange = 25;
                 newSpell.GetComponent<WindWaveThrow>().dashSpell = true;
             }
@@ -140,7 +140,7 @@ public class PlayerControl : MonoBehaviour
             {
                 newSpell = Instantiate(spellProjectile[2], this.transform.position, spellProjectile[0].transform.rotation);
                 newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
-                newSpell.GetComponent<WaterPullThrow>().spellNum = spellSelected;
+                newSpell.GetComponent<WaterPullThrow>().spellNum = dashDirection;
                 newSpell.GetComponent<WaterPullThrow>().maxRange = 25;
                 newSpell.GetComponent<WaterPullThrow>().dashSpell = true;
             }
