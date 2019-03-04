@@ -1376,6 +1376,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3da4d427887a39419ba2e8d89e50c8a, type: 3}
+--- !u!114 &102279397 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1210883377, guid: 1553b485d2451644e9561177ebde3e4f,
+    type: 3}
+  m_PrefabInstance: {fileID: 498426047}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f792b5565c4664b4cb8e9d2ee18e5266, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &104400841
 Mesh:
   m_ObjectHideFlags: 0
@@ -12393,6 +12405,11 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6569884032000257490, guid: 8e1c7bafb995dfc47942efa84618ff19,
+        type: 3}
+      propertyPath: cameraMove
+      value: 
+      objectReference: {fileID: 102279397}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e1c7bafb995dfc47942efa84618ff19, type: 3}
 --- !u!4 &1310293073 stripped
@@ -21132,6 +21149,11 @@ PrefabInstance:
       objectReference: {fileID: 4589685496987638998}
     - target: {fileID: 3421601605809579357, guid: 07c346095a9b1d9439eace2211f91786,
         type: 3}
+      propertyPath: player2Aim
+      value: 
+      objectReference: {fileID: 856722488}
+    - target: {fileID: 3421601605809579357, guid: 07c346095a9b1d9439eace2211f91786,
+        type: 3}
       propertyPath: dummy
       value: 
       objectReference: {fileID: 6068517341001067959}
@@ -21147,15 +21169,9 @@ PrefabInstance:
       objectReference: {fileID: 276738110}
     - target: {fileID: 3421601605809579357, guid: 07c346095a9b1d9439eace2211f91786,
         type: 3}
-      propertyPath: player2Aim
+      propertyPath: cameraMove
       value: 
-      objectReference: {fileID: 856722488}
-    - target: {fileID: 3421601605809579357, guid: 07c346095a9b1d9439eace2211f91786,
-        type: 3}
-      propertyPath: splash
-      value: 
-      objectReference: {fileID: 8765554747074486903, guid: aa92cd2de9df01442a7a8a56578f185c,
-        type: 3}
+      objectReference: {fileID: 102279397}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07c346095a9b1d9439eace2211f91786, type: 3}
 --- !u!1001 &3965110431487024722
