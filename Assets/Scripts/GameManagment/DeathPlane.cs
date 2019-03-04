@@ -18,6 +18,8 @@ public class DeathPlane : MonoBehaviour
     public Text player1ScoreText;
     public Text player2ScoreText;
 
+    public CameraMove cameraMove;
+
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -26,6 +28,7 @@ public class DeathPlane : MonoBehaviour
             player2Score++;
             player1.transform.position = new Vector3(-10,2.5f,-21);
             player1.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            StartCoroutine(cameraMove.Shake(.15f, .4f));
 
         }
         if (collision.gameObject.tag == "Player2")
@@ -34,12 +37,14 @@ public class DeathPlane : MonoBehaviour
             player2.transform.position = new Vector3(30, 2.5f, -22);
             player2Aim.transform.position = new Vector3(28, 2.5f, -20);
             player2.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            StartCoroutine(cameraMove.Shake(.15f, .4f));
         }
         if (collision.gameObject.tag == "Dummy")
         {
             dummy.transform.position = new Vector3(25, 2.5f, 2);
             dummy.GetComponent<Rigidbody>().velocity = Vector3.zero;
             dummy.GetComponent<DummyMovement>().i = 0;
+            StartCoroutine(cameraMove.Shake(.15f, .4f));
         }
 
     }

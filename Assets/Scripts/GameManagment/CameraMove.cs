@@ -35,23 +35,19 @@ public class CameraMove : MonoBehaviour
         }
 
         return bounds.center;
-
-        
-
     }
 
-    // Update is called once per frame
     void LateUpdate()
     {
-
         if (targets[1].position.x == 250)
         {
             return;
         }
-
         Move();
         Zoom();
-
+        if (Input.GetKeyDown(KeyCode.G)){
+            StartCoroutine(Shake(.15f, .4f));
+        }
     }
 
     private void Zoom()
@@ -74,11 +70,31 @@ public class CameraMove : MonoBehaviour
 
     private void Move() 
     {
-
         Vector3 centerPoint = GetCenterPoint();
-
         Vector3 newPostion = centerPoint + offset;
-
         cam.transform.position = Vector3.SmoothDamp(cam.transform.position, newPostion, ref velocity, smoothTime);
     }
+
+    public IEnumerator Shake (float duration, float magnitude)
+    {
+        Vector3 originalPos = transform.localPosition;
+
+        float elapsed = 0.0f;
+
+        while( elapsed < duration)
+        {
+            float x = Random.Range(-1f, 1f) * magnitude;
+            float y = Random.Range(-1f, 1f) * magnitude;
+            float z = Random.Range(-1f, 1f) * magnitude;
+
+            transform.localPosition = new Vector3(originalPos.x + x, originalPos.y + y, originalPos.z + z);
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+        transform.localPosition = originalPos;
+
+    }
+
+
 }

@@ -108,6 +108,8 @@ MonoBehaviour:
   player2Score: 0
   player1: {fileID: 0}
   player2: {fileID: 0}
+  player2Aim: {fileID: 0}
   dummy: {fileID: 0}
   player1ScoreText: {fileID: 0}
   player2ScoreText: {fileID: 0}
+  cameraMove: {fileID: 0}
