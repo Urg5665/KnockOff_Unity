@@ -18,6 +18,7 @@ public class DeathPlane : MonoBehaviour
     public Text player1ScoreText;
     public Text player2ScoreText;
 
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Player1")
@@ -47,6 +48,5 @@ public class DeathPlane : MonoBehaviour
     {
         player1ScoreText.text = player1Score.ToString();
         player2ScoreText.text = player2Score.ToString();
-
     }
 }

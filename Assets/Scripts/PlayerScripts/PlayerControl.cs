@@ -64,7 +64,7 @@ public class PlayerControl : MonoBehaviour
         dashing = false;
         dashingTime = 0;
         castAfterDash = false;
-        dashLength = 25;
+        dashLength = 20;
 
         for (int i = 0; i < 4; i++)
         {

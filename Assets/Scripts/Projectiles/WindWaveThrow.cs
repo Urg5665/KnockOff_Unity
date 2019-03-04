@@ -97,11 +97,11 @@ public class WindWaveThrow : MonoBehaviour
             Time.timeScale = 0.2f;
             hitSlow++;
         }
-        if (hitSlow <= 7)
+        if (hitSlow <= 10)
         {
             hitSlow++;
         }
-        if (hitSlow == 7)
+        if (hitSlow == 10)
         {
             Time.timeScale = 1.0f;
             Destroy(this.gameObject);

@@ -7,7 +7,6 @@ public class SplashLayer : MonoBehaviour
 
     public GameObject splash;
 
-
     private void OnTriggerEnter(Collider collision)
     {
 
