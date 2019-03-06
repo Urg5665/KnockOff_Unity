@@ -74,7 +74,7 @@ public class WaterPullThrow : MonoBehaviour
             playerControl.spellPrimary[spellNum] = "";
             playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
             hitSlow = 0;
-            //StartCoroutine(cameraMove.Shake(.15f, .5f));
+            StartCoroutine(cameraMove.Shake(.15f, .5f));
             cameraMove.player2Hit = true;
         }
         if (!hitPlayer && playerInt == 2 && collision.gameObject.tag == "Player1")
@@ -94,6 +94,8 @@ public class WaterPullThrow : MonoBehaviour
 
     void FixedUpdate()
     {
+
+        
         if (hitSlow == 0)
         {
             Time.timeScale = 0.2f;

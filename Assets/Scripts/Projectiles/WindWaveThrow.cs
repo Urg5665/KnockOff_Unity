@@ -98,9 +98,13 @@ public class WindWaveThrow : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (hitSlow == 0)
+        {
+            Time.timeScale = 0.2f;
+            hitSlow++;
+        }
         if (hitSlow <= 10)
         {
-            Time.timeScale = 1.0f - (hitSlow * .1f);
             hitSlow++;
         }
         if (hitSlow == 10)

@@ -74,7 +74,7 @@ public class CameraMove : MonoBehaviour
         Move();
         if ( !player1Hit && !player2Hit)
         {
-            //Zoom();
+            Zoom();
         }
 
 
@@ -85,12 +85,12 @@ public class CameraMove : MonoBehaviour
         if ( player1Hit || player2Hit)
         {
             hitTimer++;
-            if (hitTimer < 20)
-            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, cam.fieldOfView - 5, Time.deltaTime);
+            if (hitTimer > 10 && hitTimer < 50)
+            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, cam.fieldOfView -(Vector3.Distance(player1.position, player2.position) * .25f), Time.deltaTime);
             if (hitTimer > 50)
-            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, cam.fieldOfView + 5, Time.deltaTime);
+            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, cam.fieldOfView + (Vector3.Distance(player1.position, player2.position)*.25f), Time.deltaTime);
         }
-        if (hitTimer == 70)
+        if (hitTimer == 100)
         {
             hitTimer = 0;
             player2Hit = false;
