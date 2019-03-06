@@ -27,6 +27,8 @@ public class WaterPullThrow : MonoBehaviour
 
     public int hitSlow; // For Effects i guess?
 
+    public CameraMove cameraMove;
+
     private void Awake()
     {
         maxRange = 10;
@@ -56,6 +58,7 @@ public class WaterPullThrow : MonoBehaviour
         throwSpeed = 30;
         rangeCounter = 0;
         hitSlow = 101;
+        cameraMove = GameObject.Find("MainCamera").GetComponent<CameraMove>();
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -71,6 +74,7 @@ public class WaterPullThrow : MonoBehaviour
             playerControl.spellPrimary[spellNum] = "";
             playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
             hitSlow = 0;
+            StartCoroutine(cameraMove.Shake(.3f, .5f));
         }
         if (!hitPlayer && playerInt == 2 && collision.gameObject.tag == "Player1")
         {
@@ -82,6 +86,7 @@ public class WaterPullThrow : MonoBehaviour
             playerControlXbox.spellPrimary[spellNum] = "";
             playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
             hitSlow = 0;
+            StartCoroutine(cameraMove.Shake(.3f, .5f));
         }
     }
 

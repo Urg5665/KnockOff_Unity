@@ -30,6 +30,7 @@ public class WindWaveThrow : MonoBehaviour
 
     public int hitSlow; // For Effects i guess?
 
+    public CameraMove cameraMove;
     private void Awake()
     {
         if (playerInt == 1)
@@ -59,6 +60,7 @@ public class WindWaveThrow : MonoBehaviour
         rangeCounter = 0;
         initialRotation = this.transform.rotation;
         hitSlow = 101;
+        cameraMove = GameObject.Find("MainCamera").GetComponent<CameraMove>();
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -74,6 +76,8 @@ public class WindWaveThrow : MonoBehaviour
             playerControl.spellPrimary[spellNum] = "";
             playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
             hitSlow = 0;
+            StartCoroutine(cameraMove.Shake(.3f, .5f));
+            //Camera.main.fieldOfView -= 5;
 
         }
         if (!hitPlayer && playerInt == 2 && collision.gameObject.tag == "Player1")
@@ -85,6 +89,7 @@ public class WindWaveThrow : MonoBehaviour
             playerControlXbox.spellPrimary[spellNum] = "";
             playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
             hitSlow = 0;
+            StartCoroutine(cameraMove.Shake(.3f, .5f));
 
         }
 

@@ -17,6 +17,9 @@ public class FireBallThrow : MonoBehaviour
 
     public int rangeCounter;
     public int maxRange;
+
+    public CameraMove cameraMove;
+
     private void Awake()
     {
         if (playerInt == 1)
@@ -38,6 +41,7 @@ public class FireBallThrow : MonoBehaviour
         transform.LookAt(playerAim.transform);
         throwSpeed = 30;
         rangeCounter = 0;
+        cameraMove = GameObject.Find("MainCamera").GetComponent<CameraMove>();
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -51,6 +55,7 @@ public class FireBallThrow : MonoBehaviour
            playerControl.canCast[spellNum] = true;
            playerControl.spellPrimary[spellNum] = "";
            playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
+           StartCoroutine(cameraMove.Shake(.3f, 1f));
         }
         if (playerInt == 2 && collision.gameObject.tag == "Player1")
         {
@@ -60,6 +65,7 @@ public class FireBallThrow : MonoBehaviour
             playerControlXbox.canCast[spellNum] = true;
             playerControlXbox.spellPrimary[spellNum] = "";
             playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
+            //StartCoroutine(cameraMove.Shake(.3f, 1f));
         }
 
     }
