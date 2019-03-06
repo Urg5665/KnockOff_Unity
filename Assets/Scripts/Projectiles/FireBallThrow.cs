@@ -49,23 +49,25 @@ public class FireBallThrow : MonoBehaviour
         if (playerInt == 1 && collision.gameObject.tag == "Player2")
         {
             //collision.gameObject.GetComponent<PlayerControlXbox>().speed = 0;
+            StartCoroutine(cameraMove.Shake(.3f, .5f));
             collision.gameObject.transform.position = 
                 new Vector3(collision.gameObject.transform.position.x, collision.gameObject.transform.position.y - 6, collision.gameObject.transform.position.z);
             Destroy(this.gameObject);
            playerControl.canCast[spellNum] = true;
            playerControl.spellPrimary[spellNum] = "";
            playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
-           StartCoroutine(cameraMove.Shake(.3f, 1f));
+
         }
         if (playerInt == 2 && collision.gameObject.tag == "Player1")
         {
+            StartCoroutine(cameraMove.Shake(.3f, .5f));
             collision.gameObject.transform.position =
                 new Vector3(collision.gameObject.transform.position.x, collision.gameObject.transform.position.y - 6, collision.gameObject.transform.position.z);
             Destroy(this.gameObject);
             playerControlXbox.canCast[spellNum] = true;
             playerControlXbox.spellPrimary[spellNum] = "";
             playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
-            //StartCoroutine(cameraMove.Shake(.3f, 1f));
+
         }
 
     }

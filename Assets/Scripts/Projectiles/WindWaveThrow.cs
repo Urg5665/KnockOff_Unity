@@ -76,8 +76,8 @@ public class WindWaveThrow : MonoBehaviour
             playerControl.spellPrimary[spellNum] = "";
             playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
             hitSlow = 0;
-            StartCoroutine(cameraMove.Shake(.3f, .5f));
-            //Camera.main.fieldOfView -= 5;
+            StartCoroutine(cameraMove.Shake(.15f, .5f));
+            cameraMove.player2Hit = true;
 
         }
         if (!hitPlayer && playerInt == 2 && collision.gameObject.tag == "Player1")
@@ -89,7 +89,8 @@ public class WindWaveThrow : MonoBehaviour
             playerControlXbox.spellPrimary[spellNum] = "";
             playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
             hitSlow = 0;
-            StartCoroutine(cameraMove.Shake(.3f, .5f));
+            StartCoroutine(cameraMove.Shake(.15f, .5f));
+            cameraMove.player1Hit = true;
 
         }
 
@@ -97,13 +98,9 @@ public class WindWaveThrow : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (hitSlow == 0)
-        {
-            Time.timeScale = 0.2f;
-            hitSlow++;
-        }
         if (hitSlow <= 10)
         {
+            Time.timeScale = 1.0f - (hitSlow * .1f);
             hitSlow++;
         }
         if (hitSlow == 10)
