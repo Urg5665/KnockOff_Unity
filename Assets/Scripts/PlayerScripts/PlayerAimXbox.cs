@@ -27,21 +27,13 @@ public class PlayerAimXbox : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //speed = 15;
+        speed = 20;
         playerSpeed = 10;
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        Vector3 privousPos = this.transform.position;
-        Vector3 nextPos = new Vector3(parent.transform.position.x + (Input.GetAxis("HorAim") * 5), parent.transform.position.y, parent.transform.position.z - (Input.GetAxis("VerAim") * 5));
-        transform.position = Vector3.Lerp(privousPos, nextPos, Time.deltaTime * 10);
-
-        //Debug.Log(Input.GetAxisRaw("HorAim"));
-        //Debug.Log(Input.GetAxisRaw("VerAim"));
-
 
         xPos = this.transform.position.x - parent.position.x;
         zPos = this.transform.position.z - parent.position.z;
@@ -52,7 +44,6 @@ public class PlayerAimXbox : MonoBehaviour
 
         angle = Mathf.Rad2Deg * (Mathf.Asin(zDif / hypo));
 
-        //Debug.Log(angle);
 
         if ( angle > 45) // north south
         {
@@ -76,54 +67,10 @@ public class PlayerAimXbox : MonoBehaviour
                 spellSelected = 3;
             }
         }
-        /*
-        if (Input.GetAxis("HorAim") > 0)
-            transform.Translate(Vector3.right * Time.deltaTime * speed, Space.Self);
-        if (Input.GetAxis("HorAim") < 0)
-            transform.Translate(Vector3.left * Time.deltaTime * speed, Space.Self);
-        if (Input.GetAxis("VerAim") < 0)
-                transform.Translate(Vector3.forward * Time.deltaTime * speed, Space.Self);
-        if (Input.GetAxis("VerAim") > 0)
-                transform.Translate(Vector3.back * Time.deltaTime * speed, Space.Self);
-       */
-        /*
-        else if (Input.GetAxis("VerAim") == 0 && Input.GetAxis("HorAim") == 0)
-        {
-            if (playerControlXbox.spellSecondary[spellSelected] == "AOE")
-            {
-                snapOffset = 10;
-            }
-            else if (playerControlXbox.spellSecondary[spellSelected] == "Dash")
-            {
-                snapOffset = 20;
-            }
-            else
-            {
-                snapOffset = 1;
-            }
 
-            if (spellSelected == 0)
-            {
-                this.transform.position = new Vector3(parent.transform.position.x, parent.transform.position.y, parent.transform.position.z + snapOffset);
-            }
-            if (spellSelected == 2)
-            {
-                this.transform.position = new Vector3(parent.transform.position.x, parent.transform.position.y, parent.transform.position.z - snapOffset);
-            }
-            if (spellSelected == 1)
-            {
-                this.transform.position = new Vector3(parent.transform.position.x + snapOffset, parent.transform.position.y, parent.transform.position.z);
-            }
-            if (spellSelected == 3)
-            {
-                this.transform.position = new Vector3(parent.transform.position.x - snapOffset, parent.transform.position.y, parent.transform.position.z);
-            }
+        Vector3 privousPos = this.transform.position;
+        Vector3 nextPos = new Vector3(parent.transform.position.x + (Input.GetAxis("HorAim") * 10), parent.transform.position.y, parent.transform.position.z - (Input.GetAxis("VerAim") * 10));
+        transform.position = Vector3.Lerp(privousPos, nextPos, Time.deltaTime * 20);
 
-
-
-
-        }*/
-        
     }
 }
-//(Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Horizontal") < 0 || Input.GetAxis("Vertical") < 0 || Input.GetAxis("Vertical") > 0)
