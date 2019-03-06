@@ -186,14 +186,14 @@ public class PlayerControlXbox : MonoBehaviour
         }
         if (Input.GetAxis("CardThrow") == 1 && cardsThrown < 4 && canCast[spellSelected] && spellSecondary[spellSelected] != "")  // Disabel Shooitng Card because spell is maxed
         {
-            Debug.Log("Spell Maxed - Cast it!");
+            //Debug.Log("Spell Maxed - Cast it!");
         }
 
 
         // Spell Casting Commands
         if (Input.GetAxis("SpellThrow") == 1 && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "") // You Have no Spell
         {
-            Debug.Log("No Spell Avaliable");
+            //Debug.Log("No Spell Avaliable");
         }
         if (Input.GetAxis("SpellThrow") == 1 && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "Fire") // Shoot Fireball
         {
@@ -332,7 +332,7 @@ public class PlayerControlXbox : MonoBehaviour
         }
         if (spellSecondary[spellSelected] == "Dash")
         {
-            Debug.Log("Dash");
+            //Debug.Log("Dash");
             canCast[spellSelected] = false;
             dashing = true;
             dashDirection = spellSelected;

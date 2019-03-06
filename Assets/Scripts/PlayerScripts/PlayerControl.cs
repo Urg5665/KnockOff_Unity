@@ -187,14 +187,14 @@ public class PlayerControl : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(0) && cardsThrown < 4 && canCast[spellSelected] && spellSecondary[spellSelected] != "")  // Disabel Shooitng Card because spell is maxed
         {
-            Debug.Log("Spell Maxed - Cast it!");
+            //Debug.Log("Spell Maxed - Cast it!");
         }
 
 
         // Spell Casting Commands
         if (Input.GetMouseButtonDown(1) && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "") // You Have no Spell
         {
-            Debug.Log("No Spell Avaliable");
+            //Debug.Log("No Spell Avaliable");
         }
         if (Input.GetMouseButtonDown(1) && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "Fire") // Shoot Fireball
         {
@@ -258,7 +258,7 @@ public class PlayerControl : MonoBehaviour
             newSpell = Instantiate(spellProjectile[0], this.transform.position, spellProjectile[0].transform.rotation);
             newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
             newSpell.GetComponent<FireBallThrow>().spellNum = spellSelected;
-            Debug.Log("Basic");
+            //Debug.Log("Basic");
             newSpell.GetComponent<FireBallThrow>().maxRange = baseRange;
             canCast[spellSelected] = false;
         }
@@ -330,7 +330,7 @@ public class PlayerControl : MonoBehaviour
         }
         if (spellSecondary[spellSelected] == "Dash")
         {
-            Debug.Log("Dash");
+            //Debug.Log("Dash");
             canCast[spellSelected] = false;
             dashing = true;
             dashDirection = spellSelected;

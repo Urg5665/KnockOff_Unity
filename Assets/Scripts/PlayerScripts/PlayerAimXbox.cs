@@ -34,6 +34,15 @@ public class PlayerAimXbox : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        Vector3 privousPos = this.transform.position;
+        Vector3 nextPos = new Vector3(parent.transform.position.x + (Input.GetAxis("HorAim") * 5), parent.transform.position.y, parent.transform.position.z - (Input.GetAxis("VerAim") * 5));
+        transform.position = Vector3.Lerp(privousPos, nextPos, Time.deltaTime * 10);
+
+        //Debug.Log(Input.GetAxisRaw("HorAim"));
+        //Debug.Log(Input.GetAxisRaw("VerAim"));
+
+
         xPos = this.transform.position.x - parent.position.x;
         zPos = this.transform.position.z - parent.position.z;
         xDif = Mathf.Abs(this.transform.position.x - parent.position.x);
@@ -49,12 +58,10 @@ public class PlayerAimXbox : MonoBehaviour
         {
             if(zPos > 0)
             {
-                //Debug.Log("P2 North");
                 spellSelected = 0;
             }
             if (zPos <= 0)
             {
-                //Debug.Log("P2 South");
                 spellSelected = 2;
             }
         }
@@ -62,25 +69,14 @@ public class PlayerAimXbox : MonoBehaviour
         {
             if (xPos > 0)
             {
-                //Debug.Log("P2 East");
                 spellSelected = 1;
             }
             if (xPos <= 0)
             {
-                //Debug.Log("P2 West");
                 spellSelected = 3;
             }
         }
-
-        if (xDif > 20)
-        {
-
-        }
-        if (zDif > 20)
-        {
-
-        }
-
+        /*
         if (Input.GetAxis("HorAim") > 0)
             transform.Translate(Vector3.right * Time.deltaTime * speed, Space.Self);
         if (Input.GetAxis("HorAim") < 0)
@@ -89,8 +85,8 @@ public class PlayerAimXbox : MonoBehaviour
                 transform.Translate(Vector3.forward * Time.deltaTime * speed, Space.Self);
         if (Input.GetAxis("VerAim") > 0)
                 transform.Translate(Vector3.back * Time.deltaTime * speed, Space.Self);
-       
-
+       */
+        /*
         else if (Input.GetAxis("VerAim") == 0 && Input.GetAxis("HorAim") == 0)
         {
             if (playerControlXbox.spellSecondary[spellSelected] == "AOE")
@@ -126,7 +122,7 @@ public class PlayerAimXbox : MonoBehaviour
 
 
 
-        }
+        }*/
         
     }
 }
