@@ -78,7 +78,7 @@ public class WindWaveThrow : MonoBehaviour
         }
         if (!hitPlayer && playerInt == 2 && collision.gameObject.tag == "Player1")
         {
-            collision.gameObject.GetComponent<Rigidbody>().AddForce(spellDir.normalized * windForce); // Knock Back
+            collision.gameObject.GetComponent<Rigidbody>().AddForce(this.gameObject.transform.forward * windForce); // Knock Back
             collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * windKnockUp); // Knock Up
             playerControlXbox.canCast[spellNum] = true;
             hitPlayer = true;

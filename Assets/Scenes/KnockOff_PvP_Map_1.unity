@@ -4429,6 +4429,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: hammeranim
       objectReference: {fileID: 0}
+    - target: {fileID: 1721450721, guid: 7642f96c278eef54793f80617cf389de, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1721450723, guid: 7642f96c278eef54793f80617cf389de, type: 3}
       propertyPath: m_LocalPosition.x
       value: -16.614698
@@ -9006,6 +9010,10 @@ PrefabInstance:
     - target: {fileID: 498342372, guid: bfecf78d8994f3443907cf68f57f5ace, type: 3}
       propertyPath: m_Name
       value: HammerBlue
+      objectReference: {fileID: 0}
+    - target: {fileID: 498342372, guid: bfecf78d8994f3443907cf68f57f5ace, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 498342374, guid: bfecf78d8994f3443907cf68f57f5ace, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13937,6 +13945,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HammerBlue (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 498342372, guid: bfecf78d8994f3443907cf68f57f5ace, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 498342374, guid: bfecf78d8994f3443907cf68f57f5ace, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.3853016
@@ -17856,6 +17868,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 486613659}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1754479960 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1294518314683911028, guid: 87d47c881ef98164e8ae36907860a9fd,
+    type: 3}
+  m_PrefabInstance: {fileID: 1294518313808581928}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1756619950 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6190968162679506198, guid: b97bf0777c4c22d4abee5644b79d3fe9,
@@ -18699,6 +18717,10 @@ PrefabInstance:
     - target: {fileID: 1721450721, guid: 7642f96c278eef54793f80617cf389de, type: 3}
       propertyPath: m_Name
       value: hammeranim (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1721450721, guid: 7642f96c278eef54793f80617cf389de, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1721450723, guid: 7642f96c278eef54793f80617cf389de, type: 3}
       propertyPath: m_LocalPosition.x
@@ -22756,6 +22778,11 @@ PrefabInstance:
       propertyPath: speed
       value: 7.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1294518313494728842, guid: 87d47c881ef98164e8ae36907860a9fd,
+        type: 3}
+      propertyPath: playerUI
+      value: 
+      objectReference: {fileID: 1754479960}
     - target: {fileID: 1973288671521688665, guid: 87d47c881ef98164e8ae36907860a9fd,
         type: 3}
       propertyPath: m_LocalPosition.x

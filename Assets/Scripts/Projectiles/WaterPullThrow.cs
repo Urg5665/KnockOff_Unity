@@ -74,7 +74,7 @@ public class WaterPullThrow : MonoBehaviour
         }
         if (!hitPlayer && playerInt == 2 && collision.gameObject.tag == "Player1")
         {
-            collision.gameObject.GetComponent<Rigidbody>().AddForce(spellDir.normalized * waterForce * -1); // Knock Back
+            collision.gameObject.GetComponent<Rigidbody>().AddForce(this.gameObject.transform.forward * waterForce * -1); // Knock Back
             collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * waterKnockUp); // Knock Up
             //Destroy(this.gameObject);
             playerControlXbox.canCast[spellNum] = true;

@@ -51,6 +51,17 @@ public class PlayerControl : MonoBehaviour
     public GameObject newSpell;
     public GameObject[] newSpellAOE;
 
+    // Spell skillshot Balance Stuff
+
+    public int baseRange;
+    public int baseSpeed;
+
+    public int dashSpellRange;
+    public int aoeRange;
+
+    public int rangeRange;
+    public int rangeSpeed;
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.None;
@@ -65,6 +76,15 @@ public class PlayerControl : MonoBehaviour
         dashingTime = 0;
         castAfterDash = false;
         dashLength = 20;
+
+        baseRange = 30;
+        baseSpeed = 40;
+        aoeRange = 40;
+
+        rangeRange = 90;
+        rangeSpeed = 70;
+
+        dashSpellRange = 25; // should be very close
 
         for (int i = 0; i < 4; i++)
         {
@@ -98,6 +118,7 @@ public class PlayerControl : MonoBehaviour
 
         if (dashing)
         {
+            speed = 7.5f;
             this.GetComponent<Rigidbody>().velocity = Vector3.zero; // to not have onkg mvement overide dash
             playerUI.SetActive(false);
             dashingTime++;
@@ -134,7 +155,7 @@ public class PlayerControl : MonoBehaviour
                 newSpell = Instantiate(spellProjectile[0], this.transform.position, spellProjectile[0].transform.rotation);
                 newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
                 newSpell.GetComponent<FireBallThrow>().spellNum = dashDirection;
-                newSpell.GetComponent<FireBallThrow>().maxRange = 25;
+                newSpell.GetComponent<FireBallThrow>().maxRange = dashSpellRange - 10;
                 newSpell.GetComponent<FireBallThrow>().dashSpell = true;
             }
             if (spellPrimary[dashDirection] == "Wind")
@@ -142,7 +163,7 @@ public class PlayerControl : MonoBehaviour
                 newSpell = Instantiate(spellProjectile[1], this.transform.position, spellProjectile[0].transform.rotation);
                 newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
                 newSpell.GetComponent<WindWaveThrow>().spellNum = dashDirection;
-                newSpell.GetComponent<WindWaveThrow>().maxRange = 25;
+                newSpell.GetComponent<WindWaveThrow>().maxRange = dashSpellRange;
                 newSpell.GetComponent<WindWaveThrow>().dashSpell = true;
             }
             if (spellPrimary[dashDirection] == "Water")
@@ -150,7 +171,7 @@ public class PlayerControl : MonoBehaviour
                 newSpell = Instantiate(spellProjectile[2], this.transform.position, spellProjectile[0].transform.rotation);
                 newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
                 newSpell.GetComponent<WaterPullThrow>().spellNum = dashDirection;
-                newSpell.GetComponent<WaterPullThrow>().maxRange = 25;
+                newSpell.GetComponent<WaterPullThrow>().maxRange = dashSpellRange;
                 newSpell.GetComponent<WaterPullThrow>().dashSpell = true;
             }
             spellPrimary[dashDirection] = "";
@@ -238,7 +259,7 @@ public class PlayerControl : MonoBehaviour
             newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
             newSpell.GetComponent<FireBallThrow>().spellNum = spellSelected;
             Debug.Log("Basic");
-            newSpell.GetComponent<FireBallThrow>().maxRange = 25;
+            newSpell.GetComponent<FireBallThrow>().maxRange = baseRange;
             canCast[spellSelected] = false;
         }
         if (spellSecondary[spellSelected] == "AOE")
@@ -248,7 +269,7 @@ public class PlayerControl : MonoBehaviour
                 newSpellAOE[i] = Instantiate(spellProjectile[0], this.transform.position, spellProjectile[0].transform.rotation);
                 newSpellAOE[i].transform.position = new Vector3(newSpellAOE[i].transform.position.x, newSpellAOE[i].transform.position.y - .25f, newSpellAOE[i].transform.position.z);
                 newSpellAOE[i].GetComponent<FireBallThrow>().spellNum = spellSelected;
-                newSpellAOE[i].GetComponent<FireBallThrow>().maxRange = 25;
+                newSpellAOE[i].GetComponent<FireBallThrow>().maxRange = aoeRange;
                 // I got Really Really Fucking Lazy and Hard Coded the Draw Cricle about point function to make this work. 
                 //Im ashamed of the following code and wil fix when i figrue out abetter draw circle - Mark
                 if (i == 0)
@@ -303,8 +324,8 @@ public class PlayerControl : MonoBehaviour
             newSpell = Instantiate(spellProjectile[0], this.transform.position, spellProjectile[0].transform.rotation);
             newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
             newSpell.GetComponent<FireBallThrow>().spellNum = spellSelected;
-            newSpell.GetComponent<FireBallThrow>().maxRange = 75;
-            newSpell.GetComponent<FireBallThrow>().throwSpeed = 80;
+            newSpell.GetComponent<FireBallThrow>().maxRange = rangeRange;
+            newSpell.GetComponent<FireBallThrow>().throwSpeed = rangeSpeed;
             canCast[spellSelected] = false;
         }
         if (spellSecondary[spellSelected] == "Dash")
@@ -339,7 +360,7 @@ public class PlayerControl : MonoBehaviour
             newSpell.GetComponent<WindWaveThrow>().spellNum = spellSelected;
             //Debug.Log("WindWave" + (spellSelected + 1) + " Thrown");
             canCast[spellSelected] = false;
-            newSpell.GetComponent<WindWaveThrow>().maxRange = 25;
+            newSpell.GetComponent<WindWaveThrow>().maxRange = baseRange;
         }
         else if (spellSecondary[spellSelected] == "AOE")
         {
@@ -348,7 +369,7 @@ public class PlayerControl : MonoBehaviour
                 newSpellAOE[i] = Instantiate(spellProjectile[1], this.transform.position, spellProjectile[0].transform.rotation);
                 newSpellAOE[i].transform.position = new Vector3(newSpellAOE[i].transform.position.x, newSpellAOE[i].transform.position.y - .25f, newSpellAOE[i].transform.position.z);
                 newSpellAOE[i].GetComponent<WindWaveThrow>().spellNum = spellSelected;
-                newSpellAOE[i].GetComponent<WindWaveThrow>().maxRange = 25;
+                newSpellAOE[i].GetComponent<WindWaveThrow>().maxRange = aoeRange;
                 // I got Really Really Fucking Lazy and Hard Coded the Draw Cricle about point function to make this work. 
                 //Im ashamed of the following code and wil fix when i figrue out abetter draw circle - Mark
                 if (i == 0)
@@ -403,8 +424,8 @@ public class PlayerControl : MonoBehaviour
             newSpell = Instantiate(spellProjectile[1], this.transform.position, spellProjectile[1].transform.rotation);
             newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
             newSpell.GetComponent<WindWaveThrow>().spellNum = spellSelected;
-            newSpell.GetComponent<WindWaveThrow>().maxRange = 75;
-            newSpell.GetComponent<WindWaveThrow>().throwSpeed = 80;
+            newSpell.GetComponent<WindWaveThrow>().maxRange = rangeRange;
+            newSpell.GetComponent<WindWaveThrow>().throwSpeed = rangeSpeed;
             canCast[spellSelected] = false;
         }
         else if (spellSecondary[spellSelected] == "Dash")
@@ -438,7 +459,7 @@ public class PlayerControl : MonoBehaviour
             newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
             newSpell.GetComponent<WaterPullThrow>().spellNum = spellSelected;
             //Debug.Log("Basic");
-            newSpell.GetComponent<WaterPullThrow>().maxRange = 25;
+            newSpell.GetComponent<WaterPullThrow>().maxRange = baseRange;
             canCast[spellSelected] = false;
         }
         if (spellSecondary[spellSelected] == "AOE")
@@ -448,7 +469,7 @@ public class PlayerControl : MonoBehaviour
                 newSpellAOE[i] = Instantiate(spellProjectile[2], this.transform.position, spellProjectile[0].transform.rotation);
                 newSpellAOE[i].transform.position = new Vector3(newSpellAOE[i].transform.position.x, newSpellAOE[i].transform.position.y - .25f, newSpellAOE[i].transform.position.z);
                 newSpellAOE[i].GetComponent<WaterPullThrow>().spellNum = spellSelected;
-                newSpellAOE[i].GetComponent<WaterPullThrow>().maxRange = 20;
+                newSpellAOE[i].GetComponent<WaterPullThrow>().maxRange = aoeRange;
                 // I got Really Really Fucking Lazy and Hard Coded the Draw Cricle about point function to make this work. 
                 //Im ashamed of the following code and wil fix when i figrue out abetter draw circle - Mark
                 if (i == 0)
@@ -503,8 +524,8 @@ public class PlayerControl : MonoBehaviour
             newSpell = Instantiate(spellProjectile[2], this.transform.position, spellProjectile[0].transform.rotation);
             newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
             newSpell.GetComponent<WaterPullThrow>().spellNum = spellSelected;
-            newSpell.GetComponent<WaterPullThrow>().maxRange = 75;
-            newSpell.GetComponent<WaterPullThrow>().throwSpeed = 80;
+            newSpell.GetComponent<WaterPullThrow>().maxRange = rangeRange;
+            newSpell.GetComponent<WaterPullThrow>().throwSpeed = rangeSpeed;
             canCast[spellSelected] = false;
         }
         if (spellSecondary[spellSelected] == "Dash")

@@ -44,6 +44,7 @@ public class FireBallThrow : MonoBehaviour
     {
         if (playerInt == 1 && collision.gameObject.tag == "Player2")
         {
+            //collision.gameObject.GetComponent<PlayerControlXbox>().speed = 0;
             collision.gameObject.transform.position = 
                 new Vector3(collision.gameObject.transform.position.x, collision.gameObject.transform.position.y - 6, collision.gameObject.transform.position.z);
             Destroy(this.gameObject);
