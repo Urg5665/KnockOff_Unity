@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0, g: 0, b: 0, a: 1}
+  m_AmbientSkyColor: {r: 0.4650333, g: 0.25685295, b: 0.49056602, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 2
@@ -4431,11 +4431,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1721450721, guid: 7642f96c278eef54793f80617cf389de, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1721450723, guid: 7642f96c278eef54793f80617cf389de, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -16.614698
+      value: -9.614698
       objectReference: {fileID: 0}
     - target: {fileID: 1721450723, guid: 7642f96c278eef54793f80617cf389de, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4443,7 +4443,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1721450723, guid: 7642f96c278eef54793f80617cf389de, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.056859
+      value: 12.943141
       objectReference: {fileID: 0}
     - target: {fileID: 1721450723, guid: 7642f96c278eef54793f80617cf389de, type: 3}
       propertyPath: m_LocalRotation.x
@@ -9013,7 +9013,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 498342372, guid: bfecf78d8994f3443907cf68f57f5ace, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 498342374, guid: bfecf78d8994f3443907cf68f57f5ace, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11748,6 +11748,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RockTile
       objectReference: {fileID: 0}
+    - target: {fileID: 681013955, guid: 0439832363599ee40b575c9f72681156, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 681013956, guid: 0439832363599ee40b575c9f72681156, type: 3}
       propertyPath: m_LocalPosition.x
       value: 61.3
@@ -12489,7 +12493,7 @@ Light:
   serializedVersion: 8
   m_Type: 1
   m_Color: {r: 1, g: 0.740341, b: 0.3443396, a: 1}
-  m_Intensity: 1
+  m_Intensity: 2
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -13947,7 +13951,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 498342372, guid: bfecf78d8994f3443907cf68f57f5ace, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 498342374, guid: bfecf78d8994f3443907cf68f57f5ace, type: 3}
       propertyPath: m_LocalPosition.x
