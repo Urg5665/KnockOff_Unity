@@ -20,6 +20,8 @@ public class FireBallThrow : MonoBehaviour
 
     public CameraMove cameraMove;
 
+    public Vector3 dashTarget;
+
     private void Awake()
     {
         if (playerInt == 1)
@@ -28,6 +30,7 @@ public class FireBallThrow : MonoBehaviour
             playerAim = player.transform.GetChild(0).gameObject;
             playerControl = player.GetComponent<PlayerControl>();
             spellNum = playerControl.spellSelected;
+            dashTarget = GameObject.Find("Player2").transform.position;
         }
         if (playerInt == 2)
         {
@@ -35,6 +38,7 @@ public class FireBallThrow : MonoBehaviour
             playerAim = GameObject.Find("Player2Aim");
             playerControlXbox = player.GetComponent<PlayerControlXbox>();
             spellNum = playerControlXbox.spellSelected;
+            dashTarget = GameObject.Find("Player1").transform.position;
         }
 
         maxRange = 10;
@@ -42,6 +46,7 @@ public class FireBallThrow : MonoBehaviour
         throwSpeed = 30;
         rangeCounter = 0;
         cameraMove = GameObject.Find("MainCamera").GetComponent<CameraMove>();
+
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -82,11 +87,11 @@ public class FireBallThrow : MonoBehaviour
         {
             if (playerInt == 1)
             {
-                transform.position = Vector3.MoveTowards(transform.position, GameObject.Find("Player2").transform.position, throwSpeed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, dashTarget, throwSpeed * Time.deltaTime);
             }
             if (playerInt == 2)
             {
-                transform.position = Vector3.MoveTowards(transform.position, GameObject.Find("Player1").transform.position, throwSpeed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, dashTarget, throwSpeed * Time.deltaTime);
             }
         }
         rangeCounter++;

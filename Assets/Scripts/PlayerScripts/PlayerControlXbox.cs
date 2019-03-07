@@ -77,7 +77,7 @@ public class PlayerControlXbox : MonoBehaviour
 
         baseRange = 30;
         baseSpeed = 40;
-        aoeRange = 40;
+        aoeRange = 30;
 
         rangeRange = 90;
         rangeSpeed = 70;

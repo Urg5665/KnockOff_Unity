@@ -12,7 +12,7 @@ public class WindWaveThrow : MonoBehaviour
     public GameObject playerAim;
     public PlayerControl playerControl;
     public PlayerControlXbox playerControlXbox;
-    public GameObject dashTarget;
+    public Vector3 dashTarget;
 
     public bool dashSpell; // This will tell the spell to seek out the oppoentafter a dash// to hard to cast after dashing
 
@@ -39,7 +39,7 @@ public class WindWaveThrow : MonoBehaviour
             playerAim = player.transform.GetChild(0).gameObject;
             playerControl = player.GetComponent<PlayerControl>();
             spellNum = playerControl.spellSelected;
-            dashTarget = GameObject.Find("Player2");
+            dashTarget = GameObject.Find("Player2").transform.position;
         }
         if (playerInt == 2)
         {
@@ -47,7 +47,8 @@ public class WindWaveThrow : MonoBehaviour
             playerAim = GameObject.Find("Player2Aim");
             playerControlXbox = player.GetComponent<PlayerControlXbox>();
             spellNum = playerControlXbox.spellSelected;
-            dashTarget = GameObject.Find("Player1");
+            dashTarget = GameObject.Find("Player1").transform.position;
+
         }
         maxRange = 10;
 
@@ -113,14 +114,21 @@ public class WindWaveThrow : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-
-
+        if (!dashSpell)
+        {
+            transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
+        }
         if (dashSpell)
         {
-            transform.LookAt(dashTarget.transform);
+            if (playerInt == 1)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, dashTarget, throwSpeed * Time.deltaTime);
+            }
+            if (playerInt == 2)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, dashTarget, throwSpeed * Time.deltaTime);
+            }
         }
-        transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
-        
         rangeCounter++;
 
         if (rangeCounter > maxRange)
@@ -144,6 +152,17 @@ public class WindWaveThrow : MonoBehaviour
     }
 }
 /*
+ *         if (dashSpell)
+        {
+            transform.LookAt(dashTarget.transform);
+        }
+        transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
  * if (!dashSpell)
         {
             transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);

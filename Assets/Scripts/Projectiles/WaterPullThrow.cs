@@ -12,7 +12,7 @@ public class WaterPullThrow : MonoBehaviour
     public GameObject playerAim;
     public PlayerControl playerControl;
     public PlayerControlXbox playerControlXbox;
-    public GameObject dashTarget;
+
 
     public bool dashSpell; // This will tell the spell to seek out the oppoentafter a dash// to hard to cast after dashing
 
@@ -22,6 +22,7 @@ public class WaterPullThrow : MonoBehaviour
 
     public int rangeCounter;
     public int maxRange;
+    public Vector3 dashTarget;
 
     public static bool hitPlayer; // so physics doesnt freek out, this means the first time the player is hit by this is does not fucking anhiliate them - Mark
 
@@ -38,7 +39,7 @@ public class WaterPullThrow : MonoBehaviour
             playerAim = player.transform.GetChild(0).gameObject;
             playerControl = player.GetComponent<PlayerControl>();
             spellNum = playerControl.spellSelected;
-            dashTarget = GameObject.Find("Player2");
+            dashTarget = GameObject.Find("Player2").transform.position;
         }
         if (playerInt == 2)
         {
@@ -46,7 +47,7 @@ public class WaterPullThrow : MonoBehaviour
             playerAim = GameObject.Find("Player2Aim");
             playerControlXbox = player.GetComponent<PlayerControlXbox>();
             spellNum = playerControlXbox.spellSelected;
-            dashTarget = GameObject.Find("Player1");
+            dashTarget = GameObject.Find("Player1").transform.position;
         }
 
         transform.LookAt(playerAim.transform);
@@ -112,11 +113,21 @@ public class WaterPullThrow : MonoBehaviour
         }
 
 
+        if (!dashSpell)
+        {
+            transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
+        }
         if (dashSpell)
         {
-            transform.LookAt(dashTarget.transform); // seeks out oppoent
+            if (playerInt == 1)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, dashTarget, throwSpeed * Time.deltaTime);
+            }
+            if (playerInt == 2)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, dashTarget, throwSpeed * Time.deltaTime);
+            }
         }
-        transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
 
         rangeCounter++;
 
