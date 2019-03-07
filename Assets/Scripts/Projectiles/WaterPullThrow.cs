@@ -113,21 +113,11 @@ public class WaterPullThrow : MonoBehaviour
         }
 
 
-        if (!dashSpell)
-        {
-            transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
-        }
         if (dashSpell)
         {
-            if (playerInt == 1)
-            {
-                transform.position = Vector3.MoveTowards(transform.position, dashTarget, throwSpeed * Time.deltaTime);
-            }
-            if (playerInt == 2)
-            {
-                transform.position = Vector3.MoveTowards(transform.position, dashTarget, throwSpeed * Time.deltaTime);
-            }
+            transform.LookAt(dashTarget);
         }
+        transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
 
         rangeCounter++;
 

@@ -84,7 +84,7 @@ public class PlayerControl : MonoBehaviour
         rangeRange = 90;
         rangeSpeed = 70;
 
-        dashSpellRange = 25; // should be very close
+        dashSpellRange = 20; // should be very close
 
         for (int i = 0; i < 4; i++)
         {
@@ -155,7 +155,7 @@ public class PlayerControl : MonoBehaviour
                 newSpell = Instantiate(spellProjectile[0], this.transform.position, spellProjectile[0].transform.rotation);
                 newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
                 newSpell.GetComponent<FireBallThrow>().spellNum = dashDirection;
-                newSpell.GetComponent<FireBallThrow>().maxRange = dashSpellRange - 10;
+                newSpell.GetComponent<FireBallThrow>().maxRange = dashSpellRange;
                 newSpell.GetComponent<FireBallThrow>().dashSpell = true;
             }
             if (spellPrimary[dashDirection] == "Wind")
@@ -264,7 +264,8 @@ public class PlayerControl : MonoBehaviour
         }
         if (spellSecondary[spellSelected] == "AOE")
         {
-            for (int i = 0; i < 5; i++)
+            float dist = Vector3.Distance(player1Aim.transform.position, transform.position);
+            for (int i = 0; i < 3; i++)
             {
                 newSpellAOE[i] = Instantiate(spellProjectile[0], this.transform.position, spellProjectile[0].transform.rotation);
                 newSpellAOE[i].transform.position = new Vector3(newSpellAOE[i].transform.position.x, newSpellAOE[i].transform.position.y - .25f, newSpellAOE[i].transform.position.z);
@@ -280,39 +281,24 @@ public class PlayerControl : MonoBehaviour
                 {
                     if (i == 1)
                     {
-                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x + 3, this.transform.position.y, AOEpoint.transform.position.z);
+                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x + dist, this.transform.position.y, AOEpoint.transform.position.z);
                     }
                     if (i == 2)
                     {
-                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x + 3, this.transform.position.y, AOEpoint.transform.position.z);
-                    }
-                    if (i == 3)
-                    {
-                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x - 9, this.transform.position.y, AOEpoint.transform.position.z);
-                    }
-                    if (i == 4)
-                    {
-                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x - 3, this.transform.position.y, AOEpoint.transform.position.z);
+                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x - (dist*2), this.transform.position.y, AOEpoint.transform.position.z);
                     }
                 }
                 if (spellSelected == 1 || spellSelected == 3)
                 {
                     if (i == 1)
                     {
-                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x, this.transform.position.y, AOEpoint.transform.position.z + 3);
+                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x, this.transform.position.y, AOEpoint.transform.position.z + dist);
                     }
                     if (i == 2)
                     {
-                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x, this.transform.position.y, AOEpoint.transform.position.z + 3);
+                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x, this.transform.position.y, AOEpoint.transform.position.z - (dist*2));
                     }
-                    if (i == 3)
-                    {
-                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x, this.transform.position.y, AOEpoint.transform.position.z - 9);
-                    }
-                    if (i == 4)
-                    {
-                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x, this.transform.position.y, AOEpoint.transform.position.z - 3);
-                    }
+
                 }
 
                 newSpellAOE[i].GetComponent<FireBallThrow>().transform.LookAt(AOEpoint);
@@ -364,7 +350,8 @@ public class PlayerControl : MonoBehaviour
         }
         else if (spellSecondary[spellSelected] == "AOE")
         {
-            for (int i = 0; i < 8; i++)
+            float dist = Vector3.Distance(player1Aim.transform.position, transform.position);
+            for (int i = 0; i < 3; i++)
             {
                 newSpellAOE[i] = Instantiate(spellProjectile[1], this.transform.position, spellProjectile[0].transform.rotation);
                 newSpellAOE[i].transform.position = new Vector3(newSpellAOE[i].transform.position.x, newSpellAOE[i].transform.position.y - .25f, newSpellAOE[i].transform.position.z);
@@ -380,38 +367,22 @@ public class PlayerControl : MonoBehaviour
                 {
                     if (i == 1)
                     {
-                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x + 3, this.transform.position.y, AOEpoint.transform.position.z);
+                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x + dist, this.transform.position.y, AOEpoint.transform.position.z);
                     }
                     if (i == 2)
                     {
-                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x + 3, this.transform.position.y, AOEpoint.transform.position.z);
-                    }
-                    if (i == 3)
-                    {
-                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x - 9, this.transform.position.y, AOEpoint.transform.position.z);
-                    }
-                    if (i == 4)
-                    {
-                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x - 3, this.transform.position.y, AOEpoint.transform.position.z);
+                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x - (dist * 2), this.transform.position.y, AOEpoint.transform.position.z);
                     }
                 }
                 if (spellSelected == 1 || spellSelected == 3)
                 {
                     if (i == 1)
                     {
-                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x, this.transform.position.y, AOEpoint.transform.position.z + 3);
+                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x, this.transform.position.y, AOEpoint.transform.position.z + dist);
                     }
                     if (i == 2)
                     {
-                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x, this.transform.position.y, AOEpoint.transform.position.z + 3);
-                    }
-                    if (i == 3)
-                    {
-                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x, this.transform.position.y, AOEpoint.transform.position.z - 9);
-                    }
-                    if (i == 4)
-                    {
-                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x, this.transform.position.y, AOEpoint.transform.position.z - 3);
+                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x, this.transform.position.y, AOEpoint.transform.position.z - (dist * 2));
                     }
 
                 }
@@ -464,7 +435,8 @@ public class PlayerControl : MonoBehaviour
         }
         if (spellSecondary[spellSelected] == "AOE")
         {
-            for (int i = 0; i < 5; i++)
+            float dist = Vector3.Distance(player1Aim.transform.position, transform.position);
+            for (int i = 0; i < 3; i++)
             {
                 newSpellAOE[i] = Instantiate(spellProjectile[2], this.transform.position, spellProjectile[0].transform.rotation);
                 newSpellAOE[i].transform.position = new Vector3(newSpellAOE[i].transform.position.x, newSpellAOE[i].transform.position.y - .25f, newSpellAOE[i].transform.position.z);
@@ -480,39 +452,24 @@ public class PlayerControl : MonoBehaviour
                 {
                     if (i == 1)
                     {
-                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x + 3, this.transform.position.y, AOEpoint.transform.position.z);
+                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x + dist, this.transform.position.y, AOEpoint.transform.position.z);
                     }
                     if (i == 2)
                     {
-                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x + 3, this.transform.position.y, AOEpoint.transform.position.z);
-                    }
-                    if (i == 3)
-                    {
-                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x - 9, this.transform.position.y, AOEpoint.transform.position.z);
-                    }
-                    if (i == 4)
-                    {
-                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x - 3, this.transform.position.y, AOEpoint.transform.position.z);
+                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x - (dist * 2), this.transform.position.y, AOEpoint.transform.position.z);
                     }
                 }
                 if (spellSelected == 1 || spellSelected == 3)
                 {
                     if (i == 1)
                     {
-                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x, this.transform.position.y, AOEpoint.transform.position.z + 3);
+                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x, this.transform.position.y, AOEpoint.transform.position.z + dist);
                     }
                     if (i == 2)
                     {
-                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x, this.transform.position.y, AOEpoint.transform.position.z + 3);
+                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x, this.transform.position.y, AOEpoint.transform.position.z - (dist * 2));
                     }
-                    if (i == 3)
-                    {
-                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x, this.transform.position.y, AOEpoint.transform.position.z - 9);
-                    }
-                    if (i == 4)
-                    {
-                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x, this.transform.position.y, AOEpoint.transform.position.z - 3);
-                    }
+
                 }
 
                 newSpellAOE[i].GetComponent<WaterPullThrow>().transform.LookAt(AOEpoint);
