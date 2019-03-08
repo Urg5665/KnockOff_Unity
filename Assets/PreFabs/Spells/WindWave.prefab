@@ -112,10 +112,19 @@ MonoBehaviour:
   playerAim: {fileID: 0}
   playerControl: {fileID: 0}
   playerControlXbox: {fileID: 0}
+  dashTarget: {x: 0, y: 0, z: 0}
+  dashSpell: 0
   windForce: 0
+  windKnockUp: 0
   spellDir: {x: 0, y: 0, z: 0}
   rangeCounter: 0
   maxRange: 0
+  initialRotation: {x: 0, y: 0, z: 0, w: 0}
+  hitSlow: 0
+  cameraMove: {fileID: 0}
+  hitEffect: {fileID: 6143078807497813169, guid: 81a09b2418436e74ea5fe0c80d57b2b7,
+    type: 3}
+  hitEffectInGame: {fileID: 0}
 --- !u!1001 &270474135917543537
 PrefabInstance:
   m_ObjectHideFlags: 0

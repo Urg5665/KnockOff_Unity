@@ -22,6 +22,11 @@ public class FireBallThrow : MonoBehaviour
 
     public Vector3 dashTarget;
 
+    public GameObject hitEffect;
+    public GameObject hitEffectInGame;
+
+    public int hitSlow; // For Effects i guess?
+
     private void Awake()
     {
         if (playerInt == 1)
@@ -46,6 +51,7 @@ public class FireBallThrow : MonoBehaviour
         throwSpeed = 30;
         rangeCounter = 0;
         cameraMove = GameObject.Find("MainCamera").GetComponent<CameraMove>();
+        hitSlow = 101;
 
     }
 
@@ -57,21 +63,26 @@ public class FireBallThrow : MonoBehaviour
             StartCoroutine(cameraMove.Shake(.3f, .5f));
             collision.gameObject.transform.position = 
                 new Vector3(collision.gameObject.transform.position.x, collision.gameObject.transform.position.y - 6, collision.gameObject.transform.position.z);
-            Destroy(this.gameObject);
            playerControl.canCast[spellNum] = true;
            playerControl.spellPrimary[spellNum] = "";
            playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
-
+           hitEffectInGame = Instantiate(hitEffect);
+           //hitEffectInGame.transform.position = this.transform.position;
+           hitEffectInGame.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 1, this.transform.position.z);
+           hitSlow = 0;
         }
         if (playerInt == 2 && collision.gameObject.tag == "Player1")
         {
             StartCoroutine(cameraMove.Shake(.3f, .5f));
             collision.gameObject.transform.position =
                 new Vector3(collision.gameObject.transform.position.x, collision.gameObject.transform.position.y - 6, collision.gameObject.transform.position.z);
-            Destroy(this.gameObject);
             playerControlXbox.canCast[spellNum] = true;
             playerControlXbox.spellPrimary[spellNum] = "";
             playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
+            hitEffectInGame = Instantiate(hitEffect);
+            //hitEffectInGame.transform.position = this.transform.position;
+            hitEffectInGame.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 1, this.transform.position.z);
+            hitSlow = 0;
 
         }
 
@@ -79,6 +90,22 @@ public class FireBallThrow : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (hitSlow == 0)
+        {
+            Time.timeScale = 0.2f;
+            hitSlow++;
+        }
+        if (hitSlow <= 10)
+        {
+            hitSlow++;
+        }
+        if (hitSlow == 10)
+        {
+            Time.timeScale = 1.0f;
+            Destroy(this.gameObject);
+        }
+
+
         if (!dashSpell)
         {
             transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);

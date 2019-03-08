@@ -113,8 +113,12 @@ MonoBehaviour:
   playerAim: {fileID: 0}
   playerControl: {fileID: 0}
   playerControlXbox: {fileID: 0}
+  dashSpell: 0
   rangeCounter: 0
   maxRange: 20
+  cameraMove: {fileID: 0}
+  dashTarget: {x: 0, y: 0, z: 0}
+  hitEffect: {fileID: 1545252266986714, guid: b9debf73814de9046ae407aa5078c235, type: 3}
 --- !u!1 &7987790115747281242
 GameObject:
   m_ObjectHideFlags: 0

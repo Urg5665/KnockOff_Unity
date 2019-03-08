@@ -29,6 +29,8 @@ public class WaterPullThrow : MonoBehaviour
     public int hitSlow; // For Effects i guess?
 
     public CameraMove cameraMove;
+    public GameObject hitEffect;
+    public GameObject hitEffectInGame;
 
     private void Awake()
     {
@@ -77,6 +79,9 @@ public class WaterPullThrow : MonoBehaviour
             hitSlow = 0;
             StartCoroutine(cameraMove.Shake(.15f, .5f));
             cameraMove.player2Hit = true;
+            hitEffectInGame = Instantiate(hitEffect);
+            //hitEffectInGame.transform.position = this.transform.position;
+            hitEffectInGame.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 1, this.transform.position.z);
         }
         if (!hitPlayer && playerInt == 2 && collision.gameObject.tag == "Player1")
         {
@@ -90,6 +95,9 @@ public class WaterPullThrow : MonoBehaviour
             hitSlow = 0;
             StartCoroutine(cameraMove.Shake(.15f, .5f));
             cameraMove.player1Hit = true;
+            hitEffectInGame = Instantiate(hitEffect);
+            //hitEffectInGame.transform.position = this.transform.position;
+            hitEffectInGame.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 1, this.transform.position.z);
         }
     }
 

@@ -4811,15 +4811,17 @@ MonoBehaviour:
   playerAim: {fileID: 0}
   playerControl: {fileID: 0}
   playerControlXbox: {fileID: 0}
-  dashTarget: {fileID: 0}
   dashSpell: 0
   waterForce: 0
   waterKnockUp: 0
   spellDir: {x: 0, y: 0, z: 0}
   rangeCounter: 0
   maxRange: 0
+  dashTarget: {x: 0, y: 0, z: 0}
   hitSlow: 0
   cameraMove: {fileID: 0}
+  hitEffect: {fileID: 1545252266986714, guid: a40a2978f1d8e62408deda7dea344d26, type: 3}
+  hitEffectInGame: {fileID: 0}
 --- !u!1 &3641756450570597445
 GameObject:
   m_ObjectHideFlags: 0
