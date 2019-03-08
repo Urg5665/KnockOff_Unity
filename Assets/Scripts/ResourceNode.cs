@@ -15,6 +15,8 @@ public class ResourceNode : MonoBehaviour
     public int respawnCounter;
     public int respawnTime;
 
+    public AudioSource audioSource;
+
     private void Awake()
     {
         player1 = GameObject.Find("Player1");
@@ -23,11 +25,13 @@ public class ResourceNode : MonoBehaviour
         currentSpawn = Instantiate(resObjects[resType], this.transform);
         respawnCounter = 501;
         respawnTime = 500;
+        audioSource = this.GetComponent<AudioSource>();
     }
     void Update()
     {
         if (currentSpawn == null)
         {
+            audioSource.Play();
             resType = Mathf.RoundToInt(Random.Range(0, 3));
             currentSpawn = Instantiate(resObjects[resType], this.transform);
             currentSpawn.SetActive(false);

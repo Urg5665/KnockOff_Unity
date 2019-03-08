@@ -20,6 +20,12 @@ public class DeathPlane : MonoBehaviour
 
     public CameraMove cameraMove;
 
+    public AudioSource audioSource;
+
+    private void Awake()
+    {
+        audioSource = this.GetComponent<AudioSource>();
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -29,6 +35,7 @@ public class DeathPlane : MonoBehaviour
             player1.transform.position = new Vector3(-10,2.5f,-21);
             player1.GetComponent<Rigidbody>().velocity = Vector3.zero;
             StartCoroutine(cameraMove.Shake(.3f, 1f));
+            audioSource.Play();
 
         }
         if (collision.gameObject.tag == "Player2")
@@ -38,6 +45,7 @@ public class DeathPlane : MonoBehaviour
             player2Aim.transform.position = new Vector3(28, 2.5f, -20);
             player2.GetComponent<Rigidbody>().velocity = Vector3.zero;
             StartCoroutine(cameraMove.Shake(.3f, 1f));
+            audioSource.Play();
         }
         if (collision.gameObject.tag == "Dummy")
         {
@@ -45,6 +53,7 @@ public class DeathPlane : MonoBehaviour
             dummy.GetComponent<Rigidbody>().velocity = Vector3.zero;
             dummy.GetComponent<DummyMovement>().i = 0;
             StartCoroutine(cameraMove.Shake(.3f, 1f));
+            audioSource.Play();
         }
 
     }

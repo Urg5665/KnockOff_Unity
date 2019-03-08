@@ -27,6 +27,9 @@ public class FireBallThrow : MonoBehaviour
 
     public int hitSlow; // For Effects i guess?
 
+    public AudioClip audioClip;
+    public AudioSource audioSource;
+
     private void Awake()
     {
         if (playerInt == 1)
@@ -52,6 +55,8 @@ public class FireBallThrow : MonoBehaviour
         rangeCounter = 0;
         cameraMove = GameObject.Find("MainCamera").GetComponent<CameraMove>();
         hitSlow = 101;
+        audioClip = this.GetComponent<AudioSource>().clip;
+        audioSource = this.GetComponent<AudioSource>();
 
     }
 
@@ -99,7 +104,7 @@ public class FireBallThrow : MonoBehaviour
         {
             hitSlow++;
         }
-        if (hitSlow == 10)
+        if (hitSlow == 10 && !audioSource.isPlaying)
         {
             Time.timeScale = 1.0f;
             Destroy(this.gameObject);
