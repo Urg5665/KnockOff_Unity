@@ -4774,6 +4774,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d922b0b0d1bd32f41937cfb478b3d20a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardTrailTarget: {fileID: 0}
+  cardTrailTarget: {fileID: 5503366003343464759, guid: 189f974136601e24a9bd0cbde212644c,
+    type: 3}
   trailSpeed: 1
   life: 0

@@ -45,8 +45,10 @@ public class SkillShotUI_DashRotate : MonoBehaviour
 
         hypo = Mathf.Sqrt((xDif * xDif + zDif * zDif));
 
-        angle = Mathf.Rad2Deg * (Mathf.Asin(zDif / hypo));
+        angle = Mathf.Rad2Deg * (Mathf.Acos(zDif / hypo));
 
+        //this.transform.position = new Vector3(playerTarget.transform.position.x, this.transform.position.y, playerTarget.transform.position.z);
+        /*
         if (angle > 45) // north south
         {
             if (zPos > 0) // South
@@ -98,9 +100,9 @@ public class SkillShotUI_DashRotate : MonoBehaviour
                 }
 
             }
-        }
+        }*/
 
-        transform.localEulerAngles = new Vector3(0, 0, angle2);
+        transform.localEulerAngles = new Vector3(0, 0, angle/2);
     }
 
 }
