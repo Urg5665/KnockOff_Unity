@@ -24047,6 +24047,39 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 76097785bb7ce2d4ea0f06a552bb57a8,
         type: 3}
+    - target: {fileID: 6437287643261385983, guid: a310bff310c56ba419f2358e488fb33f,
+        type: 3}
+      propertyPath: fireSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2fa9a71aceff53b42bc24a4a60b398ad,
+        type: 3}
+    - target: {fileID: 6437287643261385983, guid: a310bff310c56ba419f2358e488fb33f,
+        type: 3}
+      propertyPath: waterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 724be948bc23cf54c9096a77cb33a2e7,
+        type: 3}
+    - target: {fileID: 6437287643261385983, guid: a310bff310c56ba419f2358e488fb33f,
+        type: 3}
+      propertyPath: windSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2835eda9b1bd8a24ca04bcc1063121ce,
+        type: 3}
+    - target: {fileID: 6437287641805267924, guid: a310bff310c56ba419f2358e488fb33f,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6437287642983011357, guid: a310bff310c56ba419f2358e488fb33f,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6437287643170017511, guid: a310bff310c56ba419f2358e488fb33f,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a310bff310c56ba419f2358e488fb33f, type: 3}
 --- !u!1001 &6958436472791015256
@@ -24350,6 +24383,24 @@ PrefabInstance:
       propertyPath: playerControlXbox
       value: 
       objectReference: {fileID: 517670306}
+    - target: {fileID: 1414073658579987083, guid: 34b33abdc340acd40a2559b1d1bd887a,
+        type: 3}
+      propertyPath: fireSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2fa9a71aceff53b42bc24a4a60b398ad,
+        type: 3}
+    - target: {fileID: 1414073658579987083, guid: 34b33abdc340acd40a2559b1d1bd887a,
+        type: 3}
+      propertyPath: waterSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 724be948bc23cf54c9096a77cb33a2e7,
+        type: 3}
+    - target: {fileID: 1414073658579987083, guid: 34b33abdc340acd40a2559b1d1bd887a,
+        type: 3}
+      propertyPath: windSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2835eda9b1bd8a24ca04bcc1063121ce,
+        type: 3}
     - target: {fileID: 7729988042508935482, guid: 34b33abdc340acd40a2559b1d1bd887a,
         type: 3}
       propertyPath: m_AnchoredPosition.x
