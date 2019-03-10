@@ -14641,22 +14641,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 16511851, guid: 79dc483f8647f6a499d8b2f1bba59c36, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -172
-      objectReference: {fileID: 0}
-    - target: {fileID: 159873537, guid: 79dc483f8647f6a499d8b2f1bba59c36, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -33
-      objectReference: {fileID: 0}
-    - target: {fileID: 1757605199, guid: 79dc483f8647f6a499d8b2f1bba59c36, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 48
-      objectReference: {fileID: 0}
-    - target: {fileID: 276738109, guid: 79dc483f8647f6a499d8b2f1bba59c36, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 65
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79dc483f8647f6a499d8b2f1bba59c36, type: 3}
 --- !u!4 &1379309540 stripped
@@ -15165,7 +15149,7 @@ PrefabInstance:
     - target: {fileID: 4308267977569094971, guid: 0f9ffe8302123f5419638698ccf5218d,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f9ffe8302123f5419638698ccf5218d, type: 3}
@@ -23525,6 +23509,11 @@ PrefabInstance:
       propertyPath: playerControlXbox
       value: 
       objectReference: {fileID: 517670306}
+    - target: {fileID: 8855042641339006266, guid: 87d47c881ef98164e8ae36907860a9fd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2231650958681150889, guid: 87d47c881ef98164e8ae36907860a9fd, type: 3}
     - {fileID: 5211571976519051201, guid: 87d47c881ef98164e8ae36907860a9fd, type: 3}

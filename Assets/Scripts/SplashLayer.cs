@@ -12,7 +12,7 @@ public class SplashLayer : MonoBehaviour
 
         GameObject splashClone = Instantiate(splash);
         Transform splashLocation = collision.transform;
-        splashClone.transform.position = new Vector3(splashLocation.transform.position.x, splashLocation.transform.position.y - 2, splashLocation.transform.position.z);
+        splashClone.transform.position = new Vector3(splashLocation.transform.position.x, splashLocation.transform.position.y, splashLocation.transform.position.z);
         splashClone = null;
     }
 }
