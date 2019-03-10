@@ -180,6 +180,78 @@ public class SkillShotRotate : MonoBehaviour
                 dashSkillShot.SetActive(false);
             }
         }
+        if (playerBelong.name == "Player2")
+        {
+            if (playerControlXbox.spellPrimary[playerControlXbox.spellSelected] != "" && playerControlXbox.spellSecondary[playerControlXbox.spellSelected] == "") // aaplies base spell
+            {
+
+                cardSkillShot.SetActive(false);
+                baseSkillShot.SetActive(true);
+                aoeSkillShot.SetActive(false);
+                rangeSkillShot.SetActive(false);
+                dashSkillShot.SetActive(false);
+            }
+            if (playerControlXbox.spellPrimary[playerControlXbox.spellSelected] == "Fire") // aaplies base spell and color
+            {
+                baseSkillShot.GetComponent<Image>().color = Color.red;
+                aoeSkillShot.GetComponent<Image>().color = Color.red;
+                rangeSkillShot.GetComponent<Image>().color = Color.red;
+                dashSkillShot.GetComponent<Image>().color = Color.red;
+            }
+            if (playerControlXbox.spellPrimary[playerControlXbox.spellSelected] == "Wind") // aaplies base spell and color
+            {
+                baseSkillShot.GetComponent<Image>().color = new Color32(67, 215, 255, 255);
+                aoeSkillShot.GetComponent<Image>().color = new Color32(67, 215, 255, 255);
+                rangeSkillShot.GetComponent<Image>().color = new Color32(67, 215, 255, 255);
+                dashSkillShot.GetComponent<Image>().color = new Color32(67, 215, 255, 255);
+            }
+            if (playerControlXbox.spellPrimary[playerControlXbox.spellSelected] == "Water") // aaplies base spell ccolor
+            {
+                baseSkillShot.GetComponent<Image>().color = Color.blue;
+                aoeSkillShot.GetComponent<Image>().color = Color.blue;
+                rangeSkillShot.GetComponent<Image>().color = Color.blue;
+                dashSkillShot.GetComponent<Image>().color = Color.blue;
+            }
+            if (playerControlXbox.spellSecondary[playerControlXbox.spellSelected] == "Range")
+            {
+                rangeSkillShot.SetActive(true);
+
+                baseSkillShot.SetActive(false);
+                aoeSkillShot.SetActive(false);
+                dashSkillShot.SetActive(false);
+                cardSkillShot.SetActive(false);
+            }
+            else if (playerControlXbox.spellSecondary[playerControlXbox.spellSelected] == "AOE")
+            {
+                aoeSkillShot.SetActive(true);
+
+                baseSkillShot.SetActive(false);
+                rangeSkillShot.SetActive(false);
+                dashSkillShot.SetActive(false);
+                cardSkillShot.SetActive(false);
+            }
+            else if (playerControlXbox.spellSecondary[playerControlXbox.spellSelected] == "Dash")
+            {
+                dashSkillShot.SetActive(true);
+
+                baseSkillShot.SetActive(false);
+                rangeSkillShot.SetActive(false);
+                aoeSkillShot.SetActive(false);
+                cardSkillShot.SetActive(false);
+            }
+            if (playerControlXbox.spellSecondary[playerControlXbox.spellSelected] != "") // Full Spell
+            {
+                cardSkillShot.SetActive(false);
+            }
+            if (playerControlXbox.spellPrimary[playerControlXbox.spellSelected] == "") // Reset Spell Completely
+            {
+                cardSkillShot.SetActive(true);
+                baseSkillShot.SetActive(false);
+                aoeSkillShot.SetActive(false);
+                rangeSkillShot.SetActive(false);
+                dashSkillShot.SetActive(false);
+            }
+        }
     }
     
 }

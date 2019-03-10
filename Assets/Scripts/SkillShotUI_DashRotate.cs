@@ -53,22 +53,22 @@ public class SkillShotUI_DashRotate : MonoBehaviour
             {
                 if (xPos > 0)
                 {
-                    angle2 = 90 + Mathf.Rad2Deg * (Mathf.Asin(xDif / hypo));
+                    angle2 = 270 + Mathf.Rad2Deg * (Mathf.Asin(xDif / hypo));
                 }
                 if (xPos <= 0)
                 {
-                    angle2 = 90 - Mathf.Rad2Deg * (Mathf.Asin(xDif / hypo));
+                    angle2 = 270 - Mathf.Rad2Deg * (Mathf.Asin(xDif / hypo));
                 }
             }
             if (zPos <= 0)
             {
                 if (xPos > 0)
                 {
-                    angle2 = 270 - Mathf.Rad2Deg * (Mathf.Asin(xDif / hypo));
+                    angle2 = 90 - Mathf.Rad2Deg * (Mathf.Asin(xDif / hypo));
                 }
                 if (xPos <= 0)
                 {
-                    angle2 = 270 + Mathf.Rad2Deg * (Mathf.Asin(xDif / hypo));
+                    angle2 = 90 + Mathf.Rad2Deg * (Mathf.Asin(xDif / hypo));
                 }
             }
         }
@@ -76,24 +76,25 @@ public class SkillShotUI_DashRotate : MonoBehaviour
         {
             if (xPos > 0)
             {
+
                 if (zPos > 0)
                 {
-                    angle2 = 360 - Mathf.Rad2Deg * (Mathf.Asin(zDif / hypo));
+                    angle2 = 180 - Mathf.Rad2Deg * (Mathf.Asin(zDif / hypo));
                 }
                 if (zPos <= 0)
                 {
-                    angle2 = Mathf.Rad2Deg * (Mathf.Asin(zDif / hypo));
+                    angle2 = 180 + Mathf.Rad2Deg * (Mathf.Asin(zDif / hypo));
                 }
             }
             if (xPos <= 0)
             {
                 if (zPos > 0)
                 {
-                    angle2 = 180 + Mathf.Rad2Deg * (Mathf.Asin(zDif / hypo));
+                    angle2 = Mathf.Rad2Deg * (Mathf.Asin(zDif / hypo));
                 }
                 if (zPos <= 0)
                 {
-                    angle2 = 180 - Mathf.Rad2Deg * (Mathf.Asin(zDif / hypo));
+                    angle2 = 360 - Mathf.Rad2Deg * (Mathf.Asin(zDif / hypo));
                 }
 
             }
