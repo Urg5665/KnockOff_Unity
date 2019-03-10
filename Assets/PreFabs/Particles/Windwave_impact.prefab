@@ -169,7 +169,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 3
       scalar: 20
-      minScalar: 10
+      minScalar: 20
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -285,7 +285,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 3
       scalar: 10
-      minScalar: 5
+      minScalar: 10
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -6060,7 +6060,7 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 0}
-        key1: {r: 0.5235849, g: 0.89736444, b: 1, a: 0.4509804}
+        key1: {r: 0.5235849, g: 0.89736444, b: 1, a: 0.87058824}
         key2: {r: 1, g: 1, b: 1, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -9623,7 +9623,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 3
       scalar: 10
-      minScalar: 5
+      minScalar: 10
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -10817,7 +10817,7 @@ ParticleSystem:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 0}
         key1: {r: 0.5235849, g: 0.89736444, b: 1, a: 0.20784314}
-        key2: {r: 1, g: 1, b: 1, a: 0.14509805}
+        key2: {r: 1, g: 1, b: 1, a: 0.59607846}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
