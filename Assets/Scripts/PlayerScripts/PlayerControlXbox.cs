@@ -403,7 +403,7 @@ public class PlayerControlXbox : MonoBehaviour
         }
         else if (spellSecondary[spellSelected] == "Dash")
         {
-            Debug.Log("Dash");
+            //Debug.Log("Dash");
             canCast[spellSelected] = false;
             dashing = true;
             dashDirection = spellSelected;
@@ -489,7 +489,7 @@ public class PlayerControlXbox : MonoBehaviour
         }
         if (spellSecondary[spellSelected] == "Dash")
         {
-            Debug.Log("Dash");
+            //Debug.Log("Dash");
             canCast[spellSelected] = false;
             dashing = true;
             dashDirection = spellSelected;

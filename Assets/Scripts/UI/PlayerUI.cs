@@ -11,6 +11,10 @@ public class PlayerUI : MonoBehaviour
 
     public GameObject[] spellUI;
 
+    public Sprite fireSprite;
+    public Sprite windSprite;
+    public Sprite waterSprite;
+
     public Sprite aoeSprite;
     public Sprite rangeSprite;
     public Sprite dashSprite;
@@ -36,19 +40,22 @@ public class PlayerUI : MonoBehaviour
             {
                 if (playerControl.spellPrimary[i] == "Fire")
                 {
-                    spellUI[i].GetComponent<Image>().color = Color.red;
+                    //spellUI[i].GetComponent<Image>().color = Color.red;
+                    spellUI[i].GetComponent<Image>().sprite = fireSprite;
                 }
                 if (playerControl.spellPrimary[i] == "Wind")
                 {
-                    spellUI[i].GetComponent<Image>().color = new Color32(67, 215, 255, 255);
+                    //spellUI[i].GetComponent<Image>().color = new Color32(67, 215, 255, 255);
+                    spellUI[i].GetComponent<Image>().sprite = windSprite;
                 }
                 if (playerControl.spellPrimary[i] == "Water")
                 {
-                    spellUI[i].GetComponent<Image>().color = Color.blue;
+                    //spellUI[i].GetComponent<Image>().color = Color.blue;
+                    spellUI[i].GetComponent<Image>().sprite = waterSprite;
                 }
                 if (playerControl.spellPrimary[i] == "")
                 {
-                    spellUI[i].GetComponent<Image>().color = Color.white;
+                    //spellUI[i].GetComponent<Image>().color = Color.white;
                 }
                 if (playerControl.spellSecondary[i] == "AOE")
                 {
@@ -70,7 +77,7 @@ public class PlayerUI : MonoBehaviour
                     }
 
                 }
-                if (playerControl.spellSecondary[i] == "")
+                if (playerControl.spellPrimary[i] == "")
                 {
                     spellUI[i].GetComponent<Image>().sprite = null;
                 }
@@ -84,14 +91,17 @@ public class PlayerUI : MonoBehaviour
                 if (playerControlXbox.spellPrimary[i] == "Fire")
                 {
                     spellUI[i].GetComponent<Image>().color = Color.red;
+                    spellUI[i].GetComponent<Image>().sprite = fireSprite;
                 }
                 if (playerControlXbox.spellPrimary[i] == "Wind")
                 {
                     spellUI[i].GetComponent<Image>().color = new Color32(67, 215, 255, 255);
+                    spellUI[i].GetComponent<Image>().sprite = windSprite;
                 }
                 if (playerControlXbox.spellPrimary[i] == "Water")
                 {
                     spellUI[i].GetComponent<Image>().color = Color.blue;
+                    spellUI[i].GetComponent<Image>().sprite = waterSprite;
                 }
                 if (playerControlXbox.spellPrimary[i] == "")
                 {
@@ -117,7 +127,7 @@ public class PlayerUI : MonoBehaviour
                     }
 
                 }
-                if (playerControlXbox.spellSecondary[i] == "")
+                if (playerControlXbox.spellPrimary[i] == "")
                 {
                     spellUI[i].GetComponent<Image>().sprite = null;
                 }

@@ -413,10 +413,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerBelong: {fileID: 0}
   playerControl: {fileID: 0}
+  playerControlXbox: {fileID: 0}
   spellUI:
   - {fileID: 6437287643170017509}
   - {fileID: 6437287642983011347}
   - {fileID: 6437287641805267946}
   - {fileID: 6437287642754167979}
+  fireSprite: {fileID: 21300000, guid: 2fa9a71aceff53b42bc24a4a60b398ad, type: 3}
+  windSprite: {fileID: 21300000, guid: 2835eda9b1bd8a24ca04bcc1063121ce, type: 3}
+  waterSprite: {fileID: 21300000, guid: 724be948bc23cf54c9096a77cb33a2e7, type: 3}
   aoeSprite: {fileID: 21300000, guid: 6147e0ebefb19934eb8de68da5378574, type: 3}
   rangeSprite: {fileID: 21300000, guid: 07ce02ca0fdb021439ddf18d4ea64575, type: 3}
+  dashSprite: {fileID: 0}
+  dashSpriteReverse: {fileID: 0}
