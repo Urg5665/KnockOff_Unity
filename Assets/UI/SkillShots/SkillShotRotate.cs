@@ -110,41 +110,31 @@ public class SkillShotRotate : MonoBehaviour
     {
         if (playerBelong.name == "Player1")
         {
-            if (playerControl.spellPrimary[playerControl.spellSelected] == "Fire" && playerControl.spellSecondary[playerControl.spellSelected] == "") // aaplies base spell and color
+            if (playerControl.spellPrimary[playerControl.spellSelected] != "" && playerControl.spellSecondary[playerControl.spellSelected] == "") // aaplies base spell
             {
 
                 cardSkillShot.SetActive(false);
                 baseSkillShot.SetActive(true);
-
                 aoeSkillShot.SetActive(false);
                 rangeSkillShot.SetActive(false);
                 dashSkillShot.SetActive(false);
+            }
+            if (playerControl.spellPrimary[playerControl.spellSelected] == "Fire") // aaplies base spell and color
+            {
                 baseSkillShot.GetComponent<Image>().color = Color.red;
                 aoeSkillShot.GetComponent<Image>().color = Color.red;
                 rangeSkillShot.GetComponent<Image>().color = Color.red;
                 dashSkillShot.GetComponent<Image>().color = Color.red;
             }
-            if (playerControl.spellPrimary[playerControl.spellSelected] == "Wind" && playerControl.spellSecondary[playerControl.spellSelected] == "") // aaplies base spell and color
+            if (playerControl.spellPrimary[playerControl.spellSelected] == "Wind") // aaplies base spell and color
             {
-            cardSkillShot.SetActive(false);
-            baseSkillShot.SetActive(true);
-
-            aoeSkillShot.SetActive(false);
-            rangeSkillShot.SetActive(false);
-            dashSkillShot.SetActive(false);
             baseSkillShot.GetComponent<Image>().color = new Color32(67, 215, 255, 255); 
             aoeSkillShot.GetComponent<Image>().color = new Color32(67, 215, 255, 255);
             rangeSkillShot.GetComponent<Image>().color = new Color32(67, 215, 255, 255);
             dashSkillShot.GetComponent<Image>().color = new Color32(67, 215, 255, 255);
             }
-            if (playerControl.spellPrimary[playerControl.spellSelected] == "Water" && playerControl.spellSecondary[playerControl.spellSelected] == "") // aaplies base spell and color
+            if (playerControl.spellPrimary[playerControl.spellSelected] == "Water") // aaplies base spell ccolor
             {
-            cardSkillShot.SetActive(false);
-            baseSkillShot.SetActive(true);
-
-            aoeSkillShot.SetActive(false);
-            rangeSkillShot.SetActive(false);
-            dashSkillShot.SetActive(false);
             baseSkillShot.GetComponent<Image>().color = Color.blue;
             aoeSkillShot.GetComponent<Image>().color = Color.blue;
             rangeSkillShot.GetComponent<Image>().color = Color.blue;
@@ -159,7 +149,7 @@ public class SkillShotRotate : MonoBehaviour
                 dashSkillShot.SetActive(false);
                 cardSkillShot.SetActive(false);
             }
-            if (playerControl.spellSecondary[playerControl.spellSelected] == "AOE")
+            else if (playerControl.spellSecondary[playerControl.spellSelected] == "AOE")
             {
                 aoeSkillShot.SetActive(true);
 
@@ -168,26 +158,27 @@ public class SkillShotRotate : MonoBehaviour
                 dashSkillShot.SetActive(false);
                 cardSkillShot.SetActive(false);
             }
-            if (playerControl.spellSecondary[playerControl.spellSelected] == "Dash")
-
+            else if (playerControl.spellSecondary[playerControl.spellSelected] == "Dash")
+            {
                 dashSkillShot.SetActive(true);
 
-            baseSkillShot.SetActive(false);
-            rangeSkillShot.SetActive(false);
-            aoeSkillShot.SetActive(false);
-            cardSkillShot.SetActive(false);
-        }
-        if (playerControl.spellSecondary[playerControl.spellSelected] != "") // Full Spell
-        {
-            cardSkillShot.SetActive(false);
-        }
-        if (playerControl.spellPrimary[playerControl.spellSelected] == "") // Reset Spell Completely
-        {
-            cardSkillShot.SetActive(true);
-            baseSkillShot.SetActive(false);
-            aoeSkillShot.SetActive(false);
-            rangeSkillShot.SetActive(false);
-            dashSkillShot.SetActive(false);
+                baseSkillShot.SetActive(false);
+                rangeSkillShot.SetActive(false);
+                aoeSkillShot.SetActive(false);
+                cardSkillShot.SetActive(false);
+            }
+            if (playerControl.spellSecondary[playerControl.spellSelected] != "") // Full Spell
+            {
+                cardSkillShot.SetActive(false);
+            }
+            if (playerControl.spellPrimary[playerControl.spellSelected] == "") // Reset Spell Completely
+            {
+                cardSkillShot.SetActive(true);
+                baseSkillShot.SetActive(false);
+                aoeSkillShot.SetActive(false);
+                rangeSkillShot.SetActive(false);
+                dashSkillShot.SetActive(false);
+            }
         }
     }
     
