@@ -118,48 +118,69 @@ public class PlayerUI : MonoBehaviour
         {
             for (int i = 0; i < 4; i++)
             {
+                spellUIColor[i] = spellUI[i].GetComponent<Image>().color;
+                spellUIColorSec[i] = spellUISec[i].GetComponentInChildren<Image>().color;
+
+
                 if (playerControlXbox.spellPrimary[i] == "Fire")
                 {
-                    spellUI[i].GetComponent<Image>().color = Color.red;
                     spellUI[i].GetComponent<Image>().sprite = fireSprite;
+
                 }
                 if (playerControlXbox.spellPrimary[i] == "Wind")
                 {
-                    spellUI[i].GetComponent<Image>().color = new Color32(67, 215, 255, 255);
                     spellUI[i].GetComponent<Image>().sprite = windSprite;
                 }
                 if (playerControlXbox.spellPrimary[i] == "Water")
                 {
-                    spellUI[i].GetComponent<Image>().color = Color.blue;
                     spellUI[i].GetComponent<Image>().sprite = waterSprite;
                 }
                 if (playerControlXbox.spellPrimary[i] == "")
                 {
-                    spellUI[i].GetComponent<Image>().color = Color.white;
                 }
                 if (playerControlXbox.spellSecondary[i] == "AOE")
                 {
-                    spellUI[i].GetComponent<Image>().sprite = aoeSprite;
+                    spellUISec[i].GetComponentInChildren<Image>().sprite = aoeSprite;
+                    //spellUISec[i].GetComponent<Image>().color = new Color32(255, 255, 255, 200);
                 }
                 if (playerControlXbox.spellSecondary[i] == "Range")
                 {
-                    spellUI[i].GetComponent<Image>().sprite = rangeSprite;
+                    spellUISec[i].GetComponentInChildren<Image>().sprite = rangeSprite;
+                    //spellUI[i].GetComponentInChildren<Image>().color = new Color32(255, 255, 255, 200);
                 }
                 if (playerControlXbox.spellSecondary[i] == "Dash")
                 {
                     if (i == 3)
                     {
-                        spellUI[i].GetComponent<Image>().sprite = dashSpriteReverse;
+                        spellUISec[i].GetComponentInChildren<Image>().sprite = dashSpriteReverse;
+                        //spellUISec[i].GetComponentInChildren<Image>().color = new Color32(255, 255, 255, 200);
                     }
                     else
                     {
-                        spellUI[i].GetComponent<Image>().sprite = dashSprite;
+                        spellUISec[i].GetComponentInChildren<Image>().sprite = dashSprite;
+                        //spellUISec[i].GetComponentInChildren<Image>().color = new Color32(255, 255, 255, 200);
                     }
 
                 }
                 if (playerControlXbox.spellPrimary[i] == "")
                 {
-                    spellUI[i].GetComponent<Image>().sprite = null;
+                    spellUI[i].GetComponent<Image>().sprite = emptySprite;
+                    spellUISec[i].GetComponent<Image>().sprite = emptySprite;
+                }
+                if (i == playerControlXbox.spellSelected)
+                {
+                    spellUIColor[i].a = 255;
+                    spellUIColorSec[i].a = 255;
+                    spellUI[i].GetComponent<Image>().color = spellUIColor[i];
+                    spellUISec[i].GetComponentInChildren<Image>().color = spellUIColorSec[i];
+
+                }
+                if (i != playerControlXbox.spellSelected)
+                {
+                    spellUIColor[i].a = 60;
+                    spellUIColorSec[i].a = 60;
+                    spellUI[i].GetComponent<Image>().color = spellUIColor[i];
+                    spellUISec[i].GetComponentInChildren<Image>().color = spellUIColorSec[i];
                 }
 
             }
