@@ -25,8 +25,11 @@ public class CardThrow : MonoBehaviour
     public int rangeCounter;
     public int maxRange;
 
+    public GameObject cardTrail;
+
     private void Awake()
     {
+       Instantiate(cardTrail);
         toRes = true;
         toPlayer = false;
         rangeCounter = 0;

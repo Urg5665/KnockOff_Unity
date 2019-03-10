@@ -102,7 +102,7 @@ public class SkillShotUI_DashRotate : MonoBehaviour
             }
         }*/
 
-        transform.localEulerAngles = new Vector3(0, 0, angle/2);
+        transform.localEulerAngles = new Vector3(0, 0, angle);
     }
 
 }
