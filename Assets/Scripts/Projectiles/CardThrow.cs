@@ -47,7 +47,7 @@ public class CardThrow : MonoBehaviour
         }
 
         transform.LookAt(playerAim.transform);
-        maxRange = 38; // Just to fit with skill shot
+        maxRange = 35; // Just to fit with skill shot
         throwSpeed = 30;
         cardCollider = this.GetComponent<BoxCollider>();
         cardCollider.isTrigger = true;

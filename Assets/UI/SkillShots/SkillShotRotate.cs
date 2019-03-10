@@ -5,14 +5,18 @@ using UnityEngine.UI;
 
 public class SkillShotRotate : MonoBehaviour
 {
+    public GameObject playerBelong;
     public GameObject playerAim;
-    public float zRotate;
 
-    public Sprite cardSkillShot;
+    public PlayerControl playerControl;
+    public PlayerControlXbox playerControlXbox;
 
-    public Sprite aoeSkillShot;
-    public Sprite rangeSkillShot;
-    public Sprite dashSkillShot;
+    public GameObject cardSkillShot;
+
+    public GameObject baseSkillShot;
+    public GameObject aoeSkillShot;
+    public GameObject rangeSkillShot;
+    public GameObject dashSkillShot;
 
     public float xPos;
     public float zPos;
@@ -21,15 +25,23 @@ public class SkillShotRotate : MonoBehaviour
     public float hypo;
     public float angle;
     public float angle2;
-
     private void Start()
     {
-        zRotate = 1;
+        if (playerBelong.name == "Player1")
+        {
+            playerControl = playerBelong.GetComponent<PlayerControl>();
+        }
+        if (playerBelong.name == "Player2")
+        {
+            playerControlXbox = playerBelong.GetComponent<PlayerControlXbox>();
+        }
     }
+
 
     // Update is called once per frame
     void Update()
     {
+        SkillShotUIUpdate(); // Visual Updates
         xPos = this.transform.position.x - playerAim.transform.position.x;
         zPos = this.transform.position.z - playerAim.transform.position.z;
         xDif = Mathf.Abs(this.transform.position.x - playerAim.transform.position.x);
@@ -38,23 +50,11 @@ public class SkillShotRotate : MonoBehaviour
         hypo = Mathf.Sqrt((xDif * xDif + zDif * zDif));
 
         angle = Mathf.Rad2Deg * (Mathf.Asin(zDif / hypo));
-
-        //angle2 = Vector3.Angle(this.transform.position, playerAim.transform.position);
-        //Quaternion rotation = Quaternion.LookRotation(playerAim.transform.position, Vector3.forward);
-        //transform.rotation = rotation;
-        //this.transform.position = new Vector3(playerAim.transform.position.x, transform.position.y, playerAim.transform.position.z);
-
-        //transform.LookAt(playerAim.transform.position);
-        zRotate += 1f;
-
-        Debug.Log(angle);
-
         
         if (angle > 45) // north south
         {
             if (zPos > 0) // South
             {
-                //Debug.Log("South");
                 if (xPos > 0)
                 {
                     angle2 = 270 - Mathf.Rad2Deg * (Mathf.Asin(xDif / hypo));
@@ -66,7 +66,6 @@ public class SkillShotRotate : MonoBehaviour
             }
             if (zPos <= 0) 
             {
-               // Debug.Log("Nouth");
                 if (xPos > 0)
                 {
                     angle2 = 90 + Mathf.Rad2Deg * (Mathf.Asin(xDif / hypo));
@@ -92,8 +91,6 @@ public class SkillShotRotate : MonoBehaviour
             }
             if (xPos <= 0)
             {
-                //Debug.Log("P1 West");
-                //spellSelected = 3;
                 if (zPos > 0)
                 {
                     angle2 = 360 - Mathf.Rad2Deg * (Mathf.Asin(zDif / hypo));
@@ -106,12 +103,94 @@ public class SkillShotRotate : MonoBehaviour
             }
         }
 
-        //Debug.Log(angle2);
-
         transform.localEulerAngles = new Vector3(0, 0, angle2);
-        //transform.EulerAngles = new Vector3(0, 0, zRotate);
-        //transform.Rotate(0, 0, zRotate);
-        //transform.rotation = Quaternion.Slerp(from.rotation, to.rotation, timeCount);
     }
+
+    private void SkillShotUIUpdate()
+    {
+        if (playerBelong.name == "Player1")
+        {
+            if (playerControl.spellPrimary[playerControl.spellSelected] == "Fire" && playerControl.spellSecondary[playerControl.spellSelected] == "") // aaplies base spell and color
+            {
+
+                cardSkillShot.SetActive(false);
+                baseSkillShot.SetActive(true);
+
+                aoeSkillShot.SetActive(false);
+                rangeSkillShot.SetActive(false);
+                dashSkillShot.SetActive(false);
+                baseSkillShot.GetComponent<Image>().color = Color.red;
+                aoeSkillShot.GetComponent<Image>().color = Color.red;
+                rangeSkillShot.GetComponent<Image>().color = Color.red;
+                dashSkillShot.GetComponent<Image>().color = Color.red;
+            }
+            if (playerControl.spellPrimary[playerControl.spellSelected] == "Wind" && playerControl.spellSecondary[playerControl.spellSelected] == "") // aaplies base spell and color
+            {
+            cardSkillShot.SetActive(false);
+            baseSkillShot.SetActive(true);
+
+            aoeSkillShot.SetActive(false);
+            rangeSkillShot.SetActive(false);
+            dashSkillShot.SetActive(false);
+            baseSkillShot.GetComponent<Image>().color = new Color32(67, 215, 255, 255); 
+            aoeSkillShot.GetComponent<Image>().color = new Color32(67, 215, 255, 255);
+            rangeSkillShot.GetComponent<Image>().color = new Color32(67, 215, 255, 255);
+            dashSkillShot.GetComponent<Image>().color = new Color32(67, 215, 255, 255);
+            }
+            if (playerControl.spellPrimary[playerControl.spellSelected] == "Water" && playerControl.spellSecondary[playerControl.spellSelected] == "") // aaplies base spell and color
+            {
+            cardSkillShot.SetActive(false);
+            baseSkillShot.SetActive(true);
+
+            aoeSkillShot.SetActive(false);
+            rangeSkillShot.SetActive(false);
+            dashSkillShot.SetActive(false);
+            baseSkillShot.GetComponent<Image>().color = Color.blue;
+            aoeSkillShot.GetComponent<Image>().color = Color.blue;
+            rangeSkillShot.GetComponent<Image>().color = Color.blue;
+            dashSkillShot.GetComponent<Image>().color = Color.blue;
+            }
+            if (playerControl.spellSecondary[playerControl.spellSelected] == "Range")
+            {
+                rangeSkillShot.SetActive(true);
+
+                baseSkillShot.SetActive(false);
+                aoeSkillShot.SetActive(false);
+                dashSkillShot.SetActive(false);
+                cardSkillShot.SetActive(false);
+            }
+            if (playerControl.spellSecondary[playerControl.spellSelected] == "AOE")
+            {
+                aoeSkillShot.SetActive(true);
+
+                baseSkillShot.SetActive(false);
+                rangeSkillShot.SetActive(false);
+                dashSkillShot.SetActive(false);
+                cardSkillShot.SetActive(false);
+            }
+            if (playerControl.spellSecondary[playerControl.spellSelected] == "Dash")
+
+                dashSkillShot.SetActive(true);
+
+            baseSkillShot.SetActive(false);
+            rangeSkillShot.SetActive(false);
+            aoeSkillShot.SetActive(false);
+            cardSkillShot.SetActive(false);
+        }
+        if (playerControl.spellSecondary[playerControl.spellSelected] != "") // Full Spell
+        {
+            cardSkillShot.SetActive(false);
+        }
+        if (playerControl.spellPrimary[playerControl.spellSelected] == "") // Reset Spell Completely
+        {
+            cardSkillShot.SetActive(true);
+            baseSkillShot.SetActive(false);
+            aoeSkillShot.SetActive(false);
+            rangeSkillShot.SetActive(false);
+            dashSkillShot.SetActive(false);
+        }
+    }
+    
 }
+
 
