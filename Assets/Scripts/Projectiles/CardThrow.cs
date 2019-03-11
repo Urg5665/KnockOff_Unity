@@ -147,13 +147,13 @@ public class CardThrow : MonoBehaviour
         if (toPlayer)
         {
             transform.Rotate(Vector3.up * Time.deltaTime * rotSpeed, Space.World);
-            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, 1.5f* throwSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, 1.5f * throwSpeed * Time.deltaTime);
             transform.rotation = Quaternion.Euler(0, this.transform.localRotation.y, 0);
             cardCollider.isTrigger = true;
         }
-        if (toPlayer && rangeCounter == (maxRange * 5))  // Fixing Card on player bug
+        if (toPlayer && rangeCounter == (maxRange * 2))  // Fixing Card on player bug
         {
-            Debug.Log("bugFixed");
+            Debug.Log("bugFixed cardeffect given");
             transform.Rotate(Vector3.up * Time.deltaTime * rotSpeed, Space.World);
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position, throwSpeed * Time.deltaTime);
             transform.rotation = Quaternion.Euler(0, this.transform.localRotation.y, 0);
@@ -163,18 +163,31 @@ public class CardThrow : MonoBehaviour
             {
                 playerControl.canCast[cardNum] = true;
                 playerControl.cardsThrown--;
+                if (playerControl.spellPrimary[cardNum] == "")
+                {
+                    playerControl.spellPrimary[cardNum] = resType;
+                }
+                else if (playerControl.spellPrimary[cardNum] != "")
+                {
+                    playerControl.spellSecondary[cardNum] = resType2;
+                }
             }
             if (playerInt == 2)
             {
                 playerControlXbox.canCast[cardNum] = true;
                 playerControlXbox.cardsThrown--;
+                if (playerControlXbox.spellPrimary[cardNum] == "")
+                {
+                    playerControlXbox.spellPrimary[cardNum] = resType;
+                }
+                else if (playerControlXbox.spellPrimary[cardNum] != "")
+                {
+                    playerControlXbox.spellSecondary[cardNum] = resType2;
+                }
             }
         }
 
-
-
     }
-
 }
 
 
