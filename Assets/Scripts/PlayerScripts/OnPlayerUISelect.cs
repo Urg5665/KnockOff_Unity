@@ -12,6 +12,7 @@ public class OnPlayerUISelect : MonoBehaviour
     public PlayerControl playerControl;
     public int spellNumber;
 
+
     public Image image;
 
     public Sprite white;
