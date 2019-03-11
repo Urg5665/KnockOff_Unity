@@ -26,10 +26,10 @@ public class CardThrow : MonoBehaviour
     public int maxRange;
 
     public GameObject cardTrail;
+    public GameObject cardTrailNew;
 
     private void Awake()
     {
-       Instantiate(cardTrail);
         toRes = true;
         toPlayer = false;
         rangeCounter = 0;
@@ -39,7 +39,6 @@ public class CardThrow : MonoBehaviour
             playerAim = player.transform.GetChild(0).gameObject;
             playerControl = player.GetComponent<PlayerControl>();
             cardNum = playerControl.spellSelected;
-
         }
         else if (playerInt == 2)
         {
@@ -54,6 +53,9 @@ public class CardThrow : MonoBehaviour
         throwSpeed = 30;
         cardCollider = this.GetComponent<BoxCollider>();
         cardCollider.isTrigger = true;
+        cardTrailNew = Instantiate(cardTrail, this.transform.position, this.transform.rotation);
+        cardTrailNew.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - .25f, this.transform.position.z);
+        cardTrailNew.GetComponent<CardTrailThrow>().cardTrailTarget = this.gameObject;
     }
 
 

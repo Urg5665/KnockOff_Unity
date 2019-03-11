@@ -251,6 +251,7 @@ public class PlayerControl : MonoBehaviour
         newCard.transform.position = new Vector3(newCard.transform.position.x, newCard.transform.position.y - .25f, newCard.transform.position.z);
         newCard.GetComponent<CardThrow>().cardNum = spellSelected;
         cardsThrown++;
+        
         newCardTrail = Instantiate(cardTrail, this.transform.position, card.transform.rotation);
         newCardTrail.transform.position = new Vector3(newCard.transform.position.x, newCard.transform.position.y - .25f, newCard.transform.position.z);
         newCardTrail.GetComponent<CardTrailThrow>().cardTrailTarget = newCard;

@@ -8,16 +8,24 @@ public class CardTrailThrow : MonoBehaviour
     public float trailSpeed = 1f;
     public int life;
 
+    public void Start()
+    {
+        life = 0;
+    }
+
     void Update()
     {
-        if (life > 500 || cardTrailTarget.gameObject != null)
+        if (life > 500)
+        {
+            if (cardTrailTarget != null)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, cardTrailTarget.transform.position, trailSpeed);
+                life++;
+            }
+        }
+        if (life == 500 || cardTrailTarget == null)
         {
             Destroy(this.gameObject);
-        }
-        if (cardTrailTarget.gameObject != null)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, cardTrailTarget.transform.position, trailSpeed);
-            life++;
         }
 
     }
