@@ -139,6 +139,10 @@ public class PlayerControlXbox : MonoBehaviour
 
         if (dashing)
         {
+            for (int i = 0; i < 4; i++)
+            {
+                canCast[i] = false;
+            }
             speed = 7.5f;
             onPlayerText.text = "";
             this.GetComponent<Rigidbody>().velocity = Vector3.zero;
@@ -172,6 +176,10 @@ public class PlayerControlXbox : MonoBehaviour
         if (castAfterDash)
         {
             castAfterDash = false;
+            for (int i = 0; i < 4; i++)
+            {
+                canCast[i] = true;
+            }
             if (spellPrimary[dashDirection] == "Fire")
             {
                 newSpell = Instantiate(spellProjectile[0], this.transform.position, spellProjectile[0].transform.rotation);
