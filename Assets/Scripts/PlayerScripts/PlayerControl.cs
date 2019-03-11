@@ -63,7 +63,9 @@ public class PlayerControl : MonoBehaviour
     public int rangeRange;
     public int rangeSpeed;
 
-
+    // Testing Stun out on Player
+    public int stunLength;
+    public Text onPlayerText;
 
     void Start()
     {
@@ -86,6 +88,7 @@ public class PlayerControl : MonoBehaviour
 
         rangeRange = 90;
         rangeSpeed = 70;
+        stunLength = 0;
 
         dashSpellRange = 20; // should be very close
         aoeWidth = (Vector3.Distance(player1Aim.transform.position, transform.position))/4 ;
@@ -120,10 +123,23 @@ public class PlayerControl : MonoBehaviour
             this.GetComponent<Rigidbody>().AddForce(Vector3.up * 400);
         }
 
+        if (stunLength > 0)
+        {
+            //Debug.Log("Player2 Stunned");
+            stunLength--;
+            onPlayerText.text = "STUNED";
+        }
+        if (stunLength == 0)
+        {
+            speed = 7.5f;
+            onPlayerText.text = "";
+        }
+
 
         if (dashing)
         {
             speed = 7.5f;
+            onPlayerText.text = "";
             this.GetComponent<Rigidbody>().velocity = Vector3.zero; // to not have onkg mvement overide dash
             playerUI.SetActive(false);
             dashingTime++;

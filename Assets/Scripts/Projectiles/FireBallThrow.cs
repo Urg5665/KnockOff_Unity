@@ -65,10 +65,15 @@ public class FireBallThrow : MonoBehaviour
         if (playerInt == 1 && collision.gameObject.tag == "Player2")
         {
             //collision.gameObject.GetComponent<PlayerControlXbox>().speed = 0;
+            
             StartCoroutine(cameraMove.Shake(.3f, .5f));
-            collision.gameObject.transform.position = 
-                new Vector3(collision.gameObject.transform.position.x, collision.gameObject.transform.position.y - 6, collision.gameObject.transform.position.z);
-           playerControl.canCast[spellNum] = true;
+            // Kill
+            //collision.gameObject.transform.position = 
+             //   new Vector3(collision.gameObject.transform.position.x, collision.gameObject.transform.position.y - 6, collision.gameObject.transform.position.z);
+            // Stun
+            collision.gameObject.GetComponent<PlayerControlXbox>().speed = 0;
+            collision.gameObject.GetComponent<PlayerControlXbox>().stunLength = 100;
+            playerControl.canCast[spellNum] = true;
            playerControl.spellPrimary[spellNum] = "";
            playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
            hitEffectInGame = Instantiate(hitEffect);
@@ -79,8 +84,11 @@ public class FireBallThrow : MonoBehaviour
         if (playerInt == 2 && collision.gameObject.tag == "Player1")
         {
             StartCoroutine(cameraMove.Shake(.3f, .5f));
-            collision.gameObject.transform.position =
-                new Vector3(collision.gameObject.transform.position.x, collision.gameObject.transform.position.y - 6, collision.gameObject.transform.position.z);
+            //collision.gameObject.transform.position =
+            //    new Vector3(collision.gameObject.transform.position.x, collision.gameObject.transform.position.y - 6, collision.gameObject.transform.position.z);
+            // Stun
+            collision.gameObject.GetComponent<PlayerControl>().speed = 0;
+            collision.gameObject.GetComponent<PlayerControl>().stunLength = 100;
             playerControlXbox.canCast[spellNum] = true;
             playerControlXbox.spellPrimary[spellNum] = "";
             playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty

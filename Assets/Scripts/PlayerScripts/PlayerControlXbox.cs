@@ -60,6 +60,10 @@ public class PlayerControlXbox : MonoBehaviour
 
     public int dashSpellRange;
 
+    // Testing Stun out on Player
+    public int stunLength;
+    public Text onPlayerText;
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.None;
@@ -85,6 +89,7 @@ public class PlayerControlXbox : MonoBehaviour
 
         dashSpellRange = 20; // should be very close
 
+        stunLength = 0;
 
         for (int i = 0; i < 4; i++)
         {
@@ -112,6 +117,19 @@ public class PlayerControlXbox : MonoBehaviour
         //speed = maxSpeed - (slowDownPerCard * cardsThrown); // apply slow for each card in play
         //Debug.Log("speed" + speed);
 
+        if (stunLength > 0)
+        {
+            //Debug.Log("Player2 Stunned");
+            stunLength--;
+            onPlayerText.text = "STUNED";
+        }
+        if (stunLength == 0)
+        {
+            speed = 7.5f;
+            onPlayerText.text = "";
+        }
+
+
         if (Input.GetKeyDown(KeyCode.G))
         {
             this.GetComponent<Rigidbody>().AddForce(Vector3.left * 600);
@@ -122,6 +140,7 @@ public class PlayerControlXbox : MonoBehaviour
         if (dashing)
         {
             speed = 7.5f;
+            onPlayerText.text = "";
             this.GetComponent<Rigidbody>().velocity = Vector3.zero;
             playerUI.SetActive(false);
             dashingTime++;
