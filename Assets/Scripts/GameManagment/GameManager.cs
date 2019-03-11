@@ -10,14 +10,20 @@ public class GameManager : MonoBehaviour
     public int StartFreeze;
     //public int textTimer;
 
+    public DeathPlane deathPlane;
+
     public int fixTimeFreezeBug;
+    public bool fixTimeEnable;
     public Text text;
+    public int restartFreeze;
 
     void Start()
     {
         fixTimeFreezeBug = 0;
+        fixTimeEnable = true;
         Instantiate(ReadyAudioObj);
         StartFreeze = 0;
+        restartFreeze = 300;
         text = GameObject.Find("Ready...Fight").GetComponent<Text>();
     }
 
@@ -31,11 +37,42 @@ public class GameManager : MonoBehaviour
         }
         if (StartFreeze == 130)
         {
-            text.text = "...FIGHT!";
+            text.text = "FIGHT!";
         }
         if (StartFreeze == 160)
         {
             text.text = "";
+        }
+        if (deathPlane.player2Score <= 0)
+        {
+            text.text = "P1 WINS!";
+            restartFreeze--;
+            fixTimeEnable = false;
+            Time.timeScale = 0.5f;
+        }
+        if (deathPlane.player1Score <= 0)
+        {
+            text.text = "P2 WINS!";
+            restartFreeze--;
+            fixTimeEnable = false;
+            Time.timeScale = 0.5f;
+        }
+        if (restartFreeze < 150)
+        {
+            text.text = "  ... 3 ...";
+
+        }
+        if (restartFreeze < 100)
+        {
+            text.text = "  ... 2 ...";
+        }
+        if (restartFreeze < 50)
+        {
+            text.text = "  ... 1 ...";
+        }
+        if (restartFreeze < 0)
+        {
+            SceneManager.LoadScene(0);
         }
 
 
@@ -55,9 +92,9 @@ public class GameManager : MonoBehaviour
             //Debug.Log("Slowing Down");
         }
         //Debug.Log(Time.timeScale);
+        
 
-
-        if ( Time.timeScale <= .2f)
+        if ( Time.timeScale <= .2f && fixTimeEnable)
         {
             fixTimeFreezeBug++;
         }
