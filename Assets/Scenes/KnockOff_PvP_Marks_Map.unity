@@ -5643,6 +5643,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5974334824739110882, guid: c1dc934834b6f764fb518409de45d7e1,
         type: 3}
+    - target: {fileID: 7490982144243040725, guid: 92633c7a4a7744b43b773c6a7dfacbad,
+        type: 3}
+      propertyPath: deathPlane
+      value: 
+      objectReference: {fileID: 1398217456}
     - target: {fileID: 2119727874, guid: 92633c7a4a7744b43b773c6a7dfacbad, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -14705,7 +14710,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1835038995, guid: 79dc483f8647f6a499d8b2f1bba59c36, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -1
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1835038995, guid: 79dc483f8647f6a499d8b2f1bba59c36, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 130
       objectReference: {fileID: 0}
     - target: {fileID: 4590652822542275251, guid: 79dc483f8647f6a499d8b2f1bba59c36,
         type: 3}
@@ -14965,6 +14974,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bbdc016953a085243a1a1a0e7524b24e, type: 3}
+--- !u!114 &1398217456 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3421601605809579357, guid: 07c346095a9b1d9439eace2211f91786,
+    type: 3}
+  m_PrefabInstance: {fileID: 3421601606973292558}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a5684f2dfb40184cb309273521d2f7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1415945367 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 681013956, guid: 0439832363599ee40b575c9f72681156,
