@@ -4791,7 +4791,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 2, y: 1, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3487150540555503106
 MonoBehaviour:
@@ -4881,6 +4881,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6419215745289010584}
     m_Modifications:
+    - target: {fileID: 1594708185, guid: 71d9307e0904f4c4b819e79a796505c8, type: 3}
+      propertyPath: m_Name
+      value: sppingemmodel
+      objectReference: {fileID: 0}
+    - target: {fileID: 1594708185, guid: 71d9307e0904f4c4b819e79a796505c8, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 1594708188, guid: 71d9307e0904f4c4b819e79a796505c8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4936,14 +4944,6 @@ PrefabInstance:
     - target: {fileID: 1594708188, guid: 71d9307e0904f4c4b819e79a796505c8, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.82379967
-      objectReference: {fileID: 0}
-    - target: {fileID: 1594708185, guid: 71d9307e0904f4c4b819e79a796505c8, type: 3}
-      propertyPath: m_Name
-      value: sppingemmodel
-      objectReference: {fileID: 0}
-    - target: {fileID: 1594708185, guid: 71d9307e0904f4c4b819e79a796505c8, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 1594708186, guid: 71d9307e0904f4c4b819e79a796505c8, type: 3}
       propertyPath: m_Materials.Array.data[0]
