@@ -97,7 +97,8 @@ public class FireBallThrow : MonoBehaviour
     {
         if (hitSlow == 0)
         {
-            Time.timeScale = 0.2f;
+            //Time.timeScale = 0.2f;
+            Time.timeScale = 1.0f;
             hitSlow++;
         }
         if (hitSlow <= 10)

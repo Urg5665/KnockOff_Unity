@@ -121,10 +121,11 @@ public class CardThrow : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (rangeCounter == maxRange)
+        rangeCounter++;
+
+        if (rangeCounter == maxRange && toRes) // miss
         {
             Destroy(this.gameObject);
-            rangeCounter++;
             if (playerInt == 1)
             {
                 playerControl.canCast[cardNum] = true;
@@ -140,15 +141,34 @@ public class CardThrow : MonoBehaviour
         if (toRes)
         {
             transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
-            rangeCounter++;
+            //rangeCounter++;
         }
 
         if (toPlayer)
         {
             transform.Rotate(Vector3.up * Time.deltaTime * rotSpeed, Space.World);
+            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, 1.5f* throwSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.Euler(0, this.transform.localRotation.y, 0);
+            cardCollider.isTrigger = true;
+        }
+        if (toPlayer && rangeCounter == (maxRange * 5))  // Fixing Card on player bug
+        {
+            Debug.Log("bugFixed");
+            transform.Rotate(Vector3.up * Time.deltaTime * rotSpeed, Space.World);
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position, throwSpeed * Time.deltaTime);
             transform.rotation = Quaternion.Euler(0, this.transform.localRotation.y, 0);
             cardCollider.isTrigger = true;
+            Destroy(this.gameObject);
+            if (playerInt == 1)
+            {
+                playerControl.canCast[cardNum] = true;
+                playerControl.cardsThrown--;
+            }
+            if (playerInt == 2)
+            {
+                playerControlXbox.canCast[cardNum] = true;
+                playerControlXbox.cardsThrown--;
+            }
         }
 
 
