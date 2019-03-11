@@ -69,10 +69,20 @@ public class FireBallThrow : MonoBehaviour
             StartCoroutine(cameraMove.Shake(.3f, .5f));
             // Kill
             //collision.gameObject.transform.position = 
-             //   new Vector3(collision.gameObject.transform.position.x, collision.gameObject.transform.position.y - 6, collision.gameObject.transform.position.z);
-            // Stun
-            collision.gameObject.GetComponent<PlayerControlXbox>().speed = 0;
-            collision.gameObject.GetComponent<PlayerControlXbox>().stunLength = 100;
+            //   new Vector3(collision.gameObject.transform.position.x, collision.gameObject.transform.position.y - 6, collision.gameObject.transform.position.z);
+            // Stun w kill
+            if (collision.gameObject.GetComponent<PlayerControlXbox>().stunLength > 0) // yes stuned
+            {
+                collision.gameObject.transform.position =
+                new Vector3(collision.gameObject.transform.position.x, collision.gameObject.transform.position.y - 6, collision.gameObject.transform.position.z);
+            }
+            if (collision.gameObject.GetComponent<PlayerControlXbox>().stunLength <= 0) // not Stuned
+            {
+                collision.gameObject.GetComponent<PlayerControlXbox>().speed = 0;
+                collision.gameObject.GetComponent<PlayerControlXbox>().stunLength = 100;
+            }
+
+
             playerControl.canCast[spellNum] = true;
            playerControl.spellPrimary[spellNum] = "";
            playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
@@ -87,8 +97,16 @@ public class FireBallThrow : MonoBehaviour
             //collision.gameObject.transform.position =
             //    new Vector3(collision.gameObject.transform.position.x, collision.gameObject.transform.position.y - 6, collision.gameObject.transform.position.z);
             // Stun
-            collision.gameObject.GetComponent<PlayerControl>().speed = 0;
-            collision.gameObject.GetComponent<PlayerControl>().stunLength = 100;
+            if (collision.gameObject.GetComponent<PlayerControl>().stunLength > 0) // yes stuned
+            {
+                collision.gameObject.transform.position =
+                new Vector3(collision.gameObject.transform.position.x, collision.gameObject.transform.position.y - 6, collision.gameObject.transform.position.z);
+            }
+            if (collision.gameObject.GetComponent<PlayerControl>().stunLength <= 0) // not Stuned
+            {
+                collision.gameObject.GetComponent<PlayerControl>().speed = 0;
+                collision.gameObject.GetComponent<PlayerControl>().stunLength = 100;
+            }
             playerControlXbox.canCast[spellNum] = true;
             playerControlXbox.spellPrimary[spellNum] = "";
             playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
