@@ -88,7 +88,7 @@ public class PlayerControl : MonoBehaviour
         rangeSpeed = 70;
 
         dashSpellRange = 20; // should be very close
-        aoeWidth = (Vector3.Distance(player1Aim.transform.position, transform.position))/2 ;
+        aoeWidth = (Vector3.Distance(player1Aim.transform.position, transform.position))/4 ;
 
         for (int i = 0; i < 4; i++)
         {
