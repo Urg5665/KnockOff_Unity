@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/KnockOff_PvP_Marks_Map.unity
     guid: 205c9ad637617cd418e76cec72290c83
   - enabled: 0
-    path: Assets/Scenes/KnockOff_PvP_Map_1.unity
+    path: Assets/Scenes/KnockOff_PvP_Hammer.unity
     guid: 65ff2c37ea0a7414eb376189649393f6
   m_configObjects: {}
