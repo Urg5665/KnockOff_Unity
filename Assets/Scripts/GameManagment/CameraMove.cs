@@ -17,8 +17,8 @@ public class CameraMove : MonoBehaviour
 
     public float smoothTime = .5f;
 
-    public float minZoom = 10f;
-    public float maxZoom = 40f;
+    public float minZoom = 30f;
+    public float maxZoom = 55f;
 
     public bool player1Hit;
     public bool player2Hit;
@@ -26,6 +26,8 @@ public class CameraMove : MonoBehaviour
     public int hitTimer;
 
     public Bounds bounds;
+
+    public float zDif;
 
     // Start is called before the first frame update
     void Start()
@@ -67,14 +69,32 @@ public class CameraMove : MonoBehaviour
 
     void LateUpdate()
     {
-        //if (targets[1].position.x == 250)
-        //{
-          //  return;
-        //}
         Move();
         if ( !player1Hit && !player2Hit)
         {
             Zoom();
+        }
+        zDif = Mathf.Abs(player1.position.z - player2.position.z);
+        Debug.Log(zDif);
+        if ( zDif < 50)
+        {
+            maxZoom = 55;
+        }
+        if (zDif >= 50)
+        {
+            maxZoom = 70;
+        }
+        if (zDif >= 55)
+        {
+            maxZoom = 85;
+        }
+        if (zDif >= 60)
+        {
+            maxZoom = 100;
+        }
+        if (zDif >= 65)
+        {
+            maxZoom = 115;
         }
 
 
@@ -101,7 +121,7 @@ public class CameraMove : MonoBehaviour
 
     private void Zoom()
     {
-        float newZoom = Mathf.Lerp(minZoom, maxZoom, GetGreatestDistance() / 50f);
+        float newZoom = Mathf.Lerp(minZoom, maxZoom, GetGreatestDistance() / 50f); // 50f
         cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, newZoom, Time.deltaTime);
         GetGreatestDistance();
     }

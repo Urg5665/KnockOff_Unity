@@ -5,19 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/KnockOff_PvP_Marks_Map.unity
     guid: 205c9ad637617cd418e76cec72290c83
-  - enabled: 0
-    path: Assets/Scenes/KnockOff_PvP_Hammer.unity
-    guid: 65ff2c37ea0a7414eb376189649393f6
-  - enabled: 1
-    path: Assets/Scenes/KnockOff_PvP_Cloud.unity
-    guid: cc371460b828e5b44b828751ee5c4dce
-  - enabled: 1
-    path: Assets/Scenes/KnockOff_PvP_Pirate.unity
-    guid: dee23026defd6cf42ba1170d207d6e69
   m_configObjects: {}
