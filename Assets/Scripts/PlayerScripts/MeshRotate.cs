@@ -19,7 +19,5 @@ public class MeshRotate : MonoBehaviour
             transform.LookAt(playerAim.transform.position);
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y + 45, transform.eulerAngles.z);
         }
-
-
     }
 }
