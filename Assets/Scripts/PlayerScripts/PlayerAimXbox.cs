@@ -70,8 +70,9 @@ public class PlayerAimXbox : MonoBehaviour
         if ((Input.GetAxis("HorAim") != 0 || (Input.GetAxis("VerAim") != 0)))
         {
             Vector3 privousPos = this.transform.position;
-            Vector3 nextPos = new Vector3(parent.transform.position.x + (Input.GetAxis("HorAim") * 10), parent.transform.position.y, parent.transform.position.z - (Input.GetAxis("VerAim") * 10));
+            Vector3 nextPos = new Vector3(parent.transform.position.x + (Input.GetAxis("HorAim") * 10), 3, parent.transform.position.z - (Input.GetAxis("VerAim") * 10));
             transform.position = Vector3.Lerp(privousPos, nextPos, Time.deltaTime * 20);
+            transform.position = new Vector3(this.transform.position.x, 3, transform.position.z);
 
         }
 
