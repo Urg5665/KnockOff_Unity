@@ -82,12 +82,12 @@ public class PlayerControlXbox : MonoBehaviour
         dashLength = 20;
         spellSelected = 0;
 
-        baseRange = 30;
+        baseRange = 35;
         baseSpeed = 40;
         aoeRange = 30;
 
         rangeRange = 90;
-        rangeSpeed = 70;
+        rangeSpeed = 90;
 
         dashSpellRange = 20; // should be very close
 

@@ -84,12 +84,12 @@ public class PlayerControl : MonoBehaviour
         castAfterDash = false;
         dashLength = 20;
 
-        baseRange = 30;
+        baseRange = 35;
         baseSpeed = 40;
         aoeRange = 30;
 
         rangeRange = 90;
-        rangeSpeed = 70;
+        rangeSpeed = 90;
         stunLength = 0;
 
         dashSpellRange = 20; // should be very close

@@ -45,14 +45,14 @@ public class GameManager : MonoBehaviour
         }
         if (deathPlane.player2Score <= 0)
         {
-            text.text = "P1 WINS!";
+            text.text = "BLUE WINS!";
             restartFreeze--;
             fixTimeEnable = false;
             Time.timeScale = 0.5f;
         }
         if (deathPlane.player1Score <= 0)
         {
-            text.text = "P2 WINS!";
+            text.text = "RED WINS!";
             restartFreeze--;
             fixTimeEnable = false;
             Time.timeScale = 0.5f;
