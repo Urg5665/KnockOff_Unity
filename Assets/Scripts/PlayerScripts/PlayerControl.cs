@@ -67,6 +67,8 @@ public class PlayerControl : MonoBehaviour
     public int stunLength;
     public Text onPlayerText;
 
+    public bool airBorn;
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.None;
@@ -245,10 +247,17 @@ public class PlayerControl : MonoBehaviour
         if (this.transform.position.y < 2.5f || this.transform.position.y > 3f)
         {
             grounded = false;
+            airBorn = true;
         }
         if (this.transform.position.y >= 2.5f && this.transform.position.y <= 3f)
         {
             grounded = true;
+            if (airBorn)
+            {
+                this.GetComponent<BoxCollider>().enabled = true;
+                airBorn = false;
+            }
+
         }
 
     }

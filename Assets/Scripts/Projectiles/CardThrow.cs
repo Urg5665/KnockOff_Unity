@@ -121,7 +121,7 @@ public class CardThrow : MonoBehaviour
 
     void FixedUpdate()
     {
-        Debug.Log(Vector3.Distance(this.transform.position, player.transform.position));
+        //Debug.Log(Vector3.Distance(this.transform.position, player.transform.position));
         rangeCounter++;
 
         if (rangeCounter == maxRange && toRes) // miss

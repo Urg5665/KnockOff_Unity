@@ -12,6 +12,7 @@ public class WaterPullThrow : MonoBehaviour
     public GameObject playerAim;
     public PlayerControl playerControl;
     public PlayerControlXbox playerControlXbox;
+    public GameObject playerHit;
 
 
     public bool dashSpell; // This will tell the spell to seek out the oppoentafter a dash// to hard to cast after dashing
@@ -71,7 +72,8 @@ public class WaterPullThrow : MonoBehaviour
         {
             collision.gameObject.GetComponent<Rigidbody>().AddForce(this.gameObject.transform.forward * waterForce * -1); // Knock Back
             collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * waterKnockUp); // Knock Up
-            //Destroy(this.gameObject);
+            playerHit = collision.gameObject;                                                                               
+            collision.GetComponent<BoxCollider>().enabled = false;
             playerControl.canCast[spellNum] = true;
             hitPlayer = true;
             playerControl.spellPrimary[spellNum] = "";
@@ -87,6 +89,8 @@ public class WaterPullThrow : MonoBehaviour
         {
             collision.gameObject.GetComponent<Rigidbody>().AddForce(this.gameObject.transform.forward * waterForce * -1); // Knock Back
             collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * waterKnockUp); // Knock Up
+            playerHit = collision.gameObject;                                                                               
+            collision.GetComponent<BoxCollider>().enabled = false;
             //Destroy(this.gameObject);
             playerControlXbox.canCast[spellNum] = true;
             hitPlayer = true;
@@ -116,7 +120,7 @@ public class WaterPullThrow : MonoBehaviour
         }
         if (hitSlow == 10)
         {
-            Time.timeScale = 1.0f;
+            Time.timeScale = 1.0f; 
             Destroy(this.gameObject);
         }
 
