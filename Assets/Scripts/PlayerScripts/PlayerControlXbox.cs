@@ -107,7 +107,7 @@ public class PlayerControlXbox : MonoBehaviour
     {
         spellSelected = player2Aim.GetComponent<PlayerAimXbox>().spellSelected;
     }
-    
+
     void Update()
     {
         //Debug.Log("CheckUpdate");
@@ -210,8 +210,8 @@ public class PlayerControlXbox : MonoBehaviour
             spellSecondary[dashDirection] = "";
             canCast[dashDirection] = true;
         }
-            // Card Casting Commands
-            if (Input.GetAxis("CardThrow") == 1 && cardsThrown < 4 && canCast[spellSelected] && spellSecondary[spellSelected] == "") // Shoot Card
+        // Card Casting Commands
+        if (Input.GetAxis("CardThrow") == 1 && cardsThrown < 4 && canCast[spellSelected] && spellSecondary[spellSelected] == "") // Shoot Card
         {
             CardGather();
         }
@@ -239,7 +239,7 @@ public class PlayerControlXbox : MonoBehaviour
             WaterPull();
         }
 
-        Debug.Log(airBorn);
+        //Debug.Log(airBorn);
 
         if (grounded) // movement
         {
@@ -310,36 +310,7 @@ public class PlayerControlXbox : MonoBehaviour
                 newSpellAOE[i].transform.position = new Vector3(newSpellAOE[i].transform.position.x, newSpellAOE[i].transform.position.y - .25f, newSpellAOE[i].transform.position.z);
                 newSpellAOE[i].GetComponent<FireBallThrow>().spellNum = spellSelected;
                 newSpellAOE[i].GetComponent<FireBallThrow>().maxRange = aoeRange;
-                // I got Really Really Fucking Lazy and Hard Coded the Draw Cricle about point function to make this work. 
-                //Im ashamed of the following code and wil fix when i figrue out abetter draw circle - Mark
-                if (i == 0)
-                {
-                    AOEpoint.position = player2Aim.transform.position;
-                }
-                if (spellSelected == 0 || spellSelected == 2)
-                {
-                    if (i == 1)
-                    {
-                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x + aoeWidth, this.transform.position.y, AOEpoint.transform.position.z);
-                    }
-                    if (i == 2)
-                    {
-                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x - (aoeWidth* 2), this.transform.position.y, AOEpoint.transform.position.z);
-                    }
-                }
-                if (spellSelected == 1 || spellSelected == 3)
-                {
-                    if (i == 1)
-                    {
-                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x, this.transform.position.y, AOEpoint.transform.position.z + aoeWidth);
-                    }
-                    if (i == 2)
-                    {
-                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x, this.transform.position.y, AOEpoint.transform.position.z - (aoeWidth* 2));
-                    }
-
-                }
-
+                aoeCone(i);
                 newSpellAOE[i].GetComponent<FireBallThrow>().transform.LookAt(AOEpoint);
             }
             canCast[spellSelected] = false;
@@ -389,41 +360,13 @@ public class PlayerControlXbox : MonoBehaviour
         }
         else if (spellSecondary[spellSelected] == "AOE")
         {
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < 5; i++)
             {
                 newSpellAOE[i] = Instantiate(spellProjectile[1], this.transform.position, spellProjectile[0].transform.rotation);
                 newSpellAOE[i].transform.position = new Vector3(newSpellAOE[i].transform.position.x, newSpellAOE[i].transform.position.y - .25f, newSpellAOE[i].transform.position.z);
                 newSpellAOE[i].GetComponent<WindWaveThrow>().spellNum = spellSelected;
                 newSpellAOE[i].GetComponent<WindWaveThrow>().maxRange = aoeRange;
-                // I got Really Really Fucking Lazy and Hard Coded the Draw Cricle about point function to make this work. 
-                //Im ashamed of the following code and wil fix when i figrue out abetter draw circle - Mark
-                if (i == 0)
-                {
-                    AOEpoint.position = player2Aim.transform.position;
-                }
-                if (spellSelected == 0 || spellSelected == 2)
-                {
-                    if (i == 1)
-                    {
-                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x + aoeWidth, this.transform.position.y, AOEpoint.transform.position.z);
-                    }
-                    if (i == 2)
-                    {
-                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x - (aoeWidth* 2), this.transform.position.y, AOEpoint.transform.position.z);
-                    }
-                }
-                if (spellSelected == 1 || spellSelected == 3)
-                {
-                    if (i == 1)
-                    {
-                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x, this.transform.position.y, AOEpoint.transform.position.z + aoeWidth);
-                    }
-                    if (i == 2)
-                    {
-                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x, this.transform.position.y, AOEpoint.transform.position.z - (aoeWidth* 2));
-                    }
-
-                }
+                aoeCone(i);
                 newSpellAOE[i].GetComponent<WindWaveThrow>().transform.LookAt(AOEpoint);
             }
             canCast[spellSelected] = false;
@@ -480,36 +423,7 @@ public class PlayerControlXbox : MonoBehaviour
                 newSpellAOE[i].transform.position = new Vector3(newSpellAOE[i].transform.position.x, newSpellAOE[i].transform.position.y - .25f, newSpellAOE[i].transform.position.z);
                 newSpellAOE[i].GetComponent<WaterPullThrow>().spellNum = spellSelected;
                 newSpellAOE[i].GetComponent<WaterPullThrow>().maxRange = aoeRange;
-                // I got Really Really Fucking Lazy and Hard Coded the Draw Cricle about point function to make this work. 
-                //Im ashamed of the following code and wil fix when i figrue out abetter draw circle - Mark
-                if (i == 0)
-                {
-                    AOEpoint.position = player2Aim.transform.position;
-                }
-                if (spellSelected == 0 || spellSelected == 2)
-                {
-                    if (i == 1)
-                    {
-                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x + aoeWidth, this.transform.position.y, AOEpoint.transform.position.z);
-                    }
-                    if (i == 2)
-                    {
-                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x - (aoeWidth* 2), this.transform.position.y, AOEpoint.transform.position.z);
-                    }
-                }
-                if (spellSelected == 1 || spellSelected == 3)
-                {
-                    if (i == 1)
-                    {
-                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x, this.transform.position.y, AOEpoint.transform.position.z + aoeWidth);
-                    }
-                    if (i == 2)
-                    {
-                        AOEpoint.position = new Vector3(AOEpoint.transform.position.x, this.transform.position.y, AOEpoint.transform.position.z - (aoeWidth* 2));
-                    }
-
-                }
-
+                aoeCone(i);
                 newSpellAOE[i].GetComponent<WaterPullThrow>().transform.LookAt(AOEpoint);
             }
             canCast[spellSelected] = false;
@@ -548,5 +462,53 @@ public class PlayerControlXbox : MonoBehaviour
 
 
 
+    }
+    private void aoeCone(int i)
+    {
+        // I got Really Really Fucking Lazy and Hard Coded the Draw Cricle about point function to make this work. 
+        //Im ashamed of the following code and wil fix when i figrue out abetter draw circle - Mark
+        if (i == 0)
+        {
+            AOEpoint.position = player2Aim.transform.position;
+        }
+        if (spellSelected == 0 || spellSelected == 2)
+        {
+            if (i == 1)
+            {
+                AOEpoint.position = new Vector3(AOEpoint.transform.position.x + aoeWidth / 2, this.transform.position.y, AOEpoint.transform.position.z);
+            }
+            if (i == 2)
+            {
+                AOEpoint.position = new Vector3(AOEpoint.transform.position.x + (aoeWidth / 2), this.transform.position.y, AOEpoint.transform.position.z);
+            }
+            if (i == 3)
+            {
+                AOEpoint.position = new Vector3(AOEpoint.transform.position.x - (aoeWidth * 1.5f), this.transform.position.y, AOEpoint.transform.position.z);
+            }
+            if (i == 4)
+            {
+                AOEpoint.position = new Vector3(AOEpoint.transform.position.x - (aoeWidth / 2), this.transform.position.y, AOEpoint.transform.position.z);
+            }
+        }
+        if (spellSelected == 1 || spellSelected == 3)
+        {
+            if (i == 1)
+            {
+                AOEpoint.position = new Vector3(AOEpoint.transform.position.x, this.transform.position.y, AOEpoint.transform.position.z + aoeWidth / 2);
+            }
+            if (i == 2)
+            {
+                AOEpoint.position = new Vector3(AOEpoint.transform.position.x, this.transform.position.y, AOEpoint.transform.position.z + (aoeWidth / 2));
+            }
+            if (i == 3)
+            {
+                AOEpoint.position = new Vector3(AOEpoint.transform.position.x, this.transform.position.y, AOEpoint.transform.position.z - (aoeWidth * 1.5f));
+            }
+            if (i == 4)
+            {
+                AOEpoint.position = new Vector3(AOEpoint.transform.position.x, this.transform.position.y, AOEpoint.transform.position.z - (aoeWidth / 2));
+            }
+
+        }
     }
 }
