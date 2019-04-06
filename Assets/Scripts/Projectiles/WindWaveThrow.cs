@@ -57,8 +57,8 @@ public class WindWaveThrow : MonoBehaviour
 
         transform.LookAt(playerAim.transform);
         spellDir = this.gameObject.transform.forward;
-        windForce = 600;
-        windKnockUp = 400;
+        windForce = 700;
+        windKnockUp = 250;
         hitPlayer = false;
         throwSpeed = 30;
         rangeCounter = 0;

@@ -38,6 +38,7 @@ public class PlayerControl : MonoBehaviour
 
     public int dashDirection; // This is to check if you are fireing a particle afterwards, if still facing the same direction
     public bool dashing;
+    public bool AOEKnockBack;
     public int dashingTime;
     public int dashDirectionTime;
     public Vector3  dashAim;
@@ -110,8 +111,15 @@ public class PlayerControl : MonoBehaviour
         spellSelected = playerAim.GetComponent<PlayerAim>().spellSelected;
     }
 
-    void Update()
-    {
+    void FixedUpdate()
+    {   
+        /*
+        for (int i = 0; i < 4; i++)
+        {
+            spellPrimary[i] = "Fire";
+            spellSecondary[i] = "AOE";
+        }*/
+
         pickDirection();
         dashDirectionTime--;
         aoeWidth = (Vector3.Distance(player1Aim.transform.position, transform.position)) / 2;
@@ -145,8 +153,16 @@ public class PlayerControl : MonoBehaviour
             this.GetComponent<Rigidbody>().velocity = Vector3.zero; // to not have onkg mvement overide dash
             playerUI.SetActive(false);
             dashingTime++;
-            transform.Translate(Vector3.forward * Time.deltaTime * speed * 5, Space.Self);
-            if(this.transform.position.y < 2.5)
+            if (AOEKnockBack)
+            {
+                transform.Translate(Vector3.back * Time.deltaTime * speed * 3, Space.Self);
+            }
+            if (!AOEKnockBack)
+            {
+                transform.Translate(Vector3.forward * Time.deltaTime * speed * 5, Space.Self);
+            }
+
+            if (this.transform.position.y < 2.5)
             {
                 this.GetComponent<BoxCollider>().enabled = true; // can fail recover
                 Vector3 above = new Vector3(transform.position.x, transform.position.y + 20, transform.position.z); 
@@ -163,6 +179,7 @@ public class PlayerControl : MonoBehaviour
         {
             dashingTime = 0;
             dashing = false;
+            AOEKnockBack = false;
             //transform.Translate(Vector3.forward * Time.deltaTime * speed * 3, Space.Self);
             this.GetComponent<BoxCollider>().enabled = true;
             rb.constraints = RigidbodyConstraints.FreezeRotation;
@@ -173,7 +190,7 @@ public class PlayerControl : MonoBehaviour
         if (castAfterDash)
         {
             castAfterDash = false;
-            if(spellPrimary[dashDirection] == "Fire")
+            if(spellPrimary[dashDirection] == "Fire" && spellSecondary[dashDirection] == "Dash")
             {
                 newSpell = Instantiate(spellProjectile[0], this.transform.position, spellProjectile[0].transform.rotation);
                 newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
@@ -181,7 +198,7 @@ public class PlayerControl : MonoBehaviour
                 newSpell.GetComponent<FireBallThrow>().maxRange = dashSpellRange;
                 newSpell.GetComponent<FireBallThrow>().dashSpell = true;
             }
-            if (spellPrimary[dashDirection] == "Wind")
+            if (spellPrimary[dashDirection] == "Wind" && spellSecondary[dashDirection] == "Dash")
             {
                 newSpell = Instantiate(spellProjectile[1], this.transform.position, spellProjectile[0].transform.rotation);
                 newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
@@ -189,7 +206,7 @@ public class PlayerControl : MonoBehaviour
                 newSpell.GetComponent<WindWaveThrow>().maxRange = dashSpellRange;
                 newSpell.GetComponent<WindWaveThrow>().dashSpell = true;
             }
-            if (spellPrimary[dashDirection] == "Water")
+            if (spellPrimary[dashDirection] == "Water" && spellSecondary[dashDirection] == "Dash")
             {
                 newSpell = Instantiate(spellProjectile[2], this.transform.position, spellProjectile[0].transform.rotation);
                 newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
@@ -305,6 +322,25 @@ public class PlayerControl : MonoBehaviour
                 newSpellAOE[i].GetComponent<FireBallThrow>().transform.LookAt(AOEpoint);
             }
             canCast[spellSelected] = false;
+            //
+            dashing = true;
+            AOEKnockBack = true;
+            dashDirection = spellSelected;
+            dashAim = new Vector3(player1Aim.transform.position.x, player1Aim.transform.position.y, player1Aim.transform.position.z);
+            dashDirectionTime = 75;
+            dashingTime = 0;
+            transform.LookAt(new Vector3(player1Aim.transform.position.x, player1Aim.transform.position.y, player1Aim.transform.position.z)); // opposite dash aim
+            if (this.transform.position.y < 2.5)
+            {
+                rb.AddForce(Vector3.up * waterDashForceUp);
+            }
+            else
+            {
+                rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+            }
+
+            this.GetComponent<BoxCollider>().enabled = false;
+            //
         }
         if (spellSecondary[spellSelected] == "Range")
         {
@@ -360,7 +396,25 @@ public class PlayerControl : MonoBehaviour
                 aoeCone(i);
                 newSpellAOE[i].GetComponent<WindWaveThrow>().transform.LookAt(AOEpoint);
             }
-            canCast[spellSelected] = false;
+            canCast[spellSelected] = false; 
+            //
+            dashing = true;
+            AOEKnockBack = true;
+            dashDirection = spellSelected;
+            dashAim = new Vector3(player1Aim.transform.position.x, player1Aim.transform.position.y, player1Aim.transform.position.z);
+            dashDirectionTime = 75;
+            dashingTime = 0;
+            transform.LookAt(new Vector3(player1Aim.transform.position.x, player1Aim.transform.position.y, player1Aim.transform.position.z)); // opposite dash aim
+            if (this.transform.position.y < 2.5)
+            {
+                rb.AddForce(Vector3.up * waterDashForceUp);
+            }
+            else
+            {
+                rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+            }
+
+            this.GetComponent<BoxCollider>().enabled = false;
         }
         else if (spellSecondary[spellSelected] == "Range")
         {
@@ -417,6 +471,24 @@ public class PlayerControl : MonoBehaviour
                 newSpellAOE[i].GetComponent<WaterPullThrow>().transform.LookAt(AOEpoint);
             }
             canCast[spellSelected] = false;
+            //
+            dashing = true;
+            AOEKnockBack = true;
+            dashDirection = spellSelected;
+            dashAim = new Vector3(player1Aim.transform.position.x, player1Aim.transform.position.y, player1Aim.transform.position.z);
+            dashDirectionTime = 75;
+            dashingTime = 0;
+            transform.LookAt(new Vector3(player1Aim.transform.position.x, player1Aim.transform.position.y, player1Aim.transform.position.z)); // opposite dash aim
+            if (this.transform.position.y < 2.5)
+            {
+                rb.AddForce(Vector3.up * waterDashForceUp);
+            }
+            else
+            {
+                rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+            }
+
+            this.GetComponent<BoxCollider>().enabled = false;
         }
         if (spellSecondary[spellSelected] == "Range")
         {
