@@ -214,6 +214,14 @@ public class PlayerControl : MonoBehaviour
                 newSpell.GetComponent<WaterPullThrow>().maxRange = dashSpellRange;
                 newSpell.GetComponent<WaterPullThrow>().dashSpell = true;
             }
+            if (spellPrimary[dashDirection] == "Earth" && spellSecondary[dashDirection] == "Dash")
+            {
+                newSpell = Instantiate(spellProjectile[3], this.transform.position, spellProjectile[0].transform.rotation);
+                newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
+                newSpell.GetComponent<EarthQuakeThrow>().spellNum = dashDirection;
+                newSpell.GetComponent<EarthQuakeThrow>().maxRange = dashSpellRange;
+                newSpell.GetComponent<EarthQuakeThrow>().dashSpell = true;
+            }
             spellPrimary[dashDirection] = "";
             spellSecondary[dashDirection] = "";
             canCast[dashDirection] = true;
@@ -247,6 +255,10 @@ public class PlayerControl : MonoBehaviour
         if (Input.GetMouseButtonDown(1) && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "Water") // Shoot Wind Knock
         {
             WaterPull();
+        }
+        if (Input.GetMouseButtonDown(1) && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "Earth") // Shoot Wind Knock
+        {
+            EarthQuake();
         }
         if (grounded) // movement
         {
@@ -501,6 +513,80 @@ public class PlayerControl : MonoBehaviour
         }
         if (spellSecondary[spellSelected] == "Dash")
         {
+            canCast[spellSelected] = false;
+            dashing = true;
+            dashDirection = spellSelected;
+            dashAim = new Vector3(player1Aim.transform.position.x, player1Aim.transform.position.y, player1Aim.transform.position.z);
+            dashDirectionTime = 75;
+            transform.LookAt(dashAim);
+            if (this.transform.position.y < 2.5)
+            {
+                rb.AddForce(Vector3.up * waterDashForceUp);
+            }
+            else
+            {
+                rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+            }
+
+            this.GetComponent<BoxCollider>().enabled = false;
+            //Debug.Log("Invulnrble Dash");
+        }
+    }
+    private void EarthQuake()
+    {
+        if (spellSecondary[spellSelected] == "")
+        {
+            newSpell = Instantiate(spellProjectile[3], this.transform.position, spellProjectile[0].transform.rotation);
+            newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
+            newSpell.GetComponent<EarthQuakeThrow>().spellNum = spellSelected;
+            //Debug.Log("Basic");
+            newSpell.GetComponent<EarthQuakeThrow>().maxRange = baseRange;
+            canCast[spellSelected] = false;
+        }
+        if (spellSecondary[spellSelected] == "AOE")
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                newSpellAOE[i] = Instantiate(spellProjectile[3], this.transform.position, spellProjectile[0].transform.rotation);
+                newSpellAOE[i].transform.position = new Vector3(newSpellAOE[i].transform.position.x, newSpellAOE[i].transform.position.y - .25f, newSpellAOE[i].transform.position.z);
+                newSpellAOE[i].GetComponent<EarthQuakeThrow>().spellNum = spellSelected;
+                newSpellAOE[i].GetComponent<EarthQuakeThrow>().maxRange = aoeRange;
+                aoeCone(i);
+                newSpellAOE[i].GetComponent<EarthQuakeThrow>().transform.LookAt(AOEpoint);
+            }
+            canCast[spellSelected] = false;
+            //
+            dashing = true;
+            AOEKnockBack = true;
+            dashDirection = spellSelected;
+            dashAim = new Vector3(player1Aim.transform.position.x, player1Aim.transform.position.y, player1Aim.transform.position.z);
+            dashDirectionTime = 75;
+            dashingTime = 0;
+            transform.LookAt(new Vector3(player1Aim.transform.position.x, player1Aim.transform.position.y, player1Aim.transform.position.z)); // opposite dash aim
+            if (this.transform.position.y < 2.5)
+            {
+                rb.AddForce(Vector3.up * waterDashForceUp);
+            }
+            else
+            {
+                rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+            }
+
+            this.GetComponent<BoxCollider>().enabled = false;
+            //
+        }
+        if (spellSecondary[spellSelected] == "Range")
+        {
+            newSpell = Instantiate(spellProjectile[3], this.transform.position, spellProjectile[0].transform.rotation);
+            newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
+            newSpell.GetComponent<EarthQuakeThrow>().spellNum = spellSelected;
+            newSpell.GetComponent<EarthQuakeThrow>().maxRange = rangeRange;
+            newSpell.GetComponent<EarthQuakeThrow>().throwSpeed = rangeSpeed;
+            canCast[spellSelected] = false;
+        }
+        if (spellSecondary[spellSelected] == "Dash")
+        {
+            //Debug.Log("Dash");
             canCast[spellSelected] = false;
             dashing = true;
             dashDirection = spellSelected;

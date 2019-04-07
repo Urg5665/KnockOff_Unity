@@ -88,6 +88,16 @@ public class CardThrow : MonoBehaviour
             toPlayer = true;
             Destroy(collision.gameObject);
         }
+        if (collision.gameObject.tag == "earthRes" && toRes == true)
+        {
+            resType = "Earth";
+            Debug.Log("Earth Picked");
+            resType2 = "Dash"; // For Now Until i figure out abetter ability for earth secondary
+            cardCollider.isTrigger = false;
+            toRes = false;
+            toPlayer = true;
+            Destroy(collision.gameObject);
+        }
 
         if (collision.gameObject.tag == "Player1" && toPlayer && playerInt == 1)
         {

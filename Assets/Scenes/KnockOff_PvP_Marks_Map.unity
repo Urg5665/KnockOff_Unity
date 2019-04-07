@@ -16932,6 +16932,12 @@ PrefabInstance:
       propertyPath: AOEpoint
       value: 
       objectReference: {fileID: 2042537158}
+    - target: {fileID: 46870567241696049, guid: 0f9ffe8302123f5419638698ccf5218d,
+        type: 3}
+      propertyPath: spellProjectile.Array.data[3]
+      value: 
+      objectReference: {fileID: 7346371536267834907, guid: a5a1692197d582f459c68174c666358c,
+        type: 3}
     - target: {fileID: 4308267977569094971, guid: 0f9ffe8302123f5419638698ccf5218d,
         type: 3}
       propertyPath: m_IsActive
