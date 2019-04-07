@@ -4,32 +4,43 @@ using UnityEngine;
 
 public class TileBehavoir : MonoBehaviour
 {
-    public Material mouseOn;
-    public Material storeMaterial;
+    public bool destroyed;
+    public int destroyTimer;
 
-    public GameObject[] occupyingObjects;
-
-    public static GameObject tileSelected;
+    public MeshRenderer mesh;
+    public MeshCollider col;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        mesh = this.GetComponent<MeshRenderer>();
+        col = this.GetComponentInChildren<MeshCollider>();
+        destroyed = false;
+        destroyTimer = 0;
     }
 
-
-    void OnMouseOver()
+    void FixedUpdate()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKey(KeyCode.H))
         {
-            this.GetComponent<Renderer>().material = mouseOn;
-            tileSelected = this.gameObject;
-            //Debug.Log(this.gameObject.name);
-
+            destroyed = true;
         }
-    }
-    void OnMouseExit()
-    {
-        this.GetComponent<Renderer>().material = storeMaterial;
+
+        if (destroyed)
+        {
+            mesh.enabled = false;
+            col.enabled = false;
+            destroyTimer++;
+        }
+        if (destroyTimer > 200)
+        {
+            destroyed = false;
+            destroyTimer = 0;
+            mesh.enabled = true;
+            col.enabled = true;
+        }
+
+
+
     }
 }

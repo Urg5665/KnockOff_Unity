@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class ResourceChild : MonoBehaviour
 {
-
-
-
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Card")
