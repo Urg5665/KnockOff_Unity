@@ -54,6 +54,11 @@ public class OnPlayerUISelect : MonoBehaviour
                 image.sprite = blue;
                 childIcon.GetComponent<Image>().color = new Color32(0, 0, 255, 255);
             }
+            if (playerControl.spellPrimary[spellNumber] == "Earth")
+            {
+                image.sprite = white;
+                childIcon.GetComponent<Image>().color = new Color32(0, 0, 255, 255);
+            }
             if (playerControl.spellPrimary[spellNumber] == "")
             {
                 image.sprite = white;

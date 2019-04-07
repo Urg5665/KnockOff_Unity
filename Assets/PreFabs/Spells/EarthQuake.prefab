@@ -24006,7 +24006,7 @@ GameObject:
   - component: {fileID: 2276268642323173851}
   m_Layer: 0
   m_Name: EarthQuake
-  m_TagString: Untagged
+  m_TagString: earthQuake
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24203,7 +24203,6 @@ MonoBehaviour:
   dashSpell: 0
   rangeCounter: 0
   maxRange: 20
-  cameraMove: {fileID: 0}
   dashTarget: {x: 0, y: 0, z: 0}
   hitEffect: {fileID: 0}
   hitEffectInGame: {fileID: 1545252266986714, guid: b9debf73814de9046ae407aa5078c235,

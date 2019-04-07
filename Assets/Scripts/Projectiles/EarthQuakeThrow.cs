@@ -63,7 +63,8 @@ public class EarthQuakeThrow : MonoBehaviour
     {
         if (collision.gameObject.tag == "Ground")
         {
-            collision.gameObject.GetComponent<TileBehavoir>().destroyed = true;
+            Debug.Log(collision.gameObject.name);
+            collision.gameObject.GetComponentInParent<TileBehavoir>().destroyed = true;
         }
     }
 

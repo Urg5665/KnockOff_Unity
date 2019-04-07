@@ -15,6 +15,7 @@ TagManager:
   - waterRes
   - Dummy
   - earthRes
+  - earthQuake
   layers:
   - Default
   - TransparentFX

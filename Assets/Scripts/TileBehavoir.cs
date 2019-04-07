@@ -18,6 +18,16 @@ public class TileBehavoir : MonoBehaviour
         destroyed = false;
         destroyTimer = 0;
     }
+    
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.tag == "earthQuake")
+        {
+            Debug.Log(this.gameObject.name + " was Destroyed");
+            destroyed = true;
+        }
+    }
+    
 
     void FixedUpdate()
     {
