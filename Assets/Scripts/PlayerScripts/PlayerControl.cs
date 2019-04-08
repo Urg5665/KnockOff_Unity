@@ -581,7 +581,7 @@ public class PlayerControl : MonoBehaviour
             newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
             newSpell.GetComponent<EarthQuakeThrow>().spellNum = spellSelected;
             newSpell.GetComponent<EarthQuakeThrow>().maxRange = rangeRange;
-            newSpell.GetComponent<EarthQuakeThrow>().throwSpeed = rangeSpeed;
+            newSpell.GetComponent<EarthQuakeThrow>().throwSpeed = rangeSpeed -30;
             canCast[spellSelected] = false;
         }
         if (spellSecondary[spellSelected] == "Dash")

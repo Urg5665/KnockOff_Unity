@@ -10,6 +10,13 @@ public class TileBehavoir : MonoBehaviour
     public MeshRenderer mesh;
     public MeshCollider col;
 
+    public int player1Score;
+    public int player2Score;
+
+    public DeathPlane deathPlane;
+
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +24,9 @@ public class TileBehavoir : MonoBehaviour
         col = this.GetComponentInChildren<MeshCollider>();
         destroyed = false;
         destroyTimer = 0;
+        player1Score = 3;
+        player2Score = 3;
+        deathPlane = GameObject.Find("DeathPlane").GetComponent<DeathPlane>();
     }
     
     public void OnCollisionEnter(Collision collision)
@@ -31,6 +41,13 @@ public class TileBehavoir : MonoBehaviour
 
     void FixedUpdate()
     {
+        if(player1Score != deathPlane.player1Score || player2Score != deathPlane.player2Score)
+        {
+            player1Score = deathPlane.player1Score;
+            player2Score = deathPlane.player2Score;
+            destroyTimer = 200;
+        }
+
         if (Input.GetKey(KeyCode.H))
         {
             destroyed = true;
