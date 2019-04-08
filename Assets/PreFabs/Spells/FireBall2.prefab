@@ -14332,7 +14332,7 @@ Transform:
   m_GameObject: {fileID: 4901040042861450978}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 2441129007143949834}
   - {fileID: 8843890232319706365}
@@ -19259,7 +19259,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8077583889480533888
 MonoBehaviour:
@@ -19289,6 +19289,8 @@ MonoBehaviour:
   hitEffect: {fileID: 1545252266986714, guid: b9debf73814de9046ae407aa5078c235, type: 3}
   hitEffectInGame: {fileID: 0}
   hitSlow: 0
+  audioClip: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!82 &3555569115432391480
 AudioSource:
   m_ObjectHideFlags: 0

@@ -217,7 +217,7 @@ public class PlayerControl : MonoBehaviour
             if (spellPrimary[dashDirection] == "Earth" && spellSecondary[dashDirection] == "Dash")
             {
                 newSpell = Instantiate(spellProjectile[3], this.transform.position, spellProjectile[0].transform.rotation);
-                newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
+                newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - 2.25f, newSpell.transform.position.z);
                 newSpell.GetComponent<EarthQuakeThrow>().spellNum = dashDirection;
                 newSpell.GetComponent<EarthQuakeThrow>().maxRange = dashSpellRange;
                 newSpell.GetComponent<EarthQuakeThrow>().dashSpell = true;

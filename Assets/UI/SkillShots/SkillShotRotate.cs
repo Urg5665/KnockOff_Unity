@@ -140,6 +140,14 @@ public class SkillShotRotate : MonoBehaviour
             rangeSkillShot.GetComponent<Image>().color = Color.blue;
             dashSkillShot.GetComponent<Image>().color = Color.blue;
             }
+            if (playerControl.spellPrimary[playerControl.spellSelected] == "Earth") // aaplies base spell ccolor
+            {
+                baseSkillShot.GetComponent<Image>().color = new Color32(90, 80, 0, 255);
+                aoeSkillShot.GetComponent<Image>().color = new Color32(90, 80, 0, 255);
+                rangeSkillShot.GetComponent<Image>().color = new Color32(90, 80, 0, 255);
+                dashSkillShot.GetComponent<Image>().color = new Color32(90, 80, 0, 255);
+
+            }
             if (playerControl.spellSecondary[playerControl.spellSelected] == "Range")
             {
                 rangeSkillShot.SetActive(true);
@@ -211,6 +219,14 @@ public class SkillShotRotate : MonoBehaviour
                 aoeSkillShot.GetComponent<Image>().color = Color.blue;
                 rangeSkillShot.GetComponent<Image>().color = Color.blue;
                 dashSkillShot.GetComponent<Image>().color = Color.blue;
+            }
+            if (playerControlXbox.spellPrimary[playerControlXbox.spellSelected] == "Earth") // aaplies base spell ccolor
+            {
+                baseSkillShot.GetComponent<Image>().color = new Color32(90, 80, 0, 255);
+                aoeSkillShot.GetComponent<Image>().color = new Color32(90, 80, 0, 255);
+                rangeSkillShot.GetComponent<Image>().color = new Color32(90, 80, 0, 255);
+                dashSkillShot.GetComponent<Image>().color = new Color32(90, 80, 0, 255);
+
             }
             if (playerControlXbox.spellSecondary[playerControlXbox.spellSelected] == "Range")
             {
