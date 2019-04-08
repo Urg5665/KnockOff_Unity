@@ -39,6 +39,7 @@ public class EarthQuakeThrow : MonoBehaviour
             playerControl = player.GetComponent<PlayerControl>();
             spellNum = playerControl.spellSelected;
             dashTarget = GameObject.Find("Player2").transform.position;
+            dashTarget = new Vector3(dashTarget.x, dashTarget.y - 5f, dashTarget.z);
         }
         if (playerInt == 2)
         {
