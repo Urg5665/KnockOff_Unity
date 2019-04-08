@@ -19,7 +19,7 @@ public class TileBehavoir : MonoBehaviour
         destroyTimer = 0;
     }
     
-    private void OnTriggerEnter(Collider collision)
+    public void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "earthQuake")
         {

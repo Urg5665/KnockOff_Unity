@@ -61,9 +61,14 @@ public class EarthQuakeThrow : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.tag == "Player2")
         {
             Debug.Log(collision.gameObject.name);
+            //collision.gameObject.GetComponentInParent<TileBehavoir>().destroyed = true;
+        }
+        if (collision.gameObject.tag == "Ground")
+        {
+            //Debug.Log(collision.gameObject.name);
             collision.gameObject.GetComponentInParent<TileBehavoir>().destroyed = true;
         }
     }
