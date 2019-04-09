@@ -10,8 +10,8 @@ public class TileBehavoir : MonoBehaviour
     public MeshRenderer mesh;
     public MeshCollider col;
 
-    public int player1Score;
-    public int player2Score;
+    static int player1Score;
+    static int player2Score;
 
     public DeathPlane deathPlane;
 
@@ -45,7 +45,7 @@ public class TileBehavoir : MonoBehaviour
         {
             player1Score = deathPlane.player1Score;
             player2Score = deathPlane.player2Score;
-            destroyTimer = 200;
+            destroyTimer = 185;
         }
 
         if (Input.GetKey(KeyCode.H))
