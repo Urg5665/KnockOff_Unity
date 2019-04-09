@@ -14,9 +14,10 @@ public class EarthQuakeThrow : MonoBehaviour
     public PlayerControlXbox playerControlXbox;
 
     public bool dashSpell; // This will tell the spell to seek out the oppoentafter a dash// to hard to cast after dashing
-
+    public bool bombSpell;
     public int rangeCounter;
     public int maxRange;
+    public int bombRange;
 
     //public CameraMove cameraMove;
 
@@ -59,6 +60,8 @@ public class EarthQuakeThrow : MonoBehaviour
         hitSlow = 101;
         audioClip = this.GetComponent<AudioSource>().clip;
         audioSource = this.GetComponent<AudioSource>();
+        bombRange = 50;
+        bombSpell = false;
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -92,6 +95,27 @@ public class EarthQuakeThrow : MonoBehaviour
         {
             if (playerInt == 1)
             {
+                if (bombSpell)
+                {
+                    //GameObject clone = Instantiate(this.gameObject);
+                    //clone.GetComponent<FireBallThrow>().bombSpell = false;
+                    // clone.GetComponent<FireBallThrow>().maxRange = 100;
+
+
+                    for (int i = 0; i < 5; i++)
+                    {
+                        playerControl.newSpellBomb[i] = Instantiate(this.gameObject, this.transform.position, this.gameObject.transform.rotation);
+                        playerControl.newSpellBomb[i].transform.position = new Vector3(playerControl.newSpellBomb[i].transform.position.x, playerControl.newSpellBomb[i].transform.position.y + 3.0f, playerControl.newSpellBomb[i].transform.position.z);
+                        //playerControl.newSpellBomb[i] = new Vector3(playerControl.newSpellBomb[i].transform.pos;
+                        //newSpellAOE[i].transform.position = new Vector3(newSpellAOE[i].transform.position.x, this.gameObject.transform.position.y - .25f, newSpellAOE[i].transform.position.z);
+                        playerControl.newSpellBomb[i].GetComponent<EarthQuakeThrow>().spellNum = spellNum;
+                        playerControl.newSpellBomb[i].GetComponent<EarthQuakeThrow>().maxRange = bombRange;
+                        playerControl.aoeCone(i);
+                        //playerControl.bombCircle(i);
+                        playerControl.newSpellBomb[i].GetComponent<EarthQuakeThrow>().transform.LookAt(playerControl.AOEpoint);
+                        playerControl.newSpellBomb[i].GetComponent<EarthQuakeThrow>().bombSpell = false;
+                    }
+                }
                 Destroy(this.gameObject);
                 playerControl.canCast[spellNum] = true;
                 playerControl.spellPrimary[spellNum] = "";

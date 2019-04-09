@@ -14,7 +14,8 @@ public class WindWaveThrow : MonoBehaviour
     public PlayerControlXbox playerControlXbox;
     public Vector3 dashTarget;
 
-    public bool dashSpell; // This will tell the spell to seek out the oppoentafter a dash// to hard to cast after dashing
+    public bool dashSpell; // This will tell the spell to seek out the oppoentafter a dash// to hard to cast after dashin
+    public bool bombSpell;
 
 
     public float windForce;
@@ -23,6 +24,7 @@ public class WindWaveThrow : MonoBehaviour
 
     public int rangeCounter;
     public int maxRange;
+    public int bombRange;
 
     public Quaternion initialRotation;
 
@@ -65,6 +67,8 @@ public class WindWaveThrow : MonoBehaviour
         initialRotation = this.transform.rotation;
         hitSlow = 101;
         cameraMove = GameObject.Find("MainCamera").GetComponent<CameraMove>();
+        bombSpell = false;
+        bombRange = 50;
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -135,6 +139,27 @@ public class WindWaveThrow : MonoBehaviour
         { 
             if (playerInt == 1)
             {
+                if (bombSpell)
+                {
+                    //GameObject clone = Instantiate(this.gameObject);
+                    //clone.GetComponent<FireBallThrow>().bombSpell = false;
+                    // clone.GetComponent<FireBallThrow>().maxRange = 100;
+
+
+                    for (int i = 0; i < 5; i++)
+                    {
+                        playerControl.newSpellBomb[i] = Instantiate(this.gameObject, this.transform.position, this.gameObject.transform.rotation);
+                        playerControl.newSpellBomb[i].transform.position = new Vector3(playerControl.newSpellBomb[i].transform.position.x, playerControl.newSpellBomb[i].transform.position.y + 3.0f, playerControl.newSpellBomb[i].transform.position.z);
+                        //playerControl.newSpellBomb[i] = new Vector3(playerControl.newSpellBomb[i].transform.pos;
+                        //newSpellAOE[i].transform.position = new Vector3(newSpellAOE[i].transform.position.x, this.gameObject.transform.position.y - .25f, newSpellAOE[i].transform.position.z);
+                        playerControl.newSpellBomb[i].GetComponent<WindWaveThrow>().spellNum = spellNum;
+                        playerControl.newSpellBomb[i].GetComponent<WindWaveThrow>().maxRange = bombRange;
+                        playerControl.aoeCone(i);
+                        //playerControl.bombCircle(i);
+                        playerControl.newSpellBomb[i].GetComponent<WindWaveThrow>().transform.LookAt(playerControl.AOEpoint);
+                        playerControl.newSpellBomb[i].GetComponent<WindWaveThrow>().bombSpell = false;
+                    }
+                }
                 Destroy(this.gameObject);
                 playerControl.canCast[spellNum] = true;
                 playerControl.spellPrimary[spellNum] = "";
