@@ -28,7 +28,13 @@ public class PlayerControl : MonoBehaviour
     //public PointerEventData pointerEvent;
 
     public string[] spellPrimary; // Keywords "Fire", "Wind", "Earth" "Water" use "" for empty
-    public string[] spellSecondary; // Keywords "Aoe", "Range", "Lob"? not as sure about the last two use "" for empty
+    public string[] spellSecondary; // Keywords "Aoe", "Range", "Dash" "Bomb"? not as sure about the last two use "" for empty
+    // Bomb: at the max range of the skill shot, the projectile explodes in 8 directions, doing its effect on each of them
+    // Ideally, you could intentioanlly miss the player with the first spell and then hit with the rebound.
+    // Air bomb, knockback
+    // Fire Bomb, ranged aoe stun
+    // Water Bomb, range
+    // Earth Bomb , radial collapse
 
     public GameObject card;
     public GameObject newCard;
@@ -320,6 +326,16 @@ public class PlayerControl : MonoBehaviour
             newSpell.GetComponent<FireBallThrow>().spellNum = spellSelected;
             //Debug.Log("Basic");
             newSpell.GetComponent<FireBallThrow>().maxRange = baseRange;
+            canCast[spellSelected] = false;
+        }
+        if (spellSecondary[spellSelected] == "Bomb")
+        {
+            newSpell = Instantiate(spellProjectile[0], this.transform.position, spellProjectile[0].transform.rotation);
+            newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
+            newSpell.GetComponent<FireBallThrow>().spellNum = spellSelected;
+            //Debug.Log("Basic");
+            newSpell.GetComponent<FireBallThrow>().maxRange = baseRange;
+            newSpell.GetComponent<FireBallThrow>().bombSpell = true;
             canCast[spellSelected] = false;
         }
         if (spellSecondary[spellSelected] == "AOE")

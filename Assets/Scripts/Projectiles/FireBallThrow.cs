@@ -14,6 +14,7 @@ public class FireBallThrow : MonoBehaviour
     public PlayerControlXbox playerControlXbox;
 
     public bool dashSpell; // This will tell the spell to seek out the oppoentafter a dash// to hard to cast after dashing
+    public bool bombSpell; // This will tell the spell to explode ( Isntaitate 8x) after destoyed;
 
     public int rangeCounter;
     public int maxRange;
@@ -21,6 +22,7 @@ public class FireBallThrow : MonoBehaviour
     public CameraMove cameraMove;
 
     public Vector3 dashTarget;
+
 
     public GameObject hitEffect;
     public GameObject hitEffectInGame;
@@ -83,7 +85,7 @@ public class FireBallThrow : MonoBehaviour
             }
 
 
-            playerControl.canCast[spellNum] = true;
+           playerControl.canCast[spellNum] = true;
            playerControl.spellPrimary[spellNum] = "";
            playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
            hitEffectInGame = Instantiate(hitEffect);
@@ -159,6 +161,12 @@ public class FireBallThrow : MonoBehaviour
         {
             if (playerInt == 1)
             {
+                if (bombSpell)
+                {
+                    GameObject clone = Instantiate(this.gameObject);
+                    clone.GetComponent<FireBallThrow>().bombSpell = false;
+                    clone.GetComponent<FireBallThrow>().maxRange = 100;
+                }
                 Destroy(this.gameObject);
                 playerControl.canCast[spellNum] = true;
                 playerControl.spellPrimary[spellNum] = "";
