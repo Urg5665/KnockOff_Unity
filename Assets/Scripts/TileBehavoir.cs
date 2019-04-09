@@ -43,9 +43,10 @@ public class TileBehavoir : MonoBehaviour
     {
         if(player1Score != deathPlane.player1Score || player2Score != deathPlane.player2Score)
         {
+            Debug.Log("Tiles Reset");
             player1Score = deathPlane.player1Score;
             player2Score = deathPlane.player2Score;
-            destroyTimer = 185;
+            destroyTimer = 192;
         }
 
         if (Input.GetKey(KeyCode.H))

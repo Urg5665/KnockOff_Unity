@@ -39,7 +39,7 @@ public class EarthQuakeThrow : MonoBehaviour
             playerControl = player.GetComponent<PlayerControl>();
             spellNum = playerControl.spellSelected;
             dashTarget = GameObject.Find("Player2").transform.position;
-            dashTarget = new Vector3(dashTarget.x, dashTarget.y - 1f, dashTarget.z);
+            dashTarget = new Vector3(dashTarget.x, dashTarget.y - .5f, dashTarget.z);
         }
         if (playerInt == 2)
         {
@@ -48,7 +48,7 @@ public class EarthQuakeThrow : MonoBehaviour
             playerControlXbox = player.GetComponent<PlayerControlXbox>();
             spellNum = playerControlXbox.spellSelected;
             dashTarget = GameObject.Find("Player1").transform.position;
-            dashTarget = new Vector3(dashTarget.x, dashTarget.y - 1f, dashTarget.z);
+            dashTarget = new Vector3(dashTarget.x, dashTarget.y - .5f, dashTarget.z);
         }
 
         maxRange = 10;
@@ -63,14 +63,8 @@ public class EarthQuakeThrow : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.tag == "Player2")
-        {
-            Debug.Log(collision.gameObject.name);
-            //collision.gameObject.GetComponentInParent<TileBehavoir>().destroyed = true;
-        }
         if (collision.gameObject.tag == "Ground" && rangeCounter > 8)
         {
-            //Debug.Log(collision.gameObject.name);
             collision.gameObject.GetComponentInParent<TileBehavoir>().destroyed = true;
         }
     }
