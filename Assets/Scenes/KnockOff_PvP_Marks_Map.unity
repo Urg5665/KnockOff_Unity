@@ -16994,6 +16994,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 46870567241696049, guid: 0f9ffe8302123f5419638698ccf5218d,
         type: 3}
+      propertyPath: newSpellBomb.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 46870567241696049, guid: 0f9ffe8302123f5419638698ccf5218d,
+        type: 3}
       propertyPath: AOEpoint
       value: 
       objectReference: {fileID: 2042537158}

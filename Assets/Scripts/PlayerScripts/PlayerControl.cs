@@ -47,7 +47,7 @@ public class PlayerControl : MonoBehaviour
     public bool AOEKnockBack;
     public int dashingTime;
     public int dashDirectionTime;
-    public Vector3  dashAim;
+    public Vector3 dashAim;
     public float waterDashForceUp;
     public bool castAfterDash;
     public int dashLength;
@@ -57,6 +57,7 @@ public class PlayerControl : MonoBehaviour
 
     public GameObject newSpell;
     public GameObject[] newSpellAOE;
+    public GameObject[] newSpellBomb;
 
     // Spell skillshot Balance Stuff
 
@@ -623,7 +624,7 @@ public class PlayerControl : MonoBehaviour
         }
     }
     // Draw Cone for each particles
-    private void aoeCone(int i)
+    public void aoeCone(int i)
     {
         if (i == 0)
         {
@@ -665,6 +666,52 @@ public class PlayerControl : MonoBehaviour
             if (i == 4)
             {
                 AOEpoint.position = new Vector3(AOEpoint.transform.position.x, this.transform.position.y, AOEpoint.transform.position.z - (aoeWidth/2));
+            }
+
+        }
+    }
+    public void bombCircle(int i)
+    {
+        if (i == 0)
+        {
+            AOEpoint.position = player1Aim.transform.position;
+        }
+        if (spellSelected == 0 || spellSelected == 2)
+        {
+            if (i == 1)
+            {
+                AOEpoint.position = new Vector3(AOEpoint.transform.position.x + aoeWidth / 2, this.transform.position.y, AOEpoint.transform.position.z);
+            }
+            if (i == 2)
+            {
+                AOEpoint.position = new Vector3(AOEpoint.transform.position.x + (aoeWidth / 2), this.transform.position.y, AOEpoint.transform.position.z);
+            }
+            if (i == 3)
+            {
+                AOEpoint.position = new Vector3(AOEpoint.transform.position.x - (aoeWidth * 1.5f), this.transform.position.y, AOEpoint.transform.position.z);
+            }
+            if (i == 4)
+            {
+                AOEpoint.position = new Vector3(AOEpoint.transform.position.x - (aoeWidth / 2), this.transform.position.y, AOEpoint.transform.position.z);
+            }
+        }
+        if (spellSelected == 1 || spellSelected == 3)
+        {
+            if (i == 1)
+            {
+                AOEpoint.position = new Vector3(AOEpoint.transform.position.x, this.transform.position.y, AOEpoint.transform.position.z + aoeWidth / 2);
+            }
+            if (i == 2)
+            {
+                AOEpoint.position = new Vector3(AOEpoint.transform.position.x, this.transform.position.y, AOEpoint.transform.position.z + (aoeWidth / 2));
+            }
+            if (i == 3)
+            {
+                AOEpoint.position = new Vector3(AOEpoint.transform.position.x, this.transform.position.y, AOEpoint.transform.position.z - (aoeWidth * 1.5f));
+            }
+            if (i == 4)
+            {
+                AOEpoint.position = new Vector3(AOEpoint.transform.position.x, this.transform.position.y, AOEpoint.transform.position.z - (aoeWidth / 2));
             }
 
         }
