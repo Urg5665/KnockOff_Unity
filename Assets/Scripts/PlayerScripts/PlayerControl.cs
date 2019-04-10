@@ -334,7 +334,7 @@ public class PlayerControl : MonoBehaviour
             newSpell.GetComponent<FireBallThrow>().maxRange = baseRange;
             canCast[spellSelected] = false;
         }
-        if (spellSecondary[spellSelected] == "Bomb")
+        if (spellSecondary[spellSelected] == "Boom")
         {
             newSpell = Instantiate(spellProjectile[0], this.transform.position, spellProjectile[0].transform.rotation);
             newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
@@ -342,7 +342,7 @@ public class PlayerControl : MonoBehaviour
             //Debug.Log("Basic");
             newSpell.GetComponent<FireBallThrow>().maxRange = bombBaseRange;
             newSpell.GetComponent<FireBallThrow>().throwSpeed = bombBaseSpeed;
-            newSpell.GetComponent<FireBallThrow>().bombSpell = true;
+            newSpell.GetComponent<FireBallThrow>().boomSpell = true;
             canCast[spellSelected] = false;
         }
         if (spellSecondary[spellSelected] == "AOE")

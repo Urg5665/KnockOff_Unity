@@ -16,6 +16,8 @@ public class FireBallThrow : MonoBehaviour
     public bool dashSpell; // This will tell the spell to seek out the oppoentafter a dash// to hard to cast after dashing
     public bool bombSpell; // This will tell the spell to explode ( Isntaitate 8x) after destoyed;
 
+    public bool boomSpell; // Code for Boomerang, comes back after
+    public bool boomReturn;
     //public GameObject[] newSpellBomb; move this to playerControl so that it is not lost on this destroy
 
     public int rangeCounter;
@@ -64,11 +66,22 @@ public class FireBallThrow : MonoBehaviour
         audioSource = this.GetComponent<AudioSource>();
         bombRange = 20;
         bombSpell = false;
+        boomSpell = false;
+        boomReturn = false;
 
     }
 
     private void OnTriggerEnter(Collider collision)
     {
+        if (playerInt == 1 && collision.gameObject.tag == "Player1" && boomReturn)
+        {
+            Destroy(this.gameObject);
+            playerControl.canCast[spellNum] = true;
+            playerControl.spellPrimary[spellNum] = "";
+            playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
+        }
+
+
         if (playerInt == 1 && collision.gameObject.tag == "Player2")
         {
             //collision.gameObject.GetComponent<PlayerControlXbox>().speed = 0;
@@ -161,12 +174,45 @@ public class FireBallThrow : MonoBehaviour
             }
         }
         rangeCounter++;
+        if (boomReturn)
+        {
+            //transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
+            transform.LookAt(player.transform.position);
+        }
 
         if (rangeCounter > maxRange)
         {
             if (playerInt == 1)
             {
-                if (bombSpell)
+                if (boomSpell)
+                {
+                    boomReturn = true;
+                }
+                else if(!boomSpell)
+                {
+                    Destroy(this.gameObject);
+                    playerControl.canCast[spellNum] = true;
+                    playerControl.spellPrimary[spellNum] = "";
+                    playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
+                }
+
+
+            }
+
+            if (playerInt == 2)
+            {
+                Destroy(this.gameObject);
+                playerControlXbox.canCast[spellNum] = true;
+                playerControlXbox.spellPrimary[spellNum] = "";
+                playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
+            }
+        }
+
+
+        }
+}
+/*
+ *                 if (bombSpell)
                 {
                     //GameObject clone = Instantiate(this.gameObject);
                     //clone.GetComponent<FireBallThrow>().bombSpell = false;
@@ -184,23 +230,5 @@ public class FireBallThrow : MonoBehaviour
                         playerControl.newSpellBomb[i].GetComponent<FireBallThrow>().transform.LookAt(playerControl.AOEpoint);
                         playerControl.newSpellBomb[i].GetComponent<FireBallThrow>().bombSpell = false;
                     }
-                }
-                Destroy(this.gameObject);
-                playerControl.canCast[spellNum] = true;
-                playerControl.spellPrimary[spellNum] = "";
-                playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
-            }
-
-            if (playerInt == 2)
-            {
-                Destroy(this.gameObject);
-                playerControlXbox.canCast[spellNum] = true;
-                playerControlXbox.spellPrimary[spellNum] = "";
-                playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
-            }
-        }
-
-
-        }
-}
+                }*/
 
