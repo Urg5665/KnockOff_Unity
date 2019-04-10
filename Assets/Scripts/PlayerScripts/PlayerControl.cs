@@ -52,6 +52,9 @@ public class PlayerControl : MonoBehaviour
     public bool castAfterDash;
     public int dashLength;
 
+    public int bombBaseRange;
+    public int bombBaseSpeed;
+
     public int cardsThrown;
     //public float slowDownPerCard = 2.5f;
 
@@ -95,6 +98,8 @@ public class PlayerControl : MonoBehaviour
         baseRange = 35;
         baseSpeed = 40;
         aoeRange = 30;
+        bombBaseRange = 30;
+        bombBaseSpeed = 50;
 
         rangeRange = 90;
         rangeSpeed = 90;
@@ -335,7 +340,8 @@ public class PlayerControl : MonoBehaviour
             newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
             newSpell.GetComponent<FireBallThrow>().spellNum = spellSelected;
             //Debug.Log("Basic");
-            newSpell.GetComponent<FireBallThrow>().maxRange = baseRange;
+            newSpell.GetComponent<FireBallThrow>().maxRange = bombBaseRange;
+            newSpell.GetComponent<FireBallThrow>().throwSpeed = bombBaseSpeed;
             newSpell.GetComponent<FireBallThrow>().bombSpell = true;
             canCast[spellSelected] = false;
         }
@@ -420,7 +426,8 @@ public class PlayerControl : MonoBehaviour
             newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
             newSpell.GetComponent<WindWaveThrow>().spellNum = spellSelected;
             //Debug.Log("Basic");
-            newSpell.GetComponent<WindWaveThrow>().maxRange = baseRange;
+            newSpell.GetComponent<WindWaveThrow>().maxRange = bombBaseRange;
+            newSpell.GetComponent<WindWaveThrow>().throwSpeed = bombBaseSpeed;
             newSpell.GetComponent<WindWaveThrow>().bombSpell = true;
             canCast[spellSelected] = false;
         }
@@ -496,6 +503,17 @@ public class PlayerControl : MonoBehaviour
             newSpell.GetComponent<WaterPullThrow>().spellNum = spellSelected;
             //Debug.Log("Basic");
             newSpell.GetComponent<WaterPullThrow>().maxRange = baseRange;
+            canCast[spellSelected] = false;
+        }
+        if (spellSecondary[spellSelected] == "Bomb")
+        {
+            newSpell = Instantiate(spellProjectile[2], this.transform.position, spellProjectile[0].transform.rotation);
+            newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
+            newSpell.GetComponent<WaterPullThrow>().spellNum = spellSelected;
+            //Debug.Log("Basic");
+            newSpell.GetComponent<WaterPullThrow>().maxRange = bombBaseRange;
+            newSpell.GetComponent<WaterPullThrow>().throwSpeed = bombBaseSpeed;
+            newSpell.GetComponent<WaterPullThrow>().bombSpell = true;
             canCast[spellSelected] = false;
         }
         if (spellSecondary[spellSelected] == "AOE")
@@ -576,7 +594,8 @@ public class PlayerControl : MonoBehaviour
             newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
             newSpell.GetComponent< EarthQuakeThrow>().spellNum = spellSelected;
             //Debug.Log("Basic");
-            newSpell.GetComponent<EarthQuakeThrow>().maxRange = baseRange;
+            newSpell.GetComponent<EarthQuakeThrow>().maxRange = bombBaseRange;
+            newSpell.GetComponent<EarthQuakeThrow>().throwSpeed = bombBaseSpeed;
             newSpell.GetComponent<EarthQuakeThrow>().bombSpell = true;
             canCast[spellSelected] = false;
         }
@@ -690,25 +709,31 @@ public class PlayerControl : MonoBehaviour
 
         }
     }
-    public void bombCircle(int i)
+    //
+    //         pos.x = center.x + radius * Mathf.Sin(ang * Mathf.Deg2Rad);
+    //pos.y = center.y + radius* Mathf.Cos(ang* Mathf.Deg2Rad);
+    public void bombCircle(GameObject parent, int i)
     {
-        if (i == 0)
-        {
-            AOEpoint.position = player1Aim.transform.position;
-        }
+        AOEpoint.position = parent.transform.position;
+        float ang = 45 * i;
+        float radius = 10;
+        AOEpoint.position = new Vector3(AOEpoint.transform.position.x + (radius * Mathf.Sin(ang * Mathf.Deg2Rad)), this.transform.position.y, AOEpoint.transform.position.z + (radius * Mathf.Cos(ang * Mathf.Deg2Rad)));
+        //Debug.Log(i + ":" + AOEpoint.position);
+        //AOEpoint.position
+        /* 
         if (spellSelected == 0 || spellSelected == 2)
         {
             if (i == 1)
             {
-                AOEpoint.position = new Vector3(AOEpoint.transform.position.x + aoeWidth / 2, this.transform.position.y, AOEpoint.transform.position.z);
+                AOEpoint.position = new Vector3(AOEpoint.transform.position.x + 7.5f, this.transform.position.y, AOEpoint.transform.position.z + 7.5f);
             }
             if (i == 2)
             {
-                AOEpoint.position = new Vector3(AOEpoint.transform.position.x + (aoeWidth / 2), this.transform.position.y, AOEpoint.transform.position.z);
+                AOEpoint.position = new Vector3(AOEpoint.transform.position.x, this.transform.position.y, AOEpoint.transform.position.z + 10f);
             }
             if (i == 3)
             {
-                AOEpoint.position = new Vector3(AOEpoint.transform.position.x - (aoeWidth * 1.5f), this.transform.position.y, AOEpoint.transform.position.z);
+                AOEpoint.position = new Vector3(AOEpoint.transform.position.x + 7.5f, this.transform.position.y, AOEpoint.transform.position.z + 7.5f);
             }
             if (i == 4)
             {
@@ -734,7 +759,7 @@ public class PlayerControl : MonoBehaviour
                 AOEpoint.position = new Vector3(AOEpoint.transform.position.x, this.transform.position.y, AOEpoint.transform.position.z - (aoeWidth / 2));
             }
 
-        }
+        }*/
     }
 }
        

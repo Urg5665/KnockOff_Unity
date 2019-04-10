@@ -62,7 +62,7 @@ public class FireBallThrow : MonoBehaviour
         hitSlow = 101;
         audioClip = this.GetComponent<AudioSource>().clip;
         audioSource = this.GetComponent<AudioSource>();
-        bombRange = 50;
+        bombRange = 20;
         bombSpell = false;
 
     }
@@ -173,14 +173,14 @@ public class FireBallThrow : MonoBehaviour
                    // clone.GetComponent<FireBallThrow>().maxRange = 100;
 
 
-                    for (int i = 0; i < 5; i++)
+                    for (int i = 0; i < 8; i++)
                     {
                         playerControl.newSpellBomb[i] = Instantiate(this.gameObject, this.transform.position, this.gameObject.transform.rotation);
                         //newSpellAOE[i].transform.position = new Vector3(newSpellAOE[i].transform.position.x, this.gameObject.transform.position.y - .25f, newSpellAOE[i].transform.position.z);
                         playerControl.newSpellBomb[i].GetComponent<FireBallThrow>().spellNum = spellNum;
                         playerControl.newSpellBomb[i].GetComponent<FireBallThrow>().maxRange = bombRange;
-                        playerControl.aoeCone(i);
-                        //playerControl.bombCircle(i);
+                        //playerControl.aoeCone(i);
+                        playerControl.bombCircle(this.gameObject,i);
                         playerControl.newSpellBomb[i].GetComponent<FireBallThrow>().transform.LookAt(playerControl.AOEpoint);
                         playerControl.newSpellBomb[i].GetComponent<FireBallThrow>().bombSpell = false;
                     }

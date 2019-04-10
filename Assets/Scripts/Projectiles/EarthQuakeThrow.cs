@@ -60,7 +60,7 @@ public class EarthQuakeThrow : MonoBehaviour
         hitSlow = 101;
         audioClip = this.GetComponent<AudioSource>().clip;
         audioSource = this.GetComponent<AudioSource>();
-        bombRange = 50;
+        bombRange = 20;
         bombSpell = false;
     }
 
@@ -102,7 +102,7 @@ public class EarthQuakeThrow : MonoBehaviour
                     // clone.GetComponent<FireBallThrow>().maxRange = 100;
 
 
-                    for (int i = 0; i < 5; i++)
+                    for (int i = 0; i < 8; i++)
                     {
                         playerControl.newSpellBomb[i] = Instantiate(this.gameObject, this.transform.position, this.gameObject.transform.rotation);
                         playerControl.newSpellBomb[i].transform.position = new Vector3(playerControl.newSpellBomb[i].transform.position.x, playerControl.newSpellBomb[i].transform.position.y + 3.0f, playerControl.newSpellBomb[i].transform.position.z);
@@ -110,8 +110,9 @@ public class EarthQuakeThrow : MonoBehaviour
                         //newSpellAOE[i].transform.position = new Vector3(newSpellAOE[i].transform.position.x, this.gameObject.transform.position.y - .25f, newSpellAOE[i].transform.position.z);
                         playerControl.newSpellBomb[i].GetComponent<EarthQuakeThrow>().spellNum = spellNum;
                         playerControl.newSpellBomb[i].GetComponent<EarthQuakeThrow>().maxRange = bombRange;
-                        playerControl.aoeCone(i);
+                        //playerControl.aoeCone(i);
                         //playerControl.bombCircle(i);
+                        playerControl.bombCircle(this.gameObject, i);
                         playerControl.newSpellBomb[i].GetComponent<EarthQuakeThrow>().transform.LookAt(playerControl.AOEpoint);
                         playerControl.newSpellBomb[i].GetComponent<EarthQuakeThrow>().bombSpell = false;
                     }
