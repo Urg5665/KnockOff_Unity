@@ -17,6 +17,7 @@ public class WaterPullThrow : MonoBehaviour
 
     public bool dashSpell; // This will tell the spell to seek out the oppoentafter a dash// to hard to cast after dashing
     public bool boomSpell;
+    public bool boomHover;
     public bool boomReturn;
 
     public float waterForce;
@@ -68,6 +69,7 @@ public class WaterPullThrow : MonoBehaviour
         cameraMove = GameObject.Find("MainCamera").GetComponent<CameraMove>();
         boomSpell = false;
         boomReturn = false;
+        boomHover = false;
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -145,7 +147,11 @@ public class WaterPullThrow : MonoBehaviour
         {
             transform.LookAt(dashTarget);
         }
-        transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
+        if (!boomHover)
+        {
+            transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
+        }
+
 
         rangeCounter++;
 
@@ -160,8 +166,7 @@ public class WaterPullThrow : MonoBehaviour
             {
                 if (boomSpell)
                 {
-                    boomReturn = true;
-                    hitPlayer = false;
+                    boomHover = true;
                 }
                 else if (!boomSpell)
                 {
@@ -178,6 +183,15 @@ public class WaterPullThrow : MonoBehaviour
                 playerControlXbox.canCast[spellNum] = true;
                 playerControlXbox.spellPrimary[spellNum] = "";
                 playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
+            }
+        }
+        if(rangeCounter > maxRange * 3)
+        {
+            if (boomSpell)
+            {
+                boomReturn = true;
+                boomHover = false;
+                hitPlayer = false;
             }
         }
     }

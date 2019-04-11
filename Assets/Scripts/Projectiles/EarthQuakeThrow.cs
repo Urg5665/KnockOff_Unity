@@ -20,6 +20,7 @@ public class EarthQuakeThrow : MonoBehaviour
 
     public bool boomSpell; // Code for Boomerang, comes back after
     public bool boomReturn;
+    public bool boomHover;
 
     //public CameraMove cameraMove;
 
@@ -64,6 +65,7 @@ public class EarthQuakeThrow : MonoBehaviour
         audioSource = this.GetComponent<AudioSource>();
         boomSpell = false;
         boomReturn = false;
+        boomHover = false;
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -78,7 +80,11 @@ public class EarthQuakeThrow : MonoBehaviour
     {
         if (!dashSpell)
         {
-            transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
+            if (!boomHover)
+            {
+                transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
+            }
+
         }
         if (dashSpell)
         {
@@ -97,7 +103,7 @@ public class EarthQuakeThrow : MonoBehaviour
         {
             transform.LookAt(new Vector3(player.transform.position.x, player.transform.position.y - 1f, player.transform.position.z));
             //Debug.Log(Mathf.Abs(this.transform.position.x - player.transform.position.x) + "   " + Mathf.Abs(this.transform.position.z - player.transform.position.z));
-            if (Mathf.Abs(this.transform.position.x - player.transform.position.x) < 5 && Mathf.Abs(this.transform.position.z - player.transform.position.z) < 5)
+            if (Mathf.Abs(this.transform.position.x - player.transform.position.x) < 10 && Mathf.Abs(this.transform.position.z - player.transform.position.z) < 10)
             {
                 Destroy(this.gameObject);
                 playerControl.canCast[spellNum] = true;
@@ -112,7 +118,7 @@ public class EarthQuakeThrow : MonoBehaviour
             {
                 if (boomSpell)
                 {
-                    boomReturn = true;
+                    boomHover = true;
                 }
                 else if (!boomSpell)
                 {
@@ -130,6 +136,15 @@ public class EarthQuakeThrow : MonoBehaviour
                 playerControlXbox.spellPrimary[spellNum] = "";
                 playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
             }
+        }
+        if(rangeCounter > maxRange * 3)
+        {
+            if (boomSpell)
+            {
+                boomHover = false;
+                boomReturn = true;
+            }
+
         }
 
 

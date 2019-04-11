@@ -19,6 +19,7 @@ public class FireBallThrow : MonoBehaviour
     public bool boomSpell; // Code for Boomerang, comes back after
     public bool boomReturn;
     //public GameObject[] newSpellBomb; move this to playerControl so that it is not lost on this destroy
+    public bool boomHover;
 
     public int rangeCounter;
     public int maxRange;
@@ -68,6 +69,7 @@ public class FireBallThrow : MonoBehaviour
         //bombSpell = false;
         boomSpell = false;
         boomReturn = false;
+        boomHover = false;
 
     }
 
@@ -160,7 +162,11 @@ public class FireBallThrow : MonoBehaviour
 
         if (!dashSpell)
         {
-            transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
+            if (!boomHover)
+            {
+                transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
+            }
+
         }
         if (dashSpell)
         {
@@ -174,6 +180,9 @@ public class FireBallThrow : MonoBehaviour
             }
         }
         rangeCounter++;
+
+
+        
         if (boomReturn)
         {
             transform.LookAt(player.transform.position);
@@ -185,7 +194,7 @@ public class FireBallThrow : MonoBehaviour
             {
                 if (boomSpell)
                 {
-                    boomReturn = true;
+                    boomHover = true;
                 }
                 else if(!boomSpell)
                 {
@@ -194,8 +203,6 @@ public class FireBallThrow : MonoBehaviour
                     playerControl.spellPrimary[spellNum] = "";
                     playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
                 }
-
-
             }
 
             if (playerInt == 2)
@@ -207,8 +214,16 @@ public class FireBallThrow : MonoBehaviour
             }
         }
 
-
+        if (rangeCounter > maxRange * 3)
+        {
+            if (boomSpell)
+            {
+                boomHover = false;
+                boomReturn = true;
+            }
         }
+
+    }
 }
 /*
  *                 if (bombSpell)

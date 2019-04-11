@@ -46,7 +46,7 @@ public class TileBehavoir : MonoBehaviour
             //Debug.Log("Tiles Reset");
             player1Score = deathPlane.player1Score;
             player2Score = deathPlane.player2Score;
-            destroyTimer = 192;
+            destroyTimer = 195;
         }
 
         if (Input.GetKey(KeyCode.H))

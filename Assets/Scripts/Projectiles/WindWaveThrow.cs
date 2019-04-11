@@ -18,6 +18,7 @@ public class WindWaveThrow : MonoBehaviour
 
     public bool boomSpell;
     public bool boomReturn;
+    public bool boomHover;
 
     public float windForce;
     public float windKnockUp;
@@ -69,6 +70,7 @@ public class WindWaveThrow : MonoBehaviour
         cameraMove = GameObject.Find("MainCamera").GetComponent<CameraMove>();
         boomSpell = false;
         boomReturn = false;
+        boomHover = false;
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -142,7 +144,11 @@ public class WindWaveThrow : MonoBehaviour
         {
             transform.LookAt(dashTarget);
         }
-        transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
+        if (!boomHover)
+        {
+            transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
+        }
+
 
         rangeCounter++;
 
@@ -157,8 +163,7 @@ public class WindWaveThrow : MonoBehaviour
             {
                 if (boomSpell)
                 {
-                    boomReturn = true;
-                    hitPlayer = false;
+                    boomHover = true;
                 }
                 else if (!boomSpell)
                 {
@@ -176,6 +181,16 @@ public class WindWaveThrow : MonoBehaviour
                 playerControlXbox.spellPrimary[spellNum] = "";
                 playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
             }
+        }
+        if (rangeCounter > maxRange * 3)
+        {
+            if (boomSpell)
+            {
+                boomHover = false;
+                boomReturn = true;
+                hitPlayer = false;
+            }
+
         }
     }
 }
