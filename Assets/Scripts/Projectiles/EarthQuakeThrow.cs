@@ -14,10 +14,12 @@ public class EarthQuakeThrow : MonoBehaviour
     public PlayerControlXbox playerControlXbox;
 
     public bool dashSpell; // This will tell the spell to seek out the oppoentafter a dash// to hard to cast after dashing
-    public bool bombSpell;
     public int rangeCounter;
     public int maxRange;
-    public int bombRange;
+
+
+    public bool boomSpell; // Code for Boomerang, comes back after
+    public bool boomReturn;
 
     //public CameraMove cameraMove;
 
@@ -60,13 +62,13 @@ public class EarthQuakeThrow : MonoBehaviour
         hitSlow = 101;
         audioClip = this.GetComponent<AudioSource>().clip;
         audioSource = this.GetComponent<AudioSource>();
-        bombRange = 20;
-        bombSpell = false;
+        boomSpell = false;
+        boomReturn = false;
     }
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.tag == "Ground" && rangeCounter > 8)
+        if (collision.gameObject.tag == "Ground" && rangeCounter > 6)
         {
             collision.gameObject.GetComponentInParent<TileBehavoir>().destroyed = true;
         }
@@ -91,36 +93,34 @@ public class EarthQuakeThrow : MonoBehaviour
         }
         rangeCounter++;
 
-        if (rangeCounter > maxRange)
+        if (boomReturn)
         {
-            if (playerInt == 1)
+            transform.LookAt(new Vector3(player.transform.position.x, player.transform.position.y - 1f, player.transform.position.z));
+            //Debug.Log(Mathf.Abs(this.transform.position.x - player.transform.position.x) + "   " + Mathf.Abs(this.transform.position.z - player.transform.position.z));
+            if (Mathf.Abs(this.transform.position.x - player.transform.position.x) < 5 && Mathf.Abs(this.transform.position.z - player.transform.position.z) < 5)
             {
-                if (bombSpell)
-                {
-                    //GameObject clone = Instantiate(this.gameObject);
-                    //clone.GetComponent<FireBallThrow>().bombSpell = false;
-                    // clone.GetComponent<FireBallThrow>().maxRange = 100;
-
-
-                    for (int i = 0; i < 8; i++)
-                    {
-                        playerControl.newSpellBomb[i] = Instantiate(this.gameObject, this.transform.position, this.gameObject.transform.rotation);
-                        playerControl.newSpellBomb[i].transform.position = new Vector3(playerControl.newSpellBomb[i].transform.position.x, playerControl.newSpellBomb[i].transform.position.y + 3.0f, playerControl.newSpellBomb[i].transform.position.z);
-                        //playerControl.newSpellBomb[i] = new Vector3(playerControl.newSpellBomb[i].transform.pos;
-                        //newSpellAOE[i].transform.position = new Vector3(newSpellAOE[i].transform.position.x, this.gameObject.transform.position.y - .25f, newSpellAOE[i].transform.position.z);
-                        playerControl.newSpellBomb[i].GetComponent<EarthQuakeThrow>().spellNum = spellNum;
-                        playerControl.newSpellBomb[i].GetComponent<EarthQuakeThrow>().maxRange = bombRange;
-                        //playerControl.aoeCone(i);
-                        //playerControl.bombCircle(i);
-                        playerControl.bombCircle(this.gameObject, i);
-                        playerControl.newSpellBomb[i].GetComponent<EarthQuakeThrow>().transform.LookAt(playerControl.AOEpoint);
-                        playerControl.newSpellBomb[i].GetComponent<EarthQuakeThrow>().bombSpell = false;
-                    }
-                }
                 Destroy(this.gameObject);
                 playerControl.canCast[spellNum] = true;
                 playerControl.spellPrimary[spellNum] = "";
                 playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
+            }
+        }
+
+        if (rangeCounter > maxRange)
+        {
+            if (playerInt == 1)
+            {
+                if (boomSpell)
+                {
+                    boomReturn = true;
+                }
+                else if (!boomSpell)
+                {
+                    Destroy(this.gameObject);
+                    playerControl.canCast[spellNum] = true;
+                    playerControl.spellPrimary[spellNum] = "";
+                    playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
+                }
             }
 
             if (playerInt == 2)

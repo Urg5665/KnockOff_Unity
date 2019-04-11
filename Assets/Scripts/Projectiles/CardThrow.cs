@@ -91,7 +91,7 @@ public class CardThrow : MonoBehaviour
         if (collision.gameObject.tag == "earthRes" && toRes == true)
         {
             resType = "Earth";
-            Debug.Log("Boom Picked");
+            //Debug.Log("Boom Picked");
             resType2 = "Boom";
             cardCollider.isTrigger = false;
             toRes = false;

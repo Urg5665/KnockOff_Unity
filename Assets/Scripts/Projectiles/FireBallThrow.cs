@@ -14,7 +14,7 @@ public class FireBallThrow : MonoBehaviour
     public PlayerControlXbox playerControlXbox;
 
     public bool dashSpell; // This will tell the spell to seek out the oppoentafter a dash// to hard to cast after dashing
-    public bool bombSpell; // This will tell the spell to explode ( Isntaitate 8x) after destoyed;
+    //public bool bombSpell; // This will tell the spell to explode ( Isntaitate 8x) after destoyed;
 
     public bool boomSpell; // Code for Boomerang, comes back after
     public bool boomReturn;
@@ -65,7 +65,7 @@ public class FireBallThrow : MonoBehaviour
         audioClip = this.GetComponent<AudioSource>().clip;
         audioSource = this.GetComponent<AudioSource>();
         bombRange = 20;
-        bombSpell = false;
+        //bombSpell = false;
         boomSpell = false;
         boomReturn = false;
 
@@ -176,7 +176,6 @@ public class FireBallThrow : MonoBehaviour
         rangeCounter++;
         if (boomReturn)
         {
-            //transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
             transform.LookAt(player.transform.position);
         }
 

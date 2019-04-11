@@ -98,8 +98,8 @@ public class PlayerControl : MonoBehaviour
         baseRange = 35;
         baseSpeed = 40;
         aoeRange = 30;
-        bombBaseRange = 30;
-        bombBaseSpeed = 50;
+        bombBaseRange = 40;
+        bombBaseSpeed = 40;
 
         rangeRange = 90;
         rangeSpeed = 90;
@@ -229,7 +229,7 @@ public class PlayerControl : MonoBehaviour
             if (spellPrimary[dashDirection] == "Earth" && spellSecondary[dashDirection] == "Dash")
             {
                 newSpell = Instantiate(spellProjectile[3], this.transform.position, spellProjectile[0].transform.rotation);
-                newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y + .50f, newSpell.transform.position.z);
+                newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - 1f, newSpell.transform.position.z);
                 newSpell.GetComponent<EarthQuakeThrow>().spellNum = dashDirection;
                 newSpell.GetComponent<EarthQuakeThrow>().maxRange = dashSpellRange;
                 newSpell.GetComponent<EarthQuakeThrow>().dashSpell = true;
@@ -420,7 +420,7 @@ public class PlayerControl : MonoBehaviour
             canCast[spellSelected] = false;
             newSpell.GetComponent<WindWaveThrow>().maxRange = baseRange;
         }
-        if (spellSecondary[spellSelected] == "Bomb")
+        if (spellSecondary[spellSelected] == "Boom")
         {
             newSpell = Instantiate(spellProjectile[1], this.transform.position, spellProjectile[0].transform.rotation);
             newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
@@ -428,7 +428,7 @@ public class PlayerControl : MonoBehaviour
             //Debug.Log("Basic");
             newSpell.GetComponent<WindWaveThrow>().maxRange = bombBaseRange;
             newSpell.GetComponent<WindWaveThrow>().throwSpeed = bombBaseSpeed;
-            newSpell.GetComponent<WindWaveThrow>().bombSpell = true;
+            newSpell.GetComponent<WindWaveThrow>().boomSpell = true;
             canCast[spellSelected] = false;
         }
         else if (spellSecondary[spellSelected] == "AOE")
@@ -505,7 +505,7 @@ public class PlayerControl : MonoBehaviour
             newSpell.GetComponent<WaterPullThrow>().maxRange = baseRange;
             canCast[spellSelected] = false;
         }
-        if (spellSecondary[spellSelected] == "Bomb")
+        if (spellSecondary[spellSelected] == "Boom")
         {
             newSpell = Instantiate(spellProjectile[2], this.transform.position, spellProjectile[0].transform.rotation);
             newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
@@ -513,7 +513,7 @@ public class PlayerControl : MonoBehaviour
             //Debug.Log("Basic");
             newSpell.GetComponent<WaterPullThrow>().maxRange = bombBaseRange;
             newSpell.GetComponent<WaterPullThrow>().throwSpeed = bombBaseSpeed;
-            newSpell.GetComponent<WaterPullThrow>().bombSpell = true;
+            newSpell.GetComponent<WaterPullThrow>().boomSpell = true;
             canCast[spellSelected] = false;
         }
         if (spellSecondary[spellSelected] == "AOE")
@@ -582,21 +582,21 @@ public class PlayerControl : MonoBehaviour
         if (spellSecondary[spellSelected] == "")
         {
             newSpell = Instantiate(spellProjectile[3], this.transform.position, spellProjectile[0].transform.rotation);
-            newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
+            newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - 1f, newSpell.transform.position.z);
             newSpell.GetComponent<EarthQuakeThrow>().spellNum = spellSelected;
             //Debug.Log("Basic");
             newSpell.GetComponent<EarthQuakeThrow>().maxRange = baseRange;
             canCast[spellSelected] = false;
         }
-        if (spellSecondary[spellSelected] == "Bomb")
+        if (spellSecondary[spellSelected] == "Boom")
         {
             newSpell = Instantiate(spellProjectile[3], this.transform.position, spellProjectile[0].transform.rotation);
-            newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
+            newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - 1f, newSpell.transform.position.z);
             newSpell.GetComponent< EarthQuakeThrow>().spellNum = spellSelected;
             //Debug.Log("Basic");
             newSpell.GetComponent<EarthQuakeThrow>().maxRange = bombBaseRange;
             newSpell.GetComponent<EarthQuakeThrow>().throwSpeed = bombBaseSpeed;
-            newSpell.GetComponent<EarthQuakeThrow>().bombSpell = true;
+            newSpell.GetComponent<EarthQuakeThrow>().boomSpell = true;
             canCast[spellSelected] = false;
         }
         if (spellSecondary[spellSelected] == "AOE")
@@ -604,11 +604,11 @@ public class PlayerControl : MonoBehaviour
             for (int i = 0; i < 5; i++)
             {
                 newSpellAOE[i] = Instantiate(spellProjectile[3], this.transform.position, spellProjectile[0].transform.rotation);
-                newSpellAOE[i].transform.position = new Vector3(newSpellAOE[i].transform.position.x, newSpellAOE[i].transform.position.y - .25f, newSpellAOE[i].transform.position.z);
                 newSpellAOE[i].GetComponent<EarthQuakeThrow>().spellNum = spellSelected;
                 newSpellAOE[i].GetComponent<EarthQuakeThrow>().maxRange = aoeRange;
                 aoeCone(i);
                 newSpellAOE[i].GetComponent<EarthQuakeThrow>().transform.LookAt(AOEpoint);
+                newSpellAOE[i].transform.position = new Vector3(newSpellAOE[i].transform.position.x, newSpellAOE[i].transform.position.y - 1f, newSpellAOE[i].transform.position.z);
             }
             canCast[spellSelected] = false;
             //
@@ -634,7 +634,7 @@ public class PlayerControl : MonoBehaviour
         if (spellSecondary[spellSelected] == "Range")
         {
             newSpell = Instantiate(spellProjectile[3], this.transform.position, spellProjectile[0].transform.rotation);
-            newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
+            newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y -1f, newSpell.transform.position.z);
             newSpell.GetComponent<EarthQuakeThrow>().spellNum = spellSelected;
             newSpell.GetComponent<EarthQuakeThrow>().maxRange = rangeRange;
             newSpell.GetComponent<EarthQuakeThrow>().throwSpeed = rangeSpeed -30;

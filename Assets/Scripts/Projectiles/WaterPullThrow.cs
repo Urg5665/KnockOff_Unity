@@ -16,7 +16,8 @@ public class WaterPullThrow : MonoBehaviour
 
 
     public bool dashSpell; // This will tell the spell to seek out the oppoentafter a dash// to hard to cast after dashing
-    public bool bombSpell;
+    public bool boomSpell;
+    public bool boomReturn;
 
     public float waterForce;
     public float waterKnockUp;
@@ -65,12 +66,19 @@ public class WaterPullThrow : MonoBehaviour
         rangeCounter = 0;
         hitSlow = 101;
         cameraMove = GameObject.Find("MainCamera").GetComponent<CameraMove>();
-        bombRange = 20;
-        bombSpell = false;
+        boomSpell = false;
+        boomReturn = false;
     }
 
     private void OnTriggerEnter(Collider collision)
     {
+        if (playerInt == 1 && collision.gameObject.tag == "Player1" && boomReturn)
+        {
+            Destroy(this.gameObject);
+            playerControl.canCast[spellNum] = true;
+            playerControl.spellPrimary[spellNum] = "";
+            playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
+        }
 
         if (!hitPlayer && playerInt == 1 && collision.gameObject.tag == "Player2" )
         {
@@ -124,8 +132,12 @@ public class WaterPullThrow : MonoBehaviour
         }
         if (hitSlow == 10)
         {
-            Time.timeScale = 1.0f; 
-            Destroy(this.gameObject);
+            Time.timeScale = 1.0f;
+            if (!boomSpell)
+            {
+                Destroy(this.gameObject);
+            }
+
         }
 
 
@@ -137,36 +149,27 @@ public class WaterPullThrow : MonoBehaviour
 
         rangeCounter++;
 
+        if (boomReturn)
+        {
+            transform.LookAt(player.transform.position);
+        }
+
         if (rangeCounter > maxRange)
         {
             if (playerInt == 1)
             {
-                if (bombSpell)
+                if (boomSpell)
                 {
-                    //GameObject clone = Instantiate(this.gameObject);
-                    //clone.GetComponent<FireBallThrow>().bombSpell = false;
-                    // clone.GetComponent<FireBallThrow>().maxRange = 100;
-
-
-                    for (int i = 0; i < 8; i++)
-                    {
-                        playerControl.newSpellBomb[i] = Instantiate(this.gameObject, this.transform.position, this.gameObject.transform.rotation);
-                        playerControl.newSpellBomb[i].transform.position = new Vector3(playerControl.newSpellBomb[i].transform.position.x, playerControl.newSpellBomb[i].transform.position.y - .25f, playerControl.newSpellBomb[i].transform.position.z);
-                        //playerControl.newSpellBomb[i] = new Vector3(playerControl.newSpellBomb[i].transform.pos;
-                        //newSpellAOE[i].transform.position = new Vector3(newSpellAOE[i].transform.position.x, this.gameObject.transform.position.y - .25f, newSpellAOE[i].transform.position.z);
-                        playerControl.newSpellBomb[i].GetComponent<WaterPullThrow>().spellNum = spellNum;
-                        playerControl.newSpellBomb[i].GetComponent<WaterPullThrow>().maxRange = bombRange;
-                        //playerControl.aoeCone(i);
-                        //playerControl.bombCircle(i);
-                        playerControl.bombCircle(this.gameObject, i);
-                        playerControl.newSpellBomb[i].GetComponent<WaterPullThrow>().transform.LookAt(playerControl.AOEpoint);
-                        playerControl.newSpellBomb[i].GetComponent<WaterPullThrow>().bombSpell = false;
-                    }
+                    boomReturn = true;
+                    hitPlayer = false;
                 }
-                Destroy(this.gameObject);
-                playerControl.canCast[spellNum] = true;
-                playerControl.spellPrimary[spellNum] = "";
-                playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
+                else if (!boomSpell)
+                {
+                    Destroy(this.gameObject);
+                    playerControl.canCast[spellNum] = true;
+                    playerControl.spellPrimary[spellNum] = "";
+                    playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
+                }
             }
 
             if (playerInt == 2)

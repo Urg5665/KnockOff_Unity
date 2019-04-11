@@ -14485,10 +14485,10 @@ MonoBehaviour:
   playerControl: {fileID: 0}
   playerControlXbox: {fileID: 0}
   dashSpell: 0
-  bombSpell: 0
   rangeCounter: 0
   maxRange: 20
-  bombRange: 0
+  boomSpell: 0
+  boomReturn: 0
   dashTarget: {x: 0, y: 0, z: 0}
   hitEffect: {fileID: 0}
   hitEffectInGame: {fileID: 1545252266986714, guid: b9debf73814de9046ae407aa5078c235,
@@ -14510,7 +14510,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 4
   m_CollisionDetection: 0
 --- !u!1 &4658319969187439962
 GameObject:
