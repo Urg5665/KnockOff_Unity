@@ -912,12 +912,15 @@ MonoBehaviour:
   AOEpoint: {fileID: 0}
   dashDirection: 0
   dashing: 0
+  AOEKnockBack: 0
   dashingTime: 0
   dashDirectionTime: 0
   dashAim: {x: 0, y: 0, z: 0}
   waterDashForceUp: 0
   castAfterDash: 0
   dashLength: 0
+  bombBaseRange: 0
+  bombBaseSpeed: 0
   cardsThrown: 0
   newSpell: {fileID: 0}
   newSpellAOE:
@@ -929,6 +932,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  newSpellBomb: []
   baseRange: 0
   baseSpeed: 0
   dashSpellRange: 0
@@ -1283,6 +1287,80 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!1 &8714995961158258884
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2704064759224460695}
+  - component: {fileID: 2930383263180058284}
+  - component: {fileID: 4767361857544278742}
+  m_Layer: 0
+  m_Name: SkillShot_Boom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2704064759224460695
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8714995961158258884}
+  m_LocalRotation: {x: -0, y: -0, z: 0.3826835, w: 0.92387956}
+  m_LocalPosition: {x: 0, y: 0, z: -2.6616595}
+  m_LocalScale: {x: 5.000114, y: 5.0001087, z: 1}
+  m_Children: []
+  m_Father: {fileID: 219027848482197119}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 565.0863, y: -0.000061035156}
+  m_SizeDelta: {x: 160, y: 160}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &2930383263180058284
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8714995961158258884}
+  m_CullTransparentMesh: 0
+--- !u!114 &4767361857544278742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8714995961158258884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 9018e2da01e82494387e5598fbb75980, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
 --- !u!1 &8749702505128207534
 GameObject:
   m_ObjectHideFlags: 0
@@ -1558,6 +1636,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 5973850064171054035, guid: b7455749fa8ac9345a6c79ec9892a2a2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4685667443000061202, guid: b7455749fa8ac9345a6c79ec9892a2a2,
         type: 3}
       propertyPath: playerBelong
@@ -1573,6 +1656,11 @@ PrefabInstance:
       propertyPath: playerControl
       value: 
       objectReference: {fileID: 46870567241696049}
+    - target: {fileID: 4685667443000061202, guid: b7455749fa8ac9345a6c79ec9892a2a2,
+        type: 3}
+      propertyPath: boomSkillShot
+      value: 
+      objectReference: {fileID: 8714995961158258884}
     - target: {fileID: 1126570246340478893, guid: b7455749fa8ac9345a6c79ec9892a2a2,
         type: 3}
       propertyPath: playerBelong

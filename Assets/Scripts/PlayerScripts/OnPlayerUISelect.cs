@@ -15,10 +15,12 @@ public class OnPlayerUISelect : MonoBehaviour
 
     public Image image;
 
+    // pie pieces underneath skillshots
     public Sprite white;
     public Sprite red;
     public Sprite cyan;
     public Sprite blue;
+    public Sprite brown;
 
     public GameObject childIcon;
 
@@ -56,7 +58,7 @@ public class OnPlayerUISelect : MonoBehaviour
             }
             if (playerControl.spellPrimary[spellNumber] == "Earth")
             {
-                image.sprite = white;
+                image.sprite = brown;
                 childIcon.GetComponent<Image>().color = new Color32(90, 80, 0, 255);
             }
             if (playerControl.spellPrimary[spellNumber] == "")

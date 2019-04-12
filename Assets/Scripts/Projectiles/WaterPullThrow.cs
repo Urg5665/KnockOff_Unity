@@ -185,7 +185,7 @@ public class WaterPullThrow : MonoBehaviour
                 playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
             }
         }
-        if(rangeCounter > maxRange * 3)
+        if(rangeCounter > maxRange * 3.5)
         {
             if (boomSpell)
             {

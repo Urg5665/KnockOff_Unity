@@ -214,7 +214,7 @@ public class FireBallThrow : MonoBehaviour
             }
         }
 
-        if (rangeCounter > maxRange * 3)
+        if (rangeCounter > maxRange * 3.5)
         {
             if (boomSpell)
             {
