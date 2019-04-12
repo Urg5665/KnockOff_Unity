@@ -10,12 +10,10 @@ public class TileBehavoir : MonoBehaviour
     public MeshRenderer mesh;
     public MeshCollider col;
 
-    static int player1Score;
-    static int player2Score;
+    public int player1Score;
+    public int player2Score;
 
     public DeathPlane deathPlane;
-
-    
 
     // Start is called before the first frame update
     void Start()
@@ -37,16 +35,16 @@ public class TileBehavoir : MonoBehaviour
             destroyed = true;
         }
     }
-    
 
     void FixedUpdate()
     {
         if(player1Score != deathPlane.player1Score || player2Score != deathPlane.player2Score)
         {
-            //Debug.Log("Tiles Reset");
-            player1Score = deathPlane.player1Score;
-            player2Score = deathPlane.player2Score;
-            destroyTimer = 195;
+            //Debug.Log(player2Score + "  " + deathPlane.player2Score);
+
+            //destroyed = false;
+            //this.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+            destroyTimer += 3;
         }
 
         if (Input.GetKey(KeyCode.H))
@@ -56,7 +54,6 @@ public class TileBehavoir : MonoBehaviour
 
         if (destroyed)
         {
-            //mesh.enabled = false;
             col.enabled = false;
             destroyTimer++;
             double destroyTimerFloat = (double)destroyTimer;
@@ -79,8 +76,10 @@ public class TileBehavoir : MonoBehaviour
             col.enabled = true;
             this.transform.position = new Vector3(transform.position.x, 0, transform.position.z);
         }
-
-
-
+        if (!destroyed)
+        {
+            player1Score = deathPlane.player1Score;
+            player2Score = deathPlane.player2Score;
+        }
     }
 }
