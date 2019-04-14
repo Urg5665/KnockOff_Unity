@@ -12,7 +12,6 @@ public class OnPlayerUISelect : MonoBehaviour
     public PlayerControl playerControl;
     public int spellNumber;
 
-
     public Image image;
 
     // pie pieces underneath skillshots

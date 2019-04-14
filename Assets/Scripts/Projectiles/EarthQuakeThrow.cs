@@ -109,6 +109,10 @@ public class EarthQuakeThrow : MonoBehaviour
                 playerControl.canCast[spellNum] = true;
                 playerControl.spellPrimary[spellNum] = "";
                 playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
+
+                playerControlXbox.canCast[spellNum] = true;
+                playerControlXbox.spellPrimary[spellNum] = "";
+                playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
             }
         }
 
@@ -128,13 +132,19 @@ public class EarthQuakeThrow : MonoBehaviour
                     playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
                 }
             }
-
             if (playerInt == 2)
             {
-                Destroy(this.gameObject);
-                playerControlXbox.canCast[spellNum] = true;
-                playerControlXbox.spellPrimary[spellNum] = "";
-                playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
+                if (boomSpell)
+                {
+                    boomHover = true;
+                }
+                else if (!boomSpell)
+                {
+                    Destroy(this.gameObject);
+                    playerControlXbox.canCast[spellNum] = true;
+                    playerControlXbox.spellPrimary[spellNum] = "";
+                    playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
+                }
             }
         }
         if(rangeCounter > maxRange * 3.5)
