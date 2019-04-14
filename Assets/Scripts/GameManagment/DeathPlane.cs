@@ -41,6 +41,7 @@ public class DeathPlane : MonoBehaviour
             player2.transform.position = new Vector3(44, 10f, -36);
             player2Aim.transform.position = new Vector3(40, 10f, -33);
             player1.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            player2.GetComponent<Rigidbody>().velocity = Vector3.zero;
             StartCoroutine(cameraMove.Shake(.3f, 1f));
             audioSource.Play();
             Destroy(player1Lives[player1Score]);
@@ -53,6 +54,7 @@ public class DeathPlane : MonoBehaviour
             player2.transform.position = new Vector3(44, 10f, -36);
             player2Aim.transform.position = new Vector3(40, 10f, -33);
             player2.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            player1.GetComponent<Rigidbody>().velocity = Vector3.zero;
             StartCoroutine(cameraMove.Shake(.3f, 1f));
             audioSource.Play();
             Destroy(player2Lives[player2Score]);

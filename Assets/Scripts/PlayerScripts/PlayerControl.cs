@@ -52,8 +52,8 @@ public class PlayerControl : MonoBehaviour
     public bool castAfterDash;
     public int dashLength;
 
-    public int bombBaseRange;
-    public int bombBaseSpeed;
+    public int boomBaseRange;
+    public int boomBaseSpeed;
 
     public int cardsThrown;
     //public float slowDownPerCard = 2.5f;
@@ -98,8 +98,8 @@ public class PlayerControl : MonoBehaviour
         baseRange = 35;
         baseSpeed = 40;
         aoeRange = 30;
-        bombBaseRange = 40;
-        bombBaseSpeed = 40;
+        boomBaseRange = 40;
+        boomBaseSpeed = 40;
 
         rangeRange = 90;
         rangeSpeed = 90;
@@ -340,8 +340,8 @@ public class PlayerControl : MonoBehaviour
             newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
             newSpell.GetComponent<FireBallThrow>().spellNum = spellSelected;
             //Debug.Log("Basic");
-            newSpell.GetComponent<FireBallThrow>().maxRange = bombBaseRange;
-            newSpell.GetComponent<FireBallThrow>().throwSpeed = bombBaseSpeed;
+            newSpell.GetComponent<FireBallThrow>().maxRange = boomBaseRange;
+            newSpell.GetComponent<FireBallThrow>().throwSpeed = boomBaseSpeed;
             newSpell.GetComponent<FireBallThrow>().boomSpell = true;
             canCast[spellSelected] = false;
         }
@@ -426,8 +426,8 @@ public class PlayerControl : MonoBehaviour
             newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
             newSpell.GetComponent<WindWaveThrow>().spellNum = spellSelected;
             //Debug.Log("Basic");
-            newSpell.GetComponent<WindWaveThrow>().maxRange = bombBaseRange;
-            newSpell.GetComponent<WindWaveThrow>().throwSpeed = bombBaseSpeed;
+            newSpell.GetComponent<WindWaveThrow>().maxRange = boomBaseRange;
+            newSpell.GetComponent<WindWaveThrow>().throwSpeed = boomBaseSpeed;
             newSpell.GetComponent<WindWaveThrow>().boomSpell = true;
             canCast[spellSelected] = false;
         }
@@ -511,8 +511,8 @@ public class PlayerControl : MonoBehaviour
             newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - .25f, newSpell.transform.position.z);
             newSpell.GetComponent<WaterPullThrow>().spellNum = spellSelected;
             //Debug.Log("Basic");
-            newSpell.GetComponent<WaterPullThrow>().maxRange = bombBaseRange;
-            newSpell.GetComponent<WaterPullThrow>().throwSpeed = bombBaseSpeed;
+            newSpell.GetComponent<WaterPullThrow>().maxRange = boomBaseRange;
+            newSpell.GetComponent<WaterPullThrow>().throwSpeed = boomBaseSpeed;
             newSpell.GetComponent<WaterPullThrow>().boomSpell = true;
             canCast[spellSelected] = false;
         }
@@ -594,8 +594,8 @@ public class PlayerControl : MonoBehaviour
             newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - 1f, newSpell.transform.position.z);
             newSpell.GetComponent< EarthQuakeThrow>().spellNum = spellSelected;
             //Debug.Log("Basic");
-            newSpell.GetComponent<EarthQuakeThrow>().maxRange = bombBaseRange;
-            newSpell.GetComponent<EarthQuakeThrow>().throwSpeed = bombBaseSpeed;
+            newSpell.GetComponent<EarthQuakeThrow>().maxRange = boomBaseRange;
+            newSpell.GetComponent<EarthQuakeThrow>().throwSpeed = boomBaseSpeed;
             newSpell.GetComponent<EarthQuakeThrow>().boomSpell = true;
             canCast[spellSelected] = false;
         }

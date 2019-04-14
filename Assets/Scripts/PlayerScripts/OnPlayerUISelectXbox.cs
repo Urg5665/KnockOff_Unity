@@ -24,6 +24,7 @@ public class OnPlayerUISelectXbox : MonoBehaviour
     public Sprite cone;
     public Sprite line;
     public Sprite dash;
+    public Sprite boom;
 
     private void Start()
     {
@@ -69,6 +70,10 @@ public class OnPlayerUISelectXbox : MonoBehaviour
             if (playerControlXbox.spellSecondary[spellNumber] == "Dash")
             {
                 childIcon.GetComponent<Image>().sprite = dash;
+            }
+            if (playerControlXbox.spellSecondary[spellNumber] == "Boom")
+            {
+                childIcon.GetComponent<Image>().sprite = boom;
             }
             if (playerControlXbox.spellSecondary[spellNumber] == "")
             {

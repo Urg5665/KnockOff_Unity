@@ -104,10 +104,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selected: 0
   player: {fileID: 6068517341001067959}
-  playerAim: {fileID: 0}
+  playerAim: {fileID: 2001183459944746776}
   playerControlXbox: {fileID: 1294518313494728842}
   spellNumber: 0
-  image: {fileID: 0}
+  image: {fileID: 7102426209417383182}
   white: {fileID: 21300000, guid: 2e521e611e21c28438d3e253c5942043, type: 3}
   red: {fileID: 21300000, guid: 911d71a54a8f96f4dabfe5548cdb0a5c, type: 3}
   cyan: {fileID: 21300000, guid: 4584b8cff2c85474d854badf2b2a27cb, type: 3}
@@ -116,6 +116,7 @@ MonoBehaviour:
   cone: {fileID: 21300000, guid: 10c05ee83ce696a42a940c1dc741d441, type: 3}
   line: {fileID: 21300000, guid: 07ce02ca0fdb021439ddf18d4ea64575, type: 3}
   dash: {fileID: 21300000, guid: 5a29759ee84c4674fbebd58465c6883a, type: 3}
+  boom: {fileID: 21300000, guid: 2c6fea187385e9744a37ac1473c2ee8f, type: 3}
 --- !u!1 &1251029820110752946
 GameObject:
   m_ObjectHideFlags: 0
@@ -432,6 +433,7 @@ GameObject:
   - component: {fileID: 5583528120455326175}
   - component: {fileID: 908562918172739567}
   - component: {fileID: 5211571976519051201}
+  - component: {fileID: 7142217626030840064}
   m_Layer: 0
   m_Name: SouthImage
   m_TagString: Untagged
@@ -538,6 +540,33 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &7142217626030840064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2888785719138470147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da3bf0810d3234641b2aa7898f8db8d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selected: 0
+  player: {fileID: 6068517341001067959}
+  playerAim: {fileID: 2001183459944746776}
+  playerControlXbox: {fileID: 1294518313494728842}
+  spellNumber: 2
+  image: {fileID: 908562918172739567}
+  white: {fileID: 21300000, guid: 2e521e611e21c28438d3e253c5942043, type: 3}
+  red: {fileID: 21300000, guid: 911d71a54a8f96f4dabfe5548cdb0a5c, type: 3}
+  cyan: {fileID: 21300000, guid: 4584b8cff2c85474d854badf2b2a27cb, type: 3}
+  blue: {fileID: 21300000, guid: 1e20b51a87bebdd4cbcf4938d0f70e38, type: 3}
+  childIcon: {fileID: 1294518314278881271}
+  cone: {fileID: 21300000, guid: 10c05ee83ce696a42a940c1dc741d441, type: 3}
+  line: {fileID: 21300000, guid: 07ce02ca0fdb021439ddf18d4ea64575, type: 3}
+  dash: {fileID: 21300000, guid: 5a29759ee84c4674fbebd58465c6883a, type: 3}
+  boom: {fileID: 21300000, guid: 2c6fea187385e9744a37ac1473c2ee8f, type: 3}
 --- !u!1 &4537958569837625787
 GameObject:
   m_ObjectHideFlags: 0
@@ -604,6 +633,80 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 10c05ee83ce696a42a940c1dc741d441, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+--- !u!1 &5684388840776958336
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6414212463724222178}
+  - component: {fileID: 2311462538377485293}
+  - component: {fileID: 5817230709831705905}
+  m_Layer: 0
+  m_Name: SkillShot_Boom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &6414212463724222178
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5684388840776958336}
+  m_LocalRotation: {x: -0, y: -0, z: 0.3826835, w: 0.92387956}
+  m_LocalPosition: {x: 0, y: 0, z: -2.6616595}
+  m_LocalScale: {x: 5.000114, y: 5.0001087, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4765723274383720062}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 544.9232, y: -0.000061035156}
+  m_SizeDelta: {x: 160, y: 160}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &2311462538377485293
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5684388840776958336}
+  m_CullTransparentMesh: 0
+--- !u!114 &5817230709831705905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5684388840776958336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 9018e2da01e82494387e5598fbb75980, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -848,6 +951,7 @@ MonoBehaviour:
   AOEpoint: {fileID: 0}
   dashDirection: 0
   dashing: 0
+  AOEKnockBack: 0
   dashingTime: 0
   dashDirectionTime: 0
   dashAim: {x: 0, y: 0, z: 0}
@@ -873,6 +977,8 @@ MonoBehaviour:
   rangeRange: 0
   rangeSpeed: 0
   dashSpellRange: 0
+  boomBaseRange: 0
+  boomBaseSpeed: 0
   stunLength: 0
   onPlayerText: {fileID: 0}
   airBorn: 0
@@ -887,6 +993,7 @@ GameObject:
   - component: {fileID: 6037027907349304100}
   - component: {fileID: 7810886414102377669}
   - component: {fileID: 5322013267916453166}
+  - component: {fileID: 5131539841673445893}
   m_Layer: 0
   m_Name: EastImage
   m_TagString: Untagged
@@ -951,6 +1058,33 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &5131539841673445893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6464380584519065955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da3bf0810d3234641b2aa7898f8db8d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selected: 0
+  player: {fileID: 6068517341001067959}
+  playerAim: {fileID: 2001183459944746776}
+  playerControlXbox: {fileID: 1294518313494728842}
+  spellNumber: 1
+  image: {fileID: 5322013267916453166}
+  white: {fileID: 21300000, guid: 2e521e611e21c28438d3e253c5942043, type: 3}
+  red: {fileID: 21300000, guid: 911d71a54a8f96f4dabfe5548cdb0a5c, type: 3}
+  cyan: {fileID: 21300000, guid: 4584b8cff2c85474d854badf2b2a27cb, type: 3}
+  blue: {fileID: 21300000, guid: 1e20b51a87bebdd4cbcf4938d0f70e38, type: 3}
+  childIcon: {fileID: 1294518314278881271}
+  cone: {fileID: 21300000, guid: 10c05ee83ce696a42a940c1dc741d441, type: 3}
+  line: {fileID: 21300000, guid: 07ce02ca0fdb021439ddf18d4ea64575, type: 3}
+  dash: {fileID: 21300000, guid: 5a29759ee84c4674fbebd58465c6883a, type: 3}
+  boom: {fileID: 21300000, guid: 2c6fea187385e9744a37ac1473c2ee8f, type: 3}
 --- !u!1 &7537404676748075587
 GameObject:
   m_ObjectHideFlags: 0
@@ -962,6 +1096,7 @@ GameObject:
   - component: {fileID: 3238823532858299742}
   - component: {fileID: 492936790995335193}
   - component: {fileID: 178584021520803600}
+  - component: {fileID: 8673468559463022153}
   m_Layer: 0
   m_Name: WestImage
   m_TagString: Untagged
@@ -1026,6 +1161,33 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &8673468559463022153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7537404676748075587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da3bf0810d3234641b2aa7898f8db8d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selected: 0
+  player: {fileID: 6068517341001067959}
+  playerAim: {fileID: 2001183459944746776}
+  playerControlXbox: {fileID: 1294518313494728842}
+  spellNumber: 3
+  image: {fileID: 178584021520803600}
+  white: {fileID: 21300000, guid: 2e521e611e21c28438d3e253c5942043, type: 3}
+  red: {fileID: 21300000, guid: 911d71a54a8f96f4dabfe5548cdb0a5c, type: 3}
+  cyan: {fileID: 21300000, guid: 4584b8cff2c85474d854badf2b2a27cb, type: 3}
+  blue: {fileID: 21300000, guid: 1e20b51a87bebdd4cbcf4938d0f70e38, type: 3}
+  childIcon: {fileID: 1294518314278881271}
+  cone: {fileID: 21300000, guid: 10c05ee83ce696a42a940c1dc741d441, type: 3}
+  line: {fileID: 21300000, guid: 07ce02ca0fdb021439ddf18d4ea64575, type: 3}
+  dash: {fileID: 21300000, guid: 5a29759ee84c4674fbebd58465c6883a, type: 3}
+  boom: {fileID: 21300000, guid: 2c6fea187385e9744a37ac1473c2ee8f, type: 3}
 --- !u!1 &8233923681431969610
 GameObject:
   m_ObjectHideFlags: 0
@@ -1356,6 +1518,11 @@ PrefabInstance:
       propertyPath: playerControlXbox
       value: 
       objectReference: {fileID: 1294518313494728842}
+    - target: {fileID: 4685667443000061202, guid: b7455749fa8ac9345a6c79ec9892a2a2,
+        type: 3}
+      propertyPath: boomSkillShot
+      value: 
+      objectReference: {fileID: 5684388840776958336}
     - target: {fileID: 7892870254613370503, guid: b7455749fa8ac9345a6c79ec9892a2a2,
         type: 3}
       propertyPath: m_IsActive

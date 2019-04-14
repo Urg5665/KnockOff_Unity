@@ -83,6 +83,14 @@ public class FireBallThrow : MonoBehaviour
             playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
         }
 
+        if (playerInt == 2 && collision.gameObject.tag == "Player2" && boomReturn)
+        {
+            Destroy(this.gameObject);
+            playerControlXbox.canCast[spellNum] = true;
+            playerControlXbox.spellPrimary[spellNum] = "";
+            playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
+        }
+
 
         if (playerInt == 1 && collision.gameObject.tag == "Player2")
         {
@@ -180,9 +188,7 @@ public class FireBallThrow : MonoBehaviour
             }
         }
         rangeCounter++;
-
-
-        
+ 
         if (boomReturn)
         {
             transform.LookAt(player.transform.position);
@@ -207,10 +213,17 @@ public class FireBallThrow : MonoBehaviour
 
             if (playerInt == 2)
             {
-                Destroy(this.gameObject);
-                playerControlXbox.canCast[spellNum] = true;
-                playerControlXbox.spellPrimary[spellNum] = "";
-                playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
+                if (boomSpell)
+                {
+                    boomHover = true;
+                }
+                else if (!boomSpell)
+                {
+                    Destroy(this.gameObject);
+                    playerControlXbox.canCast[spellNum] = true;
+                    playerControlXbox.spellPrimary[spellNum] = "";
+                    playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
+                }
             }
         }
 

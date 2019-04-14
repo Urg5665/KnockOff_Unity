@@ -82,6 +82,13 @@ public class WindWaveThrow : MonoBehaviour
             playerControl.spellPrimary[spellNum] = "";
             playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
         }
+        if (playerInt == 2 && collision.gameObject.tag == "Player2" && boomReturn)
+        {
+            Destroy(this.gameObject);
+            playerControlXbox.canCast[spellNum] = true;
+            playerControlXbox.spellPrimary[spellNum] = "";
+            playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
+        }
 
         if (!hitPlayer && playerInt == 1 && collision.gameObject.tag == "Player2")
         {
@@ -90,15 +97,14 @@ public class WindWaveThrow : MonoBehaviour
             //Destroy(this.gameObject);
             playerControl.canCast[spellNum] = true;
             hitPlayer = true;
-            playerControl.spellPrimary[spellNum] = "";
-            playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
             hitSlow = 0;
             StartCoroutine(cameraMove.Shake(.15f, .5f));
             cameraMove.player2Hit = true;
             hitEffectInGame = Instantiate(hitEffect);
             //hitEffectInGame.transform.position = this.transform.position;
             hitEffectInGame.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 1, this.transform.position.z);
-
+            playerControl.spellPrimary[spellNum] = "";
+            playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
         }
         if (!hitPlayer && playerInt == 2 && collision.gameObject.tag == "Player1")
         {
@@ -161,7 +167,7 @@ public class WindWaveThrow : MonoBehaviour
         { 
             if (playerInt == 1)
             {
-                if (boomSpell)
+                if (boomSpell && rangeCounter == maxRange + 1) 
                 {
                     boomHover = true;
                 }
@@ -173,13 +179,19 @@ public class WindWaveThrow : MonoBehaviour
                     playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
                 }
             }
-
             if (playerInt == 2)
             {
-                Destroy(this.gameObject);
-                playerControlXbox.canCast[spellNum] = true;
-                playerControlXbox.spellPrimary[spellNum] = "";
-                playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
+                if (boomSpell)
+                {
+                    boomHover = true;
+                }
+                else if (!boomSpell)
+                {
+                    Destroy(this.gameObject);
+                    playerControlXbox.canCast[spellNum] = true;
+                    playerControlXbox.spellPrimary[spellNum] = "";
+                    playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
+                }
             }
         }
         if (rangeCounter > maxRange * 3.5)

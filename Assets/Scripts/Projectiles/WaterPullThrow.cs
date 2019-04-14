@@ -81,6 +81,13 @@ public class WaterPullThrow : MonoBehaviour
             playerControl.spellPrimary[spellNum] = "";
             playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
         }
+        if (playerInt == 2 && collision.gameObject.tag == "Player2" && boomReturn)
+        {
+            Destroy(this.gameObject);
+            playerControlXbox.canCast[spellNum] = true;
+            playerControlXbox.spellPrimary[spellNum] = "";
+            playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
+        }
 
         if (!hitPlayer && playerInt == 1 && collision.gameObject.tag == "Player2" )
         {
@@ -179,10 +186,17 @@ public class WaterPullThrow : MonoBehaviour
 
             if (playerInt == 2)
             {
-                Destroy(this.gameObject);
-                playerControlXbox.canCast[spellNum] = true;
-                playerControlXbox.spellPrimary[spellNum] = "";
-                playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
+                if (boomSpell)
+                {
+                    boomHover = true;
+                }
+                else if (!boomSpell)
+                {
+                    Destroy(this.gameObject);
+                    playerControlXbox.canCast[spellNum] = true;
+                    playerControlXbox.spellPrimary[spellNum] = "";
+                    playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
+                }
             }
         }
         if(rangeCounter > maxRange * 3.5)

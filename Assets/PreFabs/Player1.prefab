@@ -586,10 +586,12 @@ MonoBehaviour:
   red: {fileID: 21300000, guid: 911d71a54a8f96f4dabfe5548cdb0a5c, type: 3}
   cyan: {fileID: 21300000, guid: 4584b8cff2c85474d854badf2b2a27cb, type: 3}
   blue: {fileID: 21300000, guid: 1e20b51a87bebdd4cbcf4938d0f70e38, type: 3}
+  brown: {fileID: 0}
   childIcon: {fileID: 79184154}
   cone: {fileID: 21300000, guid: 10c05ee83ce696a42a940c1dc741d441, type: 3}
   line: {fileID: 21300000, guid: 07ce02ca0fdb021439ddf18d4ea64575, type: 3}
   dash: {fileID: 21300000, guid: 5a29759ee84c4674fbebd58465c6883a, type: 3}
+  boom: {fileID: 21300000, guid: 2c6fea187385e9744a37ac1473c2ee8f, type: 3}
 --- !u!1 &3390397752179443542
 GameObject:
   m_ObjectHideFlags: 0
@@ -761,10 +763,12 @@ MonoBehaviour:
   red: {fileID: 21300000, guid: 911d71a54a8f96f4dabfe5548cdb0a5c, type: 3}
   cyan: {fileID: 21300000, guid: 4584b8cff2c85474d854badf2b2a27cb, type: 3}
   blue: {fileID: 21300000, guid: 1e20b51a87bebdd4cbcf4938d0f70e38, type: 3}
+  brown: {fileID: 0}
   childIcon: {fileID: 7184306260555143591}
   cone: {fileID: 21300000, guid: 10c05ee83ce696a42a940c1dc741d441, type: 3}
   line: {fileID: 21300000, guid: 07ce02ca0fdb021439ddf18d4ea64575, type: 3}
   dash: {fileID: 21300000, guid: 5a29759ee84c4674fbebd58465c6883a, type: 3}
+  boom: {fileID: 21300000, guid: 2c6fea187385e9744a37ac1473c2ee8f, type: 3}
 --- !u!1 &4589685495232286483
 GameObject:
   m_ObjectHideFlags: 0
@@ -919,8 +923,8 @@ MonoBehaviour:
   waterDashForceUp: 0
   castAfterDash: 0
   dashLength: 0
-  bombBaseRange: 0
-  bombBaseSpeed: 0
+  boomBaseRange: 0
+  boomBaseSpeed: 0
   cardsThrown: 0
   newSpell: {fileID: 0}
   newSpellAOE:
@@ -1130,10 +1134,12 @@ MonoBehaviour:
   red: {fileID: 21300000, guid: 911d71a54a8f96f4dabfe5548cdb0a5c, type: 3}
   cyan: {fileID: 21300000, guid: 4584b8cff2c85474d854badf2b2a27cb, type: 3}
   blue: {fileID: 21300000, guid: 1e20b51a87bebdd4cbcf4938d0f70e38, type: 3}
+  brown: {fileID: 0}
   childIcon: {fileID: 3390397752179443542}
   cone: {fileID: 21300000, guid: 10c05ee83ce696a42a940c1dc741d441, type: 3}
   line: {fileID: 21300000, guid: 07ce02ca0fdb021439ddf18d4ea64575, type: 3}
   dash: {fileID: 21300000, guid: 5a29759ee84c4674fbebd58465c6883a, type: 3}
+  boom: {fileID: 21300000, guid: 2c6fea187385e9744a37ac1473c2ee8f, type: 3}
 --- !u!1 &5545784791066660749
 GameObject:
   m_ObjectHideFlags: 0
@@ -1458,10 +1464,12 @@ MonoBehaviour:
   red: {fileID: 21300000, guid: 911d71a54a8f96f4dabfe5548cdb0a5c, type: 3}
   cyan: {fileID: 21300000, guid: 4584b8cff2c85474d854badf2b2a27cb, type: 3}
   blue: {fileID: 21300000, guid: 1e20b51a87bebdd4cbcf4938d0f70e38, type: 3}
+  brown: {fileID: 0}
   childIcon: {fileID: 5038153787104432834}
   cone: {fileID: 21300000, guid: 10c05ee83ce696a42a940c1dc741d441, type: 3}
   line: {fileID: 21300000, guid: 07ce02ca0fdb021439ddf18d4ea64575, type: 3}
   dash: {fileID: 21300000, guid: 76097785bb7ce2d4ea0f06a552bb57a8, type: 3}
+  boom: {fileID: 21300000, guid: 2c6fea187385e9744a37ac1473c2ee8f, type: 3}
 --- !u!1001 &3305197250188350816
 PrefabInstance:
   m_ObjectHideFlags: 0
