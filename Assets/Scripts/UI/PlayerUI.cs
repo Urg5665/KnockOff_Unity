@@ -18,6 +18,7 @@ public class PlayerUI : MonoBehaviour
     public Sprite fireSprite;
     public Sprite windSprite;
     public Sprite waterSprite;
+    public Sprite earthSprite;
 
     public Sprite emptySprite;
 
@@ -25,6 +26,7 @@ public class PlayerUI : MonoBehaviour
     public Sprite rangeSprite;
     public Sprite dashSprite;
     public Sprite dashSpriteReverse;
+    public Sprite boomSprite;
 
     private void Start()
     {
@@ -64,6 +66,10 @@ public class PlayerUI : MonoBehaviour
                 {
                     spellUI[i].GetComponent<Image>().sprite = waterSprite;
                 }
+                if (playerControl.spellPrimary[i] == "Earth")
+                {
+                    spellUI[i].GetComponent<Image>().sprite = earthSprite;
+                }
                 if (playerControl.spellPrimary[i] == "")
                 {
                 }
@@ -75,6 +81,11 @@ public class PlayerUI : MonoBehaviour
                 if (playerControl.spellSecondary[i] == "Range")
                 {
                     spellUISec[i].GetComponentInChildren<Image>().sprite = rangeSprite;
+                    //spellUI[i].GetComponentInChildren<Image>().color = new Color32(255, 255, 255, 200);
+                }
+                if (playerControl.spellSecondary[i] == "Boom")
+                {
+                    spellUISec[i].GetComponentInChildren<Image>().sprite = boomSprite;
                     //spellUI[i].GetComponentInChildren<Image>().color = new Color32(255, 255, 255, 200);
                 }
                 if (playerControl.spellSecondary[i] == "Dash")
