@@ -75,26 +75,26 @@ public class CameraMove : MonoBehaviour
             Zoom();
         }
         zDif = Mathf.Abs(player1.position.z - player2.position.z);
-        //Debug.Log(zDif);
-        if ( zDif < 50)
+        Debug.Log(zDif);
+        if ( zDif < 30)
         {
             maxZoom = 55;
         }
+        if (zDif >= 30)
+        {
+            maxZoom = 75;
+        }
+        if (zDif >= 45)
+        {
+            maxZoom = 95;
+        }
         if (zDif >= 50)
         {
-            maxZoom = 70;
+            maxZoom = 110;
         }
         if (zDif >= 55)
         {
-            maxZoom = 85;
-        }
-        if (zDif >= 60)
-        {
-            maxZoom = 100;
-        }
-        if (zDif >= 65)
-        {
-            maxZoom = 115;
+            maxZoom = 120;
         }
 
 
@@ -105,9 +105,9 @@ public class CameraMove : MonoBehaviour
         if ( player1Hit || player2Hit)
         {
             hitTimer++;
-            if (hitTimer > 10 && hitTimer < 50)
+            if (hitTimer > 10 && hitTimer < 30)
             cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, cam.fieldOfView -(Vector3.Distance(player1.position, player2.position) * .25f), Time.deltaTime);
-            if (hitTimer > 50)
+            if (hitTimer > 30)
             cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, cam.fieldOfView + (Vector3.Distance(player1.position, player2.position)*.25f), Time.deltaTime);
         }
         if (hitTimer == 100)
