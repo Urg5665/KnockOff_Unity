@@ -97,7 +97,7 @@ public class PlayerControlXbox : MonoBehaviour
         rangeRange = 90;
         rangeSpeed = 90;
 
-        dashSpellRange = 20; // should be very close
+        dashSpellRange = 25; // should be very close
 
         stunLength = 0;
 

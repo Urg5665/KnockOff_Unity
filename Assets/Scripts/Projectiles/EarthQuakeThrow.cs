@@ -70,7 +70,7 @@ public class EarthQuakeThrow : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.tag == "Ground" && rangeCounter > 6)
+        if (collision.gameObject.tag == "Ground" && rangeCounter > 3)
         {
             collision.gameObject.GetComponentInParent<TileBehavoir>().destroyed = true;
         }

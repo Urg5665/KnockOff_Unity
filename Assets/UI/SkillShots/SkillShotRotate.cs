@@ -114,8 +114,8 @@ public class SkillShotRotate : MonoBehaviour
             if (playerControl.spellPrimary[playerControl.spellSelected] != "" && playerControl.spellSecondary[playerControl.spellSelected] == "") // aplies base spell
             {
 
-                cardSkillShot.SetActive(false);
-                baseSkillShot.SetActive(true);
+                cardSkillShot.SetActive(true);
+                baseSkillShot.SetActive(false);
                 aoeSkillShot.SetActive(false);
                 rangeSkillShot.SetActive(false);
                 dashSkillShot.SetActive(false);
@@ -123,7 +123,7 @@ public class SkillShotRotate : MonoBehaviour
             }
             if (playerControl.spellPrimary[playerControl.spellSelected] == "Fire") // aaplies base spell and color
             {
-                baseSkillShot.GetComponent<Image>().color = Color.red;
+                cardSkillShot.GetComponent<Image>().color = Color.red;
                 aoeSkillShot.GetComponent<Image>().color = Color.red;
                 rangeSkillShot.GetComponent<Image>().color = Color.red;
                 dashSkillShot.GetComponent<Image>().color = Color.red;
@@ -131,7 +131,7 @@ public class SkillShotRotate : MonoBehaviour
             }
             if (playerControl.spellPrimary[playerControl.spellSelected] == "Wind") // aaplies base spell and color
             {
-            baseSkillShot.GetComponent<Image>().color = new Color32(67, 215, 255, 255); 
+            cardSkillShot.GetComponent<Image>().color = new Color32(67, 215, 255, 255); 
             aoeSkillShot.GetComponent<Image>().color = new Color32(67, 215, 255, 255);
             rangeSkillShot.GetComponent<Image>().color = new Color32(67, 215, 255, 255);
             dashSkillShot.GetComponent<Image>().color = new Color32(67, 215, 255, 255);
@@ -139,7 +139,7 @@ public class SkillShotRotate : MonoBehaviour
             }
             if (playerControl.spellPrimary[playerControl.spellSelected] == "Water") // aaplies base spell ccolor
             {
-            baseSkillShot.GetComponent<Image>().color = Color.blue;
+            cardSkillShot.GetComponent<Image>().color = Color.blue;
             aoeSkillShot.GetComponent<Image>().color = Color.blue;
             rangeSkillShot.GetComponent<Image>().color = Color.blue;
             dashSkillShot.GetComponent<Image>().color = Color.blue;
@@ -147,7 +147,7 @@ public class SkillShotRotate : MonoBehaviour
             }
             if (playerControl.spellPrimary[playerControl.spellSelected] == "Earth") // aaplies base spell ccolor
             {
-                baseSkillShot.GetComponent<Image>().color = new Color32(90, 80, 0, 255);
+                cardSkillShot.GetComponent<Image>().color = new Color32(90, 80, 0, 255);
                 aoeSkillShot.GetComponent<Image>().color = new Color32(90, 80, 0, 255);
                 rangeSkillShot.GetComponent<Image>().color = new Color32(90, 80, 0, 255);
                 dashSkillShot.GetComponent<Image>().color = new Color32(90, 80, 0, 255);
@@ -202,6 +202,7 @@ public class SkillShotRotate : MonoBehaviour
             if (playerControl.spellPrimary[playerControl.spellSelected] == "") // Reset Spell Completely
             {
                 cardSkillShot.SetActive(true);
+                cardSkillShot.GetComponent<Image>().color = new Color32(255,255,255, 255);
                 baseSkillShot.SetActive(false);
                 aoeSkillShot.SetActive(false);
                 rangeSkillShot.SetActive(false);
@@ -213,8 +214,8 @@ public class SkillShotRotate : MonoBehaviour
         {
             if (playerControlXbox.spellPrimary[playerControlXbox.spellSelected] != "" && playerControlXbox.spellSecondary[playerControlXbox.spellSelected] == "") // aaplies base spell
             {
-                cardSkillShot.SetActive(false);
-                baseSkillShot.SetActive(true);
+                cardSkillShot.SetActive(true);
+                baseSkillShot.SetActive(false);
                 aoeSkillShot.SetActive(false);
                 rangeSkillShot.SetActive(false);
                 dashSkillShot.SetActive(false);
@@ -222,7 +223,7 @@ public class SkillShotRotate : MonoBehaviour
             }
             if (playerControlXbox.spellPrimary[playerControlXbox.spellSelected] == "Fire") // aaplies base spell and color
             {
-                baseSkillShot.GetComponent<Image>().color = Color.red;
+                cardSkillShot.GetComponent<Image>().color = Color.red;
                 aoeSkillShot.GetComponent<Image>().color = Color.red;
                 rangeSkillShot.GetComponent<Image>().color = Color.red;
                 dashSkillShot.GetComponent<Image>().color = Color.red;
@@ -230,7 +231,7 @@ public class SkillShotRotate : MonoBehaviour
             }
             if (playerControlXbox.spellPrimary[playerControlXbox.spellSelected] == "Wind") // aaplies base spell and color
             {
-                baseSkillShot.GetComponent<Image>().color = new Color32(67, 215, 255, 255);
+                cardSkillShot.GetComponent<Image>().color = new Color32(67, 215, 255, 255);
                 aoeSkillShot.GetComponent<Image>().color = new Color32(67, 215, 255, 255);
                 rangeSkillShot.GetComponent<Image>().color = new Color32(67, 215, 255, 255);
                 dashSkillShot.GetComponent<Image>().color = new Color32(67, 215, 255, 255);
@@ -238,7 +239,7 @@ public class SkillShotRotate : MonoBehaviour
             }
             if (playerControlXbox.spellPrimary[playerControlXbox.spellSelected] == "Water") // aaplies base spell ccolor
             {
-                baseSkillShot.GetComponent<Image>().color = Color.blue;
+                cardSkillShot.GetComponent<Image>().color = Color.blue;
                 aoeSkillShot.GetComponent<Image>().color = Color.blue;
                 rangeSkillShot.GetComponent<Image>().color = Color.blue;
                 dashSkillShot.GetComponent<Image>().color = Color.blue;
@@ -247,7 +248,7 @@ public class SkillShotRotate : MonoBehaviour
             }
             if (playerControlXbox.spellPrimary[playerControlXbox.spellSelected] == "Earth") // aaplies base spell ccolor
             {
-                baseSkillShot.GetComponent<Image>().color = new Color32(90, 80, 0, 255);
+                cardSkillShot.GetComponent<Image>().color = new Color32(90, 80, 0, 255);
                 aoeSkillShot.GetComponent<Image>().color = new Color32(90, 80, 0, 255);
                 rangeSkillShot.GetComponent<Image>().color = new Color32(90, 80, 0, 255);
                 dashSkillShot.GetComponent<Image>().color = new Color32(90, 80, 0, 255);
@@ -301,6 +302,7 @@ public class SkillShotRotate : MonoBehaviour
             if (playerControlXbox.spellPrimary[playerControlXbox.spellSelected] == "") // Reset Spell Completely
             {
                 cardSkillShot.SetActive(true);
+                cardSkillShot.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
                 baseSkillShot.SetActive(false);
                 aoeSkillShot.SetActive(false);
                 rangeSkillShot.SetActive(false);

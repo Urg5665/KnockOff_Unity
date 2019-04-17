@@ -75,7 +75,7 @@ public class CameraMove : MonoBehaviour
             Zoom();
         }
         zDif = Mathf.Abs(player1.position.z - player2.position.z);
-        Debug.Log(zDif);
+        //Debug.Log(zDif);
         if ( zDif < 30)
         {
             maxZoom = 55;

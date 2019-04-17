@@ -94,6 +94,7 @@ public class WindWaveThrow : MonoBehaviour
         {
             collision.gameObject.GetComponent<Rigidbody>().AddForce(this.gameObject.transform.forward * windForce); // Knock Back
             collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * windKnockUp); // Knock Up
+            collision.GetComponent<BoxCollider>().enabled = false;
             //Destroy(this.gameObject);
             playerControl.canCast[spellNum] = true;
             hitPlayer = true;
@@ -110,6 +111,7 @@ public class WindWaveThrow : MonoBehaviour
         {
             collision.gameObject.GetComponent<Rigidbody>().AddForce(this.gameObject.transform.forward * windForce); // Knock Back
             collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * windKnockUp); // Knock Up
+            collision.GetComponent<BoxCollider>().enabled = false;
             playerControlXbox.canCast[spellNum] = true;
             hitPlayer = true;
             playerControlXbox.spellPrimary[spellNum] = "";
