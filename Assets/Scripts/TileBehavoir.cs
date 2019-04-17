@@ -57,18 +57,18 @@ public class TileBehavoir : MonoBehaviour
             col.enabled = false;
             destroyTimer++;
             double destroyTimerFloat = (double)destroyTimer;
-            if (destroyTimer > 0 && destroyTimer < 150)
+            if (destroyTimer > 0 && destroyTimer < 200)
             {
                 
                 this.transform.position = new Vector3(transform.position.x,  - destroyTimer/2, transform.position.z);
             }
-            else if (destroyTimer >= 150)
+            else if (destroyTimer >= 200)
             {
                 //Debug.Log("Rising");
-                this.transform.position = new Vector3(transform.position.x, 1.04f + (- 200 + destroyTimer), transform.position.z);
+                this.transform.position = new Vector3(transform.position.x, 1.04f + (- 250 + destroyTimer), transform.position.z);
             }
         }
-        if (destroyTimer > 200)
+        if (destroyTimer > 250)
         {
             destroyed = false;
             destroyTimer = 0;

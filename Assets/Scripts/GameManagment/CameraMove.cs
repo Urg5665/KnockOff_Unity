@@ -110,7 +110,7 @@ public class CameraMove : MonoBehaviour
             if (hitTimer > 30)
             cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, cam.fieldOfView + (Vector3.Distance(player1.position, player2.position)*.25f), Time.deltaTime);
         }
-        if (hitTimer == 100)
+        if (hitTimer == 50)
         {
             hitTimer = 0;
             player2Hit = false;
