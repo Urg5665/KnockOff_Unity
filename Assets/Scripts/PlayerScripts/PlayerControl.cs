@@ -162,6 +162,7 @@ public class PlayerControl : MonoBehaviour
         {
             speed = 7.5f;
             onPlayerText.text = "";
+            stunLength = 0;
             this.GetComponent<Rigidbody>().velocity = Vector3.zero; // to not have onkg mvement overide dash
             playerUI.SetActive(false);
             dashingTime++;

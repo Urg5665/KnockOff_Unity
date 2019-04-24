@@ -157,6 +157,7 @@ public class PlayerControlXbox : MonoBehaviour
             }
             speed = 7.5f;
             onPlayerText.text = "";
+            stunLength = 0;
             this.GetComponent<Rigidbody>().velocity = Vector3.zero;
             playerUI.SetActive(false);
             dashingTime++;
