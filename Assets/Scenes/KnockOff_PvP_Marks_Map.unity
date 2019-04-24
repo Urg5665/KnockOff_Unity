@@ -15675,6 +15675,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 422371095, guid: 8e1c7bafb995dfc47942efa84618ff19, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 104.812126
+      objectReference: {fileID: 0}
+    - target: {fileID: 422371095, guid: 8e1c7bafb995dfc47942efa84618ff19, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 6.550758
+      objectReference: {fileID: 0}
+    - target: {fileID: 422371095, guid: 8e1c7bafb995dfc47942efa84618ff19, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 104.812126
+      objectReference: {fileID: 0}
     - target: {fileID: 2219119643782799273, guid: 8e1c7bafb995dfc47942efa84618ff19,
         type: 3}
       propertyPath: m_IsTrigger
@@ -17020,11 +17032,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7346371536267834907, guid: a5a1692197d582f459c68174c666358c,
         type: 3}
-    - target: {fileID: 4308267977569094971, guid: 0f9ffe8302123f5419638698ccf5218d,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4053079160233763259, guid: 0f9ffe8302123f5419638698ccf5218d,
         type: 3}
       propertyPath: brown
@@ -17049,6 +17056,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 5126eab19ae891e4e8844ad5cd1e6188,
         type: 3}
+    - target: {fileID: 4308267977569094971, guid: 0f9ffe8302123f5419638698ccf5218d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7296928951327075431, guid: 0f9ffe8302123f5419638698ccf5218d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0f9ffe8302123f5419638698ccf5218d, type: 3}
