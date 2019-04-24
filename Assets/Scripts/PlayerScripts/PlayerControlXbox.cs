@@ -242,7 +242,7 @@ public class PlayerControlXbox : MonoBehaviour
         // Input.GetAxis("CardThrow") == 1
         //Input.GetButton("CardThrow")
         //Input.GetAxis("SpellThrow") == 1
-        if (Input.GetAxis("CardThrow") == 1 && cardsThrown < 4 && canCast[spellSelected] && spellSecondary[spellSelected] == "") // Shoot Card
+        if (Input.GetAxis("CardThrow") == 1 && cardsThrown < 4 && canCast[spellSelected] && spellSecondary[spellSelected] == "" ) // Shoot Card
         {
             CardGather();
         }
@@ -251,25 +251,27 @@ public class PlayerControlXbox : MonoBehaviour
             //Debug.Log("Spell Maxed - Cast it!");
         }
 
-
+        // Should really be Input.GetAxis("SpellThrow") == 1 but my controller trigger has not been working so for no it is Button A
         // Spell Casting Commands
-        if (Input.GetAxis("SpellThrow") == 1 && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "") // You Have no Spell
+        if (Input.GetButton("Fire1") == true && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "") // You Have no Spell
         {
             //Debug.Log("No Spell Avaliable");
         }
-        if (Input.GetAxis("SpellThrow") == 1 && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "Fire") // Shoot Fireball
+
+
+        if (Input.GetButton("Fire1") == true && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "Fire" ) // Shoot Fireball
         {
             Fireball();
         }
-        if (Input.GetAxis("SpellThrow") == 1 && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "Wind") // Shoot Wind Knock
+        if (Input.GetButton("Fire1") == true && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "Wind") // Shoot Wind Knock
         {
             WindKnockback();
         }
-        if (Input.GetAxis("SpellThrow") == 1 && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "Water") // Shoot Wind Knock
+        if (Input.GetButton("Fire1") == true && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "Water") // Shoot Wind Knock
         {
             WaterPull();
         }
-        if (Input.GetAxis("SpellThrow") == 1 && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "Earth") // Shoot Wind Knock
+        if (Input.GetButton("Fire1") == true && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "Earth") // Shoot Wind Knock
         {
             EarthQuake();
         }
