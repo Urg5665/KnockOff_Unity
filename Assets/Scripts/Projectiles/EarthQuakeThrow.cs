@@ -105,14 +105,32 @@ public class EarthQuakeThrow : MonoBehaviour
             //Debug.Log(Mathf.Abs(this.transform.position.x - player.transform.position.x) + "   " + Mathf.Abs(this.transform.position.z - player.transform.position.z));
             if (Mathf.Abs(this.transform.position.x - player.transform.position.x) < 10 && Mathf.Abs(this.transform.position.z - player.transform.position.z) < 10)
             {
+                if (playerInt == 1)
+                {
+                    Destroy(this.gameObject);
+                    playerControl.canCast[spellNum] = true;
+                    playerControl.spellPrimary[spellNum] = "";
+                    playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
+                }
+                if (playerInt == 2)
+                {
+                    Destroy(this.gameObject);
+                    playerControlXbox.canCast[spellNum] = true;
+                    playerControlXbox.spellPrimary[spellNum] = "";
+                    playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
+                }
+                /*
                 Destroy(this.gameObject);
                 playerControl.canCast[spellNum] = true;
                 playerControl.spellPrimary[spellNum] = "";
                 playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
-
+                Debug.Log(playerControlXbox.canCast[spellNum]);
+                Debug.Log(playerControlXbox.spellPrimary[spellNum]);
+                Debug.Log(playerControlXbox.spellPrimary[spellNum]);
                 playerControlXbox.canCast[spellNum] = true;
                 playerControlXbox.spellPrimary[spellNum] = "";
                 playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
+                */
             }
         }
 
