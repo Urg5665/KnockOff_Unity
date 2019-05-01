@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/KnockOff_MainMenu.unity
+    guid: 4033ce5dc44e9624b9f5e1bfc886f44c
+  - enabled: 1
     path: Assets/Scenes/KnockOff_PvP_Marks_Map.unity
     guid: 205c9ad637617cd418e76cec72290c83
   m_configObjects: {}

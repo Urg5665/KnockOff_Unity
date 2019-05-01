@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
         if (restartFreeze < 0)
         {
             //SceneManager.LoadScene(Mathf.RoundToInt(Random.Range(0, 3)));
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
         }
 
 
@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
         if (Input.GetKey(KeyCode.R))
         {
             //SceneManager.LoadScene(Mathf.RoundToInt(Random.Range(0,3)));
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
         }
         if (Input.GetKey(KeyCode.Alpha8)) // Press 8 and 9 to speed or slow game, Degbugging
         {
