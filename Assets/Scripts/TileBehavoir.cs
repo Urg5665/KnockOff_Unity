@@ -6,6 +6,7 @@ public class TileBehavoir : MonoBehaviour
 {
     public bool destroyed;
     public int destroyTimer;
+    public int destroyLength; // The Maximum Time it remians destroyed
 
     public MeshRenderer mesh;
     public MeshCollider col;
@@ -25,6 +26,7 @@ public class TileBehavoir : MonoBehaviour
         player1Score = 3;
         player2Score = 3;
         deathPlane = GameObject.Find("DeathPlane").GetComponent<DeathPlane>();
+        destroyLength = 200;
     }
     
     public void OnCollisionEnter(Collision collision)
@@ -57,18 +59,18 @@ public class TileBehavoir : MonoBehaviour
             col.enabled = false;
             destroyTimer++;
             double destroyTimerFloat = (double)destroyTimer;
-            if (destroyTimer > 0 && destroyTimer < 200)
+            if (destroyTimer > 0 && destroyTimer < destroyLength)
             {
                 
                 this.transform.position = new Vector3(transform.position.x,  - destroyTimer/2, transform.position.z);
             }
-            else if (destroyTimer >= 200)
+            else if (destroyTimer >= destroyLength)
             {
                 //Debug.Log("Rising");
-                this.transform.position = new Vector3(transform.position.x, 1.04f + (- 250 + destroyTimer), transform.position.z);
+                this.transform.position = new Vector3(transform.position.x, 1.04f + (- (destroyLength+ 50) + destroyTimer), transform.position.z);
             }
         }
-        if (destroyTimer > 250)
+        if (destroyTimer > destroyLength + 50)
         {
             destroyed = false;
             destroyTimer = 0;

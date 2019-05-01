@@ -103,7 +103,7 @@ public class EarthQuakeThrow : MonoBehaviour
         {
             transform.LookAt(new Vector3(player.transform.position.x, player.transform.position.y - 1f, player.transform.position.z));
             //Debug.Log(Mathf.Abs(this.transform.position.x - player.transform.position.x) + "   " + Mathf.Abs(this.transform.position.z - player.transform.position.z));
-            if (Mathf.Abs(this.transform.position.x - player.transform.position.x) < 10 && Mathf.Abs(this.transform.position.z - player.transform.position.z) < 10)
+            if (Mathf.Abs(this.transform.position.x - player.transform.position.x) < 5 && Mathf.Abs(this.transform.position.z - player.transform.position.z) < 5)
             {
                 if (playerInt == 1)
                 {
