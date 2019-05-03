@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/KnockOff_PvP_Marks_Map.unity
     guid: 205c9ad637617cd418e76cec72290c83
+  - enabled: 1
+    path: Assets/Scenes/KnockOff_PvP_Marks_Map_2.unity
+    guid: c5017a313d5a9f542b38b2557c2bbab3
+  - enabled: 1
+    path: Assets/Scenes/KnockOff_PvP_Marks_Map_3.unity
+    guid: a3e2099ac30b3b749bd2780e04b3ebe0
   m_configObjects: {}
