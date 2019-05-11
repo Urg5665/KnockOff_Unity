@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public GameObject ReadyAudioObj;
+    public GameObject PauseMenu;
+    public bool paused;
     public int StartFreeze;
     //public int textTimer;
 
@@ -25,6 +27,8 @@ public class GameManager : MonoBehaviour
         StartFreeze = 0;
         restartFreeze = 300;
         text = GameObject.Find("Ready...Fight").GetComponent<Text>();
+        PauseMenu.SetActive(false);
+        paused = false;
     }
 
     // Update is called once per frame
@@ -80,7 +84,7 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKey(KeyCode.R))
         {
-            SceneManager.LoadScene(Mathf.RoundToInt(Random.Range(1,4)));
+            SceneManager.LoadScene(Mathf.RoundToInt(Random.Range(1, 4)));
             //SceneManager.LoadScene(1);
         }
         if (Input.GetKey(KeyCode.Alpha8)) // Press 8 and 9 to speed or slow game, Degbugging
@@ -94,18 +98,25 @@ public class GameManager : MonoBehaviour
             //Debug.Log("Slowing Down");
         }
         //Debug.Log(Time.timeScale);
-        
 
-        if ( Time.timeScale <= .2f && fixTimeEnable)
+
+        if (Time.timeScale <= .2f && fixTimeEnable && paused == false)
         {
             fixTimeFreezeBug++;
         }
-        if (fixTimeFreezeBug > 15)
+        if (fixTimeFreezeBug > 15 && paused == false)
         {
             Time.timeScale = 1.0f;
             fixTimeFreezeBug = 0;
         }
-
+        if (Input.GetKey(KeyCode.Escape) && paused == false)
+        {
+            paused = true;
+            Time.timeScale = 0f;
+            PauseMenu.SetActive(true);
+            Cursor.visible = true;
+        }
 
     }
+       
 }
