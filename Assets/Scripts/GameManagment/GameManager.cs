@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public GameObject ReadyAudioObj;
     public GameObject PauseMenu;
+    public GameObject GameUI;
     public bool paused;
     public int StartFreeze;
     //public int textTimer;
@@ -16,8 +17,20 @@ public class GameManager : MonoBehaviour
 
     public int fixTimeFreezeBug;
     public bool fixTimeEnable;
-    public Text text;
     public int restartFreeze;
+
+    public GameObject CenterText;
+
+    public Sprite Ready;
+    public Sprite Fight;
+    public Sprite blueWin;
+    public Sprite redWin;
+
+    public GameObject CenterCountdown;
+
+    public Sprite img1;
+    public Sprite img2;
+    public Sprite img3;
 
     void Start()
     {
@@ -26,9 +39,11 @@ public class GameManager : MonoBehaviour
         Instantiate(ReadyAudioObj);
         StartFreeze = 0;
         restartFreeze = 300;
-        text = GameObject.Find("Ready...Fight").GetComponent<Text>();
         PauseMenu.SetActive(false);
         paused = false;
+        CenterText.GetComponent<Image>().sprite = Ready;
+        CenterText.SetActive(true);
+        CenterCountdown.SetActive(false);
     }
 
     // Update is called once per frame
@@ -41,38 +56,46 @@ public class GameManager : MonoBehaviour
         }
         if (StartFreeze == 130)
         {
-            text.text = "FIGHT!";
+            CenterText.GetComponent<Image>().sprite = Fight;
         }
         if (StartFreeze == 160)
         {
-            text.text = "";
+            CenterText.SetActive(false);
         }
         if (deathPlane.player2Score <= 0)
         {
-            text.text = "BLUE WINS!";
+            CenterText.SetActive(true);
+            CenterText.GetComponent<Image>().sprite = blueWin;
             restartFreeze--;
             fixTimeEnable = false;
             Time.timeScale = 0.5f;
         }
         if (deathPlane.player1Score <= 0)
         {
-            text.text = "RED WINS!";
+            CenterText.SetActive(true);
+            CenterText.GetComponent<Image>().sprite = redWin;
             restartFreeze--;
             fixTimeEnable = false;
             Time.timeScale = 0.5f;
         }
         if (restartFreeze < 150)
         {
-            text.text = "  ... 3 ...";
+            CenterText.SetActive(false);
+            CenterCountdown.SetActive(true);
+            CenterCountdown.GetComponent<Image>().sprite = img3;
+
+            //text.text = "  ... 3 ...";
 
         }
         if (restartFreeze < 100)
         {
-            text.text = "  ... 2 ...";
+            //text.text = "  ... 2 ...";
+            CenterCountdown.GetComponent<Image>().sprite = img2;
         }
         if (restartFreeze < 50)
         {
-            text.text = "  ... 1 ...";
+            //text.text = "  ... 1 ...";
+            CenterCountdown.GetComponent<Image>().sprite = img1;
         }
         if (restartFreeze < 0)
         {

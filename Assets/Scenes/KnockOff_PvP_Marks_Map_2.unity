@@ -6720,6 +6720,63 @@ PrefabInstance:
       propertyPath: PauseMenu
       value: 
       objectReference: {fileID: 361815889}
+    - target: {fileID: 7490982144243040725, guid: 92633c7a4a7744b43b773c6a7dfacbad,
+        type: 3}
+      propertyPath: GameUI
+      value: 
+      objectReference: {fileID: 1374016304}
+    - target: {fileID: 7490982144243040725, guid: 92633c7a4a7744b43b773c6a7dfacbad,
+        type: 3}
+      propertyPath: CenterText
+      value: 
+      objectReference: {fileID: 1374016303}
+    - target: {fileID: 7490982144243040725, guid: 92633c7a4a7744b43b773c6a7dfacbad,
+        type: 3}
+      propertyPath: Ready
+      value: 
+      objectReference: {fileID: 21300000, guid: 18011d68bcc0be84a9eecb84fa18ed23,
+        type: 3}
+    - target: {fileID: 7490982144243040725, guid: 92633c7a4a7744b43b773c6a7dfacbad,
+        type: 3}
+      propertyPath: Fight
+      value: 
+      objectReference: {fileID: 21300000, guid: 9e1c21e60e53d6240b6b05e1268389ef,
+        type: 3}
+    - target: {fileID: 7490982144243040725, guid: 92633c7a4a7744b43b773c6a7dfacbad,
+        type: 3}
+      propertyPath: blueWin
+      value: 
+      objectReference: {fileID: 21300000, guid: ce7e4ed32beae564186362ea89f689a7,
+        type: 3}
+    - target: {fileID: 7490982144243040725, guid: 92633c7a4a7744b43b773c6a7dfacbad,
+        type: 3}
+      propertyPath: redWin
+      value: 
+      objectReference: {fileID: 21300000, guid: 521d96ec31795c742bb1641a09811aff,
+        type: 3}
+    - target: {fileID: 7490982144243040725, guid: 92633c7a4a7744b43b773c6a7dfacbad,
+        type: 3}
+      propertyPath: CenterCountdown
+      value: 
+      objectReference: {fileID: 1374016302}
+    - target: {fileID: 7490982144243040725, guid: 92633c7a4a7744b43b773c6a7dfacbad,
+        type: 3}
+      propertyPath: img1
+      value: 
+      objectReference: {fileID: 21300000, guid: 974e438c715bf734aa7b0816fbb111c5,
+        type: 3}
+    - target: {fileID: 7490982144243040725, guid: 92633c7a4a7744b43b773c6a7dfacbad,
+        type: 3}
+      propertyPath: img2
+      value: 
+      objectReference: {fileID: 21300000, guid: 72e47bd2006a8d84f9344afb9d1cb06f,
+        type: 3}
+    - target: {fileID: 7490982144243040725, guid: 92633c7a4a7744b43b773c6a7dfacbad,
+        type: 3}
+      propertyPath: img3
+      value: 
+      objectReference: {fileID: 21300000, guid: 0a87c6e62db3fe1468ffa22fd9b5263a,
+        type: 3}
     - target: {fileID: 2119727874, guid: 92633c7a4a7744b43b773c6a7dfacbad, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -16854,6 +16911,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79dc483f8647f6a499d8b2f1bba59c36, type: 3}
+--- !u!1 &1374016302 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 983206341019605738, guid: 79dc483f8647f6a499d8b2f1bba59c36,
+    type: 3}
+  m_PrefabInstance: {fileID: 1374016301}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1374016303 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1835038994, guid: 79dc483f8647f6a499d8b2f1bba59c36,
+    type: 3}
+  m_PrefabInstance: {fileID: 1374016301}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1374016304 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1026226050, guid: 79dc483f8647f6a499d8b2f1bba59c36,
+    type: 3}
+  m_PrefabInstance: {fileID: 1374016301}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1379309540 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 498342374, guid: bfecf78d8994f3443907cf68f57f5ace,
