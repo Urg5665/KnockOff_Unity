@@ -138,6 +138,7 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0f;
             PauseMenu.SetActive(true);
             Cursor.visible = true;
+            GameUI.SetActive(false);
         }
 
     }
