@@ -6,6 +6,11 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
+    public void Start()
+    {
+        Time.timeScale = 1.0f;
+        Cursor.visible = true;
+    }
 
     public void LoadLevel()
     {
