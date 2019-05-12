@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     public GameObject ReadyAudioObj;
     public GameObject PauseMenu;
     public GameObject GameUI;
+    public GameObject p1UI;
+    public GameObject p2UI;
     public bool paused;
     public int StartFreeze;
     //public int textTimer;
@@ -139,6 +141,8 @@ public class GameManager : MonoBehaviour
             PauseMenu.SetActive(true);
             Cursor.visible = true;
             GameUI.SetActive(false);
+            p1UI.SetActive(false);
+            p2UI.SetActive(false);
         }
 
     }
