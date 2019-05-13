@@ -6,6 +6,10 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
+    public GameObject main;
+    public GameObject controls;
+    
+
     public void Start()
     {
         Time.timeScale = 1.0f;
@@ -19,11 +23,15 @@ public class MainMenu : MonoBehaviour
 
     public void OpenSettings()
     {
+        // Right now this is just an none eidble controls panel
+        main.SetActive(false);
+        controls.SetActive(true);
 
     }
 
     public void LoadTutorial()
     {
+        // Right Now this is just an INstructions set of panels
 
     }
 
