@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenu;
+    public GameObject controlsMenu;
     public GameManager gameManager;
     public GameObject gameUI;
     public GameObject p1UI;
@@ -29,5 +30,12 @@ public class PauseMenu : MonoBehaviour
     public void MainMenu()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void OpenSettings()
+    {
+        // Right now this is just an none eidble controls panel
+        pauseMenu.SetActive(false);
+        controlsMenu.SetActive(true);
     }
 }
