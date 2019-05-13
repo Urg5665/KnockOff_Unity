@@ -8,6 +8,7 @@ public class MainMenu : MonoBehaviour
 {
     public GameObject main;
     public GameObject controls;
+    public GameObject howTo;
     
 
     public void Start()
@@ -32,7 +33,8 @@ public class MainMenu : MonoBehaviour
     public void LoadTutorial()
     {
         // Right Now this is just an INstructions set of panels
-
+        main.SetActive(false);
+        howTo.SetActive(true);
     }
 
     public void exitGame()
