@@ -7,6 +7,7 @@ public class ControlMenu : MonoBehaviour
 {
     public GameObject main;
     public GameObject controls;
+    public GameObject howToPlay;
 
     public void ReturnMain()
     {
@@ -16,5 +17,10 @@ public class ControlMenu : MonoBehaviour
     public void LoadLevel()
     {
         SceneManager.LoadScene(Mathf.RoundToInt(Random.Range(1, 4)));
+    }
+    public void LoadInstructions()
+    {
+        howToPlay.SetActive(true);
+        controls.SetActive(false);
     }
 }
