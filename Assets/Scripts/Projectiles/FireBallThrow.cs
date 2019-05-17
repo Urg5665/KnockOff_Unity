@@ -29,6 +29,7 @@ public class FireBallThrow : MonoBehaviour
 
     public Vector3 dashTarget;
 
+    public static bool hitPlayer;
 
     public GameObject hitEffect;
     public GameObject hitEffectInGame;
@@ -120,6 +121,7 @@ public class FireBallThrow : MonoBehaviour
            //hitEffectInGame.transform.position = this.transform.position;
            hitEffectInGame.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 1, this.transform.position.z);
            hitSlow = 0;
+           //Destroy(this.gameObject);
         }
         if (playerInt == 2 && collision.gameObject.tag == "Player1")
         {
@@ -144,6 +146,7 @@ public class FireBallThrow : MonoBehaviour
             //hitEffectInGame.transform.position = this.transform.position;
             hitEffectInGame.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 1, this.transform.position.z);
             hitSlow = 0;
+            //Destroy(this.gameObject);
 
         }
 

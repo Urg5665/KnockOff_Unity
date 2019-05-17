@@ -69,6 +69,7 @@ public class PlayerControlXbox : MonoBehaviour
     public Text onPlayerText;
 
     public bool airBorn;
+    public int timesStuned;
     
     void Start()
     {
@@ -100,6 +101,7 @@ public class PlayerControlXbox : MonoBehaviour
         dashSpellRange = 25; // should be very close
 
         stunLength = 0;
+        timesStuned = 0;
 
         for (int i = 0; i < 4; i++)
         {
@@ -133,7 +135,7 @@ public class PlayerControlXbox : MonoBehaviour
         {
             //Debug.Log("Player2 Stunned");
             stunLength--;
-            onPlayerText.text = "STUNED";
+            onPlayerText.text =  "" + stunLength;
         }
         if (stunLength == 0)
         {

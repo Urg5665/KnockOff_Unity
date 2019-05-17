@@ -149,7 +149,7 @@ public class PlayerControl : MonoBehaviour
         {
             //Debug.Log("Player2 Stunned");
             stunLength--;
-            onPlayerText.text = "STUNED";
+            onPlayerText.text = "STUNED: " + stunLength;
         }
         if (stunLength == 0)
         {
