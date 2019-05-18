@@ -19,8 +19,8 @@ public class ControlsMenuInGame : MonoBehaviour
     }
     public void Resume()
     {
-        p1UI.SetActive(true);
-        p2UI.SetActive(true);
+        p1UI.SetActive(false);
+        p2UI.SetActive(false);
         Time.timeScale = 1.0f;
         gameManager.paused = false;
         GameUI.SetActive(true);

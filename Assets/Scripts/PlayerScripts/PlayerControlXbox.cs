@@ -258,21 +258,19 @@ public class PlayerControlXbox : MonoBehaviour
         {
             //Debug.Log("No Spell Avaliable");
         }
-
-
-        if (Input.GetButton("Fire1") == true && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "Fire" ) // Shoot Fireball
+        if ((Input.GetAxis("SpellThrow") == 1 || Input.GetButton("Fire1") == true) && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "Fire" ) // Shoot Fireball
         {
             Fireball();
         }
-        if (Input.GetButton("Fire1") == true && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "Wind") // Shoot Wind Knock
+        if ((Input.GetAxis("SpellThrow") == 1 || Input.GetButton("Fire1") == true) && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "Wind") // Shoot Wind Knock
         {
             WindKnockback();
         }
-        if (Input.GetButton("Fire1") == true && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "Water") // Shoot Wind Knock
+        if ((Input.GetAxis("SpellThrow") == 1 || Input.GetButton("Fire1") == true) && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "Water") // Shoot Wind Knock
         {
             WaterPull();
         }
-        if (Input.GetButton("Fire1") == true && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "Earth") // Shoot Wind Knock
+        if ((Input.GetAxis("SpellThrow") == 1 || Input.GetButton("Fire1") == true) && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "Earth") // Shoot Wind Knock
         {
             EarthQuake();
         }
