@@ -69,7 +69,7 @@ public class PlayerControlXbox : MonoBehaviour
     public Text onPlayerText;
 
     public bool airBorn;
-    public int timesStuned;
+    public int dirStun; // So that aoe doesnt double stun kill 0,1,2,3
     
     void Start()
     {
@@ -101,7 +101,6 @@ public class PlayerControlXbox : MonoBehaviour
         dashSpellRange = 25; // should be very close
 
         stunLength = 0;
-        timesStuned = 0;
 
         for (int i = 0; i < 4; i++)
         {

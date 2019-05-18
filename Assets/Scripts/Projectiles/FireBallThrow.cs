@@ -102,7 +102,7 @@ public class FireBallThrow : MonoBehaviour
             //collision.gameObject.transform.position = 
             //   new Vector3(collision.gameObject.transform.position.x, collision.gameObject.transform.position.y - 6, collision.gameObject.transform.position.z);
             // Stun w kill
-            if (collision.gameObject.GetComponent<PlayerControlXbox>().stunLength > 0) // yes stuned
+            if (collision.gameObject.GetComponent<PlayerControlXbox>().stunLength > 0 && spellNum != collision.gameObject.GetComponent<PlayerControlXbox>().dirStun) // yes stuned
             {
                 collision.gameObject.transform.position =
                 new Vector3(collision.gameObject.transform.position.x, collision.gameObject.transform.position.y - 6, collision.gameObject.transform.position.z);
@@ -111,6 +111,7 @@ public class FireBallThrow : MonoBehaviour
             {
                 collision.gameObject.GetComponent<PlayerControlXbox>().speed = 0;
                 collision.gameObject.GetComponent<PlayerControlXbox>().stunLength = 100;
+                collision.gameObject.GetComponent<PlayerControlXbox>().dirStun = spellNum;
             }
 
 
@@ -129,7 +130,7 @@ public class FireBallThrow : MonoBehaviour
             //collision.gameObject.transform.position =
             //    new Vector3(collision.gameObject.transform.position.x, collision.gameObject.transform.position.y - 6, collision.gameObject.transform.position.z);
             // Stun
-            if (collision.gameObject.GetComponent<PlayerControl>().stunLength > 0) // yes stuned
+            if (collision.gameObject.GetComponent<PlayerControl>().stunLength > 0 && collision.gameObject.GetComponent<PlayerControl>().dirStun != spellNum) // yes stuned
             {
                 collision.gameObject.transform.position =
                 new Vector3(collision.gameObject.transform.position.x, collision.gameObject.transform.position.y - 6, collision.gameObject.transform.position.z);
@@ -138,6 +139,7 @@ public class FireBallThrow : MonoBehaviour
             {
                 collision.gameObject.GetComponent<PlayerControl>().speed = 0;
                 collision.gameObject.GetComponent<PlayerControl>().stunLength = 100;
+                collision.gameObject.GetComponent<PlayerControl>().dirStun = spellNum;
             }
             playerControlXbox.canCast[spellNum] = true;
             playerControlXbox.spellPrimary[spellNum] = "";

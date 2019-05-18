@@ -79,6 +79,7 @@ public class PlayerControl : MonoBehaviour
     public Text onPlayerText;
 
     public bool airBorn;
+    public int dirStun;
 
     void Start()
     {
