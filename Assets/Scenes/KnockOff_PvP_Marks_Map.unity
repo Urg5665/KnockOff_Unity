@@ -25339,8 +25339,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1761587345}
   - component: {fileID: 1761587346}
+  - component: {fileID: 1761587347}
   m_Layer: 0
-  m_Name: PointLight (2)
+  m_Name: SunLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25371,8 +25372,8 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 2
-  m_Range: 100
+  m_Intensity: 3
+  m_Range: 130
   m_SpotAngle: 55.812626
   m_CookieSize: 10
   m_Shadows:
@@ -25398,6 +25399,18 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &1761587347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1761587344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6faf27b43f12da40b5513a36feb863e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1762549210
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32331,6 +32344,31 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5615009201748704538, guid: ec4e03fcaa7f23643921aa04348f3f4f,
+        type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 2115552629}
+    - target: {fileID: 5615009201748704538, guid: ec4e03fcaa7f23643921aa04348f3f4f,
+        type: 3}
+      propertyPath: gameUI
+      value: 
+      objectReference: {fileID: 1374016304}
+    - target: {fileID: 5615009201748704538, guid: ec4e03fcaa7f23643921aa04348f3f4f,
+        type: 3}
+      propertyPath: p1UI
+      value: 
+      objectReference: {fileID: 115267616}
+    - target: {fileID: 5615009201748704538, guid: ec4e03fcaa7f23643921aa04348f3f4f,
+        type: 3}
+      propertyPath: p2UI
+      value: 
+      objectReference: {fileID: 227509055}
+    - target: {fileID: 5615009201748704538, guid: ec4e03fcaa7f23643921aa04348f3f4f,
+        type: 3}
+      propertyPath: controlsMenu
+      value: 
+      objectReference: {fileID: 113214633}
     - target: {fileID: 5615009201748704539, guid: ec4e03fcaa7f23643921aa04348f3f4f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -32436,31 +32474,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5615009201748704538, guid: ec4e03fcaa7f23643921aa04348f3f4f,
-        type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 2115552629}
-    - target: {fileID: 5615009201748704538, guid: ec4e03fcaa7f23643921aa04348f3f4f,
-        type: 3}
-      propertyPath: gameUI
-      value: 
-      objectReference: {fileID: 1374016304}
-    - target: {fileID: 5615009201748704538, guid: ec4e03fcaa7f23643921aa04348f3f4f,
-        type: 3}
-      propertyPath: p1UI
-      value: 
-      objectReference: {fileID: 115267616}
-    - target: {fileID: 5615009201748704538, guid: ec4e03fcaa7f23643921aa04348f3f4f,
-        type: 3}
-      propertyPath: p2UI
-      value: 
-      objectReference: {fileID: 227509055}
-    - target: {fileID: 5615009201748704538, guid: ec4e03fcaa7f23643921aa04348f3f4f,
-        type: 3}
-      propertyPath: controlsMenu
-      value: 
-      objectReference: {fileID: 113214633}
     - target: {fileID: 5615009203013074955, guid: ec4e03fcaa7f23643921aa04348f3f4f,
         type: 3}
       propertyPath: m_AnchoredPosition.y

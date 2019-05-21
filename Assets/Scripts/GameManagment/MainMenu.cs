@@ -19,7 +19,7 @@ public class MainMenu : MonoBehaviour
 
     public void LoadLevel()
     {
-        SceneManager.LoadScene(Mathf.RoundToInt(Random.Range(1, 4)));
+        SceneManager.LoadScene(Mathf.RoundToInt(Random.Range(1, 2)));
     }
 
     public void OpenSettings()

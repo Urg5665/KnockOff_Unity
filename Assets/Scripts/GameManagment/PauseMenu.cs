@@ -25,7 +25,7 @@ public class PauseMenu : MonoBehaviour
     }
     public void Restart()
     {
-        SceneManager.LoadScene(Mathf.RoundToInt(Random.Range(1, 4)));
+        SceneManager.LoadScene(Mathf.RoundToInt(Random.Range(1, 2)));
     }
     public void MainMenu()
     {

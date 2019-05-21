@@ -16,7 +16,7 @@ public class ControlMenu : MonoBehaviour
     }
     public void LoadLevel()
     {
-        SceneManager.LoadScene(Mathf.RoundToInt(Random.Range(1, 4)));
+        SceneManager.LoadScene(Mathf.RoundToInt(Random.Range(1, 1)));
     }
     public void LoadInstructions()
     {
