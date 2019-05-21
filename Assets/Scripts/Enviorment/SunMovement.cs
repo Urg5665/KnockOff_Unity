@@ -79,7 +79,7 @@ public class SunMovement : MonoBehaviour
 
         }
         globalLight.color = new Color32( (byte)red, (byte)green, (byte)blue, 255);
-        print(((byte)red, (byte)green, (byte)blue, 255) + "  tiemframes " + timeFrames);
+        //print(((byte)red, (byte)green, (byte)blue, 255) + "  tiemframes " + timeFrames);
 
     }
 }
