@@ -162,7 +162,7 @@ public class CardThrow : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, this.transform.localRotation.y, 0);
             cardCollider.isTrigger = true;
         }
-        if (toPlayer && rangeCounter > maxRange * 1.5f && Vector3.Distance(this.transform.position, player.transform.position) < 1)  // Fixing Card on player bug
+        if (toPlayer && rangeCounter > maxRange * 0.5f && Vector3.Distance(this.transform.position, player.transform.position) < 1)  // Fixing Card on player bug
         {
             //Debug.Log("bugFixed cardeffect given");
             transform.Rotate(Vector3.up * Time.deltaTime * rotSpeed, Space.World);
