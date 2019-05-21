@@ -25411,6 +25411,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6faf27b43f12da40b5513a36feb863e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeFrames: 0
+  rgbDay: 
+  rgbNight: 
+  globalLight: {fileID: 1221786333}
 --- !u!1001 &1762549210
 PrefabInstance:
   m_ObjectHideFlags: 0
