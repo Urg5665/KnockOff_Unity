@@ -20,6 +20,8 @@ public class OnPlayerUISelectXbox : MonoBehaviour
     public Sprite blue;
 
     public GameObject childIcon;
+    public GameObject outerRing;
+    public GameObject innerRing;
 
     public Sprite cone;
     public Sprite line;
@@ -37,22 +39,35 @@ public class OnPlayerUISelectXbox : MonoBehaviour
         {
             image.enabled = true;
             childIcon.GetComponent<Image>().enabled = true;
+            outerRing.SetActive(true);
+            innerRing.SetActive(true);
+            outerRing.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+            innerRing.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
 
             if (playerControlXbox.spellPrimary[spellNumber] == "Fire")
             {
                 image.sprite = red;
+                innerRing.GetComponent<Image>().color = new Color32(255, 0, 0, 255);
                 childIcon.GetComponent<Image>().color = new Color32(255, 0, 0, 255);
             }
             if (playerControlXbox.spellPrimary[spellNumber] == "Wind")
             {
                 image.sprite = cyan;
                 //67, 215, 255, 255
+                innerRing.GetComponent<Image>().color = new Color32(67, 215, 255, 255);
                 childIcon.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
             }
             if (playerControlXbox.spellPrimary[spellNumber] == "Water")
             {
                 image.sprite = blue;
+                innerRing.GetComponent<Image>().color = new Color32(0, 0, 255, 255);
                 childIcon.GetComponent<Image>().color = new Color32(0, 0, 255, 255);
+            }
+            if (playerControlXbox.spellPrimary[spellNumber] == "Earth")
+            {
+                image.sprite = blue;
+                innerRing.GetComponent<Image>().color = new Color32(90, 80, 0, 255);
+                childIcon.GetComponent<Image>().color = new Color32(90, 80, 0, 255);
             }
             if (playerControlXbox.spellPrimary[spellNumber] == "")
             {
@@ -61,18 +76,22 @@ public class OnPlayerUISelectXbox : MonoBehaviour
 
             if (playerControlXbox.spellSecondary[spellNumber] == "AOE")
             {
+                outerRing.GetComponent<Image>().color = new Color32(255, 0, 0, 255);
                 childIcon.GetComponent<Image>().sprite = cone;
             }
             if (playerControlXbox.spellSecondary[spellNumber] == "Range")
             {
+                outerRing.GetComponent<Image>().color = new Color32(67, 215, 255, 255);
                 childIcon.GetComponent<Image>().sprite = line;
             }
             if (playerControlXbox.spellSecondary[spellNumber] == "Dash")
             {
+                outerRing.GetComponent<Image>().color = new Color32(0, 0, 255, 255);
                 childIcon.GetComponent<Image>().sprite = dash;
             }
             if (playerControlXbox.spellSecondary[spellNumber] == "Boom")
             {
+                outerRing.GetComponent<Image>().color = new Color32(90, 80, 0, 255);
                 childIcon.GetComponent<Image>().sprite = boom;
             }
             if (playerControlXbox.spellSecondary[spellNumber] == "")
@@ -85,6 +104,8 @@ public class OnPlayerUISelectXbox : MonoBehaviour
         {
             image.enabled = false;
             childIcon.GetComponent<Image>().enabled = false;
+            outerRing.SetActive(false);
+            innerRing.SetActive(false);
         }
 
         
