@@ -74,5 +74,29 @@ public class DeathPlane : MonoBehaviour
     {
         player1ScoreText.text = player1Score.ToString();
         player2ScoreText.text = player2Score.ToString();
+        if ( player1.transform.position.y < -17)
+        {
+            player1Score--;
+            player1.transform.position = new Vector3(-25, 10f, -37);
+            player2.transform.position = new Vector3(44, 10f, -36);
+            player2Aim.transform.position = new Vector3(40, 10f, -33);
+            player1.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            player2.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            StartCoroutine(cameraMove.Shake(.3f, 1f));
+            audioSource.Play();
+            Destroy(player1Lives[player1Score]);
+        }
+        if (player2.transform.position.y < -17)
+        {
+            player2Score--;
+            player1.transform.position = new Vector3(-25, 10f, -37);
+            player2.transform.position = new Vector3(44, 10f, -36);
+            player2Aim.transform.position = new Vector3(40, 10f, -33);
+            player2.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            player1.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            StartCoroutine(cameraMove.Shake(.3f, 1f));
+            audioSource.Play();
+            Destroy(player2Lives[player2Score]);
+        }
     }
 }

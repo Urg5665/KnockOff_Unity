@@ -52,7 +52,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 972975199120812417}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -115,12 +115,17 @@ MonoBehaviour:
     type: 3}
   playerControl: {fileID: 0}
   playerControlXbox: {fileID: 0}
+  playerHit: {fileID: 0}
   dashSpell: 0
+  boomSpell: 0
+  boomHover: 0
+  boomReturn: 0
   waterForce: 0
   waterKnockUp: 0
   spellDir: {x: 0, y: 0, z: 0}
   rangeCounter: 0
   maxRange: 0
+  bombRange: 0
   dashTarget: {x: 0, y: 0, z: 0}
   hitSlow: 0
   cameraMove: {fileID: 0}
