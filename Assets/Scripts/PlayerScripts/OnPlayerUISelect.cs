@@ -47,6 +47,7 @@ public class OnPlayerUISelect : MonoBehaviour
             outerRing.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
             innerRing.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
             colorInner = new Color32(255, 255, 255, 255);
+            colorOuter = new Color32(255, 255, 255, 255);
             childIcon.GetComponent<Image>().enabled = true;
 
             if (playerControl.spellPrimary[spellNumber] == "Fire")
@@ -120,7 +121,7 @@ public class OnPlayerUISelect : MonoBehaviour
             childIcon.GetComponent<Image>().enabled = false;
             outerRing.SetActive(true);
             innerRing.SetActive(true);
-            innerRing.GetComponent<Image>().color = new Color32(colorInner.r, colorInner.g, colorInner.b, 150);
+            innerRing.GetComponent<Image>().color = new Color32(colorInner.r, colorInner.g, colorInner.b, 50);
             outerRing.GetComponent<Image>().color = new Color32(colorOuter.r, colorOuter.g, colorOuter.b, 150);
 
         }
