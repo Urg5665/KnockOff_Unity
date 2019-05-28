@@ -181,12 +181,12 @@ namespace UnityStandardAssets.Water
             }
             foreach (var kvp in m_ReflectionCameras)
             {
-                DestroyImmediate((kvp.Value).gameObject);
+                //DestroyImmediate((kvp.Value).gameObject);
             }
             m_ReflectionCameras.Clear();
             foreach (var kvp in m_RefractionCameras)
             {
-                DestroyImmediate((kvp.Value).gameObject);
+                //DestroyImmediate((kvp.Value).gameObject);
             }
             m_RefractionCameras.Clear();
         }

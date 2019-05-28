@@ -28,8 +28,11 @@ public class CardThrow : MonoBehaviour
     public GameObject cardTrail;
     public GameObject cardTrailNew;
 
+    public bool hitPlayer; // So that you do not pick up two spells in one card
+
     private void Awake()
     {
+        hitPlayer = false;
         toRes = true;
         toPlayer = false;
         rangeCounter = 0;
@@ -49,8 +52,8 @@ public class CardThrow : MonoBehaviour
         }
 
         transform.LookAt(playerAim.transform);
-        maxRange = 30; // Just to fit with skill shot // 35 range, 30 speed
-        throwSpeed = 40;
+        maxRange = 18; // Just to fit with skill shot // 35 range, 30 speed // Faster gameplay do 18 range 70 speed
+        throwSpeed = 70;
         cardCollider = this.GetComponent<BoxCollider>();
         cardCollider.isTrigger = true;
         cardTrailNew = Instantiate(cardTrail, this.transform.position, this.transform.rotation);
@@ -99,27 +102,36 @@ public class CardThrow : MonoBehaviour
             Destroy(collision.gameObject);
         }
 
-        if (collision.gameObject.tag == "Player1" && toPlayer && playerInt == 1)
+        if (collision.gameObject.tag == "Player1" && toPlayer && playerInt == 1 && !hitPlayer)
         {
+            hitPlayer = true;
             if (playerControl.spellPrimary[cardNum] == "")
             {
                 playerControl.spellPrimary[cardNum] = resType;
+                print(resType);
+                playerControl.canCast[cardNum] = true;
+                playerControl.cardsThrown--;
+                Destroy(this.gameObject);
             }
-            else if (playerControl.spellPrimary[cardNum] != "")
+
+            else if (playerControl.spellSecondary[cardNum] == "")
             {
                 playerControl.spellSecondary[cardNum] = resType2;
+                print(resType2);
+                playerControl.canCast[cardNum] = true;
+                playerControl.cardsThrown--;
+                Destroy(this.gameObject);
             }
-            playerControl.canCast[cardNum] = true;
-            playerControl.cardsThrown--;
-            Destroy(this.gameObject);
+  
         }
-        if (collision.gameObject.tag == "Player2" && toPlayer && playerInt == 2)
+        if (collision.gameObject.tag == "Player2" && toPlayer && playerInt == 2 && !hitPlayer)
         {
+            hitPlayer = true;
             if (playerControlXbox.spellPrimary[cardNum] == "")
             {
                 playerControlXbox.spellPrimary[cardNum] = resType;
             }
-            else if (playerControlXbox.spellPrimary[cardNum] != "")
+            else if (playerControlXbox.spellSecondary[cardNum] == "")
             {
                 playerControlXbox.spellSecondary[cardNum] = resType2;
             }
@@ -170,8 +182,9 @@ public class CardThrow : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, this.transform.localRotation.y, 0);
             cardCollider.isTrigger = true;
             Destroy(this.gameObject);
-            if (playerInt == 1)
+            if (playerInt == 1 && !hitPlayer)
             {
+                hitPlayer = true;
                 playerControl.canCast[cardNum] = true;
                 playerControl.cardsThrown--;
                 if (playerControl.spellPrimary[cardNum] == "")
@@ -183,8 +196,9 @@ public class CardThrow : MonoBehaviour
                     playerControl.spellSecondary[cardNum] = resType2;
                 }
             }
-            if (playerInt == 2)
+            if (playerInt == 2 && !hitPlayer)
             {
+                hitPlayer = true;
                 playerControlXbox.canCast[cardNum] = true;
                 playerControlXbox.cardsThrown--;
                 if (playerControlXbox.spellPrimary[cardNum] == "")
