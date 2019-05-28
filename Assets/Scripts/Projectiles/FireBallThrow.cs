@@ -197,6 +197,7 @@ public class FireBallThrow : MonoBehaviour
         if (boomReturn)
         {
             transform.LookAt(player.transform.position);
+            //transform.LookAt(dashTarget); If you want to go to  opposing player // run this
         }
 
         if (rangeCounter > maxRange)

@@ -5264,14 +5264,16 @@ MonoBehaviour:
   line: {fileID: 21300000, guid: 07ce02ca0fdb021439ddf18d4ea64575, type: 3}
   dash: {fileID: 21300000, guid: 5a29759ee84c4674fbebd58465c6883a, type: 3}
   boom: {fileID: 21300000, guid: 2c6fea187385e9744a37ac1473c2ee8f, type: 3}
-  sizeInner: {x: 0, y: 0, z: 0}
-  sizeOuter: {x: 0, y: 0, z: 0}
   colorInner:
     serializedVersion: 2
     rgba: 0
   colorOuter:
     serializedVersion: 2
     rgba: 0
+  inner1: {fileID: 21300000, guid: 25be9b14c14756143a4bfac049544b3e, type: 3}
+  inner2: {fileID: 21300000, guid: 8c640144c1d6dbc4aa762f2bf39ff769, type: 3}
+  outer1: {fileID: 21300000, guid: 42e4f285bd6583b4fb121f6c8fcb01b7, type: 3}
+  outer2: {fileID: 21300000, guid: eb95a16735eaf6442825e321a502ceb1, type: 3}
 --- !u!1 &2589562063889731662
 GameObject:
   m_ObjectHideFlags: 0
@@ -5601,14 +5603,16 @@ MonoBehaviour:
   line: {fileID: 21300000, guid: 07ce02ca0fdb021439ddf18d4ea64575, type: 3}
   dash: {fileID: 21300000, guid: 5a29759ee84c4674fbebd58465c6883a, type: 3}
   boom: {fileID: 21300000, guid: 2c6fea187385e9744a37ac1473c2ee8f, type: 3}
-  sizeInner: {x: 0, y: 0, z: 0}
-  sizeOuter: {x: 0, y: 0, z: 0}
   colorInner:
     serializedVersion: 2
     rgba: 0
   colorOuter:
     serializedVersion: 2
     rgba: 0
+  inner1: {fileID: 21300000, guid: 25be9b14c14756143a4bfac049544b3e, type: 3}
+  inner2: {fileID: 21300000, guid: 8c640144c1d6dbc4aa762f2bf39ff769, type: 3}
+  outer1: {fileID: 21300000, guid: 42e4f285bd6583b4fb121f6c8fcb01b7, type: 3}
+  outer2: {fileID: 21300000, guid: eb95a16735eaf6442825e321a502ceb1, type: 3}
 --- !u!1 &4589685495232286483
 GameObject:
   m_ObjectHideFlags: 0
@@ -6133,14 +6137,16 @@ MonoBehaviour:
   line: {fileID: 21300000, guid: 07ce02ca0fdb021439ddf18d4ea64575, type: 3}
   dash: {fileID: 21300000, guid: 5a29759ee84c4674fbebd58465c6883a, type: 3}
   boom: {fileID: 21300000, guid: 2c6fea187385e9744a37ac1473c2ee8f, type: 3}
-  sizeInner: {x: 0, y: 0, z: 0}
-  sizeOuter: {x: 0, y: 0, z: 0}
   colorInner:
     serializedVersion: 2
     rgba: 0
   colorOuter:
     serializedVersion: 2
     rgba: 0
+  inner1: {fileID: 21300000, guid: 25be9b14c14756143a4bfac049544b3e, type: 3}
+  inner2: {fileID: 21300000, guid: 8c640144c1d6dbc4aa762f2bf39ff769, type: 3}
+  outer1: {fileID: 21300000, guid: 42e4f285bd6583b4fb121f6c8fcb01b7, type: 3}
+  outer2: {fileID: 21300000, guid: eb95a16735eaf6442825e321a502ceb1, type: 3}
 --- !u!1 &5545784791066660749
 GameObject:
   m_ObjectHideFlags: 0
@@ -6697,14 +6703,16 @@ MonoBehaviour:
   line: {fileID: 21300000, guid: 07ce02ca0fdb021439ddf18d4ea64575, type: 3}
   dash: {fileID: 21300000, guid: 76097785bb7ce2d4ea0f06a552bb57a8, type: 3}
   boom: {fileID: 21300000, guid: 2c6fea187385e9744a37ac1473c2ee8f, type: 3}
-  sizeInner: {x: 0, y: 0, z: 0}
-  sizeOuter: {x: 0, y: 0, z: 0}
   colorInner:
     serializedVersion: 2
     rgba: 0
   colorOuter:
     serializedVersion: 2
     rgba: 0
+  inner1: {fileID: 21300000, guid: 25be9b14c14756143a4bfac049544b3e, type: 3}
+  inner2: {fileID: 21300000, guid: 8c640144c1d6dbc4aa762f2bf39ff769, type: 3}
+  outer1: {fileID: 21300000, guid: 42e4f285bd6583b4fb121f6c8fcb01b7, type: 3}
+  outer2: {fileID: 21300000, guid: eb95a16735eaf6442825e321a502ceb1, type: 3}
 --- !u!1 &9016427614997010767
 GameObject:
   m_ObjectHideFlags: 0

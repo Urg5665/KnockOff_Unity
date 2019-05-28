@@ -32,6 +32,12 @@ public class OnPlayerUISelect : MonoBehaviour
 
     public Color32 colorInner;
     public Color32 colorOuter;
+
+    public Sprite inner1; // 1 is the smaller 2 is the larger
+    public Sprite inner2;
+    public Sprite outer1;
+    public Sprite outer2;
+
     private void Start()
     {
         playerControl = player.GetComponent<PlayerControl>();
@@ -44,6 +50,8 @@ public class OnPlayerUISelect : MonoBehaviour
             image.enabled = false;
             outerRing.SetActive(true);
             innerRing.SetActive(true);
+            innerRing.GetComponent<Image>().sprite = inner2;
+            outerRing.GetComponent<Image>().sprite = outer2;
             outerRing.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
             innerRing.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
             colorInner = new Color32(255, 255, 255, 255);
@@ -121,8 +129,10 @@ public class OnPlayerUISelect : MonoBehaviour
             childIcon.GetComponent<Image>().enabled = false;
             outerRing.SetActive(true);
             innerRing.SetActive(true);
-            innerRing.GetComponent<Image>().color = new Color32(colorInner.r, colorInner.g, colorInner.b, 50);
-            outerRing.GetComponent<Image>().color = new Color32(colorOuter.r, colorOuter.g, colorOuter.b, 150);
+            innerRing.GetComponent<Image>().sprite = inner1;
+            outerRing.GetComponent<Image>().sprite = outer1;
+            innerRing.GetComponent<Image>().color = new Color32(colorInner.r, colorInner.g, colorInner.b, 90);
+            outerRing.GetComponent<Image>().color = new Color32(colorOuter.r, colorOuter.g, colorOuter.b, 90);
 
         }
     }
