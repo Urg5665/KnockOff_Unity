@@ -31,6 +31,8 @@ public class OnPlayerUISelectXbox : MonoBehaviour
     private void Start()
     {
         playerControlXbox = player.GetComponent<PlayerControlXbox>();
+        outerRing.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+        innerRing.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
     }
 
     private void Update()
