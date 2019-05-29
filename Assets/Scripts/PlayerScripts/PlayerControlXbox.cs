@@ -71,7 +71,10 @@ public class PlayerControlXbox : MonoBehaviour
 
     public bool airBorn;
     public int dirStun; // So that aoe doesnt double stun kill 0,1,2,3
-    
+
+    public int fireBallID;
+    public int stunID; // So that players cannot be killed by smae fireball, and needs two differnt fire spells ( any direction) to kill
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.None;

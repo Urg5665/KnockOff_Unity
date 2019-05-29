@@ -7,6 +7,7 @@ public class FireBallThrow : MonoBehaviour
     public float throwSpeed;
     public int playerInt;
     public int spellNum;
+    public int fireBallID;
 
     public GameObject player;
     public GameObject playerAim;
@@ -102,16 +103,19 @@ public class FireBallThrow : MonoBehaviour
             //collision.gameObject.transform.position = 
             //   new Vector3(collision.gameObject.transform.position.x, collision.gameObject.transform.position.y - 6, collision.gameObject.transform.position.z);
             // Stun w kill
-            if (collision.gameObject.GetComponent<PlayerControlXbox>().stunLength > 0 && spellNum != collision.gameObject.GetComponent<PlayerControlXbox>().dirStun) // yes stuned
+            if (collision.gameObject.GetComponent<PlayerControlXbox>().stunLength > 0 && collision.gameObject.GetComponent<PlayerControlXbox>().stunID != fireBallID) // yes stuned
             {
+                print("p2 Killed:" + fireBallID);
                 collision.gameObject.transform.position =
                 new Vector3(collision.gameObject.transform.position.x, collision.gameObject.transform.position.y - 6, collision.gameObject.transform.position.z);
             }
             if (collision.gameObject.GetComponent<PlayerControlXbox>().stunLength <= 0) // not Stuned
             {
                 collision.gameObject.GetComponent<PlayerControlXbox>().speed = 0;
+                collision.gameObject.GetComponent<PlayerControlXbox>().stunID = fireBallID;
                 collision.gameObject.GetComponent<PlayerControlXbox>().stunLength = 100;
                 collision.gameObject.GetComponent<PlayerControlXbox>().dirStun = spellNum;
+                print("p2 Stuned:" + fireBallID);
             }
 
 
@@ -130,14 +134,18 @@ public class FireBallThrow : MonoBehaviour
             //collision.gameObject.transform.position =
             //    new Vector3(collision.gameObject.transform.position.x, collision.gameObject.transform.position.y - 6, collision.gameObject.transform.position.z);
             // Stun
-            if (collision.gameObject.GetComponent<PlayerControl>().stunLength > 0 && collision.gameObject.GetComponent<PlayerControl>().dirStun != spellNum) // yes stuned
+
+            if (collision.gameObject.GetComponent<PlayerControl>().stunLength > 0 && collision.gameObject.GetComponent<PlayerControl>().stunID != fireBallID ) // yes stuned , ignore other aoe spells
             {
+                print("p1 Killed:" + fireBallID);
                 collision.gameObject.transform.position =
                 new Vector3(collision.gameObject.transform.position.x, collision.gameObject.transform.position.y - 6, collision.gameObject.transform.position.z);
             }
             if (collision.gameObject.GetComponent<PlayerControl>().stunLength <= 0) // not Stuned
             {
+                print("p1 Stuned:" + fireBallID);
                 collision.gameObject.GetComponent<PlayerControl>().speed = 0;
+                collision.gameObject.GetComponent<PlayerControl>().stunID = fireBallID; // this is what the player remebers as stun
                 collision.gameObject.GetComponent<PlayerControl>().stunLength = 100;
                 collision.gameObject.GetComponent<PlayerControl>().dirStun = spellNum;
             }

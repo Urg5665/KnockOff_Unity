@@ -56,6 +56,8 @@ public class PlayerControl : MonoBehaviour
     public int boomBaseSpeed;
 
     public int cardsThrown;
+    public int fireBallID;
+    public int stunID; // So that players cannot be killed by smae fireball, and needs two differnt fire spells ( any direction) to kill
     //public float slowDownPerCard = 2.5f;
 
     public GameObject newSpell;
@@ -117,6 +119,7 @@ public class PlayerControl : MonoBehaviour
         }
         //slowDownPerCard = 2.5f;
         player1Aim = GameObject.Find("Player1Aim");
+        fireBallID = 0;
     }
 
     public void pickDirection()
@@ -211,6 +214,9 @@ public class PlayerControl : MonoBehaviour
                 newSpell.GetComponent<FireBallThrow>().spellNum = dashDirection;
                 newSpell.GetComponent<FireBallThrow>().maxRange = dashSpellRange;
                 newSpell.GetComponent<FireBallThrow>().dashSpell = true;
+                fireBallID++;
+                newSpell.GetComponent<FireBallThrow>().fireBallID = fireBallID;
+                print("FireballID:" + fireBallID);
             }
             if (spellPrimary[dashDirection] == "Wind" && spellSecondary[dashDirection] == "Dash")
             {
@@ -335,6 +341,9 @@ public class PlayerControl : MonoBehaviour
             //Debug.Log("Basic");
             newSpell.GetComponent<FireBallThrow>().maxRange = baseRange;
             canCast[spellSelected] = false;
+            fireBallID++;
+            newSpell.GetComponent<FireBallThrow>().fireBallID = fireBallID;
+            print("FireballID:" + newSpell.GetComponent<FireBallThrow>().fireBallID);
         }
         if (spellSecondary[spellSelected] == "Boom")
         {
@@ -346,17 +355,24 @@ public class PlayerControl : MonoBehaviour
             newSpell.GetComponent<FireBallThrow>().throwSpeed = boomBaseSpeed;
             newSpell.GetComponent<FireBallThrow>().boomSpell = true;
             canCast[spellSelected] = false;
+            fireBallID++;
+            newSpell.GetComponent<FireBallThrow>().fireBallID = fireBallID;
+            print("FireballID:" + newSpell.GetComponent<FireBallThrow>().fireBallID);
         }
         if (spellSecondary[spellSelected] == "AOE")
         {
+            fireBallID++;
             for (int i = 0; i < 5; i++)
             {
                 newSpellAOE[i] = Instantiate(spellProjectile[0], this.transform.position, spellProjectile[0].transform.rotation);
+                newSpellAOE[i].GetComponent<FireBallThrow>().fireBallID = fireBallID;
                 newSpellAOE[i].transform.position = new Vector3(newSpellAOE[i].transform.position.x, newSpellAOE[i].transform.position.y - .25f, newSpellAOE[i].transform.position.z);
                 newSpellAOE[i].GetComponent<FireBallThrow>().spellNum = spellSelected;
                 newSpellAOE[i].GetComponent<FireBallThrow>().maxRange = aoeRange;
                 aoeCone(i);
                 newSpellAOE[i].GetComponent<FireBallThrow>().transform.LookAt(AOEpoint);
+
+                print("FireballID:" + newSpellAOE[i].GetComponent<FireBallThrow>().fireBallID);
             }
             canCast[spellSelected] = false;
             //
@@ -387,10 +403,15 @@ public class PlayerControl : MonoBehaviour
             newSpell.GetComponent<FireBallThrow>().maxRange = rangeRange;
             newSpell.GetComponent<FireBallThrow>().throwSpeed = rangeSpeed;
             canCast[spellSelected] = false;
+            fireBallID++;
+            newSpell.GetComponent<FireBallThrow>().fireBallID = fireBallID;
+            print("FireballID:" + newSpell.GetComponent<FireBallThrow>().fireBallID);
+
         }
         if (spellSecondary[spellSelected] == "Dash")
         {
             //Debug.Log("Dash");
+            // See above for where the spells is acutally cast
             canCast[spellSelected] = false;
             dashing = true;
             dashDirection = spellSelected;

@@ -108,7 +108,7 @@ public class CardThrow : MonoBehaviour
             if (playerControl.spellPrimary[cardNum] == "")
             {
                 playerControl.spellPrimary[cardNum] = resType;
-                print(resType);
+                //print(resType);
                 playerControl.canCast[cardNum] = true;
                 playerControl.cardsThrown--;
                 Destroy(this.gameObject);
@@ -117,7 +117,7 @@ public class CardThrow : MonoBehaviour
             else if (playerControl.spellSecondary[cardNum] == "")
             {
                 playerControl.spellSecondary[cardNum] = resType2;
-                print(resType2);
+                //print(resType2);
                 playerControl.canCast[cardNum] = true;
                 playerControl.cardsThrown--;
                 Destroy(this.gameObject);
