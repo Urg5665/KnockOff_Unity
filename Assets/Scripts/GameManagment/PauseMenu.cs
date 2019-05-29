@@ -8,6 +8,7 @@ public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenu;
     public GameObject controlsMenu;
+    public GameObject howToPlayMenu;
     public GameManager gameManager;
     public GameObject gameUI;
     public GameObject p1UI;
@@ -37,5 +38,11 @@ public class PauseMenu : MonoBehaviour
         // Right now this is just an none eidble controls panel
         pauseMenu.SetActive(false);
         controlsMenu.SetActive(true);
+    }
+
+    public void OpenHowToPlay()
+    {
+        pauseMenu.SetActive(false);
+        howToPlayMenu.SetActive(true);
     }
 }

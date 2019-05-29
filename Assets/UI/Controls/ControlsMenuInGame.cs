@@ -11,6 +11,7 @@ public class ControlsMenuInGame : MonoBehaviour
     public GameObject p1UI;
     public GameObject p2UI;
     public GameObject controlMenu;
+    public GameObject howToPlayMenu;
     public GameManager gameManager;
 
     public void MainMenu()
@@ -24,6 +25,11 @@ public class ControlsMenuInGame : MonoBehaviour
         Time.timeScale = 1.0f;
         gameManager.paused = false;
         GameUI.SetActive(true);
+        controlMenu.SetActive(false);
+    }
+    public void OpenHowToPLay()
+    {
+        howToPlayMenu.SetActive(true);
         controlMenu.SetActive(false);
     }
 }
