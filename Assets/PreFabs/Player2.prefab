@@ -121,6 +121,12 @@ MonoBehaviour:
   line: {fileID: 21300000, guid: 07ce02ca0fdb021439ddf18d4ea64575, type: 3}
   dash: {fileID: 21300000, guid: 5a29759ee84c4674fbebd58465c6883a, type: 3}
   boom: {fileID: 21300000, guid: 2c6fea187385e9744a37ac1473c2ee8f, type: 3}
+  colorInner:
+    serializedVersion: 2
+    rgba: 0
+  colorOuter:
+    serializedVersion: 2
+    rgba: 0
 --- !u!1 &670386011026800657
 GameObject:
   m_ObjectHideFlags: 0
@@ -447,16 +453,16 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2594793187566610738}
   m_LocalRotation: {x: -0, y: -0, z: -0.0017504097, w: -0.9999985}
-  m_LocalPosition: {x: 0, y: 0, z: -2.6616354}
-  m_LocalScale: {x: 5.000107, y: 5.000104, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -2.6616366}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1294518314683911031}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 360.201}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0000058152045, y: -105.4965}
-  m_SizeDelta: {x: 50, y: 20}
+  m_AnchoredPosition: {x: 65.041954, y: -138.01749}
+  m_SizeDelta: {x: 200, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3233146826848785976
 CanvasRenderer:
@@ -488,18 +494,18 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 60
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 40
+    m_MinSize: 0
+    m_MaxSize: 60
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 100202
+  m_Text: 100
 --- !u!1 &2888785719138470147
 GameObject:
   m_ObjectHideFlags: 0
@@ -607,6 +613,12 @@ MonoBehaviour:
   line: {fileID: 21300000, guid: 07ce02ca0fdb021439ddf18d4ea64575, type: 3}
   dash: {fileID: 21300000, guid: 5a29759ee84c4674fbebd58465c6883a, type: 3}
   boom: {fileID: 21300000, guid: 2c6fea187385e9744a37ac1473c2ee8f, type: 3}
+  colorInner:
+    serializedVersion: 2
+    rgba: 0
+  colorOuter:
+    serializedVersion: 2
+    rgba: 0
 --- !u!1 &3031302334940979339
 GameObject:
   m_ObjectHideFlags: 0
@@ -1173,6 +1185,8 @@ MonoBehaviour:
   onPlayerStunRing: {fileID: 0}
   airBorn: 0
   dirStun: 0
+  fireBallID: 0
+  stunID: 0
 --- !u!1 &6464380584519065955
 GameObject:
   m_ObjectHideFlags: 0
@@ -1280,6 +1294,12 @@ MonoBehaviour:
   line: {fileID: 21300000, guid: 07ce02ca0fdb021439ddf18d4ea64575, type: 3}
   dash: {fileID: 21300000, guid: 5a29759ee84c4674fbebd58465c6883a, type: 3}
   boom: {fileID: 21300000, guid: 2c6fea187385e9744a37ac1473c2ee8f, type: 3}
+  colorInner:
+    serializedVersion: 2
+    rgba: 0
+  colorOuter:
+    serializedVersion: 2
+    rgba: 0
 --- !u!1 &6529389313703823490
 GameObject:
   m_ObjectHideFlags: 0
@@ -1637,6 +1657,12 @@ MonoBehaviour:
   line: {fileID: 21300000, guid: 07ce02ca0fdb021439ddf18d4ea64575, type: 3}
   dash: {fileID: 21300000, guid: 5a29759ee84c4674fbebd58465c6883a, type: 3}
   boom: {fileID: 21300000, guid: 2c6fea187385e9744a37ac1473c2ee8f, type: 3}
+  colorInner:
+    serializedVersion: 2
+    rgba: 0
+  colorOuter:
+    serializedVersion: 2
+    rgba: 0
 --- !u!1 &7795568900285041367
 GameObject:
   m_ObjectHideFlags: 0

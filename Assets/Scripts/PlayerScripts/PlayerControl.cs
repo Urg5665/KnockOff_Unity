@@ -120,6 +120,7 @@ public class PlayerControl : MonoBehaviour
         //slowDownPerCard = 2.5f;
         player1Aim = GameObject.Find("Player1Aim");
         fireBallID = 0;
+        stunID = -1;
     }
 
     public void pickDirection()
@@ -216,7 +217,7 @@ public class PlayerControl : MonoBehaviour
                 newSpell.GetComponent<FireBallThrow>().dashSpell = true;
                 fireBallID++;
                 newSpell.GetComponent<FireBallThrow>().fireBallID = fireBallID;
-                print("FireballID:" + fireBallID);
+                //print("FireballID:" + fireBallID);
             }
             if (spellPrimary[dashDirection] == "Wind" && spellSecondary[dashDirection] == "Dash")
             {
@@ -343,7 +344,7 @@ public class PlayerControl : MonoBehaviour
             canCast[spellSelected] = false;
             fireBallID++;
             newSpell.GetComponent<FireBallThrow>().fireBallID = fireBallID;
-            print("FireballID:" + newSpell.GetComponent<FireBallThrow>().fireBallID);
+            //print("FireballID:" + newSpell.GetComponent<FireBallThrow>().fireBallID);
         }
         if (spellSecondary[spellSelected] == "Boom")
         {
@@ -357,7 +358,7 @@ public class PlayerControl : MonoBehaviour
             canCast[spellSelected] = false;
             fireBallID++;
             newSpell.GetComponent<FireBallThrow>().fireBallID = fireBallID;
-            print("FireballID:" + newSpell.GetComponent<FireBallThrow>().fireBallID);
+            //print("FireballID:" + newSpell.GetComponent<FireBallThrow>().fireBallID);
         }
         if (spellSecondary[spellSelected] == "AOE")
         {
@@ -372,7 +373,7 @@ public class PlayerControl : MonoBehaviour
                 aoeCone(i);
                 newSpellAOE[i].GetComponent<FireBallThrow>().transform.LookAt(AOEpoint);
 
-                print("FireballID:" + newSpellAOE[i].GetComponent<FireBallThrow>().fireBallID);
+                //print("FireballID:" + newSpellAOE[i].GetComponent<FireBallThrow>().fireBallID);
             }
             canCast[spellSelected] = false;
             //
@@ -405,7 +406,7 @@ public class PlayerControl : MonoBehaviour
             canCast[spellSelected] = false;
             fireBallID++;
             newSpell.GetComponent<FireBallThrow>().fireBallID = fireBallID;
-            print("FireballID:" + newSpell.GetComponent<FireBallThrow>().fireBallID);
+            //print("FireballID:" + newSpell.GetComponent<FireBallThrow>().fireBallID);
 
         }
         if (spellSecondary[spellSelected] == "Dash")

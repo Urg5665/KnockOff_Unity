@@ -5251,6 +5251,7 @@ MonoBehaviour:
   player: {fileID: 4589685495232286483}
   playerControl: {fileID: 46870567241696049}
   spellNumber: 0
+  localDirection: 0
   image: {fileID: 8315877528582720483}
   white: {fileID: 21300000, guid: 2e521e611e21c28438d3e253c5942043, type: 3}
   red: {fileID: 21300000, guid: 911d71a54a8f96f4dabfe5548cdb0a5c, type: 3}
@@ -5590,6 +5591,7 @@ MonoBehaviour:
   player: {fileID: 4589685495232286483}
   playerControl: {fileID: 46870567241696049}
   spellNumber: 2
+  localDirection: 2
   image: {fileID: 2120298933160476930}
   white: {fileID: 21300000, guid: 2e521e611e21c28438d3e253c5942043, type: 3}
   red: {fileID: 21300000, guid: 911d71a54a8f96f4dabfe5548cdb0a5c, type: 3}
@@ -5770,6 +5772,8 @@ MonoBehaviour:
   boomBaseRange: 0
   boomBaseSpeed: 0
   cardsThrown: 0
+  fireBallID: 0
+  stunID: 0
   newSpell: {fileID: 0}
   newSpellAOE:
   - {fileID: 0}
@@ -6124,6 +6128,7 @@ MonoBehaviour:
   player: {fileID: 4589685495232286483}
   playerControl: {fileID: 46870567241696049}
   spellNumber: 1
+  localDirection: 1
   image: {fileID: 6353623954652902339}
   white: {fileID: 21300000, guid: 2e521e611e21c28438d3e253c5942043, type: 3}
   red: {fileID: 21300000, guid: 911d71a54a8f96f4dabfe5548cdb0a5c, type: 3}
@@ -6690,6 +6695,7 @@ MonoBehaviour:
   player: {fileID: 4589685495232286483}
   playerControl: {fileID: 46870567241696049}
   spellNumber: 3
+  localDirection: 3
   image: {fileID: 1408914977156375037}
   white: {fileID: 21300000, guid: 2e521e611e21c28438d3e253c5942043, type: 3}
   red: {fileID: 21300000, guid: 911d71a54a8f96f4dabfe5548cdb0a5c, type: 3}
