@@ -79,6 +79,7 @@ public class PlayerControl : MonoBehaviour
     // Testing Stun out on Player
     public int stunLength;
     public Text onPlayerText;
+    public Image onPlayerStunRing;
 
     public bool airBorn;
     public int dirStun;
@@ -154,12 +155,15 @@ public class PlayerControl : MonoBehaviour
         {
             //Debug.Log("Player2 Stunned");
             stunLength--;
-            onPlayerText.text = "STUNED: " + stunLength;
+            onPlayerText.text = "" + stunLength;
+            onPlayerStunRing.enabled = true;
+            onPlayerStunRing.fillAmount = (float)stunLength / 100;
         }
         if (stunLength == 0)
         {
             speed = 7.5f;
             onPlayerText.text = "";
+            onPlayerStunRing.enabled = false;
         }
 
 

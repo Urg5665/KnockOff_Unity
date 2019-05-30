@@ -217,6 +217,8 @@ public class PlayerControlXbox : MonoBehaviour
                 newSpell.GetComponent<FireBallThrow>().spellNum = dashDirection;
                 newSpell.GetComponent<FireBallThrow>().maxRange = dashSpellRange;
                 newSpell.GetComponent<FireBallThrow>().dashSpell = true;
+                fireBallID++;
+                newSpell.GetComponent<FireBallThrow>().fireBallID = fireBallID;
             }
             if (spellPrimary[dashDirection] == "Wind" && spellSecondary[dashDirection] == "Dash")
             {
@@ -344,6 +346,8 @@ public class PlayerControlXbox : MonoBehaviour
             //Debug.Log("Basic");
             newSpell.GetComponent<FireBallThrow>().maxRange = baseRange;
             canCast[spellSelected] = false;
+            fireBallID++;
+            newSpell.GetComponent<FireBallThrow>().fireBallID = fireBallID;
         }
         if (spellSecondary[spellSelected] == "Boom")
         {
@@ -355,9 +359,13 @@ public class PlayerControlXbox : MonoBehaviour
             newSpell.GetComponent<FireBallThrow>().throwSpeed = boomBaseSpeed;
             newSpell.GetComponent<FireBallThrow>().boomSpell = true;
             canCast[spellSelected] = false;
+            fireBallID++;
+            newSpell.GetComponent<FireBallThrow>().fireBallID = fireBallID;
         }
         if (spellSecondary[spellSelected] == "AOE")
         {
+            fireBallID++;
+           
             for (int i = 0; i < 5; i++)
             {
                 newSpellAOE[i] = Instantiate(spellProjectile[0], this.transform.position, spellProjectile[0].transform.rotation);
@@ -366,6 +374,7 @@ public class PlayerControlXbox : MonoBehaviour
                 newSpellAOE[i].GetComponent<FireBallThrow>().maxRange = aoeRange;
                 aoeCone(i);
                 newSpellAOE[i].GetComponent<FireBallThrow>().transform.LookAt(AOEpoint);
+                newSpellAOE[i].GetComponent<FireBallThrow>().fireBallID = fireBallID;
             }
             canCast[spellSelected] = false;
             //
@@ -395,6 +404,8 @@ public class PlayerControlXbox : MonoBehaviour
             newSpell.GetComponent<FireBallThrow>().maxRange = rangeRange;
             newSpell.GetComponent<FireBallThrow>().throwSpeed = rangeSpeed;
             canCast[spellSelected] = false;
+            fireBallID++;
+            newSpell.GetComponent<FireBallThrow>().fireBallID = fireBallID;
         }
         if (spellSecondary[spellSelected] == "Dash")
         {
