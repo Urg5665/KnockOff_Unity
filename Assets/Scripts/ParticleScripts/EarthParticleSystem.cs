@@ -10,12 +10,14 @@ public class EarthParticleSystem : MonoBehaviour
     private void Awake()
     {
         this.transform.localScale = new Vector3(Random.Range(0.1f, .8f), Random.Range(0.1f, .5f), Random.Range(0.1f, .8f));
+        this.transform.eulerAngles = new Vector3(Random.Range(0, 360f), Random.Range(0, 360f), Random.Range(0, 360));
     }
 
     // Update is called once per frame
     void Update()
     {
         partLife++;
+        this.transform.eulerAngles += new Vector3(2, 2, 2);
         if (partLife == 30)
         {
             Destroy(this.gameObject);
