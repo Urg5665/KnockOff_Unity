@@ -80,17 +80,17 @@ public class FireBallThrow : MonoBehaviour
         if (playerInt == 1 && collision.gameObject.tag == "Player1" && boomReturn)
         {
             Destroy(this.gameObject);
-            playerControl.canCast[spellNum] = true;
-            playerControl.spellPrimary[spellNum] = "";
-            playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
+            //playerControl.canCast[spellNum] = true;
+            //playerControl.spellPrimary[spellNum] = "";
+            //playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
         }
 
         if (playerInt == 2 && collision.gameObject.tag == "Player2" && boomReturn)
         {
             Destroy(this.gameObject);
-            playerControlXbox.canCast[spellNum] = true;
-            playerControlXbox.spellPrimary[spellNum] = "";
-            playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
+            //playerControlXbox.canCast[spellNum] = true;
+            //playerControlXbox.spellPrimary[spellNum] = "";
+            //playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
         }
 
 
@@ -118,10 +118,13 @@ public class FireBallThrow : MonoBehaviour
                 //print("p2 Stuned:" + fireBallID);
             }
 
+            if (!boomReturn)
+            {
+                playerControl.canCast[spellNum] = true;
+                playerControl.spellPrimary[spellNum] = "";
+                playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
+            }
 
-           playerControl.canCast[spellNum] = true;
-           playerControl.spellPrimary[spellNum] = "";
-           playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
            hitEffectInGame = Instantiate(hitEffect);
            //hitEffectInGame.transform.position = this.transform.position;
            hitEffectInGame.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 1, this.transform.position.z);
@@ -149,9 +152,13 @@ public class FireBallThrow : MonoBehaviour
                 collision.gameObject.GetComponent<PlayerControl>().stunLength = 100;
                 collision.gameObject.GetComponent<PlayerControl>().dirStun = spellNum;
             }
-            playerControlXbox.canCast[spellNum] = true;
-            playerControlXbox.spellPrimary[spellNum] = "";
-            playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
+            if (!boomReturn)
+            {
+                playerControlXbox.canCast[spellNum] = true;
+                playerControlXbox.spellPrimary[spellNum] = "";
+                playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
+            }
+
             hitEffectInGame = Instantiate(hitEffect);
             //hitEffectInGame.transform.position = this.transform.position;
             hitEffectInGame.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 1, this.transform.position.z);
@@ -208,7 +215,7 @@ public class FireBallThrow : MonoBehaviour
             //transform.LookAt(dashTarget); If you want to go to  opposing player // run this
         }
 
-        if (rangeCounter > maxRange)
+        if (rangeCounter == maxRange + 1)
         {
             if (playerInt == 1)
             {
@@ -219,10 +226,13 @@ public class FireBallThrow : MonoBehaviour
                 else if(!boomSpell)
                 {
                     Destroy(this.gameObject);
-                    playerControl.canCast[spellNum] = true;
-                    playerControl.spellPrimary[spellNum] = "";
-                    playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
+                    //playerControl.canCast[spellNum] = true;
+                    //playerControl.spellPrimary[spellNum] = "";
+                    //playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
                 }
+                playerControl.canCast[spellNum] = true;
+                playerControl.spellPrimary[spellNum] = "";
+                playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
             }
 
             if (playerInt == 2)
@@ -234,10 +244,13 @@ public class FireBallThrow : MonoBehaviour
                 else if (!boomSpell)
                 {
                     Destroy(this.gameObject);
-                    playerControlXbox.canCast[spellNum] = true;
-                    playerControlXbox.spellPrimary[spellNum] = "";
-                    playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
+                    //playerControlXbox.canCast[spellNum] = true;
+                    //playerControlXbox.spellPrimary[spellNum] = "";
+                    //playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
                 }
+                playerControlXbox.canCast[spellNum] = true;
+                playerControlXbox.spellPrimary[spellNum] = "";
+                playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
             }
         }
 

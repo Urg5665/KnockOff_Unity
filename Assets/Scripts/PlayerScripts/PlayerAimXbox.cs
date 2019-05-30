@@ -18,7 +18,7 @@ public class PlayerAimXbox : MonoBehaviour
 
     public float angle;
 
-    public float speed;
+    public float aimSpeed;
     public float playerSpeed;
 
     public int spellSelected;
@@ -27,7 +27,7 @@ public class PlayerAimXbox : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speed = 20;
+        aimSpeed = 5;
         playerSpeed = 10;
     }
 
@@ -70,7 +70,7 @@ public class PlayerAimXbox : MonoBehaviour
         if ((Input.GetAxis("HorAim") != 0 || (Input.GetAxis("VerAim") != 0)))
         {
             Vector3 privousPos = this.transform.position;
-            Vector3 nextPos = new Vector3(parent.transform.position.x + (Input.GetAxis("HorAim") * 10), parent.transform.position.y, parent.transform.position.z - (Input.GetAxis("VerAim") * 10));
+            Vector3 nextPos = new Vector3(parent.transform.position.x + (Input.GetAxis("HorAim") * aimSpeed), parent.transform.position.y, parent.transform.position.z - (Input.GetAxis("VerAim") * aimSpeed));
             transform.position = Vector3.Lerp(privousPos, nextPos, Time.deltaTime * 20);
 
 

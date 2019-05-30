@@ -78,16 +78,16 @@ public class WindWaveThrow : MonoBehaviour
         if (playerInt == 1 && collision.gameObject.tag == "Player1" && boomReturn)
         {
             Destroy(this.gameObject);
-            playerControl.canCast[spellNum] = true;
-            playerControl.spellPrimary[spellNum] = "";
-            playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
+            //playerControl.canCast[spellNum] = true;
+            //playerControl.spellPrimary[spellNum] = "";
+            //playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
         }
         if (playerInt == 2 && collision.gameObject.tag == "Player2" && boomReturn)
         {
             Destroy(this.gameObject);
-            playerControlXbox.canCast[spellNum] = true;
-            playerControlXbox.spellPrimary[spellNum] = "";
-            playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
+            //playerControlXbox.canCast[spellNum] = true;
+            //playerControlXbox.spellPrimary[spellNum] = "";
+            //playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
         }
 
         if (!hitPlayer && playerInt == 1 && collision.gameObject.tag == "Player2")
@@ -96,7 +96,12 @@ public class WindWaveThrow : MonoBehaviour
             collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * windKnockUp); // Knock Up
             collision.GetComponent<BoxCollider>().enabled = false;
             //Destroy(this.gameObject);
-            playerControl.canCast[spellNum] = true;
+            if (!boomReturn)
+            {
+                playerControl.canCast[spellNum] = true;
+                playerControl.spellPrimary[spellNum] = "";
+                playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
+            }
             hitPlayer = true;
             hitSlow = 0;
             StartCoroutine(cameraMove.Shake(.15f, .5f));
@@ -104,18 +109,20 @@ public class WindWaveThrow : MonoBehaviour
             hitEffectInGame = Instantiate(hitEffect);
             //hitEffectInGame.transform.position = this.transform.position;
             hitEffectInGame.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 1, this.transform.position.z);
-            playerControl.spellPrimary[spellNum] = "";
-            playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
+
         }
         if (!hitPlayer && playerInt == 2 && collision.gameObject.tag == "Player1")
         {
             collision.gameObject.GetComponent<Rigidbody>().AddForce(this.gameObject.transform.forward * windForce); // Knock Back
             collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * windKnockUp); // Knock Up
             collision.GetComponent<BoxCollider>().enabled = false;
-            playerControlXbox.canCast[spellNum] = true;
             hitPlayer = true;
-            playerControlXbox.spellPrimary[spellNum] = "";
-            playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
+            if (!boomReturn)
+            {
+                playerControlXbox.canCast[spellNum] = true;
+                playerControlXbox.spellPrimary[spellNum] = "";
+                playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
+            }
             hitSlow = 0;
             StartCoroutine(cameraMove.Shake(.15f, .5f));
             cameraMove.player1Hit = true;
@@ -165,7 +172,7 @@ public class WindWaveThrow : MonoBehaviour
             transform.LookAt(player.transform.position);
         }
 
-        if (rangeCounter > maxRange)
+        if (rangeCounter == maxRange + 1)
         { 
             if (playerInt == 1)
             {
@@ -176,10 +183,10 @@ public class WindWaveThrow : MonoBehaviour
                 else if (!boomSpell)
                 {
                     Destroy(this.gameObject);
-                    playerControl.canCast[spellNum] = true;
-                    playerControl.spellPrimary[spellNum] = "";
-                    playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
                 }
+                playerControl.canCast[spellNum] = true;
+                playerControl.spellPrimary[spellNum] = "";
+                playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
             }
             if (playerInt == 2)
             {
@@ -190,10 +197,10 @@ public class WindWaveThrow : MonoBehaviour
                 else if (!boomSpell)
                 {
                     Destroy(this.gameObject);
-                    playerControlXbox.canCast[spellNum] = true;
-                    playerControlXbox.spellPrimary[spellNum] = "";
-                    playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
                 }
+                playerControlXbox.canCast[spellNum] = true;
+                playerControlXbox.spellPrimary[spellNum] = "";
+                playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
             }
         }
         if (rangeCounter > maxRange * 3.5)

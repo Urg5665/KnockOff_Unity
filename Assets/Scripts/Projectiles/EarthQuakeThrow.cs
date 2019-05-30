@@ -108,33 +108,21 @@ public class EarthQuakeThrow : MonoBehaviour
                 if (playerInt == 1)
                 {
                     Destroy(this.gameObject);
-                    playerControl.canCast[spellNum] = true;
-                    playerControl.spellPrimary[spellNum] = "";
-                    playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
+                    //playerControl.canCast[spellNum] = true;
+                    //playerControl.spellPrimary[spellNum] = "";
+                    //playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
                 }
                 if (playerInt == 2)
                 {
                     Destroy(this.gameObject);
-                    playerControlXbox.canCast[spellNum] = true;
-                    playerControlXbox.spellPrimary[spellNum] = "";
-                    playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
+                    //playerControlXbox.canCast[spellNum] = true;
+                    //playerControlXbox.spellPrimary[spellNum] = "";
+                    //playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
                 }
-                /*
-                Destroy(this.gameObject);
-                playerControl.canCast[spellNum] = true;
-                playerControl.spellPrimary[spellNum] = "";
-                playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
-                Debug.Log(playerControlXbox.canCast[spellNum]);
-                Debug.Log(playerControlXbox.spellPrimary[spellNum]);
-                Debug.Log(playerControlXbox.spellPrimary[spellNum]);
-                playerControlXbox.canCast[spellNum] = true;
-                playerControlXbox.spellPrimary[spellNum] = "";
-                playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
-                */
             }
         }
 
-        if (rangeCounter > maxRange)
+        if (rangeCounter == maxRange + 1)
         {
             if (playerInt == 1)
             {
@@ -145,10 +133,10 @@ public class EarthQuakeThrow : MonoBehaviour
                 else if (!boomSpell)
                 {
                     Destroy(this.gameObject);
-                    playerControl.canCast[spellNum] = true;
-                    playerControl.spellPrimary[spellNum] = "";
-                    playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
                 }
+                playerControl.canCast[spellNum] = true;
+                playerControl.spellPrimary[spellNum] = "";
+                playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
             }
             if (playerInt == 2)
             {
@@ -159,10 +147,10 @@ public class EarthQuakeThrow : MonoBehaviour
                 else if (!boomSpell)
                 {
                     Destroy(this.gameObject);
-                    playerControlXbox.canCast[spellNum] = true;
-                    playerControlXbox.spellPrimary[spellNum] = "";
-                    playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
                 }
+                playerControlXbox.canCast[spellNum] = true;
+                playerControlXbox.spellPrimary[spellNum] = "";
+                playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
             }
         }
         if(rangeCounter > maxRange * 3.5)

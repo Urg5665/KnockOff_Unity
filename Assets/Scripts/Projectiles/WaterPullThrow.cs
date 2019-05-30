@@ -77,16 +77,16 @@ public class WaterPullThrow : MonoBehaviour
         if (playerInt == 1 && collision.gameObject.tag == "Player1" && boomReturn)
         {
             Destroy(this.gameObject);
-            playerControl.canCast[spellNum] = true;
-            playerControl.spellPrimary[spellNum] = "";
-            playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
+            //playerControl.canCast[spellNum] = true;
+            //playerControl.spellPrimary[spellNum] = "";
+            //playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
         }
         if (playerInt == 2 && collision.gameObject.tag == "Player2" && boomReturn)
         {
             Destroy(this.gameObject);
-            playerControlXbox.canCast[spellNum] = true;
-            playerControlXbox.spellPrimary[spellNum] = "";
-            playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
+            //playerControlXbox.canCast[spellNum] = true;
+            //playerControlXbox.spellPrimary[spellNum] = "";
+            //playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
         }
 
         if (!hitPlayer && playerInt == 1 && collision.gameObject.tag == "Player2" )
@@ -95,10 +95,14 @@ public class WaterPullThrow : MonoBehaviour
             collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * waterKnockUp); // Knock Up
             playerHit = collision.gameObject;                                                                               
             collision.GetComponent<BoxCollider>().enabled = false;
-            playerControl.canCast[spellNum] = true;
             hitPlayer = true;
-            playerControl.spellPrimary[spellNum] = "";
-            playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
+            if (!boomReturn)
+            {
+                playerControl.canCast[spellNum] = true;
+                playerControl.spellPrimary[spellNum] = "";
+                playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
+            }
+
             hitSlow = 0;
             StartCoroutine(cameraMove.Shake(.15f, .5f));
             cameraMove.player2Hit = true;
@@ -113,10 +117,13 @@ public class WaterPullThrow : MonoBehaviour
             playerHit = collision.gameObject;                                                                               
             collision.GetComponent<BoxCollider>().enabled = false;
             //Destroy(this.gameObject);
-            playerControlXbox.canCast[spellNum] = true;
             hitPlayer = true;
-            playerControlXbox.spellPrimary[spellNum] = "";
-            playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
+            if (!boomReturn)
+            {
+                playerControlXbox.canCast[spellNum] = true;
+                playerControlXbox.spellPrimary[spellNum] = "";
+                playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
+            }
             hitSlow = 0;
             StartCoroutine(cameraMove.Shake(.15f, .5f));
             cameraMove.player1Hit = true;
@@ -167,7 +174,7 @@ public class WaterPullThrow : MonoBehaviour
             transform.LookAt(player.transform.position);
         }
 
-        if (rangeCounter > maxRange)
+        if (rangeCounter == 1 + maxRange)
         {
             if (playerInt == 1)
             {
@@ -178,10 +185,10 @@ public class WaterPullThrow : MonoBehaviour
                 else if (!boomSpell)
                 {
                     Destroy(this.gameObject);
-                    playerControl.canCast[spellNum] = true;
-                    playerControl.spellPrimary[spellNum] = "";
-                    playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
                 }
+                playerControl.canCast[spellNum] = true;
+                playerControl.spellPrimary[spellNum] = "";
+                playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
             }
 
             if (playerInt == 2)
@@ -193,10 +200,10 @@ public class WaterPullThrow : MonoBehaviour
                 else if (!boomSpell)
                 {
                     Destroy(this.gameObject);
-                    playerControlXbox.canCast[spellNum] = true;
-                    playerControlXbox.spellPrimary[spellNum] = "";
-                    playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
                 }
+                playerControlXbox.canCast[spellNum] = true;
+                playerControlXbox.spellPrimary[spellNum] = "";
+                playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
             }
         }
         if(rangeCounter > maxRange * 3.5)
