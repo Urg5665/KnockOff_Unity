@@ -115,6 +115,9 @@ MonoBehaviour:
   playerControlXbox: {fileID: 0}
   dashTarget: {x: 0, y: 0, z: 0}
   dashSpell: 0
+  boomSpell: 0
+  boomReturn: 0
+  boomHover: 0
   windForce: 0
   windKnockUp: 0
   spellDir: {x: 0, y: 0, z: 0}
@@ -126,6 +129,7 @@ MonoBehaviour:
   hitEffect: {fileID: 6143078807497813169, guid: 81a09b2418436e74ea5fe0c80d57b2b7,
     type: 3}
   hitEffectInGame: {fileID: 0}
+  audioSource: {fileID: 5814199104570263491}
 --- !u!82 &5814199104570263491
 AudioSource:
   m_ObjectHideFlags: 0

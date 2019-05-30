@@ -37,6 +37,9 @@ public class WindWaveThrow : MonoBehaviour
 
     public GameObject hitEffect;
     public GameObject hitEffectInGame;
+
+    public AudioSource audioSource;
+    public bool AOEspell; // check for audio source
     private void Awake()
     {
         if (playerInt == 1)
@@ -133,9 +136,19 @@ public class WindWaveThrow : MonoBehaviour
         }
 
     }
-
+    private void Start()
+    {
+        if (AOEspell)
+        {
+            audioSource.volume = 0.2f;
+        }
+    }
     void FixedUpdate()
     {
+        if (AOEspell)
+        {
+            audioSource.volume = 0.2f;
+        }
         if (hitSlow == 0)
         {
             Time.timeScale = 0.2f;
@@ -203,13 +216,14 @@ public class WindWaveThrow : MonoBehaviour
                 playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
             }
         }
-        if (rangeCounter > maxRange * 3.5)
+        if (rangeCounter == maxRange * 3.5)
         {
             if (boomSpell)
             {
                 boomHover = false;
                 boomReturn = true;
                 hitPlayer = false;
+                audioSource.Play();
             }
 
         }

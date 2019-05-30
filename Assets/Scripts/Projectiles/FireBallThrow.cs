@@ -39,6 +39,7 @@ public class FireBallThrow : MonoBehaviour
 
     public AudioClip audioClip;
     public AudioSource audioSource;
+    public bool AOEspell; // check for audio source
 
     private void Awake()
     {
@@ -72,6 +73,10 @@ public class FireBallThrow : MonoBehaviour
         boomSpell = false;
         boomReturn = false;
         boomHover = false;
+        if (AOEspell)
+        {
+            audioSource.volume = 0.2f;
+        }
 
     }
 
@@ -168,9 +173,20 @@ public class FireBallThrow : MonoBehaviour
         }
 
     }
+    private void Start()
+    {
+        if (AOEspell)
+        {
+            audioSource.volume = 0.2f;
+        }
+    }
 
     void FixedUpdate()
     {
+        if (AOEspell)
+        {
+            audioSource.volume = 0.2f;
+        }
         if (hitSlow == 0)
         {
             //Time.timeScale = 0.2f;
@@ -254,12 +270,13 @@ public class FireBallThrow : MonoBehaviour
             }
         }
 
-        if (rangeCounter > maxRange * 3.5)
+        if (rangeCounter == (maxRange * 3.5) + 1)
         {
             if (boomSpell)
             {
                 boomHover = false;
                 boomReturn = true;
+                audioSource.Play();
             }
         }
 

@@ -4829,6 +4829,7 @@ MonoBehaviour:
   cameraMove: {fileID: 0}
   hitEffect: {fileID: 1545252266986714, guid: a40a2978f1d8e62408deda7dea344d26, type: 3}
   hitEffectInGame: {fileID: 0}
+  audioSource: {fileID: 2642215562476304084}
 --- !u!82 &2642215562476304084
 AudioSource:
   m_ObjectHideFlags: 0

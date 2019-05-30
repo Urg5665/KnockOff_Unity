@@ -372,6 +372,7 @@ public class PlayerControlXbox : MonoBehaviour
                 newSpellAOE[i].transform.position = new Vector3(newSpellAOE[i].transform.position.x, newSpellAOE[i].transform.position.y - .25f, newSpellAOE[i].transform.position.z);
                 newSpellAOE[i].GetComponent<FireBallThrow>().spellNum = spellSelected;
                 newSpellAOE[i].GetComponent<FireBallThrow>().maxRange = aoeRange;
+                newSpellAOE[i].GetComponent<FireBallThrow>().AOEspell = true;
                 aoeCone(i);
                 newSpellAOE[i].GetComponent<FireBallThrow>().transform.LookAt(AOEpoint);
                 newSpellAOE[i].GetComponent<FireBallThrow>().fireBallID = fireBallID;
@@ -460,6 +461,7 @@ public class PlayerControlXbox : MonoBehaviour
                 newSpellAOE[i].transform.position = new Vector3(newSpellAOE[i].transform.position.x, newSpellAOE[i].transform.position.y - .25f, newSpellAOE[i].transform.position.z);
                 newSpellAOE[i].GetComponent<WindWaveThrow>().spellNum = spellSelected;
                 newSpellAOE[i].GetComponent<WindWaveThrow>().maxRange = aoeRange;
+                newSpellAOE[i].GetComponent<WindWaveThrow>().AOEspell = true;
                 aoeCone(i);
                 newSpellAOE[i].GetComponent<WindWaveThrow>().transform.LookAt(AOEpoint);
             }
@@ -546,6 +548,7 @@ public class PlayerControlXbox : MonoBehaviour
                 newSpellAOE[i].transform.position = new Vector3(newSpellAOE[i].transform.position.x, newSpellAOE[i].transform.position.y - .25f, newSpellAOE[i].transform.position.z);
                 newSpellAOE[i].GetComponent<WaterPullThrow>().spellNum = spellSelected;
                 newSpellAOE[i].GetComponent<WaterPullThrow>().maxRange = aoeRange;
+                newSpellAOE[i].GetComponent<WaterPullThrow>().AOEspell = true;
                 aoeCone(i);
                 newSpellAOE[i].GetComponent<WaterPullThrow>().transform.LookAt(AOEpoint);
             }
@@ -634,6 +637,7 @@ public class PlayerControlXbox : MonoBehaviour
                 newSpellAOE[i].GetComponent<EarthQuakeThrow>().spellNum = spellSelected;
                 newSpellAOE[i].GetComponent<EarthQuakeThrow>().maxRange = aoeRange;
                 aoeCone(i);
+                newSpellAOE[i].GetComponent<EarthQuakeThrow>().AOEspell = true;
                 newSpellAOE[i].GetComponent<EarthQuakeThrow>().transform.LookAt(AOEpoint);
                 newSpellAOE[i].transform.position = new Vector3(newSpellAOE[i].transform.position.x, newSpellAOE[i].transform.position.y - 1f, newSpellAOE[i].transform.position.z);
             }

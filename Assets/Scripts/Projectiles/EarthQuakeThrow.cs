@@ -33,6 +33,8 @@ public class EarthQuakeThrow : MonoBehaviour
 
     public AudioClip audioClip;
     public AudioSource audioSource;
+    public bool AOEspell; // check for audio source
+    public int minReturnDistance;
 
     private void Awake()
     {
@@ -66,6 +68,11 @@ public class EarthQuakeThrow : MonoBehaviour
         boomSpell = false;
         boomReturn = false;
         boomHover = false;
+        minReturnDistance = 10;
+        if (AOEspell)
+        {
+            audioSource.volume = 0.2f;
+        }
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -75,9 +82,20 @@ public class EarthQuakeThrow : MonoBehaviour
             collision.gameObject.GetComponentInParent<TileBehavoir>().destroyed = true;
         }
     }
+    private void Start()
+    {
+        if (AOEspell)
+        {
+            audioSource.volume = 0.2f;
+        }
+    }
 
     void FixedUpdate()
     {
+        if (AOEspell)
+        {
+            audioSource.volume = 0.2f;
+        }
         if (!dashSpell)
         {
             if (!boomHover)
@@ -103,7 +121,7 @@ public class EarthQuakeThrow : MonoBehaviour
         {
             transform.LookAt(new Vector3(player.transform.position.x, player.transform.position.y - 1f, player.transform.position.z));
             //Debug.Log(Mathf.Abs(this.transform.position.x - player.transform.position.x) + "   " + Mathf.Abs(this.transform.position.z - player.transform.position.z));
-            if (Mathf.Abs(this.transform.position.x - player.transform.position.x) < 5 && Mathf.Abs(this.transform.position.z - player.transform.position.z) < 5)
+            if (Mathf.Abs(this.transform.position.x - player.transform.position.x) < minReturnDistance && Mathf.Abs(this.transform.position.z - player.transform.position.z) < minReturnDistance)
             {
                 if (playerInt == 1)
                 {
@@ -153,12 +171,13 @@ public class EarthQuakeThrow : MonoBehaviour
                 playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
             }
         }
-        if(rangeCounter > maxRange * 3.5)
+        if(rangeCounter == (maxRange * 3.5) +1)
         {
             if (boomSpell)
             {
                 boomHover = false;
                 boomReturn = true;
+                audioSource.Play();
             }
 
         }

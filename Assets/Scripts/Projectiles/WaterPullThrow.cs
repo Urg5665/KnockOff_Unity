@@ -37,6 +37,8 @@ public class WaterPullThrow : MonoBehaviour
     public GameObject hitEffect;
     public GameObject hitEffectInGame;
 
+    public AudioSource audioSource;
+    public bool AOEspell; // check for audio source
     private void Awake()
     {
         maxRange = 10;
@@ -70,6 +72,10 @@ public class WaterPullThrow : MonoBehaviour
         boomSpell = false;
         boomReturn = false;
         boomHover = false;
+        if (AOEspell)
+        {
+            audioSource.volume = 0.2f;
+        }
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -133,10 +139,21 @@ public class WaterPullThrow : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        if (AOEspell)
+        {
+            audioSource.volume = 0.2f;
+        }
+    }
     void FixedUpdate()
     {
+        if (AOEspell)
+        {
+            audioSource.volume = 0.2f;
+        }
 
-        
+
         if (hitSlow == 0)
         {
             Time.timeScale = 0.2f;
@@ -206,13 +223,14 @@ public class WaterPullThrow : MonoBehaviour
                 playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
             }
         }
-        if(rangeCounter > maxRange * 3.5)
+        if(rangeCounter == (maxRange * 3.5) + 1)
         {
             if (boomSpell)
             {
                 boomReturn = true;
                 boomHover = false;
                 hitPlayer = false;
+                audioSource.Play();
             }
         }
     }
