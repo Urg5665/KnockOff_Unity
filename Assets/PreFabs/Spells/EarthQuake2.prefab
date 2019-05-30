@@ -14489,6 +14489,7 @@ MonoBehaviour:
   maxRange: 20
   boomSpell: 0
   boomReturn: 0
+  boomHover: 0
   dashTarget: {x: 0, y: 0, z: 0}
   hitEffect: {fileID: 0}
   hitEffectInGame: {fileID: 1545252266986714, guid: b9debf73814de9046ae407aa5078c235,
@@ -14496,6 +14497,10 @@ MonoBehaviour:
   hitSlow: 0
   audioClip: {fileID: 0}
   audioSource: {fileID: 0}
+  AOEspell: 0
+  minReturnDistance: 0
+  earthParticle: {fileID: 8519480905935268551, guid: 9ccd681b86278b44482109440db8cd4a,
+    type: 3}
 --- !u!54 &839832605199533673
 Rigidbody:
   m_ObjectHideFlags: 0

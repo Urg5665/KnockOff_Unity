@@ -19616,6 +19616,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: ControlsInGame
       objectReference: {fileID: 0}
+    - target: {fileID: 6735406577450283054, guid: 94b8f62e79f496f419c572d3abdbe71b,
+        type: 3}
+      propertyPath: PauseMenu
+      value: 
+      objectReference: {fileID: 202855562}
+    - target: {fileID: 6735406577450283054, guid: 94b8f62e79f496f419c572d3abdbe71b,
+        type: 3}
+      propertyPath: GameUI
+      value: 
+      objectReference: {fileID: 1374016304}
+    - target: {fileID: 6735406577450283054, guid: 94b8f62e79f496f419c572d3abdbe71b,
+        type: 3}
+      propertyPath: p1UI
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6735406577450283054, guid: 94b8f62e79f496f419c572d3abdbe71b,
+        type: 3}
+      propertyPath: p2UI
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6735406577450283054, guid: 94b8f62e79f496f419c572d3abdbe71b,
+        type: 3}
+      propertyPath: controlMenu
+      value: 
+      objectReference: {fileID: 113214633}
+    - target: {fileID: 6735406577450283054, guid: 94b8f62e79f496f419c572d3abdbe71b,
+        type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 2115552629}
+    - target: {fileID: 6735406577450283054, guid: 94b8f62e79f496f419c572d3abdbe71b,
+        type: 3}
+      propertyPath: howToPlayMenu
+      value: 
+      objectReference: {fileID: 2118722333}
     - target: {fileID: 113214638, guid: 94b8f62e79f496f419c572d3abdbe71b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -19700,41 +19735,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6735406577450283054, guid: 94b8f62e79f496f419c572d3abdbe71b,
-        type: 3}
-      propertyPath: PauseMenu
-      value: 
-      objectReference: {fileID: 202855562}
-    - target: {fileID: 6735406577450283054, guid: 94b8f62e79f496f419c572d3abdbe71b,
-        type: 3}
-      propertyPath: GameUI
-      value: 
-      objectReference: {fileID: 1374016304}
-    - target: {fileID: 6735406577450283054, guid: 94b8f62e79f496f419c572d3abdbe71b,
-        type: 3}
-      propertyPath: p1UI
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6735406577450283054, guid: 94b8f62e79f496f419c572d3abdbe71b,
-        type: 3}
-      propertyPath: p2UI
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6735406577450283054, guid: 94b8f62e79f496f419c572d3abdbe71b,
-        type: 3}
-      propertyPath: controlMenu
-      value: 
-      objectReference: {fileID: 113214633}
-    - target: {fileID: 6735406577450283054, guid: 94b8f62e79f496f419c572d3abdbe71b,
-        type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 2115552629}
-    - target: {fileID: 6735406577450283054, guid: 94b8f62e79f496f419c572d3abdbe71b,
-        type: 3}
-      propertyPath: howToPlayMenu
-      value: 
-      objectReference: {fileID: 2118722333}
     - target: {fileID: 243924147, guid: 94b8f62e79f496f419c572d3abdbe71b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1

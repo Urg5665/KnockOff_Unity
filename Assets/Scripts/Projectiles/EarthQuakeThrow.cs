@@ -36,6 +36,8 @@ public class EarthQuakeThrow : MonoBehaviour
     public bool AOEspell; // check for audio source
     public int minReturnDistance;
 
+    public GameObject earthParticle; // unique gameobject particles for earth
+    public GameObject newPart;
     private void Awake()
     {
         if (playerInt == 1)
@@ -92,6 +94,15 @@ public class EarthQuakeThrow : MonoBehaviour
 
     void FixedUpdate()
     {
+        newPart = Instantiate(earthParticle);
+        newPart.transform.position = this.transform.position;
+        newPart.transform.position = new Vector3(newPart.transform.position.x + 0.5f, newPart.transform.position.y, newPart.transform.position.z);
+        if (maxRange > 60) // ranged spell
+        {
+            newPart = Instantiate(earthParticle);
+            newPart.transform.position = this.transform.position;
+            newPart.transform.position = new Vector3(newPart.transform.position.x - 0.5f, newPart.transform.position.y, newPart.transform.position.z);
+        }
         if (AOEspell)
         {
             audioSource.volume = 0.2f;
@@ -101,6 +112,7 @@ public class EarthQuakeThrow : MonoBehaviour
             if (!boomHover)
             {
                 transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
+
             }
 
         }
