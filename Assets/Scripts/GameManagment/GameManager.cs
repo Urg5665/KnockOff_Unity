@@ -141,8 +141,8 @@ public class GameManager : MonoBehaviour
             PauseMenu.SetActive(true);
             Cursor.visible = true;
             GameUI.SetActive(false);
-            p1UI.SetActive(false);
-            p2UI.SetActive(false);
+            //p1UI.SetActive(false);
+            //p2UI.SetActive(false);
         }
 
     }

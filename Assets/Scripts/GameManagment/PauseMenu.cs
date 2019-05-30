@@ -21,8 +21,8 @@ public class PauseMenu : MonoBehaviour
         this.gameObject.SetActive(false);
         Cursor.visible = false;
         gameUI.SetActive(true);
-        p1UI.SetActive(true);
-        p2UI.SetActive(true);
+        //p1UI.SetActive(true);
+        //p2UI.SetActive(true);
     }
     public void Restart()
     {
