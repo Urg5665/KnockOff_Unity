@@ -291,7 +291,6 @@ public class FireBallThrow : MonoBehaviour
             if (boomSpell)
             {
                 boomHover = false;
-                print(hoverDur);
                 boomReturn = true;
                 audioSource.Play();
             }

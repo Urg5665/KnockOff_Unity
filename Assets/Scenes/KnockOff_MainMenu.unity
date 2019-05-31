@@ -2315,7 +2315,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &196275441
 Transform:
   m_ObjectHideFlags: 0
@@ -19243,7 +19243,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5fd4c4ce1dcf5444395a001b7d09f1b4, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -25870,6 +25870,26 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 424539850, guid: 55e4303efdf82e245baf448c0218099a, type: 3}
+      propertyPath: mainMenu
+      value: 
+      objectReference: {fileID: 66982195928879486}
+    - target: {fileID: 424539850, guid: 55e4303efdf82e245baf448c0218099a, type: 3}
+      propertyPath: controlMenu
+      value: 
+      objectReference: {fileID: 2953911272290488200}
+    - target: {fileID: 424539850, guid: 55e4303efdf82e245baf448c0218099a, type: 3}
+      propertyPath: right
+      value: 
+      objectReference: {fileID: 1491528180}
+    - target: {fileID: 424539850, guid: 55e4303efdf82e245baf448c0218099a, type: 3}
+      propertyPath: left
+      value: 
+      objectReference: {fileID: 52297249}
+    - target: {fileID: 424539850, guid: 55e4303efdf82e245baf448c0218099a, type: 3}
+      propertyPath: play
+      value: 
+      objectReference: {fileID: 1510907973}
     - target: {fileID: 5234308283229420682, guid: 55e4303efdf82e245baf448c0218099a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -26005,26 +26025,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    - target: {fileID: 424539850, guid: 55e4303efdf82e245baf448c0218099a, type: 3}
-      propertyPath: mainMenu
-      value: 
-      objectReference: {fileID: 66982195928879486}
-    - target: {fileID: 424539850, guid: 55e4303efdf82e245baf448c0218099a, type: 3}
-      propertyPath: controlMenu
-      value: 
-      objectReference: {fileID: 2953911272290488200}
-    - target: {fileID: 424539850, guid: 55e4303efdf82e245baf448c0218099a, type: 3}
-      propertyPath: right
-      value: 
-      objectReference: {fileID: 1491528180}
-    - target: {fileID: 424539850, guid: 55e4303efdf82e245baf448c0218099a, type: 3}
-      propertyPath: left
-      value: 
-      objectReference: {fileID: 52297249}
-    - target: {fileID: 424539850, guid: 55e4303efdf82e245baf448c0218099a, type: 3}
-      propertyPath: play
-      value: 
-      objectReference: {fileID: 1510907973}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55e4303efdf82e245baf448c0218099a, type: 3}
 --- !u!1001 &6789980404452108733
@@ -26044,6 +26044,21 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2953504926213352719, guid: 4c746ab5fc0ea9041a0df1f69feace85,
+        type: 3}
+      propertyPath: controls
+      value: 
+      objectReference: {fileID: 2953911272290488200}
+    - target: {fileID: 2953504926213352719, guid: 4c746ab5fc0ea9041a0df1f69feace85,
+        type: 3}
+      propertyPath: main
+      value: 
+      objectReference: {fileID: 66982195928879486}
+    - target: {fileID: 2953504926213352719, guid: 4c746ab5fc0ea9041a0df1f69feace85,
+        type: 3}
+      propertyPath: howToPlay
+      value: 
+      objectReference: {fileID: 424539849}
     - target: {fileID: 9075160779930026644, guid: 4c746ab5fc0ea9041a0df1f69feace85,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -26179,20 +26194,5 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    - target: {fileID: 2953504926213352719, guid: 4c746ab5fc0ea9041a0df1f69feace85,
-        type: 3}
-      propertyPath: controls
-      value: 
-      objectReference: {fileID: 2953911272290488200}
-    - target: {fileID: 2953504926213352719, guid: 4c746ab5fc0ea9041a0df1f69feace85,
-        type: 3}
-      propertyPath: main
-      value: 
-      objectReference: {fileID: 66982195928879486}
-    - target: {fileID: 2953504926213352719, guid: 4c746ab5fc0ea9041a0df1f69feace85,
-        type: 3}
-      propertyPath: howToPlay
-      value: 
-      objectReference: {fileID: 424539849}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c746ab5fc0ea9041a0df1f69feace85, type: 3}
