@@ -39,6 +39,8 @@ public class WaterPullThrow : MonoBehaviour
 
     public AudioSource audioSource;
     public bool AOEspell; // check for audio source
+
+    public int hoverDur;
     private void Awake()
     {
         maxRange = 10;
@@ -72,6 +74,7 @@ public class WaterPullThrow : MonoBehaviour
         boomSpell = false;
         boomReturn = false;
         boomHover = false;
+        hoverDur = 0;
         if (AOEspell)
         {
             audioSource.volume = 0.2f;
@@ -223,7 +226,20 @@ public class WaterPullThrow : MonoBehaviour
                 playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
             }
         }
-        if(rangeCounter == (maxRange * 3.5) + 1)
+        if (boomHover)
+        {
+            hoverDur++;
+            if (hoverDur > 60 && hoverDur < 85)
+            {
+                this.transform.position += new Vector3(0, .2f, 0);
+            }
+            if (hoverDur > 95)
+            {
+                this.transform.position -= new Vector3(0, 1f, 0);
+            }
+
+        }
+        if (rangeCounter == (maxRange * 3.5))
         {
             if (boomSpell)
             {

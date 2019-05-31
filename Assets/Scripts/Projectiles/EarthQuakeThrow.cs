@@ -38,6 +38,7 @@ public class EarthQuakeThrow : MonoBehaviour
 
     public GameObject earthParticle; // unique gameobject particles for earth
     public GameObject newPart;
+    public int hoverDur;
     private void Awake()
     {
         if (playerInt == 1)
@@ -71,6 +72,7 @@ public class EarthQuakeThrow : MonoBehaviour
         boomReturn = false;
         boomHover = false;
         minReturnDistance = 10;
+        hoverDur = 0;
         if (AOEspell)
         {
             audioSource.volume = 0.2f;
@@ -183,7 +185,20 @@ public class EarthQuakeThrow : MonoBehaviour
                 playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
             }
         }
-        if(rangeCounter == (maxRange * 3.5) +1)
+        if (boomHover)
+        {
+            hoverDur++;
+            if (hoverDur > 60 && hoverDur < 85)
+            {
+                this.transform.position += new Vector3(0, .2f, 0);
+            }
+            if (hoverDur > 95)
+            {
+                this.transform.position -= new Vector3(0, 1f, 0);
+            }
+
+        }
+        if (rangeCounter == (maxRange * 3.5))
         {
             if (boomSpell)
             {

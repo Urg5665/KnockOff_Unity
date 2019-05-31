@@ -40,6 +40,7 @@ public class WindWaveThrow : MonoBehaviour
 
     public AudioSource audioSource;
     public bool AOEspell; // check for audio source
+    public int hoverDur;
     private void Awake()
     {
         if (playerInt == 1)
@@ -74,6 +75,7 @@ public class WindWaveThrow : MonoBehaviour
         boomSpell = false;
         boomReturn = false;
         boomHover = false;
+        hoverDur = 0;
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -215,6 +217,19 @@ public class WindWaveThrow : MonoBehaviour
                 playerControlXbox.spellPrimary[spellNum] = "";
                 playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
             }
+        }
+        if (boomHover)
+        {
+            hoverDur++;
+            if (hoverDur > 60 && hoverDur < 85)
+            {
+                this.transform.position += new Vector3(0, .2f, 0);
+            }
+            if (hoverDur > 95)
+            {
+                this.transform.position -= new Vector3(0, 1f, 0);
+            }
+
         }
         if (rangeCounter == maxRange * 3.5)
         {
