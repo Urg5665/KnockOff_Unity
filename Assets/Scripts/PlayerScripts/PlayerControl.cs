@@ -637,7 +637,7 @@ public class PlayerControl : MonoBehaviour
                 newSpellAOE[i] = Instantiate(spellProjectile[3], this.transform.position, spellProjectile[0].transform.rotation);
                 newSpellAOE[i].GetComponent<EarthQuakeThrow>().spellNum = spellSelected;
                 newSpellAOE[i].GetComponent<EarthQuakeThrow>().maxRange = aoeRange;
-                newSpellAOE[i].GetComponent<EarthQuakeThrow>().AOEspell = true;
+                newSpellAOE[i].GetComponent<EarthQuakeThrow>().AOEspell = true; 
                 aoeCone(i);
                 newSpellAOE[i].GetComponent<EarthQuakeThrow>().transform.LookAt(AOEpoint);
                 newSpellAOE[i].transform.position = new Vector3(newSpellAOE[i].transform.position.x, newSpellAOE[i].transform.position.y - 1f, newSpellAOE[i].transform.position.z);

@@ -45,6 +45,7 @@ public class DeathPlane : MonoBehaviour
             StartCoroutine(cameraMove.Shake(.3f, 1f));
             audioSource.Play();
             Destroy(player1Lives[player1Score]);
+            print("Collider Kill");
 
         }
         if (collision.gameObject.tag == "Player2")
@@ -58,6 +59,7 @@ public class DeathPlane : MonoBehaviour
             StartCoroutine(cameraMove.Shake(.3f, 1f));
             audioSource.Play();
             Destroy(player2Lives[player2Score]);
+            print("Collider Kill");
         }
         if (collision.gameObject.tag == "Dummy")
         {
@@ -85,6 +87,7 @@ public class DeathPlane : MonoBehaviour
             StartCoroutine(cameraMove.Shake(.3f, 1f));
             audioSource.Play();
             Destroy(player1Lives[player1Score]);
+            print("Height Kill");
         }
         if (player2.transform.position.y < -17)
         {
@@ -97,6 +100,7 @@ public class DeathPlane : MonoBehaviour
             StartCoroutine(cameraMove.Shake(.3f, 1f));
             audioSource.Play();
             Destroy(player2Lives[player2Score]);
+            print("Height Kill");
         }
     }
 }
