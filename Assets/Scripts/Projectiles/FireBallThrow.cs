@@ -212,6 +212,7 @@ public class FireBallThrow : MonoBehaviour
             if (!boomHover)
             {
                 transform.Translate(Vector3.forward * Time.deltaTime * throwSpeed, Space.Self);
+                //transform.RotateAround(player.transform.position, Vector3.up, 500 * Time.deltaTime);// Enable with forward for cool tranlaste effect
             }
 
         }
