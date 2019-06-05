@@ -39,6 +39,7 @@ public class EarthQuakeThrow : MonoBehaviour
     public GameObject earthParticle; // unique gameobject particles for earth
     public GameObject newPart;
     public int hoverDur;
+
     private void Awake()
     {
         if (playerInt == 1)
@@ -73,6 +74,7 @@ public class EarthQuakeThrow : MonoBehaviour
         boomHover = false;
         minReturnDistance = 10;
         hoverDur = 0;
+        //spellMesh = this.GetComponent<Mesh>();
         if (AOEspell)
         {
             audioSource.volume = 0.2f;
@@ -96,12 +98,14 @@ public class EarthQuakeThrow : MonoBehaviour
 
     void FixedUpdate()
     {
+        this.transform.eulerAngles += new Vector3(0, 0, 20f);
         newPart = Instantiate(earthParticle);
         newPart.transform.position = this.transform.position;
         newPart.transform.position = new Vector3(newPart.transform.position.x + 0.5f, newPart.transform.position.y, newPart.transform.position.z);
         if (maxRange > 60) // ranged spell
         {
             newPart = Instantiate(earthParticle);
+
             newPart.transform.position = this.transform.position;
             newPart.transform.position = new Vector3(newPart.transform.position.x - 0.5f, newPart.transform.position.y, newPart.transform.position.z);
         }
