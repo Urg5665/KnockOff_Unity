@@ -624,10 +624,10 @@ PlayerSettings:
   facebookXfbml: 0
   facebookFrictionlessRequests: 1
   apiCompatibilityLevel: 6
-  cloudProjectId: 
+  cloudProjectId: 6fadee12-552d-48d9-9beb-769b3f5b7dca
   framebufferDepthMemorylessMode: 0
-  projectName: 
-  organizationId: 
+  projectName: KnockOff
+  organizationId: urg5665
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
