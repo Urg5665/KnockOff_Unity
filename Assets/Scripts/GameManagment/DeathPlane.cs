@@ -46,13 +46,7 @@ public class DeathPlane : MonoBehaviour
         if (collision.gameObject.tag == "Player1")
         {
             player1Score--;
-            player1.transform.position = new Vector3(-25,10f,-37);
-            player2.transform.position = new Vector3(44, 10f, -36);
-            player2Aim.transform.position = new Vector3(40, 10f, -33);
-            player1.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            player2.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            StartCoroutine(cameraMove.Shake(.3f, 1f));
-            audioSource.Play();
+            resetPlayers();
             uiAnimP1 = true;
             //print("Collider Kill");
 
@@ -60,13 +54,7 @@ public class DeathPlane : MonoBehaviour
         if (collision.gameObject.tag == "Player2")
         {
             player2Score--;
-            player1.transform.position = new Vector3(-25, 10f, -37);
-            player2.transform.position = new Vector3(44, 10f, -36);
-            player2Aim.transform.position = new Vector3(40, 10f, -33);
-            player2.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            player1.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            StartCoroutine(cameraMove.Shake(.3f, 1f));
-            audioSource.Play();
+            resetPlayers();
             //Destroy(player2Lives[player2Score]);
             uiAnimP2 = true;
             //print("Collider Kill");
@@ -130,30 +118,30 @@ public class DeathPlane : MonoBehaviour
         if ( player1.transform.position.y < -17)
         {
             player1Score--;
-            player1.transform.position = new Vector3(-25, 10f, -37);
-            player2.transform.position = new Vector3(44, 10f, -36);
-            player2Aim.transform.position = new Vector3(40, 10f, -33);
-            player1.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            player2.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            StartCoroutine(cameraMove.Shake(.3f, 1f));
-            audioSource.Play();
-            //Destroy(player1Lives[player1Score]);
+            resetPlayers();
             uiAnimP1 = true;
             //print("Height Kill");
         }
         if (player2.transform.position.y < -17)
         {
             player2Score--;
-            player1.transform.position = new Vector3(-25, 10f, -37);
-            player2.transform.position = new Vector3(44, 10f, -36);
-            player2Aim.transform.position = new Vector3(40, 10f, -33);
-            player2.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            player1.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            StartCoroutine(cameraMove.Shake(.3f, 1f));
-            audioSource.Play();
+            resetPlayers();
             //Destroy(player2Lives[player2Score]);
             uiAnimP2 = true;
             //print("Height Kill");
         }
+
+    }
+    public void resetPlayers()
+    {
+        player1.transform.position = new Vector3(-25, 5f, -37);
+        player2.transform.position = new Vector3(44, 5f, -36);
+        player2Aim.transform.position = new Vector3(40, 10f, -33);
+        player1.GetComponent<PlayerControl>().dashing = false;
+        player2.GetComponent<PlayerControlXbox>().dashing = false;
+        player2.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        player1.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        StartCoroutine(cameraMove.Shake(.3f, 1f));
+        audioSource.Play();
     }
 }
