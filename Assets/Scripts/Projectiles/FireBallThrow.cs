@@ -123,6 +123,7 @@ public class FireBallThrow : MonoBehaviour
                 collision.gameObject.GetComponent<PlayerControlXbox>().stunID = fireBallID;
                 collision.gameObject.GetComponent<PlayerControlXbox>().stunLength = 100;
                 collision.gameObject.GetComponent<PlayerControlXbox>().dirStun = spellNum;
+                collision.gameObject.GetComponent<PlayerControlXbox>().dashing = false; // can stop someone mid dash?
                 //print("p2 Stuned:" + fireBallID);
             }
 
@@ -151,6 +152,7 @@ public class FireBallThrow : MonoBehaviour
                 //print("p1 Killed:" + fireBallID);
                 collision.gameObject.transform.position =
                 new Vector3(collision.gameObject.transform.position.x, collision.gameObject.transform.position.y - 6, collision.gameObject.transform.position.z);
+
             }
             if (collision.gameObject.GetComponent<PlayerControl>().stunLength <= 0) // not Stuned
             {
@@ -159,6 +161,7 @@ public class FireBallThrow : MonoBehaviour
                 collision.gameObject.GetComponent<PlayerControl>().stunID = fireBallID; // this is what the player remebers as stun
                 collision.gameObject.GetComponent<PlayerControl>().stunLength = 100;
                 collision.gameObject.GetComponent<PlayerControl>().dirStun = spellNum;
+                collision.gameObject.GetComponent<PlayerControl>().dashing = false; // can stop someone mid dash?
             }
             if (!boomReturn)
             {
