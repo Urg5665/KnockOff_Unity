@@ -16,8 +16,8 @@ public class MeshRotate : MonoBehaviour
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y - 45, transform.eulerAngles.z);
             if (player.GetComponent<BoxCollider>().isTrigger)
             {
-                playerMesh.SetActive(false);
-                player.GetComponent<MeshRenderer>().enabled = true;
+                //playerMesh.SetActive(false);
+                //player.GetComponent<MeshRenderer>().enabled = true;
             }
             else
             {
@@ -31,8 +31,8 @@ public class MeshRotate : MonoBehaviour
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y + 45, transform.eulerAngles.z);
             if (player.GetComponent<BoxCollider>().isTrigger)
             {
-                playerMesh.SetActive(false);
-                player.GetComponent<MeshRenderer>().enabled = true;
+                //playerMesh.SetActive(false);
+                //player.GetComponent<MeshRenderer>().enabled = true;
             }
             else
             {
