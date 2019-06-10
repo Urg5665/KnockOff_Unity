@@ -97,9 +97,10 @@ public class WindWaveThrow : MonoBehaviour
 
         if (!hitPlayer && playerInt == 1 && collision.gameObject.tag == "Player2")
         {
+            collision.gameObject.GetComponent<PlayerControlXbox>().finishDash();
             collision.gameObject.GetComponent<Rigidbody>().AddForce(this.gameObject.transform.forward * windForce); // Knock Back
             collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * windKnockUp); // Knock Up
-            collision.GetComponent<BoxCollider>().enabled = false;
+            collision.GetComponent<BoxCollider>().isTrigger = true;
             //Destroy(this.gameObject);
             if (!boomReturn)
             {
@@ -118,9 +119,10 @@ public class WindWaveThrow : MonoBehaviour
         }
         if (!hitPlayer && playerInt == 2 && collision.gameObject.tag == "Player1")
         {
+            collision.gameObject.GetComponent<PlayerControl>().finishDash();
             collision.gameObject.GetComponent<Rigidbody>().AddForce(this.gameObject.transform.forward * windForce); // Knock Back
             collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * windKnockUp); // Knock Up
-            collision.GetComponent<BoxCollider>().enabled = false;
+            collision.GetComponent<BoxCollider>().isTrigger = true;
             hitPlayer = true;
             if (!boomReturn)
             {

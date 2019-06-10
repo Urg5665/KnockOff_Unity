@@ -56,7 +56,7 @@ public class FireBallThrow : MonoBehaviour
         if (playerInt == 2)
         {
             player = GameObject.Find("Player2");
-            playerAim = GameObject.Find("Player2Aim");
+            playerAim = player.transform.GetChild(0).gameObject;
             playerControlXbox = player.GetComponent<PlayerControlXbox>();
             spellNum = playerControlXbox.spellSelected;
             dashTarget = GameObject.Find("Player1").transform.position;
@@ -123,7 +123,9 @@ public class FireBallThrow : MonoBehaviour
                 collision.gameObject.GetComponent<PlayerControlXbox>().stunID = fireBallID;
                 collision.gameObject.GetComponent<PlayerControlXbox>().stunLength = 100;
                 collision.gameObject.GetComponent<PlayerControlXbox>().dirStun = spellNum;
+                collision.GetComponent<BoxCollider>().isTrigger = false;
                 collision.gameObject.GetComponent<PlayerControlXbox>().dashing = false; // can stop someone mid dash?
+                collision.gameObject.GetComponent<PlayerControlXbox>().finishDash();               
                 //print("p2 Stuned:" + fireBallID);
             }
 
@@ -161,7 +163,9 @@ public class FireBallThrow : MonoBehaviour
                 collision.gameObject.GetComponent<PlayerControl>().stunID = fireBallID; // this is what the player remebers as stun
                 collision.gameObject.GetComponent<PlayerControl>().stunLength = 100;
                 collision.gameObject.GetComponent<PlayerControl>().dirStun = spellNum;
+                collision.GetComponent<BoxCollider>().isTrigger = false;
                 collision.gameObject.GetComponent<PlayerControl>().dashing = false; // can stop someone mid dash?
+                collision.gameObject.GetComponent<PlayerControl>().finishDash();
             }
             if (!boomReturn)
             {

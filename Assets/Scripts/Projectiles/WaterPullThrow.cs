@@ -100,10 +100,11 @@ public class WaterPullThrow : MonoBehaviour
 
         if (!hitPlayer && playerInt == 1 && collision.gameObject.tag == "Player2" )
         {
+            collision.gameObject.GetComponent<PlayerControlXbox>().finishDash();
             collision.gameObject.GetComponent<Rigidbody>().AddForce(this.gameObject.transform.forward * waterForce * -1); // Knock Back
             collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * waterKnockUp); // Knock Up
             playerHit = collision.gameObject;                                                                               
-            collision.GetComponent<BoxCollider>().enabled = false;
+            collision.GetComponent<BoxCollider>().isTrigger = true;
             hitPlayer = true;
             if (!boomReturn)
             {
@@ -121,10 +122,11 @@ public class WaterPullThrow : MonoBehaviour
         }
         if (!hitPlayer && playerInt == 2 && collision.gameObject.tag == "Player1")
         {
+            collision.gameObject.GetComponent<PlayerControl>().finishDash();
             collision.gameObject.GetComponent<Rigidbody>().AddForce(this.gameObject.transform.forward * waterForce * -1); // Knock Back
             collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * waterKnockUp); // Knock Up
             playerHit = collision.gameObject;                                                                               
-            collision.GetComponent<BoxCollider>().enabled = false;
+            collision.GetComponent<BoxCollider>().isTrigger = true;
             //Destroy(this.gameObject);
             hitPlayer = true;
             if (!boomReturn)

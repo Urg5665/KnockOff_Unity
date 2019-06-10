@@ -137,6 +137,12 @@ public class PlayerControlXbox : MonoBehaviour
         if (stunLength > 0)
         {
             //Debug.Log("Player2 Stunned");
+            if (dashing)
+            {
+                print("Hit While Dashing");
+            }
+            dashing = false;
+            dashingTime = 0;
             stunLength--;
             onPlayerText.text =  "" + stunLength;
             onPlayerStunRing.enabled = true;
@@ -155,7 +161,11 @@ public class PlayerControlXbox : MonoBehaviour
             this.GetComponent<Rigidbody>().AddForce(Vector3.left * 600);
             this.GetComponent<Rigidbody>().AddForce(Vector3.up * 400);
         }
-
+        if (!dashing)
+        {
+            playerUI.SetActive(true);
+            //this.transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
 
         if (dashing)
         {
@@ -163,9 +173,12 @@ public class PlayerControlXbox : MonoBehaviour
             {
                 canCast[i] = false;
             }
-            speed = 7.5f;
-            onPlayerText.text = "";
-            stunLength = 0;
+            if (dashingTime == 0)
+            {
+                speed = 7.5f;
+                onPlayerText.text = "";
+                stunLength = 0;
+            }
             this.GetComponent<Rigidbody>().velocity = Vector3.zero;
             playerUI.SetActive(false);
             dashingTime++;
@@ -180,28 +193,21 @@ public class PlayerControlXbox : MonoBehaviour
 
             if (this.transform.position.y < 2.5)
             {
-                this.GetComponent<BoxCollider>().enabled = true; // can fail recover
+                this.GetComponent<BoxCollider>().isTrigger = false; // can fail recover
                 Vector3 above = new Vector3(transform.position.x, transform.position.y + 20, transform.position.z);
                 transform.position = Vector3.Lerp(transform.position, above, Time.deltaTime);
                 //transform.Translate(Vector3.up * Time.deltaTime * speed * 5, Space.Self);
             }
             else
             {
-                this.GetComponent<BoxCollider>().enabled = false;
+                // Come Back Here
+                this.GetComponent<BoxCollider>().isTrigger = true;
             }
             rb.constraints = RigidbodyConstraints.FreezeRotation;
         }
         if (dashing && dashingTime > dashLength)
         {
-            dashingTime = 0;
-            dashing = false;
-            AOEKnockBack = false;
-            //transform.Translate(Vector3.forward * Time.deltaTime * speed * 3, Space.Self);
-            this.GetComponent<BoxCollider>().enabled = true;
-            rb.constraints = RigidbodyConstraints.FreezeRotation;
-            this.transform.rotation = Quaternion.Euler(0, 45, 0);
-            playerUI.SetActive(true);
-            castAfterDash = true;
+            finishDash();
         }
         if (castAfterDash)
         {
@@ -309,7 +315,7 @@ public class PlayerControlXbox : MonoBehaviour
             grounded = true;
             if (airBorn)
             {
-                this.GetComponent<BoxCollider>().enabled = true;
+                this.GetComponent<BoxCollider>().isTrigger = false;
                 airBorn = false;
             }
 
@@ -394,8 +400,8 @@ public class PlayerControlXbox : MonoBehaviour
             {
                 rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
             }
-
-            this.GetComponent<BoxCollider>().enabled = false;
+            // COME BACK HERE
+            this.GetComponent<BoxCollider>().isTrigger = false;
         }
         if (spellSecondary[spellSelected] == "Range")
         {
@@ -426,7 +432,7 @@ public class PlayerControlXbox : MonoBehaviour
                 rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
             }
 
-            this.GetComponent<BoxCollider>().enabled = false;
+            this.GetComponent<BoxCollider>().isTrigger = true;
             //Debug.Log("Invulnrble Dash");
         }
     }
@@ -483,7 +489,7 @@ public class PlayerControlXbox : MonoBehaviour
                 rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
             }
 
-            this.GetComponent<BoxCollider>().enabled = false;
+            this.GetComponent<BoxCollider>().isTrigger = true;
         }
         else if (spellSecondary[spellSelected] == "Range")
         {
@@ -512,7 +518,7 @@ public class PlayerControlXbox : MonoBehaviour
                 rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
             }
 
-            this.GetComponent<BoxCollider>().enabled = false;
+            this.GetComponent<BoxCollider>().isTrigger = true;
             //Debug.Log("Invulnrble Dash");
 
         }
@@ -570,7 +576,7 @@ public class PlayerControlXbox : MonoBehaviour
                 rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
             }
 
-            this.GetComponent<BoxCollider>().enabled = false;
+            this.GetComponent<BoxCollider>().isTrigger = true;
         }
         if (spellSecondary[spellSelected] == "Range")
         {
@@ -599,7 +605,7 @@ public class PlayerControlXbox : MonoBehaviour
                 rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
             }
 
-            this.GetComponent<BoxCollider>().enabled = false;
+            this.GetComponent<BoxCollider>().isTrigger = true;
             //Debug.Log("Invulnrble Dash");
 
         }
@@ -659,7 +665,7 @@ public class PlayerControlXbox : MonoBehaviour
                 rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
             }
 
-            this.GetComponent<BoxCollider>().enabled = false;
+            this.GetComponent<BoxCollider>().isTrigger = true;
             //
         }
         if (spellSecondary[spellSelected] == "Range")
@@ -689,7 +695,7 @@ public class PlayerControlXbox : MonoBehaviour
                 rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
             }
 
-            this.GetComponent<BoxCollider>().enabled = false;
+            this.GetComponent<BoxCollider>().isTrigger = true;
             //Debug.Log("Invulnrble Dash");
         }
     }
@@ -740,5 +746,17 @@ public class PlayerControlXbox : MonoBehaviour
             }
 
         }
+    }
+    public void finishDash()
+    {
+        dashingTime = 0;
+        dashing = false;
+        AOEKnockBack = false;
+        //transform.Translate(Vector3.forward * Time.deltaTime * speed * 3, Space.Self);
+        this.GetComponent<BoxCollider>().isTrigger = false;
+        rb.constraints = RigidbodyConstraints.FreezeRotation;
+        this.transform.rotation = Quaternion.Euler(0, 45, 0);
+        playerUI.SetActive(true);
+        castAfterDash = true;
     }
 }
