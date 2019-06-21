@@ -96,11 +96,11 @@ public class PlayerControlXbox : MonoBehaviour
         baseSpeed = 60;
         aoeRange = 18; /// 30
 
-        boomBaseRange = 40;
-        boomBaseSpeed = 40;
+        boomBaseRange = 20;
+        boomBaseSpeed = 80;
 
-        rangeRange = 90;
-        rangeSpeed = 90;
+        rangeRange = 40;
+        rangeSpeed = 100;
 
         dashSpellRange = 15; // should be very close
 
@@ -630,8 +630,8 @@ public class PlayerControlXbox : MonoBehaviour
             newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - 1, newSpell.transform.position.z);
             newSpell.GetComponent<EarthQuakeThrow>().spellNum = spellSelected;
             //Debug.Log("Basic");
-            newSpell.GetComponent<EarthQuakeThrow>().maxRange = boomBaseRange;
-            newSpell.GetComponent<EarthQuakeThrow>().throwSpeed = boomBaseSpeed;
+            newSpell.GetComponent<EarthQuakeThrow>().maxRange = boomBaseRange * 2;
+            newSpell.GetComponent<EarthQuakeThrow>().throwSpeed = boomBaseSpeed / 2;
             newSpell.GetComponent<EarthQuakeThrow>().boomSpell = true;
             canCast[spellSelected] = false;
         }

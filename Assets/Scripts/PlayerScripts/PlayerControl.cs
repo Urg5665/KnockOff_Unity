@@ -105,8 +105,8 @@ public class PlayerControl : MonoBehaviour
         boomBaseRange = 20;
         boomBaseSpeed = 80; //40 each
 
-        rangeRange = 90;
-        rangeSpeed = 90;
+        rangeRange = 40;
+        rangeSpeed = 100;
         stunLength = 0;
 
         dashSpellRange = 15; // should be very close
@@ -620,8 +620,8 @@ this.GetComponent<BoxCollider>().isTrigger = true;
             newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - 1f, newSpell.transform.position.z);
             newSpell.GetComponent< EarthQuakeThrow>().spellNum = spellSelected;
             //Debug.Log("Basic");
-            newSpell.GetComponent<EarthQuakeThrow>().maxRange = boomBaseRange;
-            newSpell.GetComponent<EarthQuakeThrow>().throwSpeed = boomBaseSpeed;
+            newSpell.GetComponent<EarthQuakeThrow>().maxRange = boomBaseRange * 2;
+            newSpell.GetComponent<EarthQuakeThrow>().throwSpeed = boomBaseSpeed / 2;
             newSpell.GetComponent<EarthQuakeThrow>().boomSpell = true;
             canCast[spellSelected] = false;
         }
