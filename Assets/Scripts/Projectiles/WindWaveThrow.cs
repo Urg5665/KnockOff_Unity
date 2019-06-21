@@ -67,7 +67,7 @@ public class WindWaveThrow : MonoBehaviour
         windForce = 700;
         windKnockUp = 250;
         hitPlayer = false;
-        throwSpeed = 30;
+        throwSpeed = 60;
         rangeCounter = 0;
         initialRotation = this.transform.rotation;
         hitSlow = 101;
@@ -154,7 +154,7 @@ public class WindWaveThrow : MonoBehaviour
             audioSource.volume = 0.2f;
         }
         if (hitSlow == 0)
-        {
+        {            
             Time.timeScale = 0.2f;
             hitSlow++;
         }
@@ -223,17 +223,17 @@ public class WindWaveThrow : MonoBehaviour
         if (boomHover)
         {
             hoverDur++;
-            if (hoverDur > 60 && hoverDur < 85)
+            if (hoverDur > 15 && hoverDur < 40)
             {
                 this.transform.position += new Vector3(0, .2f, 0);
             }
-            if (hoverDur > 95)
+            if (hoverDur > 55)
             {
                 this.transform.position -= new Vector3(0, 1f, 0);
             }
 
         }
-        if (rangeCounter == maxRange * 3.5)
+        if (rangeCounter == maxRange * 4)
         {
             if (boomSpell)
             {

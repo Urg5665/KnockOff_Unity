@@ -64,7 +64,7 @@ public class FireBallThrow : MonoBehaviour
 
         maxRange = 10;
         transform.LookAt(playerAim.transform);
-        throwSpeed = 30;
+        throwSpeed = 60; // 30
         rangeCounter = 0;
         cameraMove = GameObject.Find("MainCamera").GetComponent<CameraMove>();
         hitSlow = 101;
@@ -106,7 +106,7 @@ public class FireBallThrow : MonoBehaviour
         {
             //collision.gameObject.GetComponent<PlayerControlXbox>().speed = 0;
             
-            StartCoroutine(cameraMove.Shake(.3f, .5f));
+            StartCoroutine(cameraMove.Shake(.3f, .5f)); // .3f , .5f
             // Kill
             //collision.gameObject.transform.position = 
             //   new Vector3(collision.gameObject.transform.position.x, collision.gameObject.transform.position.y - 6, collision.gameObject.transform.position.z);
@@ -116,6 +116,17 @@ public class FireBallThrow : MonoBehaviour
                 //print("p2 Killed:" + fireBallID);
                 collision.gameObject.transform.position =
                 new Vector3(collision.gameObject.transform.position.x, collision.gameObject.transform.position.y - 6, collision.gameObject.transform.position.z);
+            }
+            if (collision.gameObject.GetComponent<PlayerControlXbox>().stunLength > 0 && collision.gameObject.GetComponent<PlayerControlXbox>().stunID == fireBallID) // yes stuned
+            {
+                collision.gameObject.GetComponent<PlayerControlXbox>().speed = 0;
+                collision.gameObject.GetComponent<PlayerControlXbox>().stunID = fireBallID;
+                collision.gameObject.GetComponent<PlayerControlXbox>().stunLength = 100;
+                collision.gameObject.GetComponent<PlayerControlXbox>().dirStun = spellNum;
+                collision.GetComponent<BoxCollider>().isTrigger = false;
+                collision.gameObject.GetComponent<PlayerControlXbox>().dashing = false; // can stop someone mid dash?
+                collision.gameObject.GetComponent<PlayerControlXbox>().finishDash();
+                //print("p2 Stuned:" + fireBallID);
             }
             if (collision.gameObject.GetComponent<PlayerControlXbox>().stunLength <= 0) // not Stuned
             {
@@ -156,6 +167,17 @@ public class FireBallThrow : MonoBehaviour
                 new Vector3(collision.gameObject.transform.position.x, collision.gameObject.transform.position.y - 6, collision.gameObject.transform.position.z);
 
             }
+            if (collision.gameObject.GetComponent<PlayerControl>().stunLength > 0 && collision.gameObject.GetComponent<PlayerControl>().stunID == fireBallID) // re stunned
+            {
+                collision.gameObject.GetComponent<PlayerControl>().speed = 0;
+                collision.gameObject.GetComponent<PlayerControl>().stunID = fireBallID; // this is what the player remebers as stun
+                collision.gameObject.GetComponent<PlayerControl>().stunLength = 100;
+                collision.gameObject.GetComponent<PlayerControl>().dirStun = spellNum;
+                collision.GetComponent<BoxCollider>().isTrigger = false;
+                collision.gameObject.GetComponent<PlayerControl>().dashing = false; // can stop someone mid dash?
+                collision.gameObject.GetComponent<PlayerControl>().finishDash();
+
+            }
             if (collision.gameObject.GetComponent<PlayerControl>().stunLength <= 0) // not Stuned
             {
                 //print("p1 Stuned:" + fireBallID);
@@ -193,6 +215,11 @@ public class FireBallThrow : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (rangeCounter == 1)
+        {
+            print("throw Speed: " + throwSpeed);
+            print("throw Range" + maxRange);
+        }
         if (AOEspell)
         {
             audioSource.volume = 0.2f;
@@ -282,19 +309,20 @@ public class FireBallThrow : MonoBehaviour
         }
         if (boomHover)
         {
+            print("hovering for:  " + hoverDur);
             hoverDur++;
-            if (hoverDur > 60 && hoverDur < 85)
+            if (hoverDur > 15 && hoverDur < 40)
             {
                 this.transform.position += new Vector3(0, .2f, 0);
             }
-            if(hoverDur > 95)
+            if(hoverDur > 55)
             {
                 this.transform.position -= new Vector3(0, 1f, 0);
             }
             
         }
 
-        if (rangeCounter == (maxRange * 3.5))
+        if (rangeCounter == (maxRange * 4))
         {
             if (boomSpell)
             {

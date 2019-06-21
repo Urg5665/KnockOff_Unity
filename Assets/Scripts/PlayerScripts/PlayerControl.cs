@@ -99,17 +99,17 @@ public class PlayerControl : MonoBehaviour
         castAfterDash = false;
         dashLength = 20;
 
-        baseRange = 35;
-        baseSpeed = 40;
-        aoeRange = 30;
-        boomBaseRange = 40;
-        boomBaseSpeed = 40;
+        baseRange = 20;
+        baseSpeed = 60;
+        aoeRange = 18; // 30
+        boomBaseRange = 20;
+        boomBaseSpeed = 80; //40 each
 
         rangeRange = 90;
         rangeSpeed = 90;
         stunLength = 0;
 
-        dashSpellRange = 25; // should be very close
+        dashSpellRange = 15; // should be very close
         aoeWidth = (Vector3.Distance(player1Aim.transform.position, transform.position))/4 ;
 
         for (int i = 0; i < 4; i++)
@@ -428,7 +428,7 @@ this.GetComponent<BoxCollider>().isTrigger = true;
                 rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
             }
 
-this.GetComponent<BoxCollider>().isTrigger = true;
+            this.GetComponent<BoxCollider>().isTrigger = true;
             //Debug.Log("Invulnrble Dash");
         }
     }
@@ -611,7 +611,7 @@ this.GetComponent<BoxCollider>().isTrigger = true;
             newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - 1f, newSpell.transform.position.z);
             newSpell.GetComponent<EarthQuakeThrow>().spellNum = spellSelected;
             //Debug.Log("Basic");
-            newSpell.GetComponent<EarthQuakeThrow>().maxRange = baseRange;
+            newSpell.GetComponent<EarthQuakeThrow>().maxRange = baseRange*2;
             canCast[spellSelected] = false;
         }
         if (spellSecondary[spellSelected] == "Boom")

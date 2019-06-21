@@ -67,7 +67,7 @@ public class WaterPullThrow : MonoBehaviour
         waterForce = 700;
         waterKnockUp = 250;
         hitPlayer = false;
-        throwSpeed = 30;
+        throwSpeed = 60;
         rangeCounter = 0;
         hitSlow = 101;
         cameraMove = GameObject.Find("MainCamera").GetComponent<CameraMove>();
@@ -231,17 +231,17 @@ public class WaterPullThrow : MonoBehaviour
         if (boomHover)
         {
             hoverDur++;
-            if (hoverDur > 60 && hoverDur < 85)
+            if (hoverDur > 15 && hoverDur < 40)
             {
                 this.transform.position += new Vector3(0, .2f, 0);
             }
-            if (hoverDur > 95)
+            if (hoverDur > 55)
             {
                 this.transform.position -= new Vector3(0, 1f, 0);
             }
 
         }
-        if (rangeCounter == (maxRange * 3.5))
+        if (rangeCounter == (maxRange * 4))
         {
             if (boomSpell)
             {
