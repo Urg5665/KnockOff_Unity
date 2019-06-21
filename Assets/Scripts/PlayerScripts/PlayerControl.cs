@@ -239,7 +239,7 @@ public class PlayerControl : MonoBehaviour
                 newSpell = Instantiate(spellProjectile[3], this.transform.position, spellProjectile[0].transform.rotation);
                 newSpell.transform.position = new Vector3(newSpell.transform.position.x, newSpell.transform.position.y - 1f, newSpell.transform.position.z);
                 newSpell.GetComponent<EarthQuakeThrow>().spellNum = dashDirection;
-                newSpell.GetComponent<EarthQuakeThrow>().maxRange = dashSpellRange;
+                newSpell.GetComponent<EarthQuakeThrow>().maxRange = dashSpellRange * 2;
                 newSpell.GetComponent<EarthQuakeThrow>().dashSpell = true;
             }
             spellPrimary[dashDirection] = "";
@@ -631,7 +631,7 @@ this.GetComponent<BoxCollider>().isTrigger = true;
             {
                 newSpellAOE[i] = Instantiate(spellProjectile[3], this.transform.position, spellProjectile[0].transform.rotation);
                 newSpellAOE[i].GetComponent<EarthQuakeThrow>().spellNum = spellSelected;
-                newSpellAOE[i].GetComponent<EarthQuakeThrow>().maxRange = aoeRange;
+                newSpellAOE[i].GetComponent<EarthQuakeThrow>().maxRange = aoeRange * 2;
                 newSpellAOE[i].GetComponent<EarthQuakeThrow>().AOEspell = true; 
                 aoeCone(i);
                 newSpellAOE[i].GetComponent<EarthQuakeThrow>().transform.LookAt(AOEpoint);
