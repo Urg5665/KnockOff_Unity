@@ -331,8 +331,9 @@ public class PlayerControlXbox : MonoBehaviour
         }
         if (collision.gameObject.tag == "Cliffs")
         {
-            print("CliffHit");
+            print("Player2 CliffHit");
             this.GetComponent<BoxCollider>().isTrigger = false;
+            finishDash();
 
         }
 

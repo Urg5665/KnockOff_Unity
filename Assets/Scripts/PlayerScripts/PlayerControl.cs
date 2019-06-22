@@ -165,7 +165,10 @@ public class PlayerControl : MonoBehaviour
             onPlayerText.text = "";
             onPlayerStunRing.enabled = false;
         }
-
+        if (!dashing)
+        {
+            playerUI.SetActive(true);
+        }
 
         if (dashing)
         {
@@ -321,6 +324,7 @@ public class PlayerControl : MonoBehaviour
         {
             print("Player1 CliffHit");
             this.GetComponent<BoxCollider>().isTrigger = false;
+            finishDash();
 
         }
 
