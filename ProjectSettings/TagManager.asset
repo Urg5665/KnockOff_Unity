@@ -16,6 +16,7 @@ TagManager:
   - Dummy
   - earthRes
   - earthQuake
+  - Cliffs
   layers:
   - Default
   - TransparentFX

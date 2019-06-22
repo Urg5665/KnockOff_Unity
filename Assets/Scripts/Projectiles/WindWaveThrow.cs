@@ -80,6 +80,26 @@ public class WindWaveThrow : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
+        if (playerInt == 1 && collision.gameObject.tag == "Cliffs")
+        {
+            playerControl.canCast[spellNum] = true;
+            playerControl.spellPrimary[spellNum] = "";
+            playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
+
+            hitEffectInGame = Instantiate(hitEffect);
+            hitEffectInGame.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 1, this.transform.position.z);
+            Destroy(this.gameObject);
+        }
+        if (playerInt == 2 && collision.gameObject.tag == "Cliffs")
+        {
+            playerControlXbox.canCast[spellNum] = true;
+            playerControlXbox.spellPrimary[spellNum] = "";
+            playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
+
+            hitEffectInGame = Instantiate(hitEffect);
+            hitEffectInGame.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 1, this.transform.position.z);
+            Destroy(this.gameObject);
+        }
         if (playerInt == 1 && collision.gameObject.tag == "Player1" && boomReturn)
         {
             Destroy(this.gameObject);

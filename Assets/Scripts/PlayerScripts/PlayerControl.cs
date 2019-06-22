@@ -319,7 +319,7 @@ public class PlayerControl : MonoBehaviour
         }
         if (collision.gameObject.tag == "Cliffs")
         {
-            print("CliffHit");
+            print("Player1 CliffHit");
             this.GetComponent<BoxCollider>().isTrigger = false;
 
         }
