@@ -303,7 +303,7 @@ public class PlayerControl : MonoBehaviour
             grounded = true;
             if (airBorn)
             {
-    this.GetComponent<BoxCollider>().isTrigger = false;
+                this.GetComponent<BoxCollider>().isTrigger = false;
                 airBorn = false;
             }
 
@@ -316,6 +316,12 @@ public class PlayerControl : MonoBehaviour
         {
             cardsThrown--;
             canCast[collision.GetComponent<CardThrow>().cardNum] = true;
+        }
+        if (collision.gameObject.tag == "Cliffs")
+        {
+            print("CliffHit");
+            this.GetComponent<BoxCollider>().isTrigger = false;
+
         }
 
     }

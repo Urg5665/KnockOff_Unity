@@ -329,6 +329,12 @@ public class PlayerControlXbox : MonoBehaviour
             cardsThrown--;
             canCast[collision.GetComponent<CardThrow>().cardNum] = true;
         }
+        if (collision.gameObject.tag == "Cliffs")
+        {
+            print("CliffHit");
+            this.GetComponent<BoxCollider>().isTrigger = false;
+
+        }
 
     }
     private void CardGather()

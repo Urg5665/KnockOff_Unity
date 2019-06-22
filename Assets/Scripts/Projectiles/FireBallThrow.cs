@@ -215,11 +215,6 @@ public class FireBallThrow : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (rangeCounter == 1)
-        {
-            print("throw Speed: " + throwSpeed);
-            print("throw Range" + maxRange);
-        }
         if (AOEspell)
         {
             audioSource.volume = 0.2f;
