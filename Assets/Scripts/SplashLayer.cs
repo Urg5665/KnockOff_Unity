@@ -9,10 +9,13 @@ public class SplashLayer : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
+        if (collision.gameObject.tag != "Cliffs")
+        {
+            GameObject splashClone = Instantiate(splash);
+            Transform splashLocation = collision.transform;
+            splashClone.transform.position = new Vector3(splashLocation.transform.position.x, splashLocation.transform.position.y, splashLocation.transform.position.z);
+            splashClone = null;
+        }
 
-        GameObject splashClone = Instantiate(splash);
-        Transform splashLocation = collision.transform;
-        splashClone.transform.position = new Vector3(splashLocation.transform.position.x, splashLocation.transform.position.y, splashLocation.transform.position.z);
-        splashClone = null;
     }
 }
