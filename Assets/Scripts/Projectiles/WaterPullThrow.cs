@@ -84,7 +84,7 @@ public class WaterPullThrow : MonoBehaviour
     private void OnTriggerEnter(Collider collision)
     {
         if (playerInt == 1 && collision.gameObject.tag == "Cliffs")
-        {
+        { 
             playerControl.canCast[spellNum] = true;
             playerControl.spellPrimary[spellNum] = "";
             playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
@@ -196,6 +196,14 @@ public class WaterPullThrow : MonoBehaviour
                 Destroy(this.gameObject);
             }
 
+        }
+        if (playerInt == 1)
+        {
+            dashTarget = GameObject.Find("Player2").transform.position;
+        }
+        if (playerInt == 2)
+        {
+            dashTarget = GameObject.Find("Player1").transform.position;
         }
 
 

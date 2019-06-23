@@ -202,6 +202,16 @@ public class WindWaveThrow : MonoBehaviour
         }
 
 
+        if (playerInt == 1)
+        {
+            dashTarget = GameObject.Find("Player2").transform.position;
+        }
+        if (playerInt == 2)
+        {
+            dashTarget = GameObject.Find("Player1").transform.position;
+        }
+
+
         rangeCounter++;
 
         if (boomReturn)

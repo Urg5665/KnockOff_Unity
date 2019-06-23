@@ -109,17 +109,11 @@ public class FireBallThrow : MonoBehaviour
         if (playerInt == 1 && collision.gameObject.tag == "Player1" && boomReturn)
         {
             Destroy(this.gameObject);
-            //playerControl.canCast[spellNum] = true;
-            //playerControl.spellPrimary[spellNum] = "";
-            //playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
         }
 
         if (playerInt == 2 && collision.gameObject.tag == "Player2" && boomReturn)
         {
             Destroy(this.gameObject);
-            //playerControlXbox.canCast[spellNum] = true;
-            //playerControlXbox.spellPrimary[spellNum] = "";
-            //playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
         }
 
 
@@ -254,6 +248,14 @@ public class FireBallThrow : MonoBehaviour
         {
             Time.timeScale = 1.0f;
             Destroy(this.gameObject);
+        }
+        if (playerInt == 1)
+        {
+            dashTarget = GameObject.Find("Player2").transform.position;
+        }
+        if (playerInt == 2)
+        {
+            dashTarget = GameObject.Find("Player1").transform.position;
         }
 
 
