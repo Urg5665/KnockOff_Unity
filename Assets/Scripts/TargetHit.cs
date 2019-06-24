@@ -5,8 +5,6 @@ using UnityEngine;
 public class TargetHit : MonoBehaviour
 {
     public int i = 0;
-
-
     private void Update()
     {
         i++;
