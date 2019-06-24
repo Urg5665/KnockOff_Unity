@@ -77,8 +77,6 @@ public class PlayerAimXbox : MonoBehaviour
 
 
         }
-
-
         transform.position = new Vector3(this.transform.position.x, parent.transform.position.y, transform.position.z);
 
     }

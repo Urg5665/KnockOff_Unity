@@ -205,6 +205,7 @@ MonoBehaviour:
   aoeSkillShot: {fileID: 7489844120818794664}
   rangeSkillShot: {fileID: 3648467629046487990}
   dashSkillShot: {fileID: 5973850064171054035}
+  boomSkillShot: {fileID: 0}
   xPos: 0
   zPos: 0
   zDif: 0
@@ -518,7 +519,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4133727332139147670}
-  - component: {fileID: 1126570246340478893}
+  - component: {fileID: 851017372533019417}
   m_Layer: 0
   m_Name: SkillShot_Dash_Rotator
   m_TagString: Untagged
@@ -541,7 +542,7 @@ Transform:
   m_Father: {fileID: 3542569007061042143}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -45}
---- !u!114 &1126570246340478893
+--- !u!114 &851017372533019417
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -550,7 +551,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8963780258698686044}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03430318b880cca4fb3baa645e28a809, type: 3}
+  m_Script: {fileID: 11500000, guid: c576a7a95200ff246816b2d2dbe3477d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerBelong: {fileID: 0}

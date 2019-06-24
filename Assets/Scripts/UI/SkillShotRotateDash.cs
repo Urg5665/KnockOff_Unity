@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkillShotUI_DashRotate : MonoBehaviour
+public class SkillShotRotateDash : MonoBehaviour
 {
     public GameObject playerBelong;
     public GameObject playerTarget;
@@ -106,3 +106,4 @@ public class SkillShotUI_DashRotate : MonoBehaviour
     }
 
 }
+
