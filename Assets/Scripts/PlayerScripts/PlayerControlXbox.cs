@@ -18,6 +18,7 @@ public class PlayerControlXbox : MonoBehaviour
 
     public bool grounded;
     public bool touchingWall;
+    public int timeSinceWalled;
 
     public GameObject[] spellProjectile; // The actual Fireball, air block, earth wall
     public int spellSelected;
@@ -320,9 +321,21 @@ public class PlayerControlXbox : MonoBehaviour
             }
 
         }
+        if (touchingWall)
+        {
+            this.GetComponent<Rigidbody>().isKinematic = false;
+            this.GetComponent<Rigidbody>().AddForce(Vector3.down * 50);
+            timeSinceWalled++;
+        }
+        if (timeSinceWalled == 10)
+        {
+            touchingWall = false;
+            timeSinceWalled++;
+            print("Done Toching wall p2");
+        }
 
     }
-    private void OnTriggerEnter(Collider collision)
+    public void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag == "Card" && collision.GetComponent<CardThrow>().rangeCounter > collision.GetComponent<CardThrow>().maxRange)
         {
@@ -331,10 +344,21 @@ public class PlayerControlXbox : MonoBehaviour
         }
         if (collision.gameObject.tag == "Cliffs")
         {
-            print("Player2 CliffHit");
-            this.GetComponent<BoxCollider>().isTrigger = false;
-            finishDash();
-
+            if (!touchingWall)
+            {
+                print("Player2 CliffHit");
+                this.GetComponent<BoxCollider>().isTrigger = false;
+                finishDash();
+                this.GetComponent<Rigidbody>().isKinematic = true;
+                this.GetComponent<Rigidbody>().AddForce(Vector3.down * 100);
+                timeSinceWalled = 0;
+                touchingWall = true;
+                
+            }
+        }
+        if (collision.gameObject.tag != "Cliffs")
+        {
+            //touchingWall = false;
         }
 
     }

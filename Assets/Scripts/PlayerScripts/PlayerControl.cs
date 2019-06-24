@@ -19,6 +19,7 @@ public class PlayerControl : MonoBehaviour
 
     public bool grounded;
     public bool touchingWall;
+    public int timeSinceWalled;
 
     public GameObject[] spellProjectile; // The actual Fireball, air block, earth wall
     public int spellSelected;
@@ -311,6 +312,18 @@ public class PlayerControl : MonoBehaviour
             }
 
         }
+        if (touchingWall)
+        {
+            this.GetComponent<Rigidbody>().isKinematic = false;
+            this.GetComponent<Rigidbody>().AddForce(Vector3.down * 50);
+            timeSinceWalled++;
+        }
+        if (timeSinceWalled == 10)
+        {
+            touchingWall = false;
+            timeSinceWalled++;
+            print("Done Touching Wall");
+        }
 
     }
     private void OnTriggerEnter(Collider collision)
@@ -322,10 +335,21 @@ public class PlayerControl : MonoBehaviour
         }
         if (collision.gameObject.tag == "Cliffs")
         {
-            print("Player1 CliffHit");
-            this.GetComponent<BoxCollider>().isTrigger = false;
-            finishDash();
+            if (!touchingWall)
+            {
+                print("Player1 CliffHit");
+                this.GetComponent<BoxCollider>().isTrigger = false;
+                finishDash();
+                this.GetComponent<Rigidbody>().isKinematic = true;
+                this.GetComponent<Rigidbody>().AddForce(Vector3.down * 100);
+                timeSinceWalled = 0;
+                touchingWall = true;
 
+            }
+        }
+        if (collision.gameObject.tag != "Cliffs")
+        {
+            //touchingWall = false;
         }
 
     }
