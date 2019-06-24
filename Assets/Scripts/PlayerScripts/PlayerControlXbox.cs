@@ -331,7 +331,7 @@ public class PlayerControlXbox : MonoBehaviour
         {
             touchingWall = false;
             timeSinceWalled++;
-            print("Done Toching wall p2");
+            //print("Done Toching wall p2");
         }
 
     }
@@ -346,7 +346,7 @@ public class PlayerControlXbox : MonoBehaviour
         {
             if (!touchingWall)
             {
-                print("Player2 CliffHit");
+                //print("Player2 CliffHit");
                 this.GetComponent<BoxCollider>().isTrigger = false;
                 finishDash();
                 this.GetComponent<Rigidbody>().isKinematic = true;

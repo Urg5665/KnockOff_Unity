@@ -315,14 +315,14 @@ public class PlayerControl : MonoBehaviour
         if (touchingWall)
         {
             this.GetComponent<Rigidbody>().isKinematic = false;
-            this.GetComponent<Rigidbody>().AddForce(Vector3.down * 50);
+            this.GetComponent<Rigidbody>().AddForce(Vector3.down * 30);
             timeSinceWalled++;
         }
         if (timeSinceWalled == 10)
         {
             touchingWall = false;
             timeSinceWalled++;
-            print("Done Touching Wall");
+            //print("Done Touching Wall");
         }
 
     }
@@ -337,7 +337,7 @@ public class PlayerControl : MonoBehaviour
         {
             if (!touchingWall)
             {
-                print("Player1 CliffHit");
+                //print("Player1 CliffHit");
                 this.GetComponent<BoxCollider>().isTrigger = false;
                 finishDash();
                 this.GetComponent<Rigidbody>().isKinematic = true;
