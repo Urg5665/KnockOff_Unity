@@ -8,8 +8,8 @@ public class ControlsMenuInGame : MonoBehaviour
 {
     public GameObject PauseMenu;
     public GameObject GameUI;
-    public GameObject p1UI;
-    public GameObject p2UI;
+    //public GameObject p1UI;
+    //public GameObject p2UI;
     public GameObject controlMenu;
     public GameObject howToPlayMenu;
     public GameManager gameManager;
@@ -20,8 +20,8 @@ public class ControlsMenuInGame : MonoBehaviour
     }
     public void Resume()
     {
-        p1UI.SetActive(false);
-        p2UI.SetActive(false);
+        //p1UI.SetActive(false);
+        //p2UI.SetActive(false);
         Time.timeScale = 1.0f;
         gameManager.paused = false;
         GameUI.SetActive(true);
