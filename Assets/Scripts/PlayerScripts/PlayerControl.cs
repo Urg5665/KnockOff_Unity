@@ -12,6 +12,7 @@ public class PlayerControl : MonoBehaviour
 
     public int playerNum;
     public float speed;
+    public float maxMoveSpeed;
     //public float maxSpeed = 10;
 
     public Transform movement;
@@ -162,7 +163,7 @@ public class PlayerControl : MonoBehaviour
         }
         if (stunLength == 0)
         {
-            speed = 7.5f;
+            speed = maxMoveSpeed;
             onPlayerText.text = "";
             onPlayerStunRing.enabled = false;
         }
@@ -175,7 +176,7 @@ public class PlayerControl : MonoBehaviour
         {
             if (dashingTime == 0)
             {
-                speed = 7.5f;
+                speed = maxMoveSpeed;
                 onPlayerText.text = "";
                 stunLength = 0;
             }

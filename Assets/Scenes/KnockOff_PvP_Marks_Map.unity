@@ -21463,6 +21463,11 @@ PrefabInstance:
       objectReference: {fileID: 2042537158}
     - target: {fileID: 46870567241696049, guid: 0f9ffe8302123f5419638698ccf5218d,
         type: 3}
+      propertyPath: maxMoveSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 46870567241696049, guid: 0f9ffe8302123f5419638698ccf5218d,
+        type: 3}
       propertyPath: newSpellBomb.Array.size
       value: 8
       objectReference: {fileID: 0}
