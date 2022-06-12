@@ -255,7 +255,8 @@ public class PlayerControl : MonoBehaviour
         // Card Casting Commands
         if (Input.GetMouseButtonDown(1) && cardsThrown < 4 && canCast[spellSelected] && spellSecondary[spellSelected] == "") // Shoot Card
         {
-            CardGather();
+            //CardGather();
+            //Debug.Log("P1 Throw Card");
         }
         if (Input.GetMouseButtonDown(1) && cardsThrown < 4 && canCast[spellSelected] && spellSecondary[spellSelected] != "")  // Disabel Shooitng Card because spell is maxed
         {
@@ -328,6 +329,62 @@ public class PlayerControl : MonoBehaviour
     }
     private void OnTriggerEnter(Collider collision)
     {
+        if (collision.gameObject.tag == "windRes")
+        {
+            if (spellPrimary[spellSelected] == "")
+            {
+                spellPrimary[spellSelected] = "Wind";
+                Destroy(collision.gameObject);
+            }
+            else if (spellSecondary[spellSelected] == "")
+            {
+                spellSecondary[spellSelected] = "Range";
+                Destroy(collision.gameObject);
+            }
+        }
+        if (collision.gameObject.tag == "fireRes")
+        {
+            if (spellPrimary[spellSelected] == "")
+            {
+                spellPrimary[spellSelected] = "Fire";
+                Destroy(collision.gameObject);
+            }
+            else if (spellSecondary[spellSelected] == "")
+            {
+                spellSecondary[spellSelected] = "AOE";
+                Destroy(collision.gameObject);
+            }
+        }
+        if (collision.gameObject.tag == "waterRes")
+        {
+            if (spellPrimary[spellSelected] == "")
+            {
+                spellPrimary[spellSelected] = "Water";
+                Destroy(collision.gameObject);
+            }
+            else if (spellSecondary[spellSelected] == "")
+            {
+                spellSecondary[spellSelected] = "Dash";
+                Destroy(collision.gameObject);
+            }
+        }
+        if (collision.gameObject.tag == "earthRes")
+        {
+            if (spellPrimary[spellSelected] == "")
+            {
+                spellPrimary[spellSelected] = "Earth";
+                Destroy(collision.gameObject);
+            }
+            else if (spellSecondary[spellSelected] == "")
+            {
+                spellSecondary[spellSelected] = "Boom";
+                Destroy(collision.gameObject);
+            }
+        }
+
+
+
+
         if (collision.gameObject.tag == "Card" && collision.GetComponent<CardThrow>().rangeCounter > collision.GetComponent<CardThrow>().maxRange)
         {
             cardsThrown--;
@@ -355,6 +412,7 @@ public class PlayerControl : MonoBehaviour
     }
     private void CardGather()
     {
+        print("P1 Throw Card");
         newCard = Instantiate(card, this.transform.position, card.transform.rotation);
         newCard.transform.position = new Vector3(newCard.transform.position.x, newCard.transform.position.y - .25f, newCard.transform.position.z);
         newCard.GetComponent<CardThrow>().cardNum = spellSelected;

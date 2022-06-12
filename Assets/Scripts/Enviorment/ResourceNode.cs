@@ -24,7 +24,7 @@ public class ResourceNode : MonoBehaviour
         resType = Mathf.RoundToInt(Random.Range(0,4)); // 0 to 4 // 1  fire, 2 air, 3 water, 4 earth
         currentSpawn = Instantiate(resObjects[resType], this.transform);
         respawnCounter = 501;
-        respawnTime = 500;
+        respawnTime = 1000;
         audioSource = this.GetComponent<AudioSource>();
     }
     void Update()

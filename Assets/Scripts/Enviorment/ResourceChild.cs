@@ -10,5 +10,9 @@ public class ResourceChild : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        else if (collision.gameObject.tag == "Player1")
+        {
+            Destroy(this.gameObject);
+        }
     }
 }
