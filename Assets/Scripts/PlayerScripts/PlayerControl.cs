@@ -149,8 +149,8 @@ public class PlayerControl : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.G))
         {
-            this.GetComponent<Rigidbody>().AddForce(Vector3.left * 600);
-            this.GetComponent<Rigidbody>().AddForce(Vector3.up * 400);
+            this.GetComponent<Rigidbody>().AddForce(Vector3.left * 300);
+            this.GetComponent<Rigidbody>().AddForce(Vector3.up * 200);
         }
 
         if (stunLength > 0)
@@ -185,11 +185,11 @@ public class PlayerControl : MonoBehaviour
             dashingTime++;
             if (AOEKnockBack)
             {
-                transform.Translate(Vector3.back * Time.deltaTime * speed * 3, Space.Self);
+                transform.Translate(Vector3.back * Time.deltaTime * speed, Space.Self);
             }
             if (!AOEKnockBack)
             {
-                transform.Translate(Vector3.forward * Time.deltaTime * speed * 5, Space.Self);
+                transform.Translate(Vector3.forward * Time.deltaTime * speed, Space.Self);
             }
 
             if (this.transform.position.y < 2.5)
@@ -263,6 +263,7 @@ public class PlayerControl : MonoBehaviour
         {
             //Debug.Log("Spell Maxed - Cast it!");
         }
+        
 
 
         // Spell Casting Commands
@@ -270,22 +271,26 @@ public class PlayerControl : MonoBehaviour
         {
             //Debug.Log("No Spell Avaliable");
         }
-        if (Input.GetMouseButtonDown(0) && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "Fire") // Shoot Fireball
+        if (Input.GetMouseButtonDown(0) && canCast[spellSelected] && spellPrimary[spellSelected] == "Fire") // Shoot Fireball
         {
             Fireball();
         }
-        if (Input.GetMouseButtonDown(0) && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "Wind") // Shoot Wind Knock
+        if (Input.GetMouseButtonDown(0) && canCast[spellSelected] && spellPrimary[spellSelected] == "Wind") // Shoot Wind Knock
         {
             WindKnockback();
+            Debug.Log("Wind Fired:  " + Time.time);
         }
-        if (Input.GetMouseButtonDown(0) && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "Water") // Shoot Wind Knock
+        if (Input.GetMouseButtonDown(0) && canCast[spellSelected] && spellPrimary[spellSelected] == "Water") // Shoot Wind Knock
         {
             WaterPull();
         }
-        if (Input.GetMouseButtonDown(0) && cardsThrown < 4 && canCast[spellSelected] && spellPrimary[spellSelected] == "Earth") // Shoot Wind Knock
+        if (Input.GetMouseButtonDown(0) && canCast[spellSelected] && spellPrimary[spellSelected] == "Earth") // Shoot Wind Knock
         {
             EarthQuake();
         }
+
+
+
         if (grounded) // movement
         {
             if (Input.GetKey(KeyCode.A))
@@ -342,6 +347,7 @@ public class PlayerControl : MonoBehaviour
                 spellSecondary[spellSelected] = "Range";
                 Destroy(collision.gameObject);
             }
+            Debug.Log("Wind Picked Up:  " + Time.time);
         }
         if (collision.gameObject.tag == "fireRes")
         {
@@ -422,7 +428,7 @@ public class PlayerControl : MonoBehaviour
         newCardTrail = Instantiate(cardTrail, this.transform.position, card.transform.rotation);
         newCardTrail.transform.position = new Vector3(newCard.transform.position.x, newCard.transform.position.y - .25f, newCard.transform.position.z);
         newCardTrail.GetComponent<CardTrailThrow>().cardTrailTarget = newCard;
-        canCast[spellSelected] = false;
+        //canCast[spellSelected] = false;
     }
     private void Fireball()
     {
