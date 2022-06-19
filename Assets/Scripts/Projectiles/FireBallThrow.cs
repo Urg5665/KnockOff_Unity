@@ -85,6 +85,13 @@ public class FireBallThrow : MonoBehaviour
 
      void OnTriggerEnter(Collider collision)
     {
+
+        if (collision.gameObject.tag == "Dummy")
+        {
+            collision.gameObject.GetComponent<DummyMovement>().FireBeserk();
+            Debug.Log("FireBall hit dummy");
+        }
+
         if (playerInt == 1 && collision.gameObject.tag == "Cliffs")
         { 
             playerControl.canCast[spellNum] = true;

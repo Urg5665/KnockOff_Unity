@@ -46,7 +46,7 @@ public class DeathPlane : MonoBehaviour
         if (collision.gameObject.tag == "Player1")
         {
             player1Score--;
-            resetPlayers();
+            resetPlayers(1);
             uiAnimP1 = true;
             //print("Collider Kill");
 
@@ -54,7 +54,7 @@ public class DeathPlane : MonoBehaviour
         if (collision.gameObject.tag == "Player2")
         {
             player2Score--;
-            resetPlayers();
+            resetPlayers(2);
             //Destroy(player2Lives[player2Score]);
             uiAnimP2 = true;
             //print("Collider Kill");
@@ -66,6 +66,8 @@ public class DeathPlane : MonoBehaviour
             dummy.GetComponent<DummyMovement>().i = 0;
             StartCoroutine(cameraMove.Shake(.3f, 1f));
             audioSource.Play();
+            //print("Death Plane Kill Dummy");
+            Destroy(collision.gameObject);
         }
 
     }
@@ -118,22 +120,38 @@ public class DeathPlane : MonoBehaviour
         if ( player1.transform.position.y < -17)
         {
             player1Score--;
-            resetPlayers();
+            resetPlayers(1);
             uiAnimP1 = true;
             //print("Height Kill");
         }
         if (player2.transform.position.y < -17)
         {
             player2Score--;
-            resetPlayers();
+            resetPlayers(1);
             //Destroy(player2Lives[player2Score]);
             uiAnimP2 = true;
             //print("Height Kill");
         }
 
     }
-    public void resetPlayers()
+    public void resetPlayers(int playerNum)
     {
+        if (playerNum == 1)
+        {
+            player1.transform.position = new Vector3(-25, 5f, -37);
+            player1.GetComponent<PlayerControl>().dashing = false;
+            player1.GetComponent<Rigidbody>().velocity = Vector3.zero;
+
+        }
+
+        if (playerNum == 2)
+        {    
+            player2.transform.position = new Vector3(44, 5f, -36);
+            player2Aim.transform.position = new Vector3(40, 10f, -33);
+            player2.GetComponent<PlayerControlXbox>().dashing = false;
+            player2.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        }
+        /*
         player1.transform.position = new Vector3(-25, 5f, -37);
         player2.transform.position = new Vector3(44, 5f, -36);
         player2Aim.transform.position = new Vector3(40, 10f, -33);
@@ -141,6 +159,7 @@ public class DeathPlane : MonoBehaviour
         player2.GetComponent<PlayerControlXbox>().dashing = false;
         player2.GetComponent<Rigidbody>().velocity = Vector3.zero;
         player1.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        */
         StartCoroutine(cameraMove.Shake(.3f, 1f));
         audioSource.Play();
     }

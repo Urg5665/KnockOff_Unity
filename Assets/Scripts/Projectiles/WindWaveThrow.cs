@@ -115,6 +115,30 @@ public class WindWaveThrow : MonoBehaviour
             //playerControlXbox.spellSecondary[spellNum] = ""; // Reset Spell to empty
         }
 
+        //Dummy Hit
+        if (!hitPlayer && playerInt == 1 && collision.gameObject.tag == "Dummy")
+        {
+           
+            collision.gameObject.GetComponent<Rigidbody>().AddForce(this.gameObject.transform.forward * windForce); // Knock Back
+            collision.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up * windKnockUp); // Knock Up
+            //collision.GetComponent<BoxCollider>().isTrigger = true;
+            //Destroy(this.gameObject);
+            if (!boomReturn)
+            {
+                playerControl.canCast[spellNum] = true;
+                playerControl.spellPrimary[spellNum] = "";
+                playerControl.spellSecondary[spellNum] = ""; // Reset Spell to empty
+            }
+            //hitPlayer = true; testing this just to see if Aoe effects can work
+            print("Hit Player Set to true");
+            hitSlow = 0;
+            StartCoroutine(cameraMove.Shake(.15f, .5f));
+            //cameraMove.player2Hit = true;
+            hitEffectInGame = Instantiate(hitEffect);
+            //hitEffectInGame.transform.position = this.transform.position;
+            hitEffectInGame.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 1, this.transform.position.z);
+        }
+
         if (!hitPlayer && playerInt == 1 && collision.gameObject.tag == "Player2")
         {
             collision.gameObject.GetComponent<PlayerControlXbox>().finishDash();
@@ -135,8 +159,8 @@ public class WindWaveThrow : MonoBehaviour
             hitEffectInGame = Instantiate(hitEffect);
             //hitEffectInGame.transform.position = this.transform.position;
             hitEffectInGame.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 1, this.transform.position.z);
-
         }
+
         if (!hitPlayer && playerInt == 2 && collision.gameObject.tag == "Player1")
         {
             collision.gameObject.GetComponent<PlayerControl>().finishDash();

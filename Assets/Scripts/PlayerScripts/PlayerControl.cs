@@ -271,20 +271,20 @@ public class PlayerControl : MonoBehaviour
         {
             //Debug.Log("No Spell Avaliable");
         }
-        if (Input.GetMouseButtonDown(0) && canCast[spellSelected] && spellPrimary[spellSelected] == "Fire") // Shoot Fireball
+        if (Input.GetMouseButtonDown(0) && /*canCast[spellSelected] &&*/ spellPrimary[spellSelected] == "Fire") // Shoot Fireball
         {
             Fireball();
         }
-        if (Input.GetMouseButtonDown(0) && canCast[spellSelected] && spellPrimary[spellSelected] == "Wind") // Shoot Wind Knock
+        if (Input.GetMouseButtonDown(0) && /*canCast[spellSelected] &&*/ spellPrimary[spellSelected] == "Wind") // Shoot Wind Knock
         {
             WindKnockback();
-            Debug.Log("Wind Fired:  " + Time.time);
+            //Debug.Log("Wind Fired:  " + Time.time);
         }
-        if (Input.GetMouseButtonDown(0) && canCast[spellSelected] && spellPrimary[spellSelected] == "Water") // Shoot Wind Knock
+        if (Input.GetMouseButtonDown(0) && /*canCast[spellSelected] &&*/ spellPrimary[spellSelected] == "Water") // Shoot Wind Knock
         {
             WaterPull();
         }
-        if (Input.GetMouseButtonDown(0) && canCast[spellSelected] && spellPrimary[spellSelected] == "Earth") // Shoot Wind Knock
+        if (Input.GetMouseButtonDown(0) && /*canCast[spellSelected] &&*/ spellPrimary[spellSelected] == "Earth") // Shoot Wind Knock
         {
             EarthQuake();
         }
@@ -347,7 +347,7 @@ public class PlayerControl : MonoBehaviour
                 spellSecondary[spellSelected] = "Range";
                 Destroy(collision.gameObject);
             }
-            Debug.Log("Wind Picked Up:  " + Time.time);
+            //Debug.Log("Wind Picked Up:  " + Time.time);
         }
         if (collision.gameObject.tag == "fireRes")
         {

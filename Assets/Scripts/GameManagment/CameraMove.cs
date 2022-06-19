@@ -17,8 +17,8 @@ public class CameraMove : MonoBehaviour
 
     public float smoothTime = .5f;
 
-    public float minZoom = 30f;
-    public float maxZoom = 55f;
+    public float minZoom; // 30f
+    public float maxZoom; // 55f
 
     public bool player1Hit;
     public bool player2Hit;
@@ -38,8 +38,9 @@ public class CameraMove : MonoBehaviour
 
     Vector3 GetCenterPoint()
     {
-       
-
+        bounds.center = player1.transform.position;
+        return bounds.center;
+        /* disabling all difference between players
         if (player1Hit)
         {
             //bounds = new Bounds(targets[0].position, Vector3.zero);
@@ -63,7 +64,7 @@ public class CameraMove : MonoBehaviour
                 bounds.Encapsulate(targets[i].position);
             }
             return bounds.center;
-        }
+        }*/
 
     }
 
@@ -76,6 +77,7 @@ public class CameraMove : MonoBehaviour
         }
         zDif = Mathf.Abs(player1.position.z - player2.position.z);
         //Debug.Log(zDif);
+        /* Disabling Zoom
         if ( zDif < 30)
         {
             maxZoom = 55;
@@ -96,7 +98,7 @@ public class CameraMove : MonoBehaviour
         {
             maxZoom = 120;
         }
-
+        */
 
         if (Input.GetKeyDown(KeyCode.G)){
             StartCoroutine(Shake(.15f, .4f));
@@ -122,7 +124,7 @@ public class CameraMove : MonoBehaviour
     private void Zoom()
     {
         float newZoom = Mathf.Lerp(minZoom, maxZoom, GetGreatestDistance() / 50f); // 50f
-        cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, newZoom, Time.deltaTime);
+        cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, /*newZoom*/ maxZoom, Time.deltaTime);
         GetGreatestDistance();
     }
 

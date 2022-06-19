@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3793967419613917924}
   - component: {fileID: 3793967419613917923}
   - component: {fileID: 3793967419613917922}
-  - component: {fileID: 3793967419613917921}
   - component: {fileID: 3793967419613917920}
   - component: {fileID: 3793967419613917926}
   m_Layer: 0
@@ -59,6 +58,8 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -70,6 +71,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -82,6 +84,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &3793967419613917922
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -95,46 +98,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3793967419613917921
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3793967419613917935}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea181bc9732d742469d60c8fb17ec158, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player1Aim: {fileID: 0}
-  playerAim: {fileID: 0}
-  playerNum: 2
-  speed: 10
-  maxSpeed: 10
-  movement: {fileID: 0}
-  rb: {fileID: 3793967419613917920}
-  grounded: 0
-  touchingWall: 0
-  spellProjectile: []
-  spellSelected: 1
-  canCast: 
-  onPlayerUIButton: []
-  spellPrimary: []
-  spellSecondary: []
-  card: {fileID: 0}
-  newCard: {fileID: 0}
-  cardTrail: {fileID: 0}
-  newCardTrail: {fileID: 0}
-  AOEpoint: {fileID: 0}
-  dashDirection: 0
-  dashDirectionTime: 0
-  dashAim: {x: 0, y: 0, z: 0}
-  waterDashForce: 0
-  cardsThrown: 0
-  slowDownPerCard: 2.5
-  newSpell: {fileID: 0}
-  newSpellAOE: []
 --- !u!54 &3793967419613917920
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -176,6 +139,22 @@ PrefabInstance:
       value: chr_sword_red
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 4def237fd515306438bd602c962bed6a, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 4def237fd515306438bd602c962bed6a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.26774213
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 4def237fd515306438bd602c962bed6a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.100403294
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 4def237fd515306438bd602c962bed6a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.26774213
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 4def237fd515306438bd602c962bed6a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.21083811
       objectReference: {fileID: 0}
@@ -186,6 +165,10 @@ PrefabInstance:
     - target: {fileID: 400002, guid: 4def237fd515306438bd602c962bed6a, type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.46479997
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 4def237fd515306438bd602c962bed6a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.3769645
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 4def237fd515306438bd602c962bed6a, type: 3}
       propertyPath: m_LocalRotation.x
@@ -200,14 +183,6 @@ PrefabInstance:
       value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 4def237fd515306438bd602c962bed6a, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.3769645
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 4def237fd515306438bd602c962bed6a, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 4def237fd515306438bd602c962bed6a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
@@ -218,18 +193,6 @@ PrefabInstance:
     - target: {fileID: 400002, guid: 4def237fd515306438bd602c962bed6a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 4def237fd515306438bd602c962bed6a, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.26774213
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 4def237fd515306438bd602c962bed6a, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.100403294
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 4def237fd515306438bd602c962bed6a, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.26774213
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 4def237fd515306438bd602c962bed6a, type: 3}
       propertyPath: m_Materials.Array.data[0]
